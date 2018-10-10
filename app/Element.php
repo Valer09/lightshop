@@ -20,7 +20,7 @@ class Element extends Model
 
     //Access to element subcategories. A new pivot table will be created from join between Element and Subcategories.
     public function subcategories(){
-        return $this->has           Many('App\Subcategory','element_subcategories','sub_name','el_name');
+        return $this->hasMany('App\Subcategory','element_subcategories','sub_name','el_name');
     }
 
     /** This function allows to create a pivot table "Order" with elements() function in User model **/

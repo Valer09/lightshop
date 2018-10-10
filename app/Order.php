@@ -1,5 +1,5 @@
 <?php
-/**
+
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -15,7 +15,7 @@ class Order extends Authenticatable
      *
      * @var array
      */
-/**
+
     protected $table = 'Orders';
 
     protected $fillable = [
@@ -28,7 +28,7 @@ class Order extends Authenticatable
      *
      * @var array
      */
-/**
+
     protected $hidden = [
         'created at', 'updated at'
     ];
@@ -41,4 +41,4 @@ class Order extends Authenticatable
         return $this->belongsTo('User','id');
     }
 }
-**/
+

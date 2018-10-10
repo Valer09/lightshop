@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ElementMigration extends Migration
+class CourierMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class ElementMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Elements', function (Blueprint $table) {
+        Schema::create('Couriers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('subcategories');
-            $table->double('price')-> unsigned();
-            $table->integer('availability')-> unsigned();
-            $table->string('description');
-
-
+            $table->string('courier_name');
+            $table->string('tracking_link');
         });
     }
 
@@ -32,6 +27,6 @@ class ElementMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('elements');
+        Schema::dropIfExists('Couriers');
     }
 }
