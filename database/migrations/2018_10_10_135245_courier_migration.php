@@ -17,6 +17,8 @@ class CourierMigration extends Migration
             $table->increments('id');
             $table->string('courier_name');
             $table->string('tracking_link');
+
+            $table->engine = 'MyISAM';
         });
     }
 

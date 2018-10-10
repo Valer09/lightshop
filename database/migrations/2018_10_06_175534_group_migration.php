@@ -16,6 +16,7 @@ class GroupMigration extends Migration
         Schema::create('Group', function (Blueprint $table){
         $table->increments('id');
         $table->string('name')-> unique();
+
         $table->engine = 'MyISAM';
 
         });

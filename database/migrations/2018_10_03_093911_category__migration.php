@@ -16,6 +16,8 @@ class CategoryMigration extends Migration
         Schema::create('Categories', function (Blueprint $table) {
             $table->string('name') -> unique();
            // $table->string('subcategory');
+
+            $table->engine = 'MyISAM';
         });
     }
 

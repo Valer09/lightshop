@@ -21,6 +21,8 @@ class ElementMigration extends Migration
             $table->integer('availability')-> unsigned();
             $table->string('description');
 
+            $table->engine = 'MyISAM';
+
 
         });
     }

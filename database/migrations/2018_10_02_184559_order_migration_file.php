@@ -21,8 +21,8 @@ class OrderMigrationFile extends Migration
             $table->integer('address_id')->unsigned();
             $table->float('shipping_cost')->unsigned();
             $table->float('tax')->unsigned();
-            $table->timestamps();
-            $table->tinyInteger();
+            $table->timestamp('added_on');
+            $table->tinyInteger('order_shipped');
             $table->string('tracking');
             $table->integer('courier_id')->unsigned();
 
@@ -35,9 +35,11 @@ class OrderMigrationFile extends Migration
                 ->references('id')->on('address')
                 ->onDelete('cascade');
 
-            $table->foreign('courier')
+            $table->foreign('courier_id')
                 ->references('id')->on('couriers')
                 ->onDelete('cascade');
+
+            $table->engine = 'MyISAM';
         });
     }
 

@@ -18,9 +18,10 @@ class AddressMigrate extends Migration
             $table->string('country');
             $table->string('street');
             $table->string('city');
-            $table->integer('municipality');
-            $table->integer('street_number');
+            $table->integer('municipality')->unsigned();
+            $table->integer('street_number')->unsigned();
 
+            $table->engine = 'MyISAM';
 
 
         });

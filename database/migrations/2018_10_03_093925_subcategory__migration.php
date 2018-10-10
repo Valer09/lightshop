@@ -20,7 +20,7 @@ class SubcategoryMigration extends Migration
             $table->foreign('category')
                 ->references('name')->on('categories')
                 ->onDelete('cascade');
-
+            $table->engine = 'MyISAM';
         });
     }
 
