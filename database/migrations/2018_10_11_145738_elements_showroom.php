@@ -19,6 +19,7 @@ class ElementsShowroom extends Migration
             $table->string('description');
             $table->string('pathPhoto');
             $table->string('linkBuy');
+            $table->string('nameSubCategory');
 
             $table->engine = 'MyISAM';
         });

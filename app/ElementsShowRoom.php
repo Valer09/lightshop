@@ -16,7 +16,7 @@ class ElementsShowRoom extends Model
 
     protected $table = 'ElementsShowRoom';
 
-    protected $fillable = ['id','name','description', 'pathPhoto', 'linkBuy'
+    protected $fillable = ['id','name','description', 'pathPhoto', 'linkBuy', 'nameSubCategory'
 
     ];
 }
