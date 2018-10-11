@@ -13,6 +13,7 @@ class ElemShowRoomSubCategoryShowRoomMigration extends Migration
      */
     public function up()
     {
+        //pivot table
         Schema::create('ElPivotSubShowroom', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('elem_id');
