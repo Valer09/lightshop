@@ -15,8 +15,8 @@ class ElemShowRoomSubCategoryShowRoomMigration extends Migration
     {
         Schema::create('ElPivotSubShowroom', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('elem_id');
-            $table->int('nameCat');
+            $table->integer('elem_id');
+            $table->string('nameCat');
 
             $table->foreign('elem_id')
                 ->references('id')->on('ElementsShowRoom')

@@ -17,8 +17,8 @@ class NewsMigration extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->timestamp('startDate');
-            $table->timestamp('stopDate');
+            $table->date('startDate');
+            $table->date('stopDate');
             $table->string('pathPhoto');
             $table->string('linkBuy');
 
