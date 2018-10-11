@@ -18,9 +18,10 @@ class SubcategoryMigration extends Migration
             $table->string('name') ->unique();
             $table->string('category');
             $table->foreign('category')
-                ->references('name')->on('categories')
+                ->references('name')->on('Categories')
                 ->onDelete('cascade');
             $table->engine = 'MyISAM';
+
         });
     }
 

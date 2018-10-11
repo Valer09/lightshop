@@ -14,5 +14,9 @@ class Groups extends Model
         'name'
     ];
 
+    public function get_users(){
+        return $this->belongsToMany('App\User');
+    }
+
     public $timestamps = false;
 }

@@ -31,10 +31,6 @@ class OrderDetailsMigration extends Migration
                 ->references('id')->on('elements')
                 ->onDelete('cascade');
 
-            $table->foreign('element_name')
-                ->references('name')->on('elements')
-                ->onDelete('cascade');
-
             $table->engine = 'MyISAM';
 
         });

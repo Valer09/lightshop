@@ -19,7 +19,7 @@ class Element extends Model
     ];
 
     //Access to element subcategories. A new pivot table will be created from join between Element and Subcategories.
-    public function subcategories(){
+    public function get_subcategories(){
         return $this->belongsToMany('App\Subcategory','elem_subC_pivot','name','name');
     }
 
@@ -28,8 +28,8 @@ class Element extends Model
         return $this->belongsToMany('App\User');
     }
 
-    public function get_OrderDetails(){
-        return $this->hasMany('App\OrderDetails');
+    public function get_orders(){
+        return $this->belongsToMany('App\Order');
     }
     public $timestamps = false;
 

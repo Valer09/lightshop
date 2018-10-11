@@ -47,8 +47,8 @@ class Order extends Model
         return $this->belongsTo('App\Address');
     }
 
-    public function get_Details(){
-        return $this->hasMany('App\OrderDetails');
-    }
+//    public function get_details(){
+//        return $this->hasMany('App\OrderDetails');
+//    }
 }
 

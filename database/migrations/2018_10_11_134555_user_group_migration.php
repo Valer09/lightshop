@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ElemSubCPivotMigration extends Migration
+class UserGroupMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,23 @@ class ElemSubCPivotMigration extends Migration
      */
     public function up()
     {
-        Schema::create('subcategory_elements', function (Blueprint $table) {
+        Schema::create('user_group', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('element_id');
-            $table->string('subcategory_id');
+            $table->string('user_id');
+            $table->string('group_id');
 
             $table->engine = 'MyISAM';
 
             //constraints
-            $table->foreign('element_id')
-                ->references('id')->on('Elements')
+            $table->foreign('user_id')
+                ->references('id')->on('Users')
                 ->onDelete('cascade');
 
             //constraints
-            $table->foreign('subcategory_id')
-                ->references('id')->on('Subcategories')
+            $table->foreign('group_id')
+                ->references('id')->on('Group')
                 ->onDelete('cascade');
         });
-
-
     }
 
     /**
@@ -41,6 +39,6 @@ class ElemSubCPivotMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategory_elements');
+        Schema::dropIfExists('user_group');
     }
 }
