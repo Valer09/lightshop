@@ -20,9 +20,14 @@ class ElementMigration extends Migration
             $table->double('price')-> unsigned();
             $table->integer('availability')-> unsigned();
             $table->string('description');
+            $table->string('brand');
 
             $table->engine = 'MyISAM';
 
+            //constraints
+            $table->foreign('brand')
+                ->references('name')->on('Brands')
+                ->onDelete('cascade');
 
         });
     }

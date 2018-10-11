@@ -31,6 +31,11 @@ class Element extends Model
     public function get_orders(){
         return $this->belongsToMany('App\Order');
     }
+
+    public function get_brand(){
+        return $this->belongsTo('App\Brands');
+    }
+
     public $timestamps = false;
 
 }
