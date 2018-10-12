@@ -4,7 +4,7 @@
     <head>
         <!-- Custom Styles -->
 
-
+@section('head')
         <title>Eshop a Flat E-Commerce Bootstrap Responsive Website Template | Home :: w3layouts</title>
         <link href="{{ URL::asset('css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -26,6 +26,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <link rel="stylesheet" href="{{ URL::asset('css/flexslider.css')  }}" type="text/css" media="screen" />
     </head>
+    @show
+
     <body>
         <!-- Here your section -->
 
@@ -36,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="header-top-left">
                         <ul>
                             <li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
-                            <li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
+                            <li><a href="/register"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
                         </ul>
                     </div>
                     <div class="header-right">
@@ -67,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <span class="icon-bar"></span>
                         </button>
                         <div class="logo">
-                            <h1><a href="index.html"><span>E</span> -Shop</a></h1>
+                            <h1><a href="/"><span>E</span> -Shop</a></h1>
                         </div>
                     </div>
 
@@ -75,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">
@@ -247,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <h4>account</h4>
                             <ul class="f_nav">
                                 <li><a href="account.html">login</a></li>
-                                <li><a href="register.html">create an account</a></li>
+                                <li><a href="/register">create an account</a></li>
                                 <li><a href="#">create wishlist</a></li>
                                 <li><a href="checkout.html">my shopping bag</a></li>
                                 <li><a href="#">brands</a></li>

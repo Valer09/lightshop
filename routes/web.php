@@ -24,3 +24,10 @@ Route::group(['prefix' => 'elements'], function () {
     Route::get('sub', 'ElementsController@showSubCategories');
 });
 
+Route::get('register', function () {
+    return view('register');
+});
+
+Route::get('form', function () {
+    return view('register');
+});
