@@ -12,6 +12,15 @@ class subcategory_seeder extends Seeder
     public function run()
     {
        // factory(App\Subcategory::class, 1)->create();  //50 fake user creati con un unico comando.
+
+        DB::table('subcategories')->delete();
+        DB::table('subcategories')->insert(
+            array(['name'=>'Utensili','category'=>'pappettareale']
+
+            )
+
+        );
+
     }
 }
 
