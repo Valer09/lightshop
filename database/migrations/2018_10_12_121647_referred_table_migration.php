@@ -175,6 +175,17 @@ class ReferredTableMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('Groups');
+        Schema::dropIfExists('Users');
+        Schema::dropIfExists('Couriers');
+        Schema::dropIfExists('Addresses');
+        Schema::dropIfExists('Categories');
+        Schema::dropIfExists('Brands');
+        Schema::dropIfExists('Orders');
+        Schema::dropIfExists('Elements');
+        Schema::dropIfExists('Subcategories');
+        Schema::dropIfExists('Cat_Showroom');
+        Schema::dropIfExists('SubCat_Showroom');
+        Schema::dropIfExists('ElementsShowRoom');
     }
 }

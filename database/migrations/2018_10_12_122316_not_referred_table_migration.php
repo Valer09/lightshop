@@ -121,6 +121,12 @@ class NotReferredTableMigration extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('subcategory_elements');
+        Schema::dropIfExists('element_id');
+        Schema::dropIfExists('user_group');
+        Schema::dropIfExists('news');
+        Schema::dropIfExists('offerts');
+        Schema::dropIfExists('ElPivotSubShowroom');
+        Schema::dropIfExists('OrderDetails');
     }
 }
