@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                  <div class="col-sm-4">
                                                      <ul class="multi-column-dropdown">
                                                      <li><a hrref="BRAND.HTML"><h6>BRAND</h6></a></li>
-                                                         
+
                                                         <li><a href="products.html">Bosh</a></li>
                                                         <li><a href="products.html">Biondini</a></li>
                                                         <li><a href="products.html">DigitalHouse</a></li>
