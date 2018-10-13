@@ -13,7 +13,7 @@ class ReferredTableMigration extends Migration
      */
     public function up()
     {
-        Schema::create('Groups', function (Blueprint $table){
+        Schema::create('groups', function (Blueprint $table){
             $table->increments('id');
             $table->string('name')-> unique();
 
@@ -21,9 +21,10 @@ class ReferredTableMigration extends Migration
 
         });
 
-        Schema::create('Users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('surname');
             $table->string('email') -> unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -38,7 +39,7 @@ class ReferredTableMigration extends Migration
 
         });
 
-        Schema::create('Couriers', function (Blueprint $table) {
+        Schema::create('couriers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('courier_name');
             $table->string('tracking_link');
@@ -46,7 +47,7 @@ class ReferredTableMigration extends Migration
             //   $table->engine = 'MyISAM';
         });
 
-        Schema::create('Addresses', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('country');
             $table->string('street');
@@ -59,14 +60,14 @@ class ReferredTableMigration extends Migration
 
         });
 
-        Schema::create('Categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->string('name') -> unique();
             // $table->string('subcategory');
 
             // $table->engine = 'MyISAM';
         });
 
-        Schema::create('Brands', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->string('name')->primary();
             $table->string('link');
             $table->string('description');
@@ -74,7 +75,7 @@ class ReferredTableMigration extends Migration
             //  $table->engine = 'MyISAM';
         });
 
-        Schema::create('Orders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->float('total')->unsigned();
@@ -103,7 +104,7 @@ class ReferredTableMigration extends Migration
             // $table->engine = 'MyISAM';
         });
 
-        Schema::create('Elements', function (Blueprint $table) {
+        Schema::create('elements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('subcategories');
@@ -116,12 +117,12 @@ class ReferredTableMigration extends Migration
 
             //constraints
             $table->foreign('brand')
-                ->references('name')->on('Brands')
+                ->references('name')->on('brands')
                 ->onDelete('cascade');
 
         });
 
-        Schema::create('Subcategories', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name') ->unique();
             $table->string('category');
@@ -132,25 +133,25 @@ class ReferredTableMigration extends Migration
 
         });
 
-        Schema::create('Cat_showroom', function (Blueprint $table) {
+        Schema::create('cat_showrooms', function (Blueprint $table) {
             $table->string('name')->primary();
             $table->string('description');
         });
 
-        Schema::create('SubCat_showroom', function (Blueprint $table) {
+        Schema::create('subcat_showrooms', function (Blueprint $table) {
             $table->string('name')->primary();
             $table->string('description');
             $table->string('cat');
 
             //Constraints
             $table->foreign('cat')
-                ->references('name')->on('Cat_Showroom')
+                ->references('name')->on('Cat_Showrooms')
                 ->onDelete('cascade');
 
             //    $table->engine = 'MyISAM';
         });
 
-        Schema::create('ElementsShowRoom', function (Blueprint $table) {
+        Schema::create('ElementsShowRooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
@@ -184,8 +185,8 @@ class ReferredTableMigration extends Migration
         Schema::dropIfExists('Orders');
         Schema::dropIfExists('Elements');
         Schema::dropIfExists('Subcategories');
-        Schema::dropIfExists('Cat_Showroom');
-        Schema::dropIfExists('SubCat_Showroom');
-        Schema::dropIfExists('ElementsShowRoom');
+        Schema::dropIfExists('Cat_Showrooms');
+        Schema::dropIfExists('SubCat_Showrooms');
+        Schema::dropIfExists('ElementsShowRooms');
     }
 }

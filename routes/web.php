@@ -12,7 +12,7 @@
 */
 
 Route::redirect('welcome',"/");
-Route::redirect('home',"/");
+
 
 Route::get('/', function () {
     return view('home');
@@ -25,9 +25,15 @@ Route::group(['prefix' => 'elements'], function () {
 });
 
 Route::get('register', function () {
-    return view('register');
+    return view('auth/register');
 });
 
 Route::get('form', function () {
     return view('register');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+

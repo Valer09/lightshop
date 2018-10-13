@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Couriers extends Model
+class Courier extends Model
 {
     protected $fillable = [
         'courier_name','tracking_link'

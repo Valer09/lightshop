@@ -78,93 +78,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="/">Home</a></li>
+                            <li><a href="/">ShowRoom</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorie <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column columns-2">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>NEW IN</h6>
-                                                <li><a href="products.html">New In Clothing</a></li>
-                                                <li><a href="products.html">New In Bags</a></li>
-                                                <li><a href="products.html">New In Shoes</a></li>
-                                                <li><a href="products.html">New In Watches</a></li>
-                                                <li><a href="products.html">New In Grooming</a></li>
+                                                <li><a href="FERRAMENTA LIST.html"><h6> FERRAMENTA</h6></a></li>
+                                                <li><a href="products.html">Ferramenta</a></li>
+                                                <li><a href="products.html">Idraulica</a></li>
+                                                <li><a href="products.html">Edilizia</a></li>
+                                                <li><a href="products.html">Bagni</a></li>
+                                                <li><a href="products.html">Ceramiche</a></li>
+                                                <li><a href="products.html">Arredi Esterni</a></li>
+                                                <li><a href="products.html">Arredi Interni</a></li>
+                                                <li><a href="products.html">Venrnici a colori</a></li>
+                                                <li><a href="products.html">Abbigliamento da lavoro</a></li>
+                                                <li><a href="products.html">Casalinghi</a></li>
+                                                <li><a href="products.html">Materiale Elettrico</a></li>
+
                                             </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>CLOTHING</h6>
-                                                <li><a href="products.html">Polos & Tees</a></li>
-                                                <li><a href="products.html">Casual Shirts</a></li>
-                                                <li><a href="products.html">Casual Trousers</a></li>
-                                                <li><a href="products.html">Jeans</a></li>
-                                                <li><a href="products.html">Shorts & 3/4th</a></li>
-                                                <li><a href="products.html">Formal Shirts</a></li>
-                                                <li><a href="products.html">Formal Trousers</a></li>
-                                                <li><a href="products.html">Suits & Blazers</a></li>
-                                                <li><a href="products.html">Track Wear</a></li>
-                                                <li><a href="products.html">Inner Wear</a></li>
+                                       </div>
+                                        <ul class="multi-column-dropdown columns-2">
+                                             <div class="row">
+                                                 <div class="col-sm-4">
+                                                     <ul class="multi-column-dropdown">
+                                                     <li><a hrref="BRAND.HTML"><h6>BRAND</h6></a></li>
+                                                         
+                                                        <li><a href="products.html">Bosh</a></li>
+                                                        <li><a href="products.html">Biondini</a></li>
+                                                        <li><a href="products.html">DigitalHouse</a></li>
+                                                        <li><a href="products.html">BabyWorker</a></li>
+                                                    </ul>
+                                                </div>
+                                             </div>
                                             </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>WATCHES</h6>
-                                                <li><a href="products.html">Analog</a></li>
-                                                <li><a href="products.html">Chronograph</a></li>
-                                                <li><a href="products.html">Digital</a></li>
-                                                <li><a href="products.html">Watch Cases</a></li>
-                                            </ul>
-                                        </div>
+
+
                                         <div class="clearfix"></div>
                                     </div>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">women <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>NEW IN</h6>
-                                                <li><a href="products.html">New In Clothing</a></li>
-                                                <li><a href="products.html">New In Bags</a></li>
-                                                <li><a href="products.html">New In Shoes</a></li>
-                                                <li><a href="products.html">New In Watches</a></li>
-                                                <li><a href="products.html">New In Beauty</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>CLOTHING</h6>
-                                                <li><a href="products.html">Polos & Tees</a></li>
-                                                <li><a href="products.html">Casual Shirts</a></li>
-                                                <li><a href="products.html">Casual Trousers</a></li>
-                                                <li><a href="products.html">Jeans</a></li>
-                                                <li><a href="products.html">Shorts & 3/4th</a></li>
-                                                <li><a href="products.html">Formal Shirts</a></li>
-                                                <li><a href="products.html">Formal Trousers</a></li>
-                                                <li><a href="products.html">Suits & Blazers</a></li>
-                                                <li><a href="products.html">Track Wear</a></li>
-                                                <li><a href="products.html">Inner Wear</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <h6>WATCHES</h6>
-                                                <li><a href="products.html">Analog</a></li>
-                                                <li><a href="products.html">Chronograph</a></li>
-                                                <li><a href="products.html">Digital</a></li>
-                                                <li><a href="products.html">Watch Cases</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">kids <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-2">
+                             {{--   <ul class="dropdown-menu multi-column columns-2">
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul class="multi-column-dropdown">
@@ -186,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li><a href="typography.html">TYPO</a></li>
                             <li><a href="contact.html">CONTACT</a></li>

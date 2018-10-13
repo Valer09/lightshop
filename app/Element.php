@@ -33,7 +33,7 @@ class Element extends Model
     }
 
     public function get_brand(){
-        return $this->belongsTo('App\Brands');
+        return $this->belongsTo('App\Brand');
     }
 
     public $timestamps = false;

@@ -93,7 +93,7 @@ a.simpleCart_empty {
     float: left;
 }
 .banner {
-    background:url("../images/banner_img.jpg") no-repeat 0px 0px;
+    background:url("../images/ferramenta.png") no-repeat 0px 0px;
     background-size:cover;
     -moz-background-size:cover;
     -o-background-size:cover;
@@ -216,7 +216,7 @@ ul.multi-column-dropdown h6 {
     background-color: #fff!important;
 }
 .dropdown-menu.columns-2 {
-    min-width: 400px;
+    min-width: 650px;
     padding: 15px 20px;
 }
 .dropdown-menu.columns-3 {
