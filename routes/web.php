@@ -22,6 +22,7 @@ Route::get('/login', function () {
     return view('auth/login');
 });
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['prefix' => 'elements'], function () {
     Route::get('all', 'ElementsController@showElements');
