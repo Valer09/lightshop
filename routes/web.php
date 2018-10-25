@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+
 Route::group(['prefix' => 'elements'], function () {
     Route::get('all', 'ElementsController@showElements');
     Route::get('cat', 'ElementsController@showCategories');

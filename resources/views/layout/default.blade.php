@@ -208,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="col-md-3 span1_of_4">
                             <h4>account</h4>
                             <ul class="f_nav">
-                                <li><a href="account.html">login</a></li>
+                                <li><a href="/login">login</a></li>
                                 <li><a href="/register">create an account</a></li>
                                 <li><a href="#">create wishlist</a></li>
                                 <li><a href="checkout.html">my shopping bag</a></li>
