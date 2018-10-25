@@ -34,7 +34,7 @@
                         @csrf
 
                             <span>Email Address<label>*</label></span>
-                            <input type="text"class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <input type="text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}"{{ $errors->has('email') ? ' is-invalid' : '' }}  name="email" value="{{ old('email') }}" required autofocus />
 
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
 
                         <div>
                             <span>Password<label>*</label></span>
-                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input type="password" {{ $errors->has('password') ? ' is-invalid' : '' }} name="password" required>
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
