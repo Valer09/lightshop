@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Http\Request;
@@ -43,4 +44,9 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+  /**  public function check_group($email){
+        $user= DB::table('users')->get()->where('email', $email)->first();
+
+    }**/
 }
