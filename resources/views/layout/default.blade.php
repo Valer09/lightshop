@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="container">
                     <div class="header-top-left">
                         <ul>
-                            <li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
+                            <li><a href="/login"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
                             <li><a href="/register"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
                         </ul>
                     </div>
