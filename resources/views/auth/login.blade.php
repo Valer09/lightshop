@@ -1,71 +1,80 @@
-@extends('layouts.app')
+@extends('layout.default')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<div class="content">
+    <div class="container">
+        <div class="login-page">
+            <div class="dreamcrub">
+                <ul class="breadcrumbs">
+                    <li class="home">
+                        <a href="/home" title="Go to Home Page">Home</a>&nbsp;
+                        <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                        Login
+                    </li>
+                </ul>
+                <ul class="previous">
+                    <li><a href="/home">Back to Previous Page</a></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="account_grid">
+                <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+                    <h2>NEW CUSTOMERS</h2>
+                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                    <a class="acount-btn" href="register.html">Create an Account</a>
+                </div>
+                <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+                    <h3>REGISTERED CUSTOMERS</h3>
+                    <p>If you have an account with us, please log in.</p>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+
+                    <form  method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <span>Email Address<label>*</label></span>
+                            <input type="text"class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
+                        @endif
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                        <div>
+                            <span>Password<label>*</label></span>
+                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                            @endif
+
                         </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            </div>
-                        </div>
+                        <a class="forgot" href="#">Forgot Your Password?</a>
+                        <input type="submit" value="Login">
                     </form>
                 </div>
+                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+  {{--  <div class="news-letter">
+        <div class="container">
+            <div class="join">
+                <h6>JOIN OUR MAILING LIST</h6>
+                <div class="sub-left-right">
+                    <form>
+                        <input type="text" value="Enter Your Email Here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email Here';}" />
+                        <input type="submit" value="SUBSCRIBE" />
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>
+--}}
+@stop
