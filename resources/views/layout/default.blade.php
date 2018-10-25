@@ -31,6 +31,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- cart -->
 
         <link rel="stylesheet" href="{{ URL::asset('css/flexslider.css')  }}" type="text/css" media="screen"/>
+
+        <!-- Custom CSS -->
+        <link href="{{ URL::asset('css/front_end_custom.css') }}" rel="stylesheet" type="text/css" media="all"/>
+
 </head>
 @show
 
