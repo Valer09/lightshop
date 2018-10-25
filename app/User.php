@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','surname', 'email', 'password','group'
     ];
 
     /**
@@ -32,12 +32,16 @@ class User extends Authenticatable
     ];
 
     /** This function allows to create a pivot table "Order" with users() function in Element model **/
-    public function elements(){
-        return $this->belongsToMany('App/Element');
+    public function get_elements(){
+        return $this->belongsToMany('App\Element');
     }
 
-    public function address() {
-        return $this->hasOne('App\Address', (['country','street', 'city','municipality','street number']), 'id');
+    public function get_address() {
+        return $this->hasOne('App\Address');
+    }
+
+    public function get_orders(){
+        return $this->hasMany('App\Order');
     }
 
 }

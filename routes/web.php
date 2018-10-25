@@ -12,15 +12,36 @@
 */
 
 Route::redirect('welcome',"/");
-Route::redirect('home',"/");
+
 
 Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::group(['prefix' => 'elements'], function () {
     Route::get('all', 'ElementsController@showElements');
     Route::get('cat', 'ElementsController@showCategories');
     Route::get('sub', 'ElementsController@showSubCategories');
+});
+
+Route::get('register', function () {
+    return view('auth/register');
+});
+
+Route::get('form', function () {
+    return view('register');
+});
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function () {
+    return view('home');
 });
 

@@ -10,12 +10,13 @@ use App;
 
 class Category extends Model
 {
-    public function subcategories(){
+
+    protected $fillable = ['name'];
+
+
+    public function get_subcategories(){
         return $this->hasMany('App\Subcategory','name');
     }
 
-    protected $fillable = [
-        'name', 'subcategories',
-    ];
     public $timestamps = false;
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class group_seeder extends Seeder
+class courier_seeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,6 @@ class group_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('groups')->insert([
-            'name' => "Visitor"]);
-
+        //
     }
 }

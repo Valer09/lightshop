@@ -15,11 +15,11 @@ class Subcategory extends Model
         'name'
     ];
 
-    public function categories(){
+    public function get_categories(){
         return $this->hasOne('App\Category','name');
     }
 
-    public function elements(){
+    public function get_elements(){
         return $this->belongsToMany('App\Element');
     }
     public $timestamps = false;

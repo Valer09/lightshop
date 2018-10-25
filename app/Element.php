@@ -15,18 +15,27 @@ class Element extends Model
     protected $table = 'Elements';
 
     protected $fillable = [
-        'street', 'city', 'municipality','availability','description'
+        'name', 'subcategories', 'price','availability','description'
     ];
 
     //Access to element subcategories. A new pivot table will be created from join between Element and Subcategories.
-    public function subcategories(){
-        return $this->has           Many('App\Subcategory','element_subcategories','sub_name','el_name');
+    public function get_subcategories(){
+        return $this->belongsToMany('App\Subcategory','elem_subC_pivot','name','name');
     }
 
     /** This function allows to create a pivot table "Order" with elements() function in User model **/
-    public function users(){
+    public function get_users(){
         return $this->belongsToMany('App\User');
     }
+
+    public function get_orders(){
+        return $this->belongsToMany('App\Order');
+    }
+
+    public function get_brand(){
+        return $this->belongsTo('App\Brand');
+    }
+
     public $timestamps = false;
 
 }
