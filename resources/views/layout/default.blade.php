@@ -45,7 +45,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="header-top-left">
                         <ul>
 
-
                             @auth
                                 <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-user"> </span>Logout</a></li>
                             @else
