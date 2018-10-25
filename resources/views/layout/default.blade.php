@@ -48,8 +48,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             @auth
                                 <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-user"> </span>Logout</a></li>
                             @else
-                                <li></li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
-                                <li></li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
+                                <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
+                                <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
                             @endauth
 
                         </ul>
