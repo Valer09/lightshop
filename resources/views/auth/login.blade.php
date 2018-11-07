@@ -46,6 +46,7 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                             @endif
+                            
 
                             <div>
                                 <span>Password<label>*</label></span>
