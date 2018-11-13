@@ -22,6 +22,8 @@ Route::get('/login', function () {
     return view('auth/login');
 });
 
+
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['prefix' => 'elements'], function () {
@@ -40,8 +42,21 @@ Route::get('form', function () {
 
 Auth::routes();
 
+Route::group(['prefix' => 'admin'], function () {
+   Route::get('', 'AccessController@adminAccess');
+    Route::get('board', 'AccessController@adminAccess');
+});
+//Route::group(['middleware' => 'Admin'], function () {
+  //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
+   //Route::get('admin', 'Auth\LoginController');
+   // Route::resource('book', 'BookController');
+//});
+
+
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', function () {
     return view('home');
 });
+
 

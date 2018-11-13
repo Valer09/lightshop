@@ -45,12 +45,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="header">
         <div class="header-top-strip">
             <div class="container">
+
                 @if (Route::has('login'))
+
+
                     <div class="header-top-left">
                         <ul>
 
                             @auth
                                 <li><a href="{{ url('/logout') }}"><span class="glyphicon glyphicon-user"> </span>Logout</a></li>
+                                <li><a><span class="glyphicon glyphicon"> </span> Benvenuto  <b> {{Auth::user()->name}}</b></a></li>>
                             @else
                                 <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
                                 <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>

@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Order');
     }
 
+    public function get_group(){
+
+        return $this-> hasOne('App\group');
+    }
+
    // public function get_user_by_email($email){
    //     return  $users = DB::table('users')->get()->where('email', $email)->first();
    // }

@@ -15,8 +15,11 @@ class Element extends Model
     protected $table = 'Elements';
 
     protected $fillable = [
-        'name', 'subcategories', 'price','availability','description'
+        'name', 'subcategories', 'availability','description'
     ];
+
+    protected $guarded = ['price'];
+
 
     //Access to element subcategories. A new pivot table will be created from join between Element and Subcategories.
     public function get_subcategories(){
