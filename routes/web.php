@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+
+use Illuminate\Support\Facades\Auth;
 
 Route::redirect('welcome',"/");
 
@@ -21,9 +22,13 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth/login');
 });
-//Route::post('/login', function(){
-//    return view('admin');
-//});
+
+Route::get('/home', function () {
+    if ( Auth::user()->group == "Administrator" )
+        return redirect ('admin');
+    else
+        return view('home');
+});
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -47,9 +52,7 @@ Route::group(['prefix' => 'admin'], function () {
 //});
 
 
-Route::get('/home', function () {
-    return view('home');
-});
+
 
 
 Route::group(['prefix' => 'elements'], function () {
@@ -57,4 +60,4 @@ Route::group(['prefix' => 'elements'], function () {
     Route::get('cat', 'ElementsController@showCategories');
     Route::get('sub', 'ElementsController@showSubCategories');
 });
-
+Auth::routes();
