@@ -72,4 +72,15 @@ class RegisterController extends Controller
             'group'=>'Registered'
         ]);
     }
+
+    protected function create_admin(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'group'=>'Administrator'
+        ]);
+    }
 }

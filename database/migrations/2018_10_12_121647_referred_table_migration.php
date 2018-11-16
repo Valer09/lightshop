@@ -21,6 +21,21 @@ class ReferredTableMigration extends Migration
 
         });
 
+        Schema::create('addresses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('country');
+            $table->string('street');
+            $table->string('city');
+            $table->integer('municipality')->unsigned();
+            $table->integer('street_number')->unsigned();
+            $table->integer('user_id')->unsigned();
+
+
+            //   $table->engine = 'MyISAM';
+
+
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -29,12 +44,14 @@ class ReferredTableMigration extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('group');
+            $table->integer('address_id')->unsigned()->default('0');
             $table->rememberToken();
             $table->timestamps();
             //Integrity <-> group
             $table->foreign('group')
                 ->references('name')->on('groups')
                 ->onDelete('cascade');
+
             //   $table->engine = 'MyISAM';
 
         });
@@ -47,18 +64,7 @@ class ReferredTableMigration extends Migration
             //   $table->engine = 'MyISAM';
         });
 
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('country');
-            $table->string('street');
-            $table->string('city');
-            $table->integer('municipality')->unsigned();
-            $table->integer('street_number')->unsigned();
 
-            //   $table->engine = 'MyISAM';
-
-
-        });
 
         Schema::create('categories', function (Blueprint $table) {
             $table->string('name') -> unique();

@@ -12,8 +12,15 @@
 */
 
 use Illuminate\Support\Facades\Auth;
+use \xampp\htdocs\WebTechProject\app\Http\Controllers;
+
+
+
 
 Route::redirect('welcome',"/");
+
+//--------------------------------------------//
+//----------GET Methods-------------//
 
 Route::get('/', function () {
     return view('home');
@@ -52,12 +59,30 @@ Route::group(['prefix' => 'admin'], function () {
 //});
 
 
-
-
-
 Route::group(['prefix' => 'elements'], function () {
     Route::get('all', 'ElementsController@showElements');
     Route::get('cat', 'ElementsController@showCategories');
     Route::get('sub', 'ElementsController@showSubCategories');
 });
 Auth::routes();
+
+Route::get('order', function(){
+  return view('OrderFormTest');
+
+});
+
+
+//--------------------------------------------//
+//----------POST Methods---------------------//
+
+//---INSERTION---/
+
+Route::post('/order_submit', 'orderController@submit_order');
+Route::post('/user_insertion_submit', 'insertionController@insert_user' );
+Route::post('/element_insertion_submit', 'insertionController@insert_element' );
+Route::post('/news_insertion_submit', 'insertionController@insert_news' );
+Route::post('/category_insertion_submit', 'insertionController@insert_category' );
+Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
+
+
+
