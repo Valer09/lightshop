@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class News extends Model
 {
@@ -19,4 +20,5 @@ class News extends Model
     protected $fillable = ['id','name','description','startDate', 'stopDate', 'pathPhoto', 'linkBuy'
 
     ];
+    public $timestamps = false;
 }

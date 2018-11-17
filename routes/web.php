@@ -70,8 +70,10 @@ Route::get('order', function(){
   return view('OrderFormTest');
 
 });
+Route::get('deletions', function(){
+    return view('DeleteFormTest');
 
-
+});
 //--------------------------------------------//
 //----------POST Methods---------------------//
 
@@ -80,6 +82,7 @@ Route::get('order', function(){
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
+Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
