@@ -1,7 +1,7 @@
 @extends('layout.default')
 
 @section('content')
-
+    {{--ORDERS--}}
     <div>
         <h3> TESTA ORDINI </h3>
 
@@ -15,7 +15,7 @@
 
 </form>
     </div>
-
+    {{--USERS--}}
     <div>
         <h3> TESTA USER_INSERTION </h3>
 
@@ -28,7 +28,7 @@
             Email
             <input name="email" type="text" class="form-control">
             Password
-            <input name="password" type="text" class="form-control">
+            <input name="password" type="password" class="form-control">
             Group
             <select name="group" class="form-control">
 
@@ -45,7 +45,7 @@
 
         </form>
     </div>
-
+    {{--ELEMENTS--}}
     <div>
         <h3> TESTA ELEMENT INSERTION </h3>
 
@@ -86,8 +86,7 @@
 
         </form>
     </div>
-
-
+    {{--NEWS--}}
     <div>
         <h3> TESTA NEWS INSERTION </h3>
 
@@ -111,8 +110,7 @@
 
         </form>
     </div>
-
-
+    {{--CATEGORY--}}
     <div>
         <h3> TESTA CATEGORY INSERTION </h3>
 
@@ -124,6 +122,7 @@
 
         </form>
     </div>
+    {{--SUBCATEGORY--}}
     <div>
         <h3> TESTA SUBCATEGORY INSERTION </h3>
 
@@ -146,12 +145,6 @@
 
         </form>
     </div>
-
-
-
-
-
-
 
 
 @stop

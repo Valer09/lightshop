@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\User, App\Element, App\News, App\Category, App\Subcategory;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -16,7 +17,7 @@ use App\User, App\Element, App\News, App\Category, App\Subcategory;
 class insertionController extends Controller
 {
 
-
+//--DB methods--//
     /**public function insert_user(request $request){
 
     DB::table('users')->insert(array([
@@ -99,13 +100,30 @@ class insertionController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make ($request->password);
         $user->group = $request->group;
         $user->save();
 
         return view('test');
 
     }
+
+
+    public function increase_element(Request $request){
+
+        DB::table('elements')->where('name', $request->increase)->increment('availability',1);
+        return view('test');
+
+    }
+
+    public function increase_element_of(Request $request){
+
+        $quantity=$request->quantity;
+        DB::table('elements')->where('name', $request->increase)->increment('availability',$quantity);
+        return view('test');
+
+    }
+
     public function insert_element(Request $request)
     {
         $element = new Element;

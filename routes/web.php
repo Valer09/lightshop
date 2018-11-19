@@ -14,12 +14,9 @@
 use Illuminate\Support\Facades\Auth;
 use \xampp\htdocs\WebTechProject\app\Http\Controllers;
 
-
-
-
 Route::redirect('welcome',"/");
 
-//--------------------------------------------//
+//-----------------------------------//
 //----------GET Methods-------------//
 
 Route::get('/', function () {
@@ -59,11 +56,11 @@ Route::group(['prefix' => 'admin'], function () {
 //});
 
 
-Route::group(['prefix' => 'elements'], function () {
-    Route::get('all', 'ElementsController@showElements');
-    Route::get('cat', 'ElementsController@showCategories');
-    Route::get('sub', 'ElementsController@showSubCategories');
-});
+//Route::group(['prefix' => 'elements'], function () {
+//    Route::get('all', 'ElementsController@showElements');
+//    Route::get('cat', 'ElementsController@showCategories');
+//    Route::get('sub', 'ElementsController@showSubCategories');
+//});
 Auth::routes();
 
 Route::get('order', function(){
@@ -74,18 +71,36 @@ Route::get('deletions', function(){
     return view('DeleteFormTest');
 
 });
+
+
 //--------------------------------------------//
 //----------POST Methods---------------------//
 
-//---INSERTION---/
-
+//---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
-Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
-Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
+Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
+
+//---DELETIONS---/
+Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
+Route::post('/user_deletion_submit', 'deletionsController@delete_user' );
+Route::post('/news_deletion_submit', 'deletionsController@delete_news' );
+Route::post('/category_deletion_submit', 'deletionsController@delete_category' );
+Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
+
+
+
+//---INCREMENT-DECREMENT---//
+Route::post('/element_increase_submit', 'insertionController@increase_element' ); //increment 1
+Route::post('/element_increase_of_submit', 'insertionController@increase_element_of' ); //increment x
+Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
+Route::post('/element_decrease_of_submit', 'deletionsController@decrease_element_of' );
+
+
+
 
 
 
