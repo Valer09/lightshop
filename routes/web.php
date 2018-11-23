@@ -72,6 +72,11 @@ Route::get('deletions', function(){
 
 });
 
+Route::get('edits', function(){
+    return view('EditFormTest');
+
+});
+
 
 //--------------------------------------------//
 //----------POST Methods---------------------//
@@ -98,6 +103,17 @@ Route::post('/element_increase_submit', 'insertionController@increase_element' )
 Route::post('/element_increase_of_submit', 'insertionController@increase_element_of' ); //increment x
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
 Route::post('/element_decrease_of_submit', 'deletionsController@decrease_element_of' );
+
+
+//---EDITS---//
+Route::post('/email_edit_submit', 'user_edit_controller@edit_email' );
+Route::post('/password_edit_submit', 'user_edit_controller@edit_password' );
+Route::post('/name_edit_submit', 'user_edit_controller@edit_name' );
+Route::post('/surname_edit_submit', 'user_edit_controller@edit_surname' );
+Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
+Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
+Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
+Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
 
 
 
