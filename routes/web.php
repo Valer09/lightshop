@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/single', function () {
+    return view('layout/app');
+});
+
 Route::get('/login', function () {
     return view('auth/login');
 });
