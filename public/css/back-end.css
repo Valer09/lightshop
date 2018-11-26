@@ -1,0 +1,15 @@
+#modaleAdmin {
+    width: 80% !important;
+
+}
+
+#labelFoto {
+    padding-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 100%;
+}
+
+#cardCategorie {
+    border-bottom: 2px solid #ccc;
+}
