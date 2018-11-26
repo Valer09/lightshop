@@ -44,7 +44,7 @@
                     <a href="#Dimenticata" class="w3-left" style="text-decoration: none;">Password dimenticata?</a>
                 </div>
                 <div class="w3-col l6 w3-right">
-                    <a href="register.html" class="w3-right " style="text-decoration: none;">Non hai un account?</a>
+                    <a href="./register" class="w3-right " style="text-decoration: none;">Non hai un account?</a>
                 </div>
             </div>
         </form>
