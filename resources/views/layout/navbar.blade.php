@@ -43,8 +43,7 @@
         @auth
             <p><a href="{{ url('/logout') }}" id="barDxM" class="w3-bar-item w3-button w3-row-padding" onclick="myFunction()">Logout</a></p>
         @else
-        <p><a href="{{ route('login') }}" id="barDxMButt" class="w3-bar-item w3-button w3-row-padding" onclick="myFunction()">Login</a></p>
-        <p><a href="{{ route('register') }}" id="barDxM" class="w3-bar-item w3-button w3-row-padding" onclick="myFunction()">Registrati</a></p>
+        <p><a href="{{ route('login') }}" id="barDxMButt" class="w3-bar-item w3-button w3-row-padding" onclick="myFunction()">Accedi</a></p>
         @endauth
       </div>
     </div>
