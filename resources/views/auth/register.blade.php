@@ -1,124 +1,98 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE html>
+@extends('layout.defaultLayout')
 
+@section('content')
+    <!--CONTENT PAGE-->
+    <div class="w3-container w3-row" style="margin-top:65px">
+        
+        <div class="w3-container w3-half">
 
-<html>
-
-<head>
-    @extends('layout.default')
-
-</head>
-<body>
-
-@section('content'))
-<div class="registration-form">
-    <div class="container">
-        <div class="dreamcrub">
-            <ul class="breadcrumbs">
-                <li class="home">
-                    <a href="/" title="Go to Home Page">Home</a>&nbsp;
-                    <span>&gt;</span>
-                </li>
-                <li class="women">
-                    Registration
-                </li>
-            </ul>
-            <ul class="previous">
-                <li><a href="/">Back to Previous Page</a></li>
-            </ul>
-            <div class="clearfix"></div>
         </div>
-        <h2>Registration</h2>
-        <div class="registration-grids">
-            <div class="reg-form">
-                <div class="reg">
-                    <p>Welcome, please enter the following details to continue.</p>
-                    <p>If you have previously registered with us, <a href="#">click here</a></p>
-                    <form  method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <ul>
-                            <li class="text-info">{{ __('Name') }}</li>
-                            <li><input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
+        <!--REGISTER-->
+        <div class="w3-container w3-half">
+            <div class="w3-container" style="width: 100%">
+                <div class="w3-container w3-red">
+                    <h2><i class="w3-margin-right"></i>Registrazione</h2>
+                </div>
+                <div class="w3-container w3-white w3-padding-16">
+                    <form action="{{ route('register') }}" method="post" target="_blank">
+                        @csrf
+                        <div class="w3-row-padding" style="margin:0 -16px;">
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('Nome') }}</label>
+                                <input id="name" class="w3-input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" 
+                                type="text" placeholder="Mario" name="name" value="{{ old('name') }}" required autofocus>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
-
-
-                            </li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{{ __('surname') }}</li>
-                            <li><input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
-
-
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('Cognome') }}</label>
+                                <input id="surname" class="w3-input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" 
+                                value="{{ old('surname') }}" type="text" placeholder="Rossi"  required>
                                 @if ($errors->has('surname'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('surname') }}</strong>
                                     </span>
                                 @endif
-
-
-
-                            </li>
-                        </ul>
-                        <ul>
-                            <li class="text-info">{{ __('E-Mail') }} </li>
-                            <li><input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required></li>
-
-                            @if ($errors->has('email'))
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('E-Mail') }}</label>
+                                <input id="email" class="w3-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" 
+                                placeholder="mariorossi@gmail.com" name="email" value="{{ old('email') }}" required>
+                                @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                            @endif
-
-                        </ul>
-                        <ul>
-                            <li class="text-info">{{ __('Password') }}</li>
-                            <li><input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required></li>
-
-                            @if ($errors->has('password'))
+                                @endif
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> Ripeti email</label>
+                                <input class="w3-input" type="text" placeholder="mariorossi@gmail.com" name="CheckIn" required>
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-lock"></i> {{ __('Password') }}</label>
+                                <input id="password" class="w3-input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" 
+                                type="password" placeholder="*********" name="password" required>
+                                @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                            @endif
-
-                        </ul>
-                        <ul>
-                            <li class="text-info">{{ __('Re-Eneter Password') }}</li>
-                            <li><input input id="password-confirm" type="password" class="form-control" name="password_confirmation" required></li>
-                        </ul>
-                     {{--   <ul>
-                            <li class="text-info">Mobile Number:</li>
-                            <li><input type="text" value=""></li>
-                        </ul>  --}}
-                        <input type="submit" value="REGISTER NOW">
-                        <p class="click">By clicking this button, you are agree to my  <a href="#">Policy Terms and Conditions.</a></p>
+                                @endif
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-lock"></i> {{ __('Ripeti Password') }}</label>
+                                <input id="password-confirm" class="w3-input form-control" type="password" placeholder="*********" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-blind w3-center"></i>  Registrati</button>
                     </form>
                 </div>
             </div>
-            <div class="reg-right">
-                <h3>Completely Free Account</h3>
-                <div class="strip"></div>
-                <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio
-                    libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-                <h3 class="lorem">Lorem ipsum dolor.</h3>
-                <div class="strip"></div>
-                <p>Tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-            </div>
-            <div class="clearfix"></div>
         </div>
-    </div>
-</div>
-    @stop
-
-
-</body>
-</html>
+    </div>    
+    
+    <!-- SCRIPT -->
+    <script>
+        carousel();
+        aggiungiFoto("slider", "bagno")
+        
+        function aggiungiFoto(id, tipoFoto)
+        {
+            var mio_div = null;
+            var nuovoDiv = null;
+            for (i = 0; i < 5; i++) {
+                // crea un nuovo elemento DIV
+                // e gli assegna un contenuto
+                nuovoDiv = document.createElement("div");
+                nuovoDiv.innerHTML = "<div class=\"mySlides w3-display-container w3-center\"><img src=\"../Foto sito/"+ tipo + "/" + tipo + " (" + numero + ")" + "\" style=\"width:90%\" alt=\"image\"><div class=\"w3-display-middle  w3-margin-top w3-center w3-hide-small\"><h1 class=\"w3-xxlarge w3-text-white\"><span class=\"w3-padding w3-black w3-opacity-min\"><b>Visca s.n.c.</b></span></h1><span class=\"w3-hide-small w3-text-light-grey\">di Visca Lucio e Filiberto</span></div></div>";
+            } 
+            
+            // aggiunge l'elemento appena creato e il suo contenuto al DOM
+            mio_div = document.getElementById(id);
+            document.body.insertBefore(nuovoDiv, mio_div);
+        }
+    </script>
+@stop
