@@ -33,7 +33,7 @@ Route::get('/login', function () {
 
 Route::get('/home', function () {
     if ( Auth::user()->group == "Administrator" )
-        return redirect ('admin');
+        return redirect ('admin/home');
     else
         return view('home');
 });
@@ -50,7 +50,7 @@ Route::get('form', function () {
 
 Route::group(['prefix' => 'admin'], function () {
    Route::get('', 'AccessController@adminAccess');
-    Route::get('board', 'AccessController@adminAccess');
+    Route::get('home', 'AccessController@adminAccess');
 });
 
 //Route::group(['middleware' => 'Admin'], function () {
