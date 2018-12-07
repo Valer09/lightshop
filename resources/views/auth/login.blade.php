@@ -4,8 +4,8 @@
 @section('content')
 
     <!-- !PAGE CONTENT! -->
-    <div class="w3-container w3-display-container" style="height:100%;">
-     <div class="w3-content w3-center w3-padding" style="position:relative;margin-top:100px;width:400px;background-color: #2c993f;">
+    <div class="w3-container" style="height:100%;">
+     <div class="w3-content w3-center w3-padding" style="margin-top:100px;width:400px;background-color: #2c993f;">
             <form method="POST" action="{{ route('login') }}" style="border:none;">
                 @csrf
                 <div class="w3-row w3-center w3-border-bottom">
@@ -52,7 +52,4 @@
             </form>
         </div>
     </div>
-       
-  
-
 @stop

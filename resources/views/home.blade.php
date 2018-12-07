@@ -4,7 +4,7 @@
 @section('content')
       <!--HEADERS-->
 
-  <header id="header" class="w3-container">
+  <header id="header" class="w3-display-container">
     <div class="w3-display-middle w3-margin-top w3-center">
     <h1 class=" w3-hide-medium w3-hide-large w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
       <h1 class="w3-xxlarge  w3-hide-small w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
@@ -16,7 +16,7 @@
 
 
   <!-- Page content -->
-  <div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
     <div class="w3-container w3-padding" id="projects">
