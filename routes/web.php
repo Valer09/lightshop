@@ -32,9 +32,9 @@ Route::get('/login', function () {
 });
 
 Route::get('/home', function () {
-    if ( Auth::user()->group == "Administrator" )
-        return redirect ('admin/home');
-    else
+ //   if ( Auth::user()->group == "Administrator" )
+ //       return redirect ('admin/home');
+ //   else
         return view('home');
 });
 
