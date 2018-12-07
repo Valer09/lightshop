@@ -8,7 +8,7 @@
         <div class="w3-container w3-blue-grey">
             <h1>Aggiungi un nuovo Prodotto</h1>
             <p>Utilizza questa form per aggingere un nuovo prodotto.</p>
-            <form action="/gestioneProdotti" class="w3-container" method="post">
+            <form class="w3-container" action="{{route('element_insertion_submit')}}" method="post">
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Dati nuovo prodotto</p>
@@ -102,7 +102,8 @@
                             <span onclick="closeModal()" class="w3-button w3-display-topright">&times;</span>
                             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
-                            <form class="w3-container">
+                            <form class="w3-container" >
+                                @csrf
                                 <fieldset id="provola" style="border: none">
                                     <div class="w3-row">
                                         <div class="w3-col m6 w3-light-grey w3-center">
@@ -130,7 +131,7 @@
                                             <input class="w3-input" name="prezzoSped" type="text" placeholder="Prezzo spedizione">
                                             <input class="w3-input" name="quantita" type="number" placeholder="Quantità disponibile" required>
                                             <div id="labelFoto" class="w3-left" style="border-bottom: 1px solid #ccc;"><b>Foto principale: </b><input type="file" name="myFile"></div>
-                                            <div id="labelFoto" class="w3-left"><b>Altre foto: </b><input type="file" name="myFile" multiple></div>
+                                            <div id="labelFoto" class="w3-left"><b>Altre foto: </b><input type="file" name="file_name" multiple></div>
                                         </div>
 
                                     </div>

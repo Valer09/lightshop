@@ -134,6 +134,12 @@ class insertionController extends Controller
         $element->description = $request->description;
         $element->brand = $request->brand;
         $element->save();
+        $file=new File;
+        $file->name = $request->file_name;
+        $file->size = $request->file_name->getClientSize();
+        $file=new File;
+
+
 
         return view('test');
 
