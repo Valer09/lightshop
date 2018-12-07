@@ -1,6 +1,6 @@
 <title>Visca s.n.c.</title>
   <meta charset="UTF-8">
-  <link rel="icon" href="./images/logo visca.png" type="image/gif" sizes="16x16">
+  <link rel="icon" href="/images/logo_visca.png" type="image/gif" sizes="16x16">
 
   <!--CSS CUSTOM-->
   <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />

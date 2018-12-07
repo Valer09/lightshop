@@ -2,7 +2,7 @@
   <!-- Navbar (sit on top) -->
   <div class="w3-top w3-hide-small">
     <div class="w3-bar w3-white w3-wide w3-card">
-      <img id="logoBar" class="w3-image w3-left" src="./images/logo visca.png">
+      <img id="logoBar" class="w3-image w3-left" src="/images/logo_visca.png">
       <a href="./" id="barSx" class="w3-bar-item w3-button"><b>Visca s.n.c.</b></a>
       <a href="./404.html" id="barDx" class="w3-bar-item w3-button">Chi siamo</a>
       <a href="./orari.html" id="barDx" class="w3-bar-item w3-button">Orari</a>
@@ -29,7 +29,7 @@
 
   <div class="w3-top w3-hide-medium w3-hide-large">
     <div class="w3-bar w3-white w3-wide w3-card">
-      <img id="logoBar" class="w3-image w3-left" src="./images/logo visca.png" width="51">
+      <img id="logoBar" class="w3-image w3-left" src="/images/logo_visca.png" width="51">
       <button onclick="myFunction('Demo1')" id="barSx" class="w3-bar-item w3-block w3-button"><b>Visca s.n.c.</b></button>
       <!-- Float links to the right. Hide them on small screens -->
       <div id="Demo1" class="w3-hide w3-bar w3-container">

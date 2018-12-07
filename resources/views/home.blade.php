@@ -122,7 +122,6 @@
           <i class="fa fa-envelope" style="width:30px"> </i> Email: <a href="mailto:acquisti@viscaedilizia.it">acquisti@viscaedilizia.it</a><br>
         </div>
 
-
         <div class="w3-col l6 m6 w3-padding-small">
           <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16"> Scrivici</h4>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -144,8 +143,6 @@
         </div>
       </div>
     </div>
-  </div>
-
 
   <!-- End page content -->
   </div>

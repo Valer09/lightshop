@@ -8,7 +8,7 @@
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="./public/logo visca.png" class="w3-circle w3-margin-right" style="width:46px">
+            <img src="/images/logo visca.png" class="w3-circle w3-margin-right" style="width:46px">
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong>Zio Lucio</strong></span><br>
@@ -23,13 +23,13 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="./Admin.html" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
-        <a href="./Ordini.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
-        <a href="./Prodotti.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
-        <a href="./News.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-        <a href="./Categorie.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
+        <a href="admin" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
+        <a href="ordini" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
+        <a href="prodotti" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
+        <a href="news" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="categorie" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Showroom</a>
-        <a href="./OrdiniCompletati.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
+        <a href="ordiniCompletati" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Utenti</a>
         <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Impostazione</a><br><br>
     </div>

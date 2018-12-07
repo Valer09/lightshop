@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="w3-main">
-    <div class="w3-content w3-center w3-margin-bottom w3-indigo w3-padding w3-round" style="margin-top:100px;width:400px;">
+    <div class="w3-content w3-center w3-margin-bottom  w3-padding w3-round" style="margin-top:100px;width:400px;background-color: #2c993f;">
         <form method="POST" action="{{ route('login') }}" style="border:none;">
             @csrf
             <div class="w3-row w3-center w3-border-bottom">
