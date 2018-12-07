@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use \xampp\htdocs\WebTechProject\app\Http\Controllers;
 
+
 Route::redirect('welcome',"/");
 
 //-----------------------------------//
@@ -48,11 +49,23 @@ Route::get('form', function () {
     return view('register');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
    Route::get('', 'AccessController@adminAccess');
-    Route::get('home', 'AccessController@adminAccess');
-});
+   Route::get('home', 'AccessController@adminAccess');
+   Route::get('orders', function () {
+       return view('backAdmin/orders');
+   });
+    Route::get('categories', function () {
+        return view('backAdmin/categories');
+    });
+    Route::get('products', function () {
+        return view('backAdmin/products');
+    });
+    Route::get('orderscompleted', function () {
+        return view('backAdmin/orderscompleted');
+    });
 
+});
 //Route::group(['middleware' => 'Admin'], function () {
    //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
    //  Route::get('admin', 'Auth\LoginController');
@@ -118,6 +131,7 @@ Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
 Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
 Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
 Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+
 
 
 
