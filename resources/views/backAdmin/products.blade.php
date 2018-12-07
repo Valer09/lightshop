@@ -9,6 +9,7 @@
             <h1>Aggiungi un nuovo Prodotto</h1>
             <p>Utilizza questa form per aggingere un nuovo prodotto.</p>
             <form class="w3-container" action="{{route('element_insertion_submit')}}" method="post">
+                
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Dati nuovo prodotto</p>
