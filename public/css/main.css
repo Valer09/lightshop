@@ -128,9 +128,15 @@ a.w3-bar-item:hover{
     color: white;
 }
 
-#home {
-    align-self: auto;
-    align-content: center;
+#header {
+    background-image: url("../images/ferramenta/ferramenta.jpg");
+    position:relative;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 #logoBar {

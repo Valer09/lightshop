@@ -8,7 +8,7 @@
 <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
     <div class="w3-container w3-row">
         <div class="w3-col s4">
-            <img src="/images/logo visca.png" class="w3-circle w3-margin-right" style="width:46px">
+            <img src="/images/logo_visca.png" class="w3-circle w3-margin-right" style="width:46px">
         </div>
         <div class="w3-col s8 w3-bar">
             <span>Welcome, <strong>Zio Lucio</strong></span><br>
