@@ -15,7 +15,7 @@
                 {{$Element = \App\Element::all()}}
 
                 @foreach ($Element as $Element)
-                    <option>{{ $Element->name, $Element->id }}</option>>
+                    <option>{{ $Element->name, $Element->id }}</option>
                 @endforeach
 
             </select>
@@ -23,7 +23,7 @@
 
             <button type="submit"> Submit </button>
 
-        </form>
+    </form>
     <form method="post" type="submit" action="{{URL::to('/element_increase_submit')}}">
     <div>
         @csrf
@@ -40,6 +40,8 @@
     </div>
         <button type="submit"> Submit </button>
     </form>
+
+
     <form method="post" type="submit" action="{{URL::to('/element_decrease_submit')}}">
     <div>
         @csrf
@@ -74,6 +76,7 @@
         </div>
         <button type="submit"> Submit </button>
     </form>
+
     <form method="post" type="submit" action="{{URL::to('/element_increase_of_submit')}}">
         <div>
             @csrf
@@ -102,13 +105,9 @@
             inserisci l'email dell'utente da cancellare
                 <input name="email", type="email">
                    {{--<option>{{ $User->id.';'.' '.$User->name.' '.$User->surname.';'.' '.$User->email  }}</option>--}}
-
-
-
         </div>
 
         <button type="submit"> Submit </button>
-
     </form>
 
     {{--NEWS-DELETION-FORM--}}
@@ -126,10 +125,7 @@
             </select>
             {{--<option>{{ $User->id.';'.' '.$User->name.' '.$User->surname.';'.' '.$User->email  }}</option>--}}
 
-
-
         </div>
-
         <button type="submit"> Submit </button>
 
     </form>
@@ -149,10 +145,7 @@
             </select>
             {{--<option>{{ $User->id.';'.' '.$User->name.' '.$User->surname.';'.' '.$User->email  }}</option>--}}
 
-
-
         </div>
-
         <button type="submit"> Submit </button>
 
     </form>
@@ -172,10 +165,7 @@
             </select>
             {{--<option>{{ $User->id.';'.' '.$User->name.' '.$User->surname.';'.' '.$User->email  }}</option>--}}
 
-
-
         </div>
-
         <button type="submit"> Submit </button>
 
     </form>
