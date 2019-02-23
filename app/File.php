@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $fillable = [
-        'name', 'size', 'timestamps',
+        'name', 'size'
     ];
 
+    public $timestamps = true;
 }

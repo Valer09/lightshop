@@ -8,36 +8,43 @@
         <div class="w3-container w3-blue-grey">
             <h1>Aggiungi un nuovo Prodotto</h1>
             <p>Utilizza questa form per aggingere un nuovo prodotto.</p>
-            <form class="w3-container" action="{{route('element_insertion_submit')}}" method="post">
-
+            <form class="w3-container" method="post" action="{{URL::to('/element_insertion_submit')}}" >
+                @csrf
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Dati nuovo prodotto</p>
-                        <input class="w3-input" name="brand" type="text" placeholder="Marca">
-                        <input class="w3-input" name="nomeProdotto" type="text" placeholder="Nome prodotto" required>
-                        <input class="w3-input" name="descrizione" type="text" placeholder="Descrizione">
-                        <input class="w3-input" name="nota" type="text" placeholder="Nota">
-                        <select class="w3-select" name="categoria" onchange="change(this.value)" required>
-                            <option value="" disabled selected>Selezione una categoria</option>
-                            <option value="MATERIALE EDILE">Materiale Edile</option>
-                            <option value="CERAMICHE">Ceramiche</option>
-                            <option value="ARREDO BAGNO">Arredo bagno</option>
-                            <option value="CAMINETTI">Caminetti</option>
-                            <option value="TERMOIDRAULICA">Termoidraulica</option>
-                            <option value="FERRAMENTA">Ferramenta</option>
+                        <select class="w3-select" name="brand" type="text" placeholder="Marca">
+                            {{$Brand = \App\Brand::all()}}
+                            @foreach ($Brand as $Brand)
+                                <option>{{ $Brand->name}}</option>
+                            @endforeach
+
                         </select>
-                        <select class="w3-select" name="sottocategoria" id="selectSottocategoria" required>
+                        <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
+                        <input class="w3-input" name="description" type="text" placeholder="Descrizione">
+
+                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required >
+
+                            {{$Subcategory = \App\Subcategory::all()}}
+                            @foreach ($Subcategory as $Subcategory)
+                                <option>{{ $Subcategory->name}}</option>
+                            @endforeach
+
                         </select>
+
                     </div>
+
 
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Prezzi </p>
-                        <input class="w3-input" name="peso" type="text" placeholder="Peso unitario" required>
-                        <input class="w3-input" name="prezzoUnita" type="text" placeholder="Prezzo unitario" required>
-                        <input class="w3-input" name="prezzoSped" type="text" placeholder="Prezzo spedizione">
-                        <input class="w3-input" name="quantita" type="number" placeholder="Quantità disponibile" required>
-                        <div id="labelFoto" class="w3-left" style="border-bottom: 1px solid #ccc;"><b>Foto principale: </b><input type="file" name="myFile"></div>
-                        <div id="labelFoto" class="w3-left"><b>Altre foto: </b><input type="file" name="myFile" multiple></div>
+
+                        <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
+
+                        <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile" required>
+                        <div id="labelFoto" class="w3-left" style="border-bottom: 1px solid #ccc;"><b>Foto principale: </b>
+                            <input type="file" name="file_name"></div>
+                        <div id="labelFoto" class="w3-left"><b>Altre foto: </b>
+                            <input type="file" name="myFile" multiple></div>
                     </div>
                 </div>
                 <hr>

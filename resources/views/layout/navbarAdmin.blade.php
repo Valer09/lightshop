@@ -1,7 +1,8 @@
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-    <span class="w3-bar-item w3-right">Logo</span>
+    <a href="{{ url('/logout') }}" class="w3-bar-item w3-right">Log Out</a>
+    <a href="{{ url('/home') }}" class="w3-bar-item w3-left">Go Back To Site</a>
 </div>
 
 <!-- Sidebar/menu -->
@@ -11,7 +12,7 @@
             <img src="/images/logo_visca.png" class="w3-circle w3-margin-right" style="width:46px">
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Welcome, <strong>Zio Lucio</strong></span><br>
+            <span>Welcome, <strong> {{Auth::user()->name}}</strong></span><br>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
@@ -23,15 +24,15 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href="admin" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
-        <a href="ordini" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
-        <a href="prodotti" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
-        <a href="news" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-        <a href="categorie" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Showroom</a>
-        <a href="ordiniCompletati" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Utenti</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Impostazione</a><br><br>
+        <a href={{url('/admin/home')}} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
+        <a href="{{url('admin/orders')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
+        <a href="{{url('admin/products')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
+        <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        <a href="{{url('admin/categories')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
+        <a href="{{url('admin/showroomAdmin')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Showroom</a>
+        <a href="{{url('admin/orderscompleted')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
+        <a href="{{url('admin/users')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Utenti</a>
+        <a href="{{url('admin/settings')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Impostazione</a><br><br>
     </div>
 </nav>
 
