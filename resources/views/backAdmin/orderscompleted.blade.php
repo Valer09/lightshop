@@ -12,29 +12,40 @@
             <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="myFunction()">
 
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
-                <table class="w3-table-all w3-margin-top" id="myTable">
+                <table class="w3-table-all w3-margin-top" id="myTable" style="text-decoration-color: black">
                     <tr>
-                        <th style="width:30%;">Nome</th>
-                        <th style="width:30%;">Categoria</th>
-                        <th style="width:10%;">Scaglioni</th>
-                        <th style="width:10%;">Prezzo</th>
-                        <th style="width:10%;">Prezzo Poste</th>
-                        <th style="width:10%;">PU Aggiuntivi</th>
+                        <th style="width:10%;">ID</th>
+                        <th style="width:30%;">User ID</th>
+                        <th style="width:30%;">Name</th>
+                        <th style="width:6%;">Prezzo Poste</th>
+                        <th style="width:6%;">TOTAL</th>
+
+
                     </tr>
 
                     <!--ESEMPIO DA CANCELLARE-->
-                    <tr>
-                        <td>Affrancatura</td>
-                        <td>Servizi</td>
-                        <td>1,00</td>
-                        <td>0,044</td>
-                        <td>0,000</td>
-                        <td>0,000</td>
-                    </tr>
-                    <!--FINE ESEMPIO DA CANCELLARE-->
+                    {{!$Orders=\App\Order::all()}}
+                    @foreach($Orders as $Orders)
+                        @if( ($Orders->order_shipped) > 1 )
+                            <tr>
 
-                    <!--LISTA DEI PRODOTTI-->
-                    <#list prodotti as prodotto>
+                                <td name="id" ><a href="">{{$Orders->id}}</a></td>
+                                <td name="user_id">{{$Orders->user_id}}</td>
+                                <td name="user">
+                                    {{
+                                        DB::table('users')->where('id', $Orders->user_id)->value('surname')
+                                    }}
+                                </td>
+                                <td name="shipping_cost">{{$Orders->shipping_cost}}</td>
+                                <td name="total">{{$Orders->total}}</td>
+                            </tr>
+                    @endif
+                @endforeach
+
+                    <!--
+                    LISTA DEI PRODOTTI
+
+                    <list prodotti as prodotto>
                     <tr onclick="document.getElementById('id01').style.display='block'">
                         <td class="nomeProdotto">${prodotto.nome?capitalize}</td>
                         <td>${prodotto.categoria}</td>
@@ -44,8 +55,9 @@
                         <td>€ ${prodotto.prezzoServAgg}</td>
                         <td><div location="button-${prodotto.id}" /></td>
                     </tr>
-                </#list>
-
+                </list>
+                
+                -->
                 </table>
                 <!--MODALE CREAZIONE-->
                 <div id="id01" class="w3-modal">

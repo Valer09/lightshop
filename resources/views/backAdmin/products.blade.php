@@ -89,7 +89,7 @@
                     <!--FINE ESEMPIO DA CANCELLARE-->
 
                     <!--LISTA DEI PRODOTTI freemarker-->
-                    <#list prodotti as prodotto>
+                    <list prodotti as prodotto-->
                     <tr onclick="document.getElementById('id01').style.display='block'">
                         <td class="nomeProdotto">${prodotto.nome?capitalize}</td>
                         <td>${prodotto.categoria}</td>
@@ -99,7 +99,7 @@
                         <td>€ ${prodotto.prezzoServAgg}</td>
                         <td><div location="button-${prodotto.id}" /></td>
                     </tr>
-                </#list>
+                </list>
 
                 </table>
                 <!--MODALE CREAZIONE-->
