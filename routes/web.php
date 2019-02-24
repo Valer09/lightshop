@@ -11,23 +11,116 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use \xampp\htdocs\WebTechProject\app\Http\Controllers;
+
 Route::redirect('welcome',"/");
-Route::redirect('home',"/");
+
+//-----------------------------------//
+//----------GET Methods-------------//
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::group(['prefix' => 'elements'], function () {
-    Route::get('all', 'ElementsController@showElements');
-    Route::get('cat', 'ElementsController@showCategories');
-    Route::get('sub', 'ElementsController@showSubCategories');
+Route::get('/single', function () {
+    return view('layout/app');
 });
 
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+Route::get('/home', function () {
+    if ( Auth::user()->group == "Administrator" )
+        return redirect ('admin/home');
+    else
+        return view('home');
+});
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::get('register', function () {
-    return view('register');
+    return view('auth/register');
 });
 
 Route::get('form', function () {
     return view('register');
 });
+
+Route::group(['prefix' => 'admin'], function () {
+   Route::get('', 'AccessController@adminAccess');
+    Route::get('home', 'AccessController@adminAccess');
+});
+
+//Route::group(['middleware' => 'Admin'], function () {
+   //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
+   //  Route::get('admin', 'Auth\LoginController');
+   //  Route::resource('book', 'BookController');
+//});
+
+
+//Route::group(['prefix' => 'elements'], function () {
+//    Route::get('all', 'ElementsController@showElements');
+//    Route::get('cat', 'ElementsController@showCategories');
+//    Route::get('sub', 'ElementsController@showSubCategories');
+//});
+Auth::routes();
+
+Route::get('order', function(){
+  return view('OrderFormTest');
+
+});
+Route::get('deletions', function(){
+    return view('DeleteFormTest');
+
+});
+
+Route::get('edits', function(){
+    return view('EditFormTest');
+
+});
+
+
+//--------------------------------------------//
+//----------POST Methods---------------------//
+
+//---INSERTIONS---/
+Route::post('/order_submit', 'orderController@submit_order');
+Route::post('/user_insertion_submit', 'insertionController@insert_user' );
+Route::post('/element_insertion_submit', 'insertionController@insert_element' );
+Route::post('/category_insertion_submit', 'insertionController@insert_category' );
+Route::post('/news_insertion_submit', 'insertionController@insert_news' );
+Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
+
+//---DELETIONS---/
+Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
+Route::post('/user_deletion_submit', 'deletionsController@delete_user' );
+Route::post('/news_deletion_submit', 'deletionsController@delete_news' );
+Route::post('/category_deletion_submit', 'deletionsController@delete_category' );
+Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
+
+
+
+//---INCREMENT-DECREMENT---//
+Route::post('/element_increase_submit', 'insertionController@increase_element' ); //increment 1
+Route::post('/element_increase_of_submit', 'insertionController@increase_element_of' ); //increment x
+Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
+Route::post('/element_decrease_of_submit', 'deletionsController@decrease_element_of' );
+
+
+//---EDITS---//
+Route::post('/email_edit_submit', 'user_edit_controller@edit_email' );
+Route::post('/password_edit_submit', 'user_edit_controller@edit_password' );
+Route::post('/name_edit_submit', 'user_edit_controller@edit_name' );
+Route::post('/surname_edit_submit', 'user_edit_controller@edit_surname' );
+Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
+Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
+Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
+Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+
+
+
+
+
+

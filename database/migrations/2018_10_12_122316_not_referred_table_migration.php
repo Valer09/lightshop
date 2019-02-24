@@ -14,7 +14,7 @@ class NotReferredTableMigration extends Migration
     public function up()
     {
 
-
+        //pivot
         Schema::create('subcategory_elements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('element_id')->unsigned();
@@ -33,6 +33,7 @@ class NotReferredTableMigration extends Migration
                 ->onDelete('cascade');
         });
 
+        //pivot
         Schema::create('user_group', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
@@ -51,7 +52,8 @@ class NotReferredTableMigration extends Migration
                 ->onDelete('cascade');
         });
 
-        Schema::create('News', function (Blueprint $table) {
+
+        Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
@@ -63,7 +65,8 @@ class NotReferredTableMigration extends Migration
             //   $table->engine = 'MyISAM';
         });
 
-        Schema::create('Offerts', function (Blueprint $table) {
+
+        Schema::create('offerts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description');
@@ -73,17 +76,18 @@ class NotReferredTableMigration extends Migration
             //  $table->engine = 'MyISAM';
         });
 
+        //pivot
         Schema::create('ElPivotSubShowroom', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('elem_id')->unsigned();
             $table->string('nameCat');
 
             $table->foreign('elem_id')
-                ->references('id')->on('ElementsShowRoom')
+                ->references('id')->on('ElementsShowRooms')
                 ->onDelete('cascade');
 
             $table->foreign('nameCat')
-                ->references('name')->on('SubCat_showroom')
+                ->references('name')->on('SubCat_showrooms')
                 ->onDelete('cascade');
 
             //   $table->engine = 'MyISAM';

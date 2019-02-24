@@ -2,11 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App;
 
 
 class User extends Authenticatable
@@ -19,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','group'
+        'name','surname', 'email', 'password','group'
     ];
 
     /**
@@ -43,5 +40,14 @@ class User extends Authenticatable
     public function get_orders(){
         return $this->hasMany('App\Order');
     }
+
+    public function get_group(){
+
+        return $this-> hasOne('App\group');
+    }
+
+   // public function get_user_by_email($email){
+   //     return  $users = DB::table('users')->get()->where('email', $email)->first();
+   // }
 
 }

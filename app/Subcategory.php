@@ -16,7 +16,7 @@ class Subcategory extends Model
     ];
 
     public function get_categories(){
-        return $this->hasOne('App\Category','name');
+        return $this->hasOne('App\Category','category');
     }
 
     public function get_elements(){

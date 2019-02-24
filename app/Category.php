@@ -15,7 +15,7 @@ class Category extends Model
 
 
     public function get_subcategories(){
-        return $this->hasMany('App\Subcategory','name');
+        return $this->hasMany('App\Subcategory','category','name');
     }
 
     public $timestamps = false;

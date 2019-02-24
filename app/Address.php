@@ -13,7 +13,7 @@ class Address extends Model
     protected $table = 'Addresses';
 
     protected $fillable = [
-        'country','street','city','municipality','street_number'
+        'country','street','city','municipality','street_number','user_id'
     ];
     public function get_user(){
         return $this->belongsTo('App\User');

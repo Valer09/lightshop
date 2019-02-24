@@ -1,279 +1,144 @@
-@extends('layout.default')
+@extends('layout.defaultLayout')
 
-<!-- #DEFINE / -->
-    <!-- Body -->
-@section('banners')
-    <div class="banner">
-    <div class="container">
-        <div class="banner-bottom">
-            <div class="banner-bottom-left">
-                <h2>B<br>U<br>Y</h2>
-            </div>
-            <div class="banner-bottom-right">
-                <div  class="callbacks_container">
-                    <ul class="rslides" id="slider4">
-                        <li>
-                            <div class="banner-info">
-                                <h3>Smart But Casual</h3>
-                                <p>Start your shopping here...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="banner-info">
-                                <h3>Shop Online</h3>
-                                <p>Start your shopping here...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="banner-info">
-                                <h3>Pack your Bag</h3>
-                                <p>Start your shopping here...</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!--banner-->
-                <!--banner-->
-                <script src="../js/responsiveslides.min.js"></script>
-                <script>
-                    // You can also use "$(window).load(function() {"
-                    $(function () {
-                        // Slideshow 4
-                        $("#slider4").responsiveSlides({
-                            auto: true,
-                            pager:true,
-                            nav:false,
-                            speed: 500,
-                            namespace: "callbacks",
-                            before: function () {
-                                $('.events').append("<li>before event fired.</li>");
-                            },
-                            after: function () {
-                                $('.events').append("<li>after event fired.</li>");
-                            }
-                        });
-
-                    });
-                </script>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-
-    </div>
-    <!--/.navbar-collapse-->
-
-    <!--/.navbar-->
-</div>
-    @stop
 
 @section('content')
-    <div class="container">
-        <div class="main-content">
-            <div class="online-strip">
-                <div class="col-md-4 follow-us">
-                    <h3>follow us : <a class="twitter" href="#"></a><a class="facebook" href="#"></a></h3>
-                </div>
-                <div class="col-md-4 shipping-grid">
-                    <div class="shipping">
-                        <img src="{{URL::asset('images/shipping.png')}}" alt="" />
-                    </div>
-                    <div class="shipping-text">
-                        <h3>Free Shipping</h3>
-                        <p>on orders over $ 199</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-4 online-order">
-                    <p>Order online</p>
-                    <h3>Tel:999 4567 8902</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="products-grid">
-                <header>
-                    <h3 class="head text-center">Latest Products</h3>
-                </header>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p1.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">Sed ut perspiciatis</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$329</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p2.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">great explorer</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-                </div>
+      <!--HEADERS-->
 
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p2.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">great explorer</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-                </div>
-
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p2.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">great explorer</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-                </div>
-
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p2.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">great explorer</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-                </div>
-
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p2.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">great explorer</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$599.8</span></a></p>
-                </div>
+  <header id="header" class="w3-container">
+    <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class=" w3-hide-medium w3-hide-large w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+      <h1 class="w3-xxlarge  w3-hide-small w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+      <span class="w3-hide-small w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
+    </div>
+  </header>
 
 
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p3.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">similique sunt</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$359.6</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p4.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">shrinking </a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$649.99</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p5.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">perfectly simple</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$750</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p6.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">equal blame</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$295.59</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p7.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">Neque porro</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$380</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p8.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">perfectly simple</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$540.6</span></a></p>
-                </div>
-                <div class="col-md-4 product simpleCart_shelfItem text-center">
-                    <a href="single.html"><img src="{{URL::asset('images/p9.jpg')}}" alt="" /></a>
-                    <div class="mask">
-                        <a href="single.html">Quick View</a>
-                    </div>
-                    <a class="product_name" href="single.html">praising pain</a>
-                    <p><a class="item_add" href="#"><i></i> <span class="item_price">$229.5</span></a></p>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+
+
+  <!-- Page content -->
+  <div class="w3-content w3-padding" style="max-width:1564px">
+
+    <!-- Project Section -->
+    <div class="w3-container w3-padding" id="projects">
+      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Showroom</h3>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
+          <img src="./images/bagno/bagno (2).jpg" alt="House" style="width:100%">
         </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
+          <img src="./images/ceramiche/ceramiche (5).jpg" alt="House" style="width:100%">
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Living</div>
+          <img src="./images/cucine/cucina (2).jpg" alt="House" style="width:100%">
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
+          <img src="./images/ferramenta/ferramenta (6).jpg" alt="House" style="width:100%">
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-row-padding">
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
+          <img src="./images/cucine/cucina (1).jpg" alt="House" style="width:99%">
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
+          <img src="./images/bagno/bagno (6).jpg" alt="House" style="width:99%">
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
+          <img src="./images/caminetti/caminetto (2).jpg" alt="House" style="width:99%">
+        </div>
+      </div>
+      <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-display-container">
+          <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
+          <img src="./images/ceramiche/ceramiche (7).jpg" alt="House" style="width:99%">
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="w3-container w3-content w3-padding-64" id="about">
+      <h2 class="w3-wide w3-center">ORARI</h2>
+
+      <div class="w3-col w3-large w3-margin-bottom w3-padding-large" style=" text-align: center;">
+        <p>Lunedì - Venerdì <b>07:30-13:00 14:30-19:00</b></p>
+        <p>Sabato <b>07:30-12:30</b></p>
+        <p>Domenica <b>chiuso</b></p>
+      </div>
 
     </div>
-    <div class="other-products">
-        <div class="container">
-            <h3 class="like text-center">Featured Collection</h3>
-            <ul id="flexiselDemo3">
-                <li><a href="single.html"><img src="{{URL::asset('images/l1.jpg')}}" class="img-responsive" alt="" /></a>
-                    <div class="product liked-product simpleCart_shelfItem">
-                        <a class="like_name" href="single.html">perfectly simple</a>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$759</span></a></p>
-                    </div>
-                </li>
-                <li><a href="single.html"><img src="{{URL::asset('images/l2.jpg')}}" class="img-responsive" alt="" /></a>
-                    <div class="product liked-product simpleCart_shelfItem">
-                        <a class="like_name" href="single.html">praising pain</a>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$699</span></a></p>
-                    </div>
-                </li>
-                <li><a href="single.html"><img src="{{URL::asset('images/l3.jpg"')}} class="img-responsive" alt="" /></a>
-                    <div class="product liked-product simpleCart_shelfItem">
-                        <a class="like_name" href="single.html">Neque porro</a>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-                    </div>
-                </li>
-                <li><a href="single.html"><img src="{{URL::asset('images/l4.jpg')}}" class="img-responsive" alt="" /></a>
-                    <div class="product liked-product simpleCart_shelfItem">
-                        <a class="like_name" href="single.html">equal blame</a>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$499</span></a></p>
-                    </div>
-                </li>
-                <li><a href="single.html"><img src="{{URL::asset('images/l5.jpg')}}" class="img-responsive" alt="" /></a>
-                    <div class="product liked-product simpleCart_shelfItem">
-                        <a class="like_name" href="single.html">perfectly simple</a>
-                        <p><a class="item_add" href="#"><i></i> <span class=" item_price">$649</span></a></p>
-                    </div>
-                </li>
-            </ul>
-            <script type="text/javascript">
-                $(window).load(function() {
-                    $("#flexiselDemo3").flexisel({
-                        visibleItems: 4,
-                        animationSpeed: 1000,
-                        autoPlay: true,
-                        autoPlaySpeed: 3000,
-                        pauseOnHover: true,
-                        enableResponsiveBreakpoints: true,
-                        responsiveBreakpoints: {
-                            portrait: {
-                                changePoint:480,
-                                visibleItems: 1
-                            },
-                            landscape: {
-                                changePoint:640,
-                                visibleItems: 2
-                            },
-                            tablet: {
-                                changePoint:768,
-                                visibleItems: 3
-                            }
-                        }
-                    });
 
-                });
-            </script>
-            <script type="text/javascript" src="{{URL::asset('js/jquery.flexisel.js')}}"></script>
+    <!-- Contact Section -->
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+      <h2 class="w3-wide w3-center">CONTATTACI</h2>
+      <div class="w3-row w3-padding-32">
+        <!--big screen-->
+        <div class="w3-col l6 m6 w3-hide-small" style="padding-top: 80px;">
+          <div class="w3-padding-large w3-cell w3-large">
+            <i class="fa fa-map-marker" style="width:30px"></i> Monte S.Giovanni Campano, FR<br>
+            <i class="fa fa-map-marker" style="width:30px"></i> (03025) Via Reditoto, 22<br>
+            <i class="fa fa-phone" style="width:30px"></i> Tel: <a href="tel:+390775288553">+39 0775.288.553</a><br>
+            <i class="fa fa-fax" style="width:30px"></i> Fax: +39 0775.289.160<br>
+            <i class="fa fa-envelope" style="width:30px"> </i> Email: <a href="mailto:acquisti@viscaedilizia.it">acquisti@viscaedilizia.it</a><br>
+          </div>
         </div>
+
+
+        <!--small screen-->
+        <div class="w3-col w3-large w3-margin-bottom w3-hide-large w3-padding w3-hide-medium">
+          <i class="fa fa-map-marker" style="width:30px"></i> Monte S.Giovanni Campano, FR<br>
+          <i class="fa fa-map-marker" style="width:30px"></i> (03025) Via Reditoto, 22<br>
+          <i class="fa fa-phone" style="width:30px"></i> Tel: <a href="tel:+390775288553">+39 0775.288.553</a><br>
+          <i class="fa fa-fax" style="width:30px"></i> Fax: +39 0775.289.160<br>
+          <i class="fa fa-envelope" style="width:30px"> </i> Email: <a href="mailto:acquisti@viscaedilizia.it">acquisti@viscaedilizia.it</a><br>
+        </div>
+
+        <div class="w3-col l6 m6 w3-padding-small">
+          <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16"> Scrivici</h4>
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-twothird">
+              <select id="email" class="w3-input w3-border" required>
+                <option value>Chi vuoi contattare?</option>
+                <option value="commerciale@viscaedilizia.it">Informazioni Comerciali</option>
+                <option value="acquisti@viscaedilizia.it">Ordini</option>
+                <option value="amministrazione@viscaedilizia.it">Amministrazione</option>
+              </select><br>
+              <form target="_blank">
+                <input id="obj" placeholder="Oggetto" class="w3-input w3-border">
+                </input><br>
+            </div>
+          </div>
+          <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
+          <button class="w3-button w3-black w3-section w3-right" type="button" onclick="email()">INVIA</button>
+          </form>
+        </div>
+      </div>
     </div>
-    @stop
+
+  <!-- End page content -->
+  </div>
+@stop
 
 
 

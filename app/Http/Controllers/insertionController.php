@@ -1,0 +1,175 @@
+<?php
+
+namespace App\Http\Controllers;
+use DB;
+use Illuminate\Http\Request;
+use App\User, App\Element, App\News, App\Category, App\Subcategory;
+use Illuminate\Support\Facades\Hash;
+
+
+
+/**
+ * Nella documentazione di laravel ufficiale al link https://laravel.com/docs/5.7/eloquent
+ * dovrebbe essere spiegato come ricavare i dati dal DB tramite eloquent e quindi logica a oggetti anzichè
+ * fare query dirette.
+ **/
+
+class insertionController extends Controller
+{
+
+//--DB methods--//
+    /**public function insert_user(request $request){
+
+    DB::table('users')->insert(array([
+
+    'name' => $request->input('name'),
+    'surname' => $request->input('surname'),
+    'email' => $request->input('email'),
+    'password' => $request->input('password'),
+    'group' => $request->input('group'), // FORM CON LISTA DA RICAVARE CON QUERY SU GROUP
+
+    ]));
+    return view('test');
+
+
+    }
+
+    public function insert_element(request $request){
+
+    DB::table('elements')->insert(array([
+
+    'name' => $request->input('name'),
+    'subcategories' => $request->input('subcategories'),
+    'price' => $request->input('price'),
+    'availability' => $request->input('quantity'),
+    'brand' => $request->input('brand'), // FORM CON LISTA DA RICAVARE CON QUERY SU BRAND
+    'description' => $request->input('brand'),
+
+    ]));
+    return view('test');
+
+
+    }
+
+    public function insert_news(request $request){
+
+    DB::table('news')->insert(array([
+
+    'name' => $request->input('name'),
+    'description' => $request->input('description'),
+    'startDate' => $request->input('start_date'),
+    'stopDate' => $request->input('stop_date'),
+    'pathPhoto' => $request->input('path'),
+    'linkBuy' => $request->input('link'),
+
+    ]));
+    return view('test');
+
+
+    }
+
+    public function insert_category(request $request){
+
+    DB::table('categories')->insert(array([
+
+    'name' => $request->input('name')
+
+    ]));
+    return view('test');
+
+
+    }
+
+    public function insert_subcategory(request $request){
+
+    DB::table('subcategories')->insert(array([
+
+    'name' => $request->input('name'),
+    'category' => $request->input('category'), // FORM CON LISTA DA RICAVARE CON QUERY SU categories
+
+    ]));
+    return view('test');
+
+
+    } **/
+
+
+    public function insert_user(Request $request)
+    {
+        $user = new User;
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->password = Hash::make ($request->password);
+        $user->group = $request->group;
+        $user->save();
+
+        return view('test');
+
+    }
+
+
+    public function increase_element(Request $request){
+
+        DB::table('elements')->where('name', $request->increase)->increment('availability',1);
+        return view('test');
+
+    }
+
+    public function increase_element_of(Request $request){
+
+        $quantity=$request->quantity;
+        DB::table('elements')->where('name', $request->increase)->increment('availability',$quantity);
+        return view('test');
+
+    }
+
+    public function insert_element(Request $request)
+    {
+        $element = new Element;
+        $element->name = $request->name;
+        $element->subcategories = $request->subcategory;
+        $element->price = $request->price;
+        $element->availability = $request-> quantity;
+        $element->description = $request->description;
+        $element->brand = $request->brand;
+        $element->save();
+
+        return view('test');
+
+    }
+    public function insert_news(Request $request){
+
+        $news =  new News;
+
+        $news->name = $request->name;
+        $news->description = $request->description;
+        $news->startDate = $request->startDate;
+        $news->stopDate = $request->stopDate;
+        $news->pathPhoto = $request->path;
+        $news->linkBuy = $request->link;
+        $news->save();
+
+        return view('test');
+    }
+    public function insert_category(Request $request){
+
+        $category =  new Category;
+        $category->name = $request->name;
+        $category->save();
+
+        return view('test');
+    }
+    public function insert_subcategory(Request $request){
+
+        $subcategory = new Subcategory;
+
+        $subcategory-> name = $request -> name;
+        $subcategory-> category = $request -> category;
+        $subcategory->save();
+
+        return view('test');
+
+    }
+
+}

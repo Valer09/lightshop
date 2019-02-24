@@ -11,8 +11,8 @@ class group_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('Group')->insert([
-            'name' => "Administrator"]);
+        DB::table('groups')->insert([
+            'name' => "Visitor"]);
 
     }
 }
