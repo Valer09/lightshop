@@ -145,8 +145,7 @@
                 <option value="amministrazione@viscaedilizia.it">Amministrazione</option>
               </select><br>
               <form target="_blank">
-                <input id="obj" placeholder="Oggetto" class="w3-input w3-border">
-                </input><br>
+                <input id="obj" placeholder="Oggetto" class="w3-input w3-border"><br>
             </div>
           </div>
           <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
