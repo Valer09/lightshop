@@ -2,16 +2,24 @@
 
 
 @section('content')
-      <!--HEADERS-->
-
-  <header id="header" class="w3-container">
+<!--HEADERS-->
+  <!--BIG SCREEN-->
+  <header class="w3-display-container w3-hide-small w3-content w3-wide" style="width:100%; margin-top: 49px" id="home">
+    <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
     <div class="w3-display-middle w3-margin-top w3-center">
-    <h1 class=" w3-hide-medium w3-hide-large w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
-      <h1 class="w3-xxlarge  w3-hide-small w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
-      <span class="w3-hide-small w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
+      <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+      <span class="w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
     </div>
   </header>
 
+  <!--SMALL SCREEN-->
+  <header class="w3-display-container w3-hide-medium w3-hide-large w3-content w3-wide" style="width:100%; margin-top: 49px"
+    id="home">
+    <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
+    <div class="w3-display-middle w3-center">
+      <h1 class="w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+    </div>
+  </header>
 
 
 
@@ -19,67 +27,78 @@
   <div class="w3-content w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
-    <div class="w3-container w3-padding" id="projects">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Showroom</h3>
+    <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
+
+      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h3>
+        <div class="w3-row-padding" style="margin-top:40px">
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
+              <img src="./images/bagno/bagno (2).jpg" alt="House" style="width:100%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
+              <img src="./images/ceramiche/ceramiche (5).jpg" alt="House" style="width:100%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Living</div>
+              <img src="./images/cucine/cucina (2).jpg" alt="House" style="width:100%">
+            </div>
+          </div>
+        </div>
+
+        <div class="w3-row-padding">
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
+              <img src="./images/ferramenta/ferramenta (6).jpg" alt="House" style="width:100%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
+              <img src="./images/cucine/cucina (1).jpg" alt="House" style="width:99%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
+              <img src="./images/bagno/bagno (6).jpg" alt="House" style="width:99%">
+            </div>
+          </div>
+        </div>
+
+        <div class="w3-row-padding">
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
+              <img src="./images/caminetti/caminetto (2).jpg" alt="House" style="width:99%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
+              <img src="./images/ceramiche/ceramiche (7).jpg" alt="House" style="width:99%">
+            </div>
+          </div>
+          <div class="w3-col l4 m6 w3-margin-bottom">
+            <div class="w3-display-container">
+              <div class="w3-display-topleft w3-black w3-padding">Porticati</div>
+              <img src="./images/porticati/porticati (1).jpg" alt="House" style="width:99%">
+            </div>
+          </div>
+        </div>
     </div>
 
-    <div class="w3-row-padding">
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
-          <img src="./images/bagno/bagno (2).jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
-          <img src="./images/ceramiche/ceramiche (5).jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Living</div>
-          <img src="./images/cucine/cucina (2).jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
-          <img src="./images/ferramenta/ferramenta (6).jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-    </div>
 
-    <div class="w3-row-padding">
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
-          <img src="./images/cucine/cucina (1).jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
-          <img src="./images/bagno/bagno (6).jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
-          <img src="./images/caminetti/caminetto (2).jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
-          <img src="./images/ceramiche/ceramiche (7).jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-    </div>
 
     <!-- About Section -->
-    <div class="w3-container w3-content w3-padding-64" id="about">
-      <h2 class="w3-wide w3-center">ORARI</h2>
+    <div class="w3-container w3-content w3-padding-64" id="orari">
+      <h2 class="w3-wide w3-center"><b>Orari</b></h2>
 
       <div class="w3-col w3-large w3-margin-bottom w3-padding-large" style=" text-align: center;">
         <p>Lunedì - Venerdì <b>07:30-13:00 14:30-19:00</b></p>
@@ -91,7 +110,7 @@
 
     <!-- Contact Section -->
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-      <h2 class="w3-wide w3-center">CONTATTACI</h2>
+      <h2 class="w3-wide w3-center"><b>Contattaci</b></h2>
       <div class="w3-row w3-padding-32">
         <!--big screen-->
         <div class="w3-col l6 m6 w3-hide-small" style="padding-top: 80px;">
@@ -114,6 +133,7 @@
           <i class="fa fa-envelope" style="width:30px"> </i> Email: <a href="mailto:acquisti@viscaedilizia.it">acquisti@viscaedilizia.it</a><br>
         </div>
 
+
         <div class="w3-col l6 m6 w3-padding-small">
           <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16"> Scrivici</h4>
           <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -135,9 +155,12 @@
         </div>
       </div>
     </div>
+  </div>
+
 
   <!-- End page content -->
   </div>
+
 @stop
 
 
