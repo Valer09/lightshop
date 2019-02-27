@@ -20,24 +20,24 @@
                         @endforeach
             </div>
           </div>
-          <a href="{{ url('/showroom') }}" id="barDx" class="w3-bar-item w3-button">Showroom</a>
+          <a href="./404.html" class="barDx w3-bar-item w3-button">Showroom</a>
           @auth
-              <div class="w3-dropdown-hover">
-                <a href="{{ url('/profile') }}" id="barDxButt" class="w3-bar-item w3-button">{{Auth::user()->name}}</a>
-                  <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                      <?php $group = Auth::user()->group ?>
-                      @if(  $group == "Administrator"  )
-                      <a href="{{ url('/admin/home ') }}" class="w3-bar-item w3-button">DASHBOARD</a>
+          <div class="w3-dropdown-hover">
+            <a href="{{ url('/profile') }}" id="barDxButt" class="w3-bar-item w3-button">{{Auth::user()->name}}</a>
+              <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                  <?php $group = Auth::user()->group ?>
+                  @if(  $group == "Administrator"  )
+                  <a href="{{ url('/admin/home ') }}" class="w3-bar-item w3-button">DASHBOARD</a>
 
-                        @endif
-                      <a href="{{ url('/profile ') }}" class="w3-bar-item w3-button">Profilo</a>
-                      <a href="{{ url('/logout') }}" class="w3-bar-item w3-button">Log Out</a>
+                    @endif
+                  <a href="{{ url('/profile ') }}" class="w3-bar-item w3-button">Profilo</a>
+                  <a href="{{ url('/logout') }}" class="w3-bar-item w3-button">Log Out</a>
 
 
-                  </div>
               </div>
+          </div>
           @else
-              <a href="{{ route('login') }}" class="barDxButt w3-bar-item w3-button">Accedi</a>
+          <a href="{{ route('login') }}" class="barDxButt w3-bar-item w3-button">Accedi</a>
           @endauth
         </div>
       </div>
@@ -48,6 +48,7 @@
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="/images/logo_visca.png" width="51"></a>
           <button onclick="myFunction('tendina')" class="barSxM w3-bar-item w3-block w3-button"><b>Visca s.n.c.</b>
         <i class="w3-margin-left fa fa-bars"></i></button>
+      
         <!-- Float links to the right. Hide them on small screens -->
         <div id="tendina" class="w3-hide w3-bar w3-container">
           <p><a href="./#" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Home</a></p>

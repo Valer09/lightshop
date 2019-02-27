@@ -8,8 +8,8 @@ function carousel() {
         x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
+    if (myIndex > x.length) { myIndex = 1 }
+    x[myIndex - 1].style.display = "block";
     setTimeout(carousel, 5000);
     console.log("Carosello")
 }
@@ -20,9 +20,17 @@ function myFunction(id) {
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
         x.previousElementSibling.className += " w3-theme-d1";
-    } else { 
+    } else {
         x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className = 
-        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        x.previousElementSibling.className =
+            x.previousElementSibling.className.replace(" w3-theme-d1", "");
     }
+}
+
+//show images
+function openImage(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    var captionText = document.getElementById("caption");
+    captionText.innerHTML = element.alt;
 }
