@@ -2,16 +2,10 @@
 
 
 @section('content')
-<<<<<<< HEAD
 <!--HEADERS-->
   <!--BIG SCREEN-->
   <header class="w3-display-container w3-hide-small w3-content w3-wide" style="width:100%; margin-top: 49px" id="home">
     <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
-=======
-      <!--HEADERS-->
-
-  <header id="header" class="w3-display-container">
->>>>>>> LoadNewTemplate
     <div class="w3-display-middle w3-margin-top w3-center">
       <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
       <span class="w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
@@ -36,23 +30,23 @@
     <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
 
       <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h3>
-        <div class="w3-row-padding" style="margin-top:40px">
+      <div class="w3-row-padding" style="margin-top:40px">
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
-              <img src="./images/bagno/bagno (2).jpg" alt="House" style="width:100%">
+              <img onclick="openImage(this);" src="./images/bagno/bagno (2).jpg" alt="I Bagni" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
-              <img src="./images/ceramiche/ceramiche (5).jpg" alt="House" style="width:100%">
+              <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (5).jpg" alt="Ceramiche" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Living</div>
-              <img src="./images/cucine/cucina (2).jpg" alt="House" style="width:100%">
+              <img onclick="openImage(this);" src="./images/cucine/cucina (2).jpg" alt="Le Cucine" style="width:100%">
             </div>
           </div>
         </div>
@@ -61,19 +55,19 @@
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
-              <img src="./images/ferramenta/ferramenta (6).jpg" alt="House" style="width:100%">
+              <img onclick="openImage(this);" src="./images/ferramenta/ferramenta (6).jpg" alt="Il Negozio" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
-              <img src="./images/cucine/cucina (1).jpg" alt="House" style="width:99%">
+              <img onclick="openImage(this);" src="./images/cucine/cucina (1).jpg" alt="Le Cucine" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
-              <img src="./images/bagno/bagno (6).jpg" alt="House" style="width:99%">
+              <img onclick="openImage(this);" src="./images/bagno/bagno (6).jpg" alt="I Bagni" style="width:100%">
             </div>
           </div>
         </div>
@@ -82,19 +76,19 @@
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
-              <img src="./images/caminetti/caminetto (2).jpg" alt="House" style="width:99%">
+              <img onclick="openImage(this);" src="./images/caminetti/caminetto (2).jpg" alt="I Caminetti" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
-              <img src="./images/ceramiche/ceramiche (7).jpg" alt="House" style="width:99%">
+              <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (7).jpg" alt="Ceramiche" style="width:100%">
             </div>
           </div>
           <div class="w3-col l4 m6 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Porticati</div>
-              <img src="./images/porticati/porticati (1).jpg" alt="House" style="width:99%">
+              <img onclick="openImage(this);" src="./images/porticati/porticati (1).jpg" alt="I Porticati" style="width:100%">
             </div>
           </div>
         </div>
@@ -163,6 +157,14 @@
     </div>
   </div>
 
+    <!--Modale immagini-->
+    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" style="display: none;">
+    <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image" src="https://www.w3schools.com/w3images/tech_phone.jpg">
+      <p id="caption" class="w3-opacity w3-large">A phone</p>
+    </div>
+  </div>
 
   <!-- End page content -->
   </div>
