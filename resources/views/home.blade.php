@@ -31,19 +31,19 @@
 
       <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h3>
       <div class="w3-row-padding" style="margin-top:40px">
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
               <img onclick="openImage(this);" src="./images/bagno/bagno (2).jpg" alt="I Bagni" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
               <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (5).jpg" alt="Ceramiche" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Living</div>
               <img onclick="openImage(this);" src="./images/cucine/cucina (2).jpg" alt="Le Cucine" style="width:100%">
@@ -52,19 +52,19 @@
         </div>
 
         <div class="w3-row-padding">
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
               <img onclick="openImage(this);" src="./images/ferramenta/ferramenta (6).jpg" alt="Il Negozio" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
               <img onclick="openImage(this);" src="./images/cucine/cucina (1).jpg" alt="Le Cucine" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
               <img onclick="openImage(this);" src="./images/bagno/bagno (6).jpg" alt="I Bagni" style="width:100%">
@@ -73,19 +73,19 @@
         </div>
 
         <div class="w3-row-padding">
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
               <img onclick="openImage(this);" src="./images/caminetti/caminetto (2).jpg" alt="I Caminetti" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
               <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (7).jpg" alt="Ceramiche" style="width:100%">
             </div>
           </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
+          <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
               <div class="w3-display-topleft w3-black w3-padding">Porticati</div>
               <img onclick="openImage(this);" src="./images/porticati/porticati (1).jpg" alt="I Porticati" style="width:100%">
