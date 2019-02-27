@@ -2,10 +2,16 @@
 
 
 @section('content')
+<<<<<<< HEAD
 <!--HEADERS-->
   <!--BIG SCREEN-->
   <header class="w3-display-container w3-hide-small w3-content w3-wide" style="width:100%; margin-top: 49px" id="home">
     <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
+=======
+      <!--HEADERS-->
+
+  <header id="header" class="w3-display-container">
+>>>>>>> LoadNewTemplate
     <div class="w3-display-middle w3-margin-top w3-center">
       <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
       <span class="w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
@@ -24,7 +30,7 @@
 
 
   <!-- Page content -->
-  <div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
     <div class="w3-container w3-margin-top w3-padding-64" id="showroom">

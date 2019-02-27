@@ -11,11 +11,12 @@ class admin_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('Users')->insert(
+    /**    DB::table('Users')->insert(
             array(['name'=>'Valerio','group'=>'Administrator', 'surname'=>'Marchitelli', 'email' => 'valerio9109@hotmail.it', 'password' => 'ciaociao']
 
             )
 
         );
+     */
     }
 }
