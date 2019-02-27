@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -134,6 +134,13 @@ class insertionController extends Controller
         $element->description = $request->description;
         $element->brand = $request->brand;
         $element->save();
+        $file=new File;
+        $file->name = $request->file_name;
+        $file->size = '1';
+        //$request->file_name->getClientSize();
+        $file->save();
+
+
 
         return view('test');
 

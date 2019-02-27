@@ -1,9 +1,17 @@
 /*HOME*/
+<<<<<<< HEAD
 html{
     scroll-behavior: smooth;
 }
 body {
+=======
+html,body{
+    height: 100%;
+>>>>>>> LoadNewTemplate
     font-family: 'Roboto', sans-serif;
+}
+
+body {
     background-color: #f1f2f6;
 }
 .mySlides {display: none}

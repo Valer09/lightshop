@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use \xampp\htdocs\WebTechProject\app\Http\Controllers;
 
+
 Route::redirect('welcome',"/");
 
 //-----------------------------------//
@@ -32,10 +33,14 @@ Route::get('/login', function () {
 });
 
 Route::get('/home', function () {
+        return view('home');
+});
+
+Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
-        return view('home');
+    return redirect('home');
 });
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -48,11 +53,23 @@ Route::get('form', function () {
     return view('register');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
    Route::get('', 'AccessController@adminAccess');
-    Route::get('home', 'AccessController@adminAccess');
-});
+   Route::get('home', 'AccessController@adminAccess');
+   Route::get('orders', function () {
+       return view('backAdmin/orders');
+   });
+    Route::get('categories', function () {
+        return view('backAdmin/categories');
+    });
+    Route::get('products', function () {
+        return view('backAdmin/products');
+    });
+    Route::get('orderscompleted', function () {
+        return view('backAdmin/orderscompleted');
+    });
 
+});
 //Route::group(['middleware' => 'Admin'], function () {
    //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
    //  Route::get('admin', 'Auth\LoginController');
@@ -67,10 +84,56 @@ Route::group(['prefix' => 'admin'], function () {
 //});
 Auth::routes();
 
+Route::group(['prefix' => 'admin'], function(){
+
+    Route::get('/profile', function(){
+        return view('backAdmin/profile');
+    });
+
+    Route::get('/categories', function(){
+        return view('backAdmin/categories');
+    });
+
+    Route::get('/products', function(){
+        return view('backAdmin/products');
+    });
+
+    Route::get('/news', function(){
+        return view('backAdmin/news');
+    });
+    Route::get('/orders', function(){
+        return view('backAdmin/orders');
+    });
+
+    Route::get('/orderscompleted', function(){
+        return view('backAdmin/orderscompleted');
+    });
+
+    Route::get('/settings', function(){
+        return view('backAdmin/settings');
+    });
+
+    Route::get('/showroomAdmin', function(){
+        return view('backAdmin/showroomAdmin');
+    });
+
+    Route::get('/users', function(){
+        return view('backAdmin/users');
+    });
+
+
+});
+
+
+
+
+//----------OPERATIONS TEST VIEWS------------//
+
 Route::get('order', function(){
   return view('OrderFormTest');
 
 });
+
 Route::get('deletions', function(){
     return view('DeleteFormTest');
 
@@ -81,6 +144,14 @@ Route::get('edits', function(){
 
 });
 
+Route::get('/showroom', function () {
+    return view('showroom');
+});
+
+Route::get('/inside', function () {
+    return view('inside');
+});
+//---------------------------------------------//
 
 //--------------------------------------------//
 //----------POST Methods---------------------//
@@ -118,6 +189,8 @@ Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
 Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
 Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
 Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+
+
 
 
 

@@ -74,7 +74,7 @@
                 {{$Brand = \App\Brand::all()}}
 
                 @foreach ($Brand as $Brand)
-                    <option>{{ $Brand->name }}</option>>
+                    <option>{{ $Brand->name }}</option>
                     @endforeach
 
             </select>
@@ -82,7 +82,7 @@
             <input name="description" type="text" class="form-control">
 
 
-            <button type="submit"> Submit </button>>
+            <button type="submit"> Submit </button>
 
         </form>
     </div>

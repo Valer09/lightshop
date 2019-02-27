@@ -13,13 +13,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::table('users')->delete();
+     /**   DB::table('users')->delete();
             DB::table('users')->insert(
                 array(
 
                 )
 
             );
+      */
         // chiamata alla classe seeder "user_seeder". Permette esecuzione seeders con chiamata artista di default
         //$this->call(user_seeder::class);
        // $this->call(element_seeder::class);
@@ -28,5 +29,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(category_seeder::class);
       ///  $this->call(group_seeder::class);
         //$this->call(group_seeder::class);
+        $this->call(order_seeder::class);
+
     }
 }
