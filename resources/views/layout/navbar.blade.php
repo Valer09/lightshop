@@ -20,7 +20,7 @@
                         @endforeach
             </div>
           </div>
-          <a href="./404.html" class="barDx w3-bar-item w3-button">Showroom</a>
+          <a href="{{ url('/showroom ') }}" class="barDx w3-bar-item w3-button">Showroom</a>
           @auth
           <div class="w3-dropdown-hover">
             <a href="{{ url('/profile') }}" id="barDxButt" class="w3-bar-item w3-button">{{Auth::user()->name}}</a>
