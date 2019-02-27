@@ -10,8 +10,8 @@
         <a href="./#contact" class="barDx w3-bar-item w3-button">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
-          <div class="w3-dropdown-hover">
-            <a class="barDx w3-button">Prodotti</a>
+          <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+            <a id="prodot" class="barDx w3-button">Prodotti</a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
               <a href="#" class="w3-bar-item w3-button">Link 1</a>
               <a href="#" class="w3-bar-item w3-button">Link 2</a>

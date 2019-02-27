@@ -91,6 +91,11 @@ a.w3-bar-item:hover{
     background-color: red !important;
 }
 
+#prodot:hover{
+    color: #003a9b !important;
+    background-color: #f1f2f6 !important;
+}
+
 #areaRiservata{
     float: right;
 }
