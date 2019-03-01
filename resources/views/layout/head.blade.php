@@ -1,4 +1,8 @@
 <title>Visca s.n.c.</title>
+  <!-- javascript custom -->
+
+  <script src="{{url('/js/main.js')}}"></script>
+
   <meta charset="UTF-8">
   <link rel="icon" href="/images/logo_visca.png" type="image/gif" sizes="16x16">
 
@@ -11,5 +15,3 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- javascript custom -->
-  <script src="./js/main.js"></script>

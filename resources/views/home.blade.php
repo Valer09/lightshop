@@ -1,6 +1,5 @@
 @extends('layout.defaultLayout')
 
-
 @section('content')
 <!--HEADERS-->
   <!--BIG SCREEN-->
@@ -29,7 +28,7 @@
     <!-- Project Section -->
     <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
 
-      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h3>
+      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h2>
       <div class="w3-row-padding" style="margin-top:40px">
           <div class="w3-col l4 m4 w3-margin-bottom">
             <div class="w3-display-container">
@@ -49,7 +48,7 @@
               <img onclick="openImage(this);" src="./images/cucine/cucina (2).jpg" alt="Le Cucine" style="width:100%">
             </div>
           </div>
-        </div>
+      </div>
 
         <div class="w3-row-padding">
           <div class="w3-col l4 m4 w3-margin-bottom">
@@ -146,12 +145,14 @@
               </select><br>
               <form target="_blank">
                 <input id="obj" placeholder="Oggetto" class="w3-input w3-border"><br>
+              </form>
             </div>
-          </div>
           <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
           <button class="w3-button w3-black w3-section w3-right" type="button" onclick="email()">INVIA</button>
           </form>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>

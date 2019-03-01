@@ -3,6 +3,7 @@
 
 <head>
     @include('layout.head')
+
 </head>
 
 <body>
