@@ -184,3 +184,10 @@ margin: 0 auto;
     background-color: #131A22;
     color:white;
 }
+
+.content-right {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 8%;
+  }

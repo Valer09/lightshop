@@ -13,7 +13,6 @@
           <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
             <a id="prodot" class="barDx w3-button">Prodotti</a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
-
                         {{!$Category = \App\Category::all()}}
                         @foreach ($Category as $Category)
                             <a href="{{ url('/inside') }}" class="w3-bar-item w3-button">{{ $Category->name }}</a></option>
@@ -22,18 +21,17 @@
           </div>
           <a href="{{ url('/showroom ') }}" class="barDx w3-bar-item w3-button">Showroom</a>
           @auth
-          <div class="w3-dropdown-hover">
-            <a href="{{ url('/profile') }}" id="barDxButt" class="w3-bar-item w3-button">{{Auth::user()->name}}</a>
-              <div class="w3-dropdown-content w3-bar-block w3-card-4">
+          <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+            <a href="{{ url('/profile') }}" class="barDxButt w3-button">{{Auth::user()->name}}</a>
+              
+            <div class="w3-dropdown-content content-right w3-bar-block w3-card-4">
                   <?php $group = Auth::user()->group ?>
                   @if(  $group == "Administrator"  )
-                  <a href="{{ url('/admin/home ') }}" class="w3-bar-item w3-button">DASHBOARD</a>
+                  <a href="{{ url('/admin/home ') }}" class="w3-button">DASHBOARD</a>
 
                     @endif
-                  <a href="{{ url('/profile ') }}" class="w3-bar-item w3-button">Profilo</a>
-                  <a href="{{ url('/logout') }}" class="w3-bar-item w3-button">Log Out</a>
-
-
+                  <a href="{{ url('/profile ') }}" class="w3-button">Profilo</a>
+                  <a href="{{ url('/logout') }}" class="w3-button">Log Out</a>
               </div>
           </div>
           @else
