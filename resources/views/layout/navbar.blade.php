@@ -11,7 +11,7 @@
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
           <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
-            <a id="prodot" class="barDx w3-button">Prodotti</a>
+            <a id="prodot" href="{{ url('/catalog ') }}" class="barDx w3-button">Prodotti</a>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                         {{!$Category = \App\Category::all()}}
                         @foreach ($Category as $Category)
@@ -50,7 +50,7 @@
         <!-- Float links to the right. Hide them on small screens -->
         <div id="tendina" class="w3-hide w3-bar w3-container">
           <p><a href="./#" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Home</a></p>
-          <p><a href="./404.html" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Prodotti</a></p>
+          <p><a href="{{ url('/catalog ') }}" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Prodotti</a></p>
           <p><a href="./404.html" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Showroom</a></p>
           <p><a href="./#orari" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Orari</a></p>
           <p><a href="./#contact" class="barDxM w3-bar-item w3-button w3-row-padding" onclick="myFunction('tendina')">Contatti</a></p>
