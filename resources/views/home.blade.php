@@ -151,8 +151,7 @@
                   <option value="acquisti@viscaedilizia.it">Ordini</option>
                   <option value="amministrazione@viscaedilizia.it">Amministrazione</option>
                 </select><br>
-                <input id="obj" placeholder="Oggetto" class="w3-input w3-border">
-                </input><br>
+                <input id="obj" placeholder="Oggetto" class="w3-input w3-border"><br>
               </div>
             </div>
             <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
@@ -162,7 +161,15 @@
       </div>
     </div>
   </div> <!-- End page content -->
-
+  
+  <!--Modale immagini-->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" style="display: none;">
+    <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image" src="https://www.w3schools.com/w3images/tech_phone.jpg">
+      <p id="caption" class="w3-opacity w3-large">A phone</p>
+    </div>
+  </div>
 @stop
 
 
