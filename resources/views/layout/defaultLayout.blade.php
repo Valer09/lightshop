@@ -6,7 +6,7 @@
 
 </head>
 
-<body>
+<body style="max-width: 1200px">
     @include('layout.navbar')
 
     @yield('content')
