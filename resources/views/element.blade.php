@@ -12,25 +12,25 @@
     <div class="w3-container" id="apartment">
     <h2 class="w3-text-green">Minuteria</h2>
     <div class="w3-display-container mySlides">
-        <img src="./public/catalogo/bullone.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
+        <img src="./images/catalogo/bullone.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
         <div class="w3-display-bottomleft w3-container w3-black">
         <p>Bullone</p>
         </div>
     </div>
     <div class="w3-display-container mySlides">
-        <img src="./public/catalogo/bullone1.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
+        <img src="./images/catalogo/bullone1.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
         <div class="w3-display-bottomleft w3-container w3-black">
         <p>Dining Room</p>
         </div>
     </div>
     <div class="w3-display-container mySlides">
-        <img src="./public/catalogo/bullone2.jpg" style="max-width: 500px; max-height: 500px; height:100%; margin-bottom:-6px">
+        <img src="./images/catalogo/bullone2.jpg" style="max-width: 500px; max-height: 500px; height:100%; margin-bottom:-6px">
         <div class="w3-display-bottomleft w3-container w3-black">
         <p>Bedroom</p>
         </div>
     </div>
     <div class="w3-display-container mySlides">
-        <img src="./public/catalogo/bullone3.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
+        <img src="./images/catalogo/bullone3.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
         <div class="w3-display-bottomleft w3-container w3-black">
         <p>Living Room II</p>
         </div>
@@ -38,19 +38,19 @@
     </div>
     <div class="w3-row-padding w3-section">
     <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./public/catalogo/bullone.jpg" style="width:100%;cursor:pointer"
+        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone.jpg" style="width:100%;cursor:pointer"
         onclick="currentDiv(1)" title="Living room">
     </div>
     <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./public/catalogo/bullone1.jpg" style="width:100%;cursor:pointer"
+        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone1.jpg" style="width:100%;cursor:pointer"
         onclick="currentDiv(2)" title="Dining room">
     </div>
     <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./public/catalogo/bullone2.jpg" style="width:100%;cursor:pointer"
+        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone2.jpg" style="width:100%;cursor:pointer"
         onclick="currentDiv(3)" title="Bedroom">
     </div>
     <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./public/catalogo/bullone3.jpg" style="width:100%;cursor:pointer"
+        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone3.jpg" style="width:100%;cursor:pointer"
         onclick="currentDiv(4)" title="Second Living Room">
     </div>
     </div>
@@ -94,10 +94,6 @@
 
     </div>
     <hr>
-
-    <footer class="w3-container w3-padding-16" style="margin-top:32px">Powered by <a href="https://www.w3schools.com/w3css/default.asp"
-        title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a>
-    </footer>
 
     <!-- End page content -->
     </div>
