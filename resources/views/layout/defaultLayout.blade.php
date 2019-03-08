@@ -6,7 +6,7 @@
 
 </head>
 
-<body style="max-width: 1480px;" class="w3-middle">
+<body style="max-width: 1500px;">
     @include('layout.navbar')
 
     @yield('content')
