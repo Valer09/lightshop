@@ -33,7 +33,7 @@
 
     <!-- Image header -->
     <div class="w3-display-container w3-container">
-        <img class="wa" src="./public/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
+        <img class="wa" src="./images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
             <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
@@ -51,7 +51,7 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
                             <i class="fa fa-shopping-cart"></i></button>
@@ -61,7 +61,7 @@
             </div>
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
                             <i class="fa fa-shopping-cart"></i></button>
@@ -74,7 +74,7 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <span class="w3-tag w3-display-topleft">New</span>
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
@@ -85,7 +85,7 @@
             </div>
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <span class="w3-tag w3-display-topleft">New</span>
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
@@ -99,7 +99,7 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
                             <i class="fa fa-shopping-cart"></i></button>
@@ -109,7 +109,7 @@
             </div>
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <span class="w3-tag w3-display-topleft">Sale</span>
                     <div class="w3-display-middle w3-display-hover">
                         <button class="w3-button w3-black">Acquista ora <i class="fa fa-shopping-cart"></i></button>
@@ -122,7 +122,7 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <span class="w3-tag w3-display-topleft">New</span>
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
@@ -133,7 +133,7 @@
             </div>
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="./public/catalogo/bullone.jpg" style="width:100%">
+                    <img src="./images/catalogo/bullone.jpg" style="width:100%">
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
                             <i class="fa fa-shopping-cart"></i></button>
