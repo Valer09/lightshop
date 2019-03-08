@@ -1,1 +1,5 @@
-Profilo Utente
+@extends('layout.defaultLayout')
+@section('content')
+
+
+    @stop
