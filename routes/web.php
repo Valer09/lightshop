@@ -20,56 +20,54 @@ Route::redirect('welcome',"/");
 
 //----------GET Methods-------------//
 
+//---Home---//
 Route::get('/', function () {
     return view('home');
 });
-
-Route::get('/single', function () {
-    return view('layout/app');
-});
-
 Route::get('/login', function () {
     return view('auth/login');
 });
-
 Route::get('/home', function () {
         return view('home');
 });
-
 Route::get('/profile', function(){
     return view('profile');
 });
-
 Route::get('/catalog', function(){
     return view('catalog');
 });
-
 Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
         return redirect('home');
 });
-
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
 Route::get('register', function () {
     return view('auth/register');
 });
-
 Route::get('form', function () {
     return view('register');
 });
+Route::get('about', function () {
+    return view('about');
+});
 
+//--End Home--//
+
+
+//--INSIDE--//
 Route::get('/element', function () {
     return view('element');
 });
+//--End Inside--//
 
 Auth::routes();
 
+
+
+
 //---------ADMIN PAGES----------//
-
-
 
 //---Access Control---//
 Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
@@ -205,8 +203,13 @@ Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_
 Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
 Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
 
+/**---DELETED---
 
+ * Route::get('/single', function () {
+ *    return view('layout/app');
+ * });
 
+ **/
 
 
 
