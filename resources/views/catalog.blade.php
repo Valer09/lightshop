@@ -17,7 +17,7 @@
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-top: 49px;margin-left:250px">
+<div class="w3-main" style="margin-top: 49px;margin-left:250px; max-width: 1500px;">
 
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
