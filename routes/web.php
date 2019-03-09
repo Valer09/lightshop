@@ -61,6 +61,10 @@ Route::get('form', function () {
     return view('register');
 });
 
+Route::get('/element', function () {
+    return view('element');
+});
+
 Auth::routes();
 
 //---------ADMIN PAGES----------//
@@ -168,6 +172,9 @@ Route::get('/inside', function () {
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
+
+
+
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
