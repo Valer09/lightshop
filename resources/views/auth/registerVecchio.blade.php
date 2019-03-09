@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 
 <head>
-    @extends('layout.default')
+    @extends('layout.def_ESHOP')
 
 </head>
 <body>

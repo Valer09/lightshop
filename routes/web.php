@@ -17,7 +17,7 @@ use \xampp\htdocs\WebTechProject\app\Http\Controllers;
 
 Route::redirect('welcome',"/");
 
-//-----------------------------------//
+
 //----------GET Methods-------------//
 
 Route::get('/', function () {
@@ -36,11 +36,19 @@ Route::get('/home', function () {
         return view('home');
 });
 
+Route::get('/profile', function(){
+    return view('profile');
+});
+
+Route::get('/catalog', function(){
+    return view('catalog');
+});
+
 Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
-    return redirect('home');
+        return redirect('home');
 });
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -53,6 +61,13 @@ Route::get('form', function () {
     return view('register');
 });
 
+Auth::routes();
+
+//---------ADMIN PAGES----------//
+
+
+
+//---Access Control---//
 Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
    Route::get('', 'AccessController@adminAccess');
    Route::get('home', 'AccessController@adminAccess');
@@ -70,6 +85,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
     });
 
 });
+//---End Control---//
+
+
 //Route::group(['middleware' => 'Admin'], function () {
    //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
    //  Route::get('admin', 'Auth\LoginController');
@@ -82,13 +100,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
 //    Route::get('cat', 'ElementsController@showCategories');
 //    Route::get('sub', 'ElementsController@showSubCategories');
 //});
-Auth::routes();
+
 
 Route::group(['prefix' => 'admin'], function(){
-
-    Route::get('/profile', function(){
-        return view('backAdmin/profile');
-    });
 
     Route::get('/categories', function(){
         return view('backAdmin/categories');
@@ -121,39 +135,33 @@ Route::group(['prefix' => 'admin'], function(){
         return view('backAdmin/users');
     });
 
-
 });
 
+//---------END ADMIN PAGES----------//
 
 
 
 //----------OPERATIONS TEST VIEWS------------//
 
 Route::get('order', function(){
-  return view('OrderFormTest');
-
-});
+  return view('OrderFormTest'); });
 
 Route::get('deletions', function(){
-    return view('DeleteFormTest');
-
-});
+    return view('DeleteFormTest'); });
 
 Route::get('edits', function(){
-    return view('EditFormTest');
-
-});
+    return view('EditFormTest'); });
 
 Route::get('/showroom', function () {
-    return view('showroom');
-});
+    return view('showroom'); });
 
 Route::get('/inside', function () {
-    return view('inside');
-});
-//---------------------------------------------//
+    return view('inside'); });
 
-//--------------------------------------------//
+//-----------END OPERATIONS------------//
+
+
+
 //----------POST Methods---------------------//
 
 //---INSERTIONS---/

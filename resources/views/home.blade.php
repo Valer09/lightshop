@@ -1,6 +1,5 @@
 @extends('layout.defaultLayout')
 
-
 @section('content')
 <!--HEADERS-->
   <!--BIG SCREEN-->
@@ -24,74 +23,81 @@
 
 
   <!-- Page content -->
-  <div class="w3-container w3-padding" style="max-width:1564px">
+  <div class="w3-content w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
     <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
 
-      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h3>
+      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Showroom</b></h2>
       <div class="w3-row-padding" style="margin-top:40px">
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
-              <img onclick="openImage(this);" src="./images/bagno/bagno (2).jpg" alt="I Bagni" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
-              <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (5).jpg" alt="Ceramiche" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Living</div>
-              <img onclick="openImage(this);" src="./images/cucine/cucina (2).jpg" alt="Le Cucine" style="width:100%">
-            </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Bagni</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/bagno/bagno (2).jpg" alt="I Bagni" style="width:100%">
           </div>
         </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Ceramiche</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/ceramiche/ceramiche (5).jpg" alt="Ceramiche"
+              style="width:100%">
+          </div>
+        </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Living</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/cucine/cucina (2).jpg" alt="Le Cucine"
+              style="width:100%">
+          </div>
+        </div>
+      </div>
 
-        <div class="w3-row-padding">
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
-              <img onclick="openImage(this);" src="./images/ferramenta/ferramenta (6).jpg" alt="Il Negozio" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
-              <img onclick="openImage(this);" src="./images/cucine/cucina (1).jpg" alt="Le Cucine" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
-              <img onclick="openImage(this);" src="./images/bagno/bagno (6).jpg" alt="I Bagni" style="width:100%">
-            </div>
+      <div class="w3-row-padding">
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Ferramenta</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/ferramenta/ferramenta (6).jpg" alt="Il Negozio"
+              style="width:100%">
           </div>
         </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Cucine</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/cucine/cucina (1).jpg" alt="Le Cucine"
+              style="width:99%">
+          </div>
+        </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Rubinetteria</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/bagno/bagno (6).jpg" alt="I Bagni" style="width:99%">
+          </div>
+        </div>
+      </div>
 
-        <div class="w3-row-padding">
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
-              <img onclick="openImage(this);" src="./images/caminetti/caminetto (2).jpg" alt="I Caminetti" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
-              <img onclick="openImage(this);" src="./images/ceramiche/ceramiche (7).jpg" alt="Ceramiche" style="width:100%">
-            </div>
-          </div>
-          <div class="w3-col l4 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-              <div class="w3-display-topleft w3-black w3-padding">Porticati</div>
-              <img onclick="openImage(this);" src="./images/porticati/porticati (1).jpg" alt="I Porticati" style="width:100%">
-            </div>
+      <div class="w3-row-padding">
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Caminetti</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/caminetti/caminetto (2).jpg" alt="I Caminetti"
+              style="width:99%">
           </div>
         </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Expo Ceramiche</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/ceramiche/ceramiche (7).jpg" alt="Ceramiche"
+              style="width:99%">
+          </div>
+        </div>
+        <div class="w3-col l4 m4 w3-margin-bottom">
+          <div class="w3-display-container">
+            <div class="w3-display-topleft w3-black w3-padding">Porticati</div>
+            <img class="img-showroom" onclick="openImage(this);" src="./images/porticati/porticati (1).jpg" alt="I Porticati"
+              style="width:99%">
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -136,38 +142,34 @@
 
         <div class="w3-col l6 m6 w3-padding-small">
           <h4 class="w3-border-bottom w3-border-light-grey w3-padding-16"> Scrivici</h4>
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-twothird">
-              <select id="email" class="w3-input w3-border" required>
-                <option value>Chi vuoi contattare?</option>
-                <option value="commerciale@viscaedilizia.it">Informazioni Comerciali</option>
-                <option value="acquisti@viscaedilizia.it">Ordini</option>
-                <option value="amministrazione@viscaedilizia.it">Amministrazione</option>
-              </select><br>
-              <form target="_blank">
+          <form target="_blank">
+            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+              <div class="w3-twothird">
+                <select id="email" class="w3-input w3-border" required>
+                  <option value>Chi vuoi contattare?</option>
+                  <option value="commerciale@viscaedilizia.it">Informazioni Comerciali</option>
+                  <option value="acquisti@viscaedilizia.it">Ordini</option>
+                  <option value="amministrazione@viscaedilizia.it">Amministrazione</option>
+                </select><br>
                 <input id="obj" placeholder="Oggetto" class="w3-input w3-border"><br>
+              </div>
             </div>
-          </div>
-          <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
-          <button class="w3-button w3-black w3-section w3-right" type="button" onclick="email()">INVIA</button>
+            <textarea id="body" rows="4" class="w3-input w3-border" type="text" placeholder="Messaggio" required></textarea>
+            <button class="w3-button w3-black w3-section w3-right" type="button" onclick="email()">INVIA</button>
           </form>
         </div>
       </div>
     </div>
-  </div>
-
-    <!--Modale immagini-->
-    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" style="display: none;">
+  </div> <!-- End page content -->
+  
+  <!--Modale immagini-->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'" style="display: none;">
     <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
     <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
       <img id="img01" class="w3-image" src="https://www.w3schools.com/w3images/tech_phone.jpg">
       <p id="caption" class="w3-opacity w3-large">A phone</p>
     </div>
   </div>
-
-  <!-- End page content -->
-  </div>
-
 @stop
 
 

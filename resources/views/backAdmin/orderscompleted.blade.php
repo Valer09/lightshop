@@ -56,7 +56,7 @@
                         <td><div location="button-${prodotto.id}" /></td>
                     </tr>
                 </list>
-                
+
                 -->
                 </table>
                 <!--MODALE CREAZIONE-->
@@ -112,4 +112,5 @@
                 <!--MODALE CHIUSURA-->
             </div>
         </div>
+    </div>
 @stop

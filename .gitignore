@@ -13,3 +13,9 @@ yarn-error.log
 .env
 env
 .phpunit.result.cache
+.env2
+/_windows/
+_windows/
+composer*
+composer.json
+composer.lock
