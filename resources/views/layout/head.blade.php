@@ -1,6 +1,5 @@
 <title>Visca s.n.c.</title>
   <!-- javascript custom -->
-
   <script src="{{url('/js/main.js')}}"></script>
 
   <meta charset="UTF-8">
