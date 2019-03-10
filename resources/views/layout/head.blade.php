@@ -6,7 +6,7 @@
   <link rel="icon" href="/images/logo_visca.png" type="image/gif" sizes="16x16">
 
   <!--CSS CUSTOM-->
-  <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/main.css')}}" />
 
   <!--CSS IMPORT-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
