@@ -205,6 +205,7 @@ Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
 Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
 Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
 Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+Route::post('/user_edit', 'user_edit_controller@general_edit' );
 
 /**---DELETED---
 

@@ -138,28 +138,29 @@
                         <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                         <h2>Modifica i tuoi dati.</h2>
                     </header>
-                    <form action="#">
+                    <form type="submit" method="post" action="{{URL::to('/user_edit')}}">
+                        @csrf
                         <div class="w3-padding">
                             <div class="w3-row">
                                 <label>Nome e cognome:</label>
-                                <input value="{{Auth::user()->name}}" placeholder="Nome">
-                                <input value="{{Auth::user()->surname}}" placeholder="Cognome">
+                                <input value="{{Auth::user()->name}}" placeholder="Nome" name="name">
+                                <input value="{{Auth::user()->surname}}" placeholder="Cognome" name="surname">
                             </div>
                             <div class="w3-row">
                                 <label>Codice fiscale:</label>
-                                <input value="{{$CFUP}}" placeholder="Codice fiscale">
+                                <input value="{{$CFUP}}" placeholder="Codice fiscale" name="CF">
                             </div>
                             <div class="w3-row">
                                 <label>Partita IVA:</label>
-                                <input value="{{$IVAUP}}" placeholder="Partita IVA">
+                                <input value="{{$IVAUP}}" placeholder="Partita IVA" name="PIVA">
                             </div>
                             <div class="w3-row">
                                 <label>E-mail:</label>
-                                <input value="{{Auth::user()->email}}" placeholder="E-mail">
+                                <input value="{{Auth::user()->email}}" placeholder="E-mail" name="email">
                             </div>
                             <div class="w3-row">
                                 <label>PEC: </label>
-                                <input value="{{Auth::user()->PEC}}" placeholder="PEC">
+                                <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
                                 <button class="w3-right" type="submit">Salva</button>
                             </div>
                         </div>
