@@ -109,9 +109,6 @@ function get_el($id){
                     <label>Nome e cognome: <b>Mario Rotolo</b></label>
                 </div>
                 <div class="w3-row">
-                    <label>Data di nascita: <b>23/2/1789</b></label>
-                </div>
-                <div class="w3-row">
                     <label>Codice fiscale: <b>FWER45ERT345RTeR</b></label>
                 </div>
                 <div class="w3-row">
@@ -124,7 +121,7 @@ function get_el($id){
                     <label>PEC: <b>mariorotolo@pec.it</b></label>
                 </div>
             </div>
-            <button onclick="openModal('modificaDati')">Modifica dati</button>
+            <button onclick="document.getElementById('modificaDati').style.display = 'block';">Modifica dati</button>
 
             <div id="modificaDati" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top w3-card-4">
@@ -137,10 +134,6 @@ function get_el($id){
                             <label>Nome e cognome:</label>
                             <input placeholder="Nome">
                             <input placeholder="Cognome">
-                        </div>
-                        <div class="w3-row">
-                            <label>Data di nascita:</label>
-                            <input type="date" value="1-1-1990">
                         </div>
                         <div class="w3-row">
                             <label>Codice fiscale:</label>
