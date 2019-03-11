@@ -27,10 +27,10 @@
 
         <div class="w3-bar">
             <button class="w3-bar-item w3-button tablink w3-green" onclick="openTab(event,'ordini')">Ordini</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'dati')">Dati personali</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'spedizione')">Indirizzi</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'pagamento')">Pagamento</button>
-            <button class="w3-bar-item w3-button tablink" onclick="openTab(event,'password')">Password</button>
+            <button id="but#dati" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#dati')">Dati personali</button>
+            <button id="but#spedizione" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#spedizione')">Indirizzi</button>
+            <button id="but#pagamento" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#pagamento')">Pagamento</button>
+            <button id="but#password" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#password')">Password</button>
         </div>
 
         <div id="ordini" class="w3-container w3-border city">
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <div id="dati" class="w3-container w3-border city" style="display:none">
+        <div id="#dati" class="w3-container w3-border city" style="display:none">
             <h2>Dati personali</h2>
 
             <div class="w3-padding">
@@ -170,7 +170,7 @@
             </div>
         </div>
 
-        <div id="spedizione" class="w3-container w3-border city" style="display:none">
+        <div id="#spedizione" class="w3-container w3-border city" style="display:none">
             <h2>Indirizzi di spedizione</h2>
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4">
@@ -195,13 +195,13 @@
             </div>
         </div>
 
-        <div id="pagamento" class="w3-container w3-border city" style="display:none">
+        <div id="#pagamento" class="w3-container w3-border city" style="display:none">
             <h2>Pagamenti</h2>
             <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
             <div id="pulsantePaypal"></div>
         </div>
 
-        <div id="password" class="w3-container w3-border city" style="display:none">
+        <div id="#password" class="w3-container w3-border city" style="display:none">
             <h2>Password</h2>
             <p>Qui puoi cambiare la tua password.</p>
         </div>
@@ -209,5 +209,10 @@
     <!--end CONTENT PAGE-->
     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
     <script>paypal.Buttons().render('#pulsantePaypal');</script>
+    <script>
+        setTimeout(() => {
+            document.getElementById('but'+window.location.hash).click();
+        }, 300);
+    </script>
 
 @stop
