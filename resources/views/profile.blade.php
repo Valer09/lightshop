@@ -141,10 +141,6 @@
                             <input placeholder="Cognome">
                         </div>
                         <div class="w3-row">
-                            <label>Data di nascita:</label>
-                            <input type="date" value="1-1-1990">
-                        </div>
-                        <div class="w3-row">
                             <label>Codice fiscale:</label>
                             <input placeholder="Codice fiscale">
                         </div>
