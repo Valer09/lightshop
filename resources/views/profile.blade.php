@@ -193,6 +193,9 @@ function get_el($id){
         <div id="pagamento" class="w3-container w3-border city" style="display:none">
             <h2>Pagamenti</h2>
             <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
+            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+            <script>paypal.Buttons().render('body');</script>
+            
         </div>
 
         <div id="password" class="w3-container w3-border city" style="display:none">
