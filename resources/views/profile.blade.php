@@ -43,7 +43,7 @@
                                 <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
                                 <div class="w3-bar-item">
                                     <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>In elaborazione</b></span><br><br>
-                                    <span>Numero ordine: {{ $order->id }}</span><br>
+                                    <span>Numero ordine: {{! printf($order->id) }}</span><br>
                                     <span>Oggetti:</span><br>
 
                                     {{!$elements=get_el($order->id)}}
@@ -109,13 +109,12 @@
                     <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
                 </div>
                 <div class="w3-row">
-                    {{!$CF=Auth::user()->CF}}
-                    <?php $CFUP=strtoupper($CF)?>
+                    {{!$CF=Auth::user()->CF, !$CFUP=strtoupper($CF)}}
+
                     <label>Codice fiscale: <b>{{$CFUP}}</b></label>
                 </div>
                 <div class="w3-row">
-                    {{!$IVA=Auth::user()->IVA}}
-                    <?php $IVAUP=strtoupper($IVA)?>
+                    {{!!$IVA=Auth::user()->IVA , !!$IVAUP=strtoupper($IVA)}}
                     <label>Partita IVA: <b>{{$IVAUP}}</b></label>
                 </div>
                 <div class="w3-row">
