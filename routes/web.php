@@ -164,6 +164,9 @@ Route::get('/inside', function () {
 
 
 
+
+
+
 //----------POST Methods---------------------//
 
 //---INSERTIONS---/

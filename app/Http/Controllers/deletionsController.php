@@ -21,6 +21,7 @@ class deletionsController extends Controller
         DB::table('elements')->where('name', $request->decrease)->decrement('availability');
         return view('test');
 
+
     }
     public function decrease_element_of(Request $request){
 

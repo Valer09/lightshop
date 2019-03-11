@@ -29,7 +29,7 @@
 </div>
 
 <div class="w3-row">
-    <div class="column .row:after" >
+    <div class="column row:after" >
         <div>
             <i>
                 <img src="{{asset('storage')}}/images/about/support.png" class="icon">
@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="column .row:after">
+    <div class="column row:after">
         <div>
             <i>
                 <img src="{{asset('storage')}}/images/about/supply.png" class="icon">

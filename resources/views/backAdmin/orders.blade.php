@@ -25,20 +25,20 @@
                     </tr>
 
                     <!--ESEMPIO DA CANCELLARE-->
-                    {{!$Orders=\App\Order::all()}}
-                    @foreach($Orders as $Orders)
-                        @if( ($Orders->order_shipped) == 0 )
+                    {{!$orders=\App\Order::all()}}
+                    @foreach($orders as $orders)
+                        @if( ($orders->order_shipped) == 0 )
                             <tr>
 
-                                <td name="id" ><a href="">{{$Orders->id}}</a></td>
-                                <td name="user_id">{{$Orders->user_id}}</td>
+                                <td name="id" ><a href="">{{$orders->id}}</a></td>
+                                <td name="user_id">{{$orders->user_id}}</td>
                                 <td name="user">
                                     {{
-                                        DB::table('users')->where('id', $Orders->user_id)->value('surname')
+                                        DB::table('users')->where('id', $orders->user_id)->value('surname')
                                     }}
                                 </td>
-                                <td name="shipping_cost">{{$Orders->shipping_cost}}</td>
-                                <td name="total">{{$Orders->total}}</td>
+                                <td name="shipping_cost">{{$orders->shipping_cost}}</td>
+                                <td name="total">{{$orders->total}}</td>
                             </tr>
                         @endif
                     @endforeach
