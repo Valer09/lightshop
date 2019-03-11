@@ -1,20 +1,20 @@
 @extends('layout.defaultLayout')
 @section('content')
-<?php use App\Order; ?>
+    <?php use App\Order; ?>
 
-<?php
-function get_order(){
+    <?php
+    function get_order(){
         $temp=\App\Order::where('user_id', Auth::user()->id)->get();
-    return $temp;
-}
-function get_el($id){
-    $temp=\App\OrderDetail::where('orders_id', $id)->get();
-    return $temp;
-}
-?>
+        return $temp;
+    }
+    function get_el($id){
+        $temp=\App\OrderDetail::where('orders_id', $id)->get();
+        return $temp;
+    }
+    ?>
 
-<!--CONTENT PAGE-->
-<div class="w3-container" style="margin: 49px">
+    <!--CONTENT PAGE-->
+    <div class="w3-container" style="margin: 49px">
         <h2>Il mio profilo</h2>
         <p>To highlight the current tab/page the user is on, add a color class, and use JavaScript to update the active
             link.</p>
@@ -39,62 +39,62 @@ function get_el($id){
                     {{!$orders= get_order()}}
                     @foreach($orders as $order)
                         @if ($order->order_shipped==2)
-                        <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                            <div class="w3-bar-item">
-                                <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>In elaborazione</b></span><br><br>
-                                <span>Numero ordine: {{ $order->id }}</span><br>
-                                <span>Oggetti:</span><br>
+                            <li class="w3-bar">
+                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                                <div class="w3-bar-item">
+                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>In elaborazione</b></span><br><br>
+                                    <span>Numero ordine: {{ $order->id }}</span><br>
+                                    <span>Oggetti:</span><br>
 
-                                {{!$elements=get_el($order->id)}}
-                                @foreach($elements as $element)
-                                    <span>{{$element->element_name}}</span>Q.ta: {{$element->quantity}}<br>
-                                @endforeach
+                                    {{!$elements=get_el($order->id)}}
+                                    @foreach($elements as $element)
+                                        <span>{{$element->element_name }}</span>   Q.ta: {{$element->quantity}}<br>
+                                    @endforeach
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
                         @endif
                     @endforeach
 
-                    <!--CARD PER GLI ORDINI SPEDITI-->
+                <!--CARD PER GLI ORDINI SPEDITI-->
                     {{!$orders= get_order()}}
                     @foreach($orders as $order)
                         @if ($order->order_shipped==1)
-                        <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                            <div class="w3-bar-item">
-                                <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Spedito</b></span><br><br>
-                                <span>Numero ordine: {{ $order->id }}</span><br>
-                                <span>Oggetti:</span><br>
+                            <li class="w3-bar">
+                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                                <div class="w3-bar-item">
+                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Spedito</b></span><br><br>
+                                    <span>Numero ordine: {{ $order->id }}</span><br>
+                                    <span>Oggetti:</span><br>
 
-                                {{!$elements=get_el($order->id)}}
-                                @foreach($elements as $element)
-                                    <span>{{$element->element_name}}</span>Q.ta: {{$element->quantity}}<br>
-                                @endforeach
+                                    {{!$elements=get_el($order->id)}}
+                                    @foreach($elements as $element)
+                                        <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
+                                    @endforeach
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
                         @endif
                     @endforeach
 
-                    <!--CARD PER GLI ORDINI COMPLETATI-->
+                <!--CARD PER GLI ORDINI COMPLETATI-->
                     {{!$orders= get_order()}}
                     @foreach($orders as $order)
                         @if ($order->order_shipped==3)
-                        <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                            <div class="w3-bar-item">
-                                <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Completato</b></span><br><br>
-                                <span>Numero ordine: {{ $order->id }}</span><br>
-                                <span>Oggetti:</span><br>
+                            <li class="w3-bar">
+                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                                <div class="w3-bar-item">
+                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Completato</b></span><br><br>
+                                    <span>Numero ordine: {{ $order->id }}</span><br>
+                                    <span>Oggetti:</span><br>
 
-                                {{!$elements=get_el($order->id)}}
-                                @foreach($elements as $element)
-                                    <span>{{$element->element_name}}</span>Q.ta: {{$element->quantity}}<br>
-                                @endforeach
+                                    {{!$elements=get_el($order->id)}}
+                                    @foreach($elements as $element)
+                                        <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
+                                    @endforeach
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
                         @endif
                     @endforeach
                 </ul>
@@ -106,22 +106,27 @@ function get_el($id){
 
             <div class="w3-padding">
                 <div class="w3-row">
-                    <label>Nome e cognome: <b>Mario Rotolo</b></label>
+                    <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
                 </div>
                 <div class="w3-row">
-                    <label>Codice fiscale: <b>FWER45ERT345RTeR</b></label>
+                    {{!$CF=Auth::user()->CF}}
+                    <?php $CFUP=strtoupper($CF)?>
+                    <label>Codice fiscale: <b>{{$CFUP}}</b></label>
                 </div>
                 <div class="w3-row">
-                    <label>Partita IVA: <b>12345678</b></label>
+                    {{!$IVA=Auth::user()->IVA}}
+                    <?php $IVAUP=strtoupper($IVA)?>
+                    <label>Partita IVA: <b>{{$IVAUP}}</b></label>
                 </div>
                 <div class="w3-row">
-                    <label>E-mail: <b>mario.rotolo@live.it</b></label>
+
+                    <label>E-mail: <b>{{Auth::user()->email}}</b></label>
                 </div>
                 <div class="w3-row">
-                    <label>PEC: <b>mariorotolo@pec.it</b></label>
+                    <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
                 </div>
             </div>
-            <button onclick="document.getElementById('modificaDati').style.display = 'block';">Modifica dati</button>
+            <button onclick="openModal('modificaDati')">Modifica dati</button>
 
             <div id="modificaDati" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top w3-card-4">
@@ -134,6 +139,10 @@ function get_el($id){
                             <label>Nome e cognome:</label>
                             <input placeholder="Nome">
                             <input placeholder="Cognome">
+                        </div>
+                        <div class="w3-row">
+                            <label>Data di nascita:</label>
+                            <input type="date" value="1-1-1990">
                         </div>
                         <div class="w3-row">
                             <label>Codice fiscale:</label>
@@ -170,7 +179,7 @@ function get_el($id){
                                 <br>L'aquila, italy 67100
                                 <br>tel. 2345435345
                                 <br>Note: interno A
-                            </span>   
+                            </span>
                         </div>
                     </li>
 
@@ -183,7 +192,7 @@ function get_el($id){
                                 <br>L'aquila, italy 67100
                                 <br>tel. 2876543
                                 <br>Note: scala 3
-                            </span>   
+                            </span>
                         </div>
                     </li>
                 </ul>
@@ -193,9 +202,6 @@ function get_el($id){
         <div id="pagamento" class="w3-container w3-border city" style="display:none">
             <h2>Pagamenti</h2>
             <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
-            <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-            <script>paypal.Buttons().render('body');</script>
-            
         </div>
 
         <div id="password" class="w3-container w3-border city" style="display:none">
