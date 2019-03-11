@@ -11,6 +11,12 @@
         $temp=\App\OrderDetail::where('orders_id', $id)->get();
         return $temp;
     }
+
+    function get_addresses($id){
+        $temp=\App\Address::where('user_id', $id)->get();
+        return $temp;
+    }
+
     ?>
 
     <!--CONTENT PAGE-->
@@ -165,31 +171,22 @@
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4">
                     <!--CARD PER GLI INDIRIZZI DI SPEDIZIONE-->
+                    {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
+                    @foreach($addresses as $address)
                     <li class="w3-bar">
                         <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
                         <div class="w3-bar-item">
-                            <span class="w3-middle"><b>Mario Rotolo</b></span><br>
-                            <span>
-                                Via Collepretara, 432
-                                <br>L'aquila, italy 67100
-                                <br>tel. 2345435345
-                                <br>Note: interno A
-                            </span>
-                        </div>
-                    </li>
 
-                    <li class="w3-bar">
-                        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                        <div class="w3-bar-item">
-                            <span class="w3-middle"><b>Federico Rotolo</b></span><br>
+                            <span class="w3-middle"><b>{{Auth::User()->name}}</b></span><br>
                             <span>
-                                Via valle, 4
-                                <br>L'aquila, italy 67100
-                                <br>tel. 2876543
-                                <br>Note: scala 3
+                                {{$address->street}}
+                                <br>{{$address->city}}, {{$address->municipality}},
+                                <br>{{$address->country}}
                             </span>
+
                         </div>
                     </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
