@@ -126,7 +126,7 @@
                     <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
                 </div>
             </div>
-            <button onclick="openModal('modificaDati')">Modifica dati</button>
+            <button onclick="document.getElementById('modificaDati').style.display='block'">Modifica dati</button>
 
             <div id="modificaDati" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top w3-card-4">
@@ -202,6 +202,7 @@
         <div id="pagamento" class="w3-container w3-border city" style="display:none">
             <h2>Pagamenti</h2>
             <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
+            <div id="pulsantePaypal"></div>
         </div>
 
         <div id="password" class="w3-container w3-border city" style="display:none">
@@ -210,5 +211,7 @@
         </div>
     </div>
     <!--end CONTENT PAGE-->
+    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+    <script>paypal.Buttons().render('#pulsantePaypal');</script>
 
 @stop
