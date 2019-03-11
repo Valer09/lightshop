@@ -116,7 +116,6 @@
                 </div>
                 <div class="w3-row">
                     {{!$CF=Auth::user()->CF, !$CFUP=strtoupper($CF)}}
-
                     <label>Codice fiscale: <b>{{$CFUP}}</b></label>
                 </div>
                 <div class="w3-row">
@@ -139,29 +138,33 @@
                         <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                         <h2>Modifica i tuoi dati.</h2>
                     </header>
-                    <div class="w3-padding">
-                        <div class="w3-row">
-                            <label>Nome e cognome:</label>
-                            <input placeholder="Nome">
-                            <input placeholder="Cognome">
+                    <form action="#">
+                        <div class="w3-padding">
+                            <div class="w3-row">
+                                <label>Nome e cognome:</label>
+                                <input value="{{Auth::user()->name}}" placeholder="Nome">
+                                <input value="{{Auth::user()->surname}}" placeholder="Cognome">
+                            </div>
+                            <div class="w3-row">
+                                <label>Codice fiscale:</label>
+                                <input value="{{$CFUP}}" placeholder="Codice fiscale">
+                            </div>
+                            <div class="w3-row">
+                                <label>Partita IVA:</label>
+                                <input value="{{$IVAUP}}" placeholder="Partita IVA">
+                            </div>
+                            <div class="w3-row">
+                                <label>E-mail:</label>
+                                <input value="{{Auth::user()->email}}" placeholder="E-mail">
+                            </div>
+                            <div class="w3-row">
+                                <label>PEC: </label>
+                                <input value="{{Auth::user()->PEC}}" placeholder="PEC">
+                                <button class="w3-right" type="submit">Salva</button>
+                            </div>
                         </div>
-                        <div class="w3-row">
-                            <label>Codice fiscale:</label>
-                            <input placeholder="Codice fiscale">
-                        </div>
-                        <div class="w3-row">
-                            <label>Partita IVA:</label>
-                            <input placeholder="Partita IVA">
-                        </div>
-                        <div class="w3-row">
-                            <label>E-mail:</label>
-                            <input placeholder="E-mail">
-                        </div>
-                        <div class="w3-row">
-                            <label>PEC: </label>
-                            <input placeholder="PEC">
-                        </div>
-                    </div>
+                    </form>
+                    
                 </div>
             </div>
         </div>
