@@ -7,6 +7,7 @@
 
   <!--CSS CUSTOM-->
   <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/main.css')}}" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/showroom.css')}}" />
 
   <!--CSS IMPORT-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
