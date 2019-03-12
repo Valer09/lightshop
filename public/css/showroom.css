@@ -1,0 +1,17 @@
+figure {
+    margin: 0em 0px!important;
+    width: 150px;
+    max-height: 500px;
+}
+
+div.imgshow {
+    overflow: hidden;
+    padding: 10px;
+}
+
+#principalDiv {
+    background-image: url("../images/showroom/bath-bathroom-cabinet-342800.jpg");
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+  }

@@ -16,7 +16,7 @@ class PecModder extends Migration
         Schema::table('users', function($table) {
             $table->string('CF')->default('A');
             $table->string('IVA')->default('0');
-            $table->string('PEC')->default('nopec@pec.it');
+            //$table->string('PEC')->default('nopec@pec.it');
         });
     }
 
@@ -30,7 +30,7 @@ class PecModder extends Migration
         Schema::table('users', function($table) {
             $table->dropColumn('C.F');
             $table->dropColumn('P.IVA');
-            $table->dropColumn('PEC');
+            //$table->dropColumn('PEC');
         });
     }
 }
