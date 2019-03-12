@@ -119,7 +119,7 @@
                     <label>Codice fiscale: <b>{{$CFUP}}</b></label>
                 </div>
                 <div class="w3-row">
-                    {{!!$IVA=Auth::user()->IVA , !!$IVAUP=strtoupper($IVA)}}
+                    {{!$IVA=Auth::user()->IVA , !$IVAUP=strtoupper($IVA)}}
                     <label>Partita IVA: <b>{{$IVAUP}}</b></label>
                 </div>
                 <div class="w3-row">
@@ -130,8 +130,10 @@
                     <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
                 </div>
             </div>
-            <button onclick="document.getElementById('modificaDati').style.display='block'">Modifica dati</button>
-
+            <button onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</button>
+            <div id="modal_success" class="w3-modal">
+                <h1>ADfnoiaDH:FIULH</h1>
+            </div>
             <div id="modificaDati" class="w3-modal">
                 <div class="w3-modal-content w3-animate-top w3-card-4">
                     <header class="w3-container w3-teal">
@@ -163,8 +165,14 @@
                                 <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
                                 <button class="w3-right" type="submit">Salva</button>
                             </div>
+
+
                         </div>
+
+
                     </form>
+
+
                     
                 </div>
             </div>
@@ -200,19 +208,42 @@
             <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
             <div id="pulsantePaypal"></div>
         </div>
-
+        <p>Qui puoi cambiare la tua password.</p>
         <div id="#password" class="w3-container w3-border city" style="display:none">
-            <h2>Password</h2>
-            <p>Qui puoi cambiare la tua password.</p>
+            <form method="post" type="submit" action="{{ URL::to('/password_edit_submit') }}" >
+                @csrf
+                <div>
+                    <label>Vecchia Password: </label>
+                    <input value="Inserisci la vecchia password" placeholder="Old_password" name="old_password" type="password" required>
+                </div>
+                <div>
+                    <label>Nuova Password: </label>
+                    <input value="Inserisci la nuova password" placeholder="Password" name="password" type="password" required>
+                </div>
+                <div>
+                    <label>Ripeti Password: </label>
+                    <input value="Inserisci la nuova password" placeholder="Control_password" name="control_password" type="password" required>
+                </div>
+
+                    <button class="w3-left" type="submit">Salva</button>
+
+            </form>
         </div>
+
     </div>
     <!--end CONTENT PAGE-->
+
     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
     <script>paypal.Buttons().render('#pulsantePaypal');</script>
     <script>
         setTimeout(() => {
             document.getElementById('but'+window.location.hash).click();
+
+
         }, 300);
+    </script>
+    <script>
+        document.getElementById('modal_success').style.display='none';
     </script>
 
 @stop
