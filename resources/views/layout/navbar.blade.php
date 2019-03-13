@@ -5,7 +5,7 @@
       <div class="w3-bar w3-white w3-wide w3-card">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="./#" class="barSx w3-bar-item w3-button"><b>Visca s.n.c.</b></a>
-        <a href="./404.html" class="barDx w3-bar-item w3-button">Chi siamo</a>
+        <a href="{{ url('/about ') }}" class="barDx w3-bar-item w3-button">Chi siamo</a>
         <a href="./#orari" class="barDx w3-bar-item w3-button">Orari</a>
         <a href="./#contact" class="barDx w3-bar-item w3-button">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->

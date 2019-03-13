@@ -162,7 +162,7 @@
 
             <input name="description" class="form-control" type="text">
 
-            </input>
+
         </div>
         <button type="submit"> modifica </button>
     </form>

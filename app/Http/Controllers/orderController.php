@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -25,4 +26,5 @@ class orderController extends Controller
         return view('home');
 
     }
+
 }

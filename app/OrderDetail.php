@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDetail extends Model
-{
 
+class OrderDetail extends Model
+
+{
+    protected $table='OrderDetails';
     protected $fillable = ['price','details','quantity'];
 
     public function get_order(){
