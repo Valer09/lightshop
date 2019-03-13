@@ -1,32 +1,35 @@
 #pageContent {
-    height: 100%;
+    height: auto;
     margin: 49px 0px 0px 0px!important;
     padding: 0%;
+}
+
+#principalDiv {
+    background-image: url("../images/showroom/bath-bathroom-cabinet-342800.jpg");
+    background-position: center;
+    background-size: cover;
+    min-height: 64%;
+    margin: 49px 0px 0px 0px!important;
+}
+
+#boxShow {
+    line-height: 100%;
+    height: auto;
+    box-shadow: 10px;
 }
 
 div.imgshow {
     overflow: hidden;
 }
 
-#principalDiv {
-    background-image: url("../images/showroom/bath-bathroom-cabinet-342800.jpg");
-    height: 200px;
-    background-position: center;
-    background-size: cover;
-  }
-
 .imagShow {
     width: 100%;
 }
 
 figure {
-    margin: 1em 2px!important;
+    margin: 1em 1px!important;
 }
 
 figcaption {
     text-align-last: center;
-}
-
-#boxShow {
-    
 }
