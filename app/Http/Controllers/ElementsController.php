@@ -7,6 +7,7 @@ use App\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use phpDocumentor\Reflection\Element;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ElementsController extends Controller{
 
