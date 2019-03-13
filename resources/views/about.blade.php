@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="w3-row">
-        <div class=" w3-display-container" >
+        <div class=" w3-display-container"  style="margin-left: 9%; margin-right: 9%">
 
              <div class="w3-display-container Myslides w3-animate-opacity"  style="display: block">
                 <img class="mySlides" src="{{asset('storage')}}/images/about/team2.jpg" style="width: 100%;height: auto" >
