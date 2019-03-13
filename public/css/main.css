@@ -178,3 +178,10 @@ margin: 0 auto;
     color:white;
 }
 
+.content-right {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 8%;
+  }
+

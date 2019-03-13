@@ -13,27 +13,27 @@
 
     <div id="boxShow" class="w3-row w3-white w3-container">
         <div id="show1" class="show w3-col l2  w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Pavimenti e Rivestimenti</div>
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Pavimenti e Rivestimenti</span></div>
         </div>
 
-        <div id="show2" class="show w3-col l2  w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Cucine</div>
+        <div id="show2" class="show w3-col l2 w3-hover-opacity">
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Cucine</span></div>
         </div>
-
-        <div id="show3" class="show w3-col l2  w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Bagni</div>
+ 
+        <div id="show3" class="show w3-col l2 w3-hover-opacity">
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Bagni</span></div>
         </div>
 
         <div id="show4" class="show w3-col l2 w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Porte</div>
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Porte</span></div>
         </div>
 
         <div id="show5" class="show w3-col l2 w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Caminetti</div>
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Caminetti</span></div>
         </div>
 
         <div id="show6" class="show w3-col l2 w3-hover-opacity">
-            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Falegnameria</div>
+            <div class="w3-third w3-right w3-white w3-opacity-min" style="height:200px"><span class="testoShow">Falegnameria</span></div>
         </div>
     </div>
 
