@@ -173,7 +173,7 @@
                     </form>
 
 
-                    
+
                 </div>
             </div>
         </div>
@@ -185,19 +185,19 @@
                     <!--CARD PER GLI INDIRIZZI DI SPEDIZIONE-->
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
-                    <li class="w3-bar">
-                        <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                        <div class="w3-bar-item">
+                        <li class="w3-bar">
+                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                            <div class="w3-bar-item">
 
-                            <span class="w3-middle"><b>{{Auth::User()->name}}</b></span><br>
-                            <span>
+                                <span class="w3-middle"><b>{{Auth::User()->name}}</b></span><br>
+                                <span>
                                 {{$address->street}}
                                 <br>{{$address->city}}, {{$address->municipality}},
                                 <br>{{$address->country}}
                             </span>
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -225,7 +225,7 @@
                     <input value="Inserisci la nuova password" placeholder="Control_password" name="control_password" type="password" required>
                 </div>
 
-                    <button class="w3-left" type="submit">Salva</button>
+                <button class="w3-left" type="submit">Salva</button>
 
             </form>
         </div>
