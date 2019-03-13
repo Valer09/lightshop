@@ -11,42 +11,29 @@
         </div>
     </header>
 
-    <div id="boxShow" class="w3-row w3-row-padding w3-black w3-container">
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/ceramiche/ceramiche (5).jpg" alt="Pavimenti e Rivestimenti">
-                <figcaption>Pavimenti e Rivestimenti</figcaption>
-            </figure>
+    <div id="boxShow" class="w3-row w3-white w3-container">
+        <div id="show1" class="show w3-col l2  w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Pavimenti e Rivestimenti</div>
         </div>
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/cucine/cucina (1).jpg" alt="Cucine">
-                <figcaption>Cucine</figcaption>
-            </figure>
+
+        <div id="show2" class="show w3-col l2  w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Cucine</div>
         </div>
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/bagno/bagno (2).jpg" alt="Bagni">
-                <figcaption>Bagni</figcaption>
-            </figure>
+
+        <div id="show3" class="show w3-col l2  w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Bagni</div>
         </div>
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/ferramenta/ferramenta (6).jpg" alt="Porte">
-                <figcaption>Porte</figcaption>
-            </figure>
+
+        <div id="show4" class="show w3-col l2 w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Porte</div>
         </div>
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/caminetti/caminetto (2).jpg" alt="Caminetti">
-                <figcaption>Caminetti</figcaption>
-            </figure>
+
+        <div id="show5" class="show w3-col l2 w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Caminetti</div>
         </div>
-        <div class="w3-col imgshow l2">
-            <figure>
-                <img class="imagShow" src="./images/porticati/porticati (1).jpg" alt="Falegnameria">
-                <figcaption>Falegnameria</figcaption>
-            </figure>
+
+        <div id="show6" class="show w3-col l2 w3-hover-opacity">
+            <div class="w3-twothird w3-right w3-white w3-opacity-min" style="height:200px">Falegnameria</div>
         </div>
     </div>
 

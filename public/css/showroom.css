@@ -1,5 +1,5 @@
 #principalDiv {
-    background-image: url("../images/showroom/bath-bathroom-cabinet-342800.jpg");
+    background-image: url("../images/showroom/apartment-ceiling-chairs-1571460.jpg");
     background-position: center;
     background-size: cover;
     min-height: 64%;
@@ -10,20 +10,58 @@
     line-height: 100%;
     height: auto;
     box-shadow: 10px;
+    padding: 2px 2px 2px 2px;   
 }
 
 div.imgshow {
     overflow: hidden;
+    height: 200px;
 }
 
 .imagShow {
-    width: 100%;
+    width: auto;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 figure {
-    margin: 1em 1px!important;
+    margin: 0em 1px!important;
+
 }
+
 
 figcaption {
     text-align-last: center;
+}
+
+.show{
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.show:hover {
+    transform: scale(1.02);
+}
+
+#show1 {
+    background-image: url("https://images.pexels.com/photos/159045/the-interior-of-the-repair-interior-design-159045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+}
+#show2 {
+    background-image: url("https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?cs=srgb&dl=chairs-contemporary-curtains-1571453.jpg&fm=jpg");
+}
+#show3 {
+    background-image: url("https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?cs=srgb&dl=chairs-contemporary-curtains-1571453.jpg&fm=jpg");
+}
+#show4 {
+    background-image: url("https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?cs=srgb&dl=chairs-contemporary-curtains-1571453.jpg&fm=jpg");
+}
+#show5 {
+    background-image: url("https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?cs=srgb&dl=chairs-contemporary-curtains-1571453.jpg&fm=jpg");
+}
+#show6 {
+    background-image: url("https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?cs=srgb&dl=chairs-contemporary-curtains-1571453.jpg&fm=jpg");
 }

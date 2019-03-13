@@ -51,7 +51,7 @@
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
-                    <img src="{{asset('storage')}}/app/images/catalogo/bullone.jpg" style="width:100%">
+                    <img src="{{asset('storage')}}/public/images/catalogo/bullone.jpg" style="width:100%">
                     <div class="w3-display-middle w3-display-hover">
                         <button onclick="window.location.href='./prodotto.html'" class="w3-button w3-black">Acquista ora
                             <i class="fa fa-shopping-cart"></i></button>
