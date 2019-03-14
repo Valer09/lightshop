@@ -83,7 +83,9 @@ Route::group(['prefix' => 'showroom'], function () {
         return view('showroom_navigation');
     });
 
-
+    Route::get('/cucine', function () {
+        return view('showroom_navigation');
+    });
 
 });
 
