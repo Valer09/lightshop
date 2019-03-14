@@ -31,8 +31,13 @@ Route::get('/home', function () {
         return view('home');
 });
 Route::get('/profile', function(){
-    return view('profile');
-});
+    if ( Auth::user()->group != "Administrator" )
+        return view('profile');
+    else
+        return view('profile');
+
+})->middleware('verified');
+
 Route::get('/catalog', function(){
     return view('catalog');
 });
@@ -53,7 +58,40 @@ Route::get('about', function () {
     return view('about');
 });
 
+
 //--End Home--//
+
+//--Showroom--//
+Route::group(['prefix' => 'showroom'], function () {
+    Route::get('/bagni', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/pavimenti', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/porte', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/caminetti', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/falegnameria', function () {
+        return view('showroom_navigation');
+    });
+
+
+
+});
+
+//End showroom--/
+
+
+
+
 
 
 //--INSIDE--//
@@ -62,7 +100,7 @@ Route::get('/element', function () {
 });
 //--End Inside--//
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 
