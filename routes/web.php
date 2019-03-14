@@ -106,7 +106,7 @@ Route::get('/element', function () {
 //--End Inside--//
 
 Auth::routes(['verify' => true]);
-
+// Authentication Routes...
 
 
 
@@ -262,3 +262,15 @@ Route::post('/user_edit', 'user_edit_controller@general_edit' );
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
