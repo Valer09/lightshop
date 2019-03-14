@@ -186,3 +186,8 @@ margin: 0 auto;
     width: 8%;
   }
 
+.pulsanteDxProfile {
+    padding: 4px 6px 4px 6px!important;
+    line-height: 1;
+    font-size: 14px!important;
+}

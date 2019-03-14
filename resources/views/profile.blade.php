@@ -131,62 +131,27 @@
                 </div>
             </div>
             <button onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</button>
-            <div id="modal_success" class="w3-modal">
-                <h1>ADfnoiaDH:FIULH</h1>
-            </div>
-            <div id="modificaDati" class="w3-modal">
-                <div class="w3-modal-content w3-animate-top w3-card-4">
-                    <header class="w3-container w3-teal">
-                        <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                        <h2>Modifica i tuoi dati.</h2>
-                    </header>
-                    <form type="submit" method="post" action="{{URL::to('/user_edit')}}">
-                        @csrf
-                        <div class="w3-padding">
-                            <div class="w3-row">
-                                <label>Nome e cognome:</label>
-                                <input value="{{Auth::user()->name}}" placeholder="Nome" name="name">
-                                <input value="{{Auth::user()->surname}}" placeholder="Cognome" name="surname">
-                            </div>
-                            <div class="w3-row">
-                                <label>Codice fiscale:</label>
-                                <input value="{{$CFUP}}" placeholder="Codice fiscale" name="CF">
-                            </div>
-                            <div class="w3-row">
-                                <label>Partita IVA:</label>
-                                <input value="{{$IVAUP}}" placeholder="Partita IVA" name="PIVA">
-                            </div>
-                            <div class="w3-row">
-                                <label>E-mail:</label>
-                                <input value="{{Auth::user()->email}}" placeholder="E-mail" name="email">
-                            </div>
-                            <div class="w3-row">
-                                <label>PEC: </label>
-                                <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
-                                <button class="w3-right" type="submit">Salva</button>
-                            </div>
-
-
-                        </div>
-
-
-                    </form>
-
-
-
-                </div>
-            </div>
-        </div>
+        </div>   
 
         <div id="#spedizione" class="w3-container w3-border city" style="display:none">
             <h2>Indirizzi di spedizione</h2>
             <div class="w3-container">
                 <ul class="w3-ul w3-card-4">
+                    <li class="w3-bar w3-button" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">
+                        <div class="w3-bar-item">
+                            <span class="w3-middle"><i class="fa fa-plus"></i><b> Nuovo indirizzo di spedizione</b></span><br>
+                        </div>
+                    </li>
                     <!--CARD PER GLI INDIRIZZI DI SPEDIZIONE-->
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
                         <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span>
+                            @if( $address->id == Auth::user()->address_id )
+                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
+                            @else
+                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span>
+                            @endif
                             <div class="w3-bar-item">
 
                                 <span class="w3-middle"><b>{{Auth::User()->name}}</b></span><br>
@@ -231,6 +196,87 @@
         </div>
 
     </div>
+
+    <!--Modale Modifica dati-->
+    <div id="modificaDati" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top w3-card-4">
+                    <header class="w3-container w3-teal">
+                        <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h2>Modifica i tuoi dati.</h2>
+                    </header>
+                    <form type="submit" method="post" action="{{URL::to('/user_edit')}}">
+                        @csrf
+                        <div class="w3-padding">
+                            <div class="w3-row">
+                                <label>Nome e cognome:</label>
+                                <input value="{{Auth::user()->name}}" placeholder="Nome" name="name">
+                                <input value="{{Auth::user()->surname}}" placeholder="Cognome" name="surname">
+                            </div>
+                            <div class="w3-row">
+                                <label>Codice fiscale:</label>
+                                <input value="{{$CFUP}}" placeholder="Codice fiscale" name="CF">
+                            </div>
+                            <div class="w3-row">
+                                <label>Partita IVA:</label>
+                                <input value="{{$IVAUP}}" placeholder="Partita IVA" name="PIVA">
+                            </div>
+                            <div class="w3-row">
+                                <label>E-mail:</label>
+                                <input value="{{Auth::user()->email}}" placeholder="E-mail" name="email">
+                            </div>
+                            <div class="w3-row">
+                                <label>PEC: </label>
+                                <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
+                                <button class="w3-right" type="submit">Salva</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+       
+
+        <!--Modale Nuovo indirizzo-->
+        <div id="nuovoIndirizzo" class="w3-modal">
+            <div class="w3-modal-content w3-animate-top w3-card-4">
+                <header class="w3-container w3-teal">
+                    <span onclick="document.getElementById('nuovoIndirizzo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <h2>Nuovo indirizzo di spedizione</h2>
+                </header>
+                <form type="submit" method="post" action="{{URL::to('/addess_insertion')}}">
+                    @csrf
+                    <div class="w3-padding">
+                        <div class="w3-row">
+                            <label>Nome e cognome del Destinatario</label>
+                            <input placeholder="Nome e cognome" type="text" name="nome" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Indirizzo</label>
+                            <input placeholder="Indirizzo" type="text" name="indirizzo" required>
+                            <label>Civico</label>
+                            <input placeholder="Civico" type="text" name="civico">
+                        </div>
+                        <div class="w3-row">
+                            <label>Comune</label>
+                            <input placeholder="Comune" type="text" name="comune" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>CAP</label>
+                            <input placeholder="CAP" type="text" name="cap" id="newCap" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Provincia</label>
+                            <input placeholder="Provincia" type="text" name="provincia" id="newProvincia" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Stato</label>
+                            <input placeholder="Stato" type="text" name="stato" required>
+                            <button class="w3-right" type="submit">Salva</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
     <!--end CONTENT PAGE-->
 
     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
@@ -241,9 +287,44 @@
 
 
         }, 300);
+
+
+        /** ----------METODO per COMPILAZIONEE COMUNE-----------*/
+var myObj
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        myObj = JSON.parse(this.responseText);
+        //console.log(myObj);
+
+    }
+};
+xmlhttp.open("GET", "https://raw.githubusercontent.com/matteocontrini/comuni-json/master/comuni.json", true);
+xmlhttp.send();
+
+function trovaCap(idComune, idCap, idProvincia) {
+    if (document.getElementById(idComune) != null) {
+        var nomeComune = document.getElementById(idComune).value.toLowerCase();
+        for (ii = 0; ii < myObj.length; ii++) {
+            if (myObj[ii]["nome"].toLowerCase() === nomeComune) {
+                if (myObj[ii]["cap"].length === 1) {
+                    document.getElementById(idCap).value = myObj[ii]["cap"][0].toString();
+                } else {
+                    var iii = 1;
+                    var capp = myObj[ii]["cap"][0];
+                    while (myObj[ii]["cap"][iii] != null) {
+                        capp = capp + ", " + myObj[ii]["cap"][iii]
+                        iii++;
+                    }
+                    document.getElementById(idCap).value = capp;
+                }
+                document.getElementById(idProvincia).value = myObj[ii]["sigla"];
+            }
+        }
+    }
+}
+/** ---------- FINE METODO per COMPILAZIONEE COMUNE-----------*/
     </script>
-    <script>
-        document.getElementById('modal_success').style.display='none';
-    </script>
+    
 
 @stop
