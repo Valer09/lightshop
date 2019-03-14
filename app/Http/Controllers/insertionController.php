@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File,App\Address;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+Use Illuminate\Support\Facades\Auth;
 
 
 
@@ -179,6 +180,27 @@ class insertionController extends Controller
         $subcategory-> name = $request -> name;
         $subcategory-> category = $request -> category;
         $subcategory->save();
+
+        return view('test');
+
+    }
+
+    public function insert_address(Request $request){
+
+        $address = new Address;
+
+        $address-> country = $request -> country;
+        $address-> street = $request -> street;
+        $address-> city = $request -> city;
+        $address-> municipality = $request -> municipality;
+        $address-> CAP = $request -> CAP;
+        $address-> street_number = $request -> street_number;
+        $address-> user_id = $request -> user_id;
+        $address-> NomeCognome = $request -> NomeCognome;
+        $address-> Provincia = $request -> Provincia;
+        $address-> user_id = Auth::user()->id;
+
+        $address->save();
 
         return view('test');
 

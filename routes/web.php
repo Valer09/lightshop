@@ -216,7 +216,7 @@ Route::get('/inside', function () {
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
-
+Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
@@ -267,10 +267,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
