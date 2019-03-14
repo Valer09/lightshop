@@ -20,52 +20,97 @@ Route::redirect('welcome',"/");
 
 //----------GET Methods-------------//
 
+//---Home---//
 Route::get('/', function () {
     return view('home');
 });
-
-Route::get('/single', function () {
-    return view('layout/app');
-});
-
 Route::get('/login', function () {
     return view('auth/login');
 });
-
 Route::get('/home', function () {
         return view('home');
 });
-
 Route::get('/profile', function(){
-    return view('profile');
-});
+    if ( Auth::user()->group != "Administrator" )
+        return view('profile');
+    else
+        return view('profile');
+
+})->middleware('verified');
 
 Route::get('/catalog', function(){
     return view('catalog');
 });
-
 Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
         return redirect('home');
 });
-
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
 Route::get('register', function () {
     return view('auth/register');
 });
-
 Route::get('form', function () {
     return view('register');
 });
+Route::get('about', function () {
+    return view('about');
+});
+Route::get('/cart', function () {
+    return view('cart');
+});
 
-Auth::routes();
+
+//--End Home--//
+
+//--Showroom--//
+Route::group(['prefix' => 'showroom'], function () {
+    Route::get('/bagni', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/pavimenti', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/porte', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/caminetti', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/falegnameria', function () {
+        return view('showroom_navigation');
+    });
+
+    Route::get('/cucine', function () {
+        return view('showroom_navigation');
+    });
+
+});
+
+//End showroom--/
+
+
+
+
+
+
+//--INSIDE--//
+Route::get('/element', function () {
+    return view('element');
+});
+//--End Inside--//
+
+Auth::routes(['verify' => true]);
+// Authentication Routes...
+
+
 
 //---------ADMIN PAGES----------//
-
-
 
 //---Access Control---//
 Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
@@ -162,12 +207,18 @@ Route::get('/inside', function () {
 
 
 
+
+
+
 //----------POST Methods---------------------//
 
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
+
+
+
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
@@ -197,11 +248,29 @@ Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
 Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
 Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
 Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+Route::post('/user_edit', 'user_edit_controller@general_edit' );
+
+/**---DELETED---
+
+ * Route::get('/single', function () {
+ *    return view('layout/app');
+ * });
+
+ **/
 
 
 
 
 
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
