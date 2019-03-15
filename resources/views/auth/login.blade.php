@@ -40,13 +40,17 @@
             <div class="w3-col l12 s12 w3-left w3-margin-bottom">
                 <button class="w3-button w3-amber w3-block" type="submit" value="login">Login</button>
             </div>
+            <div class="w3-col l12 s12 w3-left w3-margin-bottom">
+                <a href="./register" class="w3-button w3-red w3-block" >Registra un Account</a>
+            </div>
         </div>
         <div class="w3-row w3-center" >
             <div class="w3-col l6 w3-left">
-                <a href="{{URL::to('password/reset')}}" class="w3-left" style="text-decoration: none;">Password  o email dimenticata?</a>
+                <a href="{{URL::to('password/reset')}}" class="w3-center" style="text-decoration: none">Recupera Password </a>
+
             </div>
             <div class="w3-col l6 w3-right">
-                <a href="./register" class="w3-right " style="text-decoration: none;">Non hai un account?</a>
+                <a href="{{URL::to('password/email')}}" class="w3-center" style="text-decoration: none;">Recupera Email</a>
             </div>
         </div>
     </form>

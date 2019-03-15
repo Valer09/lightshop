@@ -68,6 +68,10 @@ Route::get('/verified', function () {
 Route::get('/password/reset', function () {
     return view('password/reset');
 });
+Route::get('/password/email', function () {
+    return view('password/email');
+});
+
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
