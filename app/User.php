@@ -8,9 +8,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword;
 
 
+
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use Notifiable;
+    use notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -51,5 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
    // public function get_user_by_email($email){
    //     return  $users = DB::table('users')->get()->where('email', $email)->first();
    // }
+
+
 
 }
