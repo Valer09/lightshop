@@ -146,11 +146,12 @@
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
                         <li class="w3-bar">
-                            <a href="{{ url('/eliminaSpedizioneConId:') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span></a>
+                            <a href="{{ URL::to('/delete_user_address') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span></a>
                             @if( $address->id == Auth::user()->address_id )
                             <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
                             @else
-                            <a href="{{ url('/spedizionePreferitaConId:') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span></a>
+
+                            <a href="{{ URL::to('/star_address') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span></a>
                             @endif
                             <div class="w3-bar-item">
 

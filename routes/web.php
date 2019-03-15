@@ -61,6 +61,9 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+Route::get('/star_address{id}', 'general_edit_controller@address_star');
+Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
+
 
 //--End Home--//
 
@@ -179,6 +182,9 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/users', function(){
         return view('backAdmin/users');
     });
+
+
+
 
 });
 
