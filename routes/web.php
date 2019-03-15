@@ -61,6 +61,10 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+Route::get('/verified', function () {
+    return view('verified');
+});
+
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
 
