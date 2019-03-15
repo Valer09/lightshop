@@ -146,18 +146,18 @@
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
                         <li class="w3-bar">
-                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span>
+                            <a href="{{ url('/eliminaSpedizioneConId:') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span></a>
                             @if( $address->id == Auth::user()->address_id )
                             <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
                             @else
-                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span>
+                            <a href="{{ url('/spedizionePreferitaConId:') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span></a>
                             @endif
                             <div class="w3-bar-item">
 
-                                <span class="w3-middle"><b>{{Auth::User()->name}}</b></span><br>
+                                <span class="w3-middle"><b>{{$address->NomeCognome}}</b></span><br>
                                 <span>
-                                {{$address->street}}
-                                <br>{{$address->city}}, {{$address->municipality}},
+                                {{$address->street}}, {{$address->street_number}}
+                                <br>{{$address->city}} ({{$address->Provincia}}) - {{$address->CAP}}
                                 <br>{{$address->country}}
                             </span>
 
