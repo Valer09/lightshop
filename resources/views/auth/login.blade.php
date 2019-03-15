@@ -43,7 +43,7 @@
         </div>
         <div class="w3-row w3-center" >
             <div class="w3-col l6 w3-left">
-                <a href="#Dimenticata" class="w3-left" style="text-decoration: none;">Password dimenticata?</a>
+                <a href="{{URL::to('password/reset')}}" class="w3-left" style="text-decoration: none;">Password  o email dimenticata?</a>
             </div>
             <div class="w3-col l6 w3-right">
                 <a href="./register" class="w3-right " style="text-decoration: none;">Non hai un account?</a>
