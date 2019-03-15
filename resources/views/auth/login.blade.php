@@ -46,11 +46,11 @@
         </div>
         <div class="w3-row w3-center" >
             <div class="w3-col l6 w3-left">
-                <a href="{{URL::to('password/reset')}}" class="w3-center" style="text-decoration: none">Recupera Password </a>
+                <a href="{{URL::to('password/reset')}}" class="w3-center" style="text-decoration: underline">Recupera Password </a>
 
             </div>
             <div class="w3-col l6 w3-right">
-                <a href="{{URL::to('password/email')}}" class="w3-center" style="text-decoration: none;">Recupera Email</a>
+                <a href="{{URL::to('password/email')}}" class="w3-center" style="text-decoration: underline;">Recupera Email</a>
             </div>
         </div>
     </form>
