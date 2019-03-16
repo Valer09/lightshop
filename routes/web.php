@@ -69,12 +69,13 @@ Route::get('/password/reset', function () {
     return view('password/reset');
 });
 Route::get('/password/email', function () {
-    return view('password/email');
+    return view('Auth/passwords/email/reset');
 });
 
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
+Route::get('/email_recovery', 'gets_controller@get_user_cf');
 
 
 //--End Home--//
@@ -229,6 +230,12 @@ Route::get('/inside', function () {
 
 
 //----------POST Methods---------------------//
+
+//--post-get--//
+
+
+
+//--post-get--/
 
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
