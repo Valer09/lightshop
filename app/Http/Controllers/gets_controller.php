@@ -10,11 +10,9 @@ class gets_controller extends Controller
 {
     public function get_user_cf(Request $request){
 
-        $user=App\User::where('CF', $request->cf)->get();
-        $email=$user->email;
+        $email=App\User::where('CF', $request->cf)->select('email')->first()->email;
 
-
-        return view('auth/password/email/reset', $email);
+        return view('auth/passwords/email/emailRecovered',  compact('email'));
 
     }
 }

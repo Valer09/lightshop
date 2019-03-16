@@ -75,7 +75,7 @@ Route::get('/password/email', function () {
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
-Route::get('/email_recovery', 'gets_controller@get_user_cf');
+Route::post('/email_recovery', 'gets_controller@get_user_cf');
 
 
 //--End Home--//
