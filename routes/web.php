@@ -72,6 +72,10 @@ Route::get('/password/email', function () {
     return view('Auth/passwords/email/reset');
 });
 
+Route::get('recovered', function () {
+    return view('/recovered');
+});
+
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
@@ -292,3 +296,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

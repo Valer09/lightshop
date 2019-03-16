@@ -18,7 +18,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{URL::to('login')}}"  class="w3-button w3-yellow" style="font-family: 'Lucida Sans'" >
+                                <a href="login"  class="w3-button w3-yellow" style="font-family: 'Lucida Sans'" >
                                     {{ __('Vai al login') }}
                                 </a>
                             </div>
