@@ -192,7 +192,6 @@ class insertionController extends Controller
         $address-> country = $request -> country;
         $address-> street = $request -> street;
         $address-> city = $request -> city;
-        $address-> municipality = $request -> municipality;
         $address-> CAP = $request -> CAP;
         $address-> street_number = $request -> street_number;
         $address-> user_id = $request -> user_id;

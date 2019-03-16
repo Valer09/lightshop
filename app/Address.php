@@ -10,7 +10,7 @@ class Address extends Model
     protected $table = 'Addresses';
 
     protected $fillable = [
-        'country','street','city','municipality','street_number','user_id','NomeCognome','Provincia','CAP'
+        'country','street','city','street_number','user_id','NomeCognome','Provincia','CAP'
     ];
     public function get_user(){
         return $this->belongsTo('App\User');

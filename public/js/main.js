@@ -48,3 +48,14 @@ function openTab(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " w3-green";
   }
+
+
+  //conferma operazioni critiche
+  function conferma(message,id) {
+    if (confirm(message)) {
+        document.getElementById(id).submit();
+    } else {
+        return false;
+    }
+ }
+

@@ -26,14 +26,14 @@
             link.</p>
 
         <div class="w3-bar">
-            <button class="w3-bar-item w3-button tablink w3-green" onclick="openTab(event,'ordini')">Ordini</button>
-            <button id="but#dati" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#dati')">Dati personali</button>
-            <button id="but#spedizione" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#spedizione')">Indirizzi</button>
-            <button id="but#pagamento" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#pagamento')">Pagamento</button>
-            <button id="but#password" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#password')">Password</button>
+            <button id="but#ordini" class="w3-bar-item w3-button tablink w3-green" onclick="openTab(event,'#ordini'); location.href='#ordini'">Ordini</button>
+            <button id="but#dati" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#dati'); location.href='#dati'">Dati personali</button>
+            <button id="but#spedizione" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#spedizione'); location.href='#spedizione'">Indirizzi</button>
+            <button id="but#pagamento" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#pagamento'); location.href='#pagamento'">Pagamento</button>
+            <button id="but#password" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#password'); location.href='#password'">Password</button>
         </div>
 
-        <div id="ordini" class="w3-container w3-border city">
+        <div id="#ordini" class="w3-container w3-border city">
             <h2>Ordini effettuati</h2>
             <p>Visualizza i tuoi ordini.</p>
 
@@ -109,34 +109,39 @@
 
         <div id="#dati" class="w3-container w3-border city" style="display:none">
             <h2>Dati personali</h2>
+            <div class="w3-container">
+                <ul class="w3-ul w3-card">
+                    <li class="w3-padding">
+                        <div class="w3-bar-item">
+                            <div class="w3-row">
+                                <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
+                            </div>
+                            <div class="w3-row">
+                                {{!$CF=Auth::user()->CF, !$CFUP=strtoupper($CF)}}
+                                <label>Codice fiscale: <b>{{$CFUP}}</b></label>
+                            </div>
+                            <div class="w3-row">
+                                {{!$IVA=Auth::user()->IVA , !$IVAUP=strtoupper($IVA)}}
+                                <label>Partita IVA: <b>{{$IVAUP}}</b></label>
+                            </div>
+                            <div class="w3-row">
 
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
-                </div>
-                <div class="w3-row">
-                    {{!$CF=Auth::user()->CF, !$CFUP=strtoupper($CF)}}
-                    <label>Codice fiscale: <b>{{$CFUP}}</b></label>
-                </div>
-                <div class="w3-row">
-                    {{!$IVA=Auth::user()->IVA , !$IVAUP=strtoupper($IVA)}}
-                    <label>Partita IVA: <b>{{$IVAUP}}</b></label>
-                </div>
-                <div class="w3-row">
-
-                    <label>E-mail: <b>{{Auth::user()->email}}</b></label>
-                </div>
-                <div class="w3-row">
-                    <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
-                </div>
-            </div>
-            <button onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</button>
-        </div>   
+                                <label>E-mail: <b>{{Auth::user()->email}}</b></label>
+                            </div>
+                            <div class="w3-row">
+                                <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
+                            </div>
+                            <button onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>  
+        </div> 
 
         <div id="#spedizione" class="w3-container w3-border city" style="display:none">
             <h2>Indirizzi di spedizione</h2>
             <div class="w3-container">
-                <ul class="w3-ul w3-card-4">
+                <ul class="w3-ul w3-card">
                     <li class="w3-bar w3-button" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">
                         <div class="w3-bar-item">
                             <span class="w3-middle"><i class="fa fa-plus"></i><b> Nuovo indirizzo di spedizione</b></span><br>
@@ -146,7 +151,7 @@
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
                         <li class="w3-bar">
-                            <a href="{{ URL::to('/delete_user_address') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="this.parentElement.style.display='none'">Elimina<br><i class="fa fa-close"></i></span></a>
+                            <form id="cancellasped{{$address->id}}" action="{{ URL::to('/delete_user_address') }}{{$address->id}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questo indirizzo?', 'cancellasped{{$address->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
                             @if( $address->id == Auth::user()->address_id )
                             <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
                             @else
@@ -258,12 +263,8 @@
                         </div>
 
                         <div class="w3-row">
-                            <label>Città</label>
-                            <input placeholder="Città" type="text" name="city" id="newComune" required>
-                            <label>Comune</label>
-                            <input placeholder="Comune" type="text" name="municipality" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
-                        </div>
-                        <div class="w3-row">
+                            <label>Citta</label>
+                            <input placeholder="Città" type="text" name="city" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
                             <label>CAP</label>
                             <input placeholder="CAP" type="text" name="CAP" id="newCap" required>
                         </div>
