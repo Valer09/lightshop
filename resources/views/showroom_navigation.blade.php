@@ -8,6 +8,8 @@
     </header>
         
         <div style="width: 100%; padding: 10%">
+            <h1 style="padding: 20px">Bagnicine</h1>
+
             <div class="w3-row-padding">
                 <div class="w3-col l6" style="overflow: hidden;">
                     <figure>
