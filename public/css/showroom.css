@@ -10,7 +10,7 @@
 #boxShow {
     line-height: 100%;
     height: auto;
-    padding: 2px 2px 2px 2px;   
+    padding: 2px 2px 2px 2px;
 }
 
 div.imgshow {
@@ -29,52 +29,52 @@ div.imgshow {
 
 figure {
     margin: 0em 0px!important;
-
 }
-
 
 figcaption {
     text-align-last: center;
 }
 
-.show{
+.show {
     height: 200px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    -webkit-filter: grayscale(100%);
+    /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 }
+
 .show:hover {
     transform: scale(1.02);
-    -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+    -webkit-filter: grayscale(0%);
+    /* Safari 6.0 - 9.0 */
     filter: grayscale(0%);
     filter: saturate(130%)
 }
 
 #show1 {
     background-image: url("https://images.pexels.com/photos/159045/the-interior-of-the-repair-interior-design-159045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-
 }
+
 #show2 {
     background-image: url("https://images.pexels.com/photos/1454805/pexels-photo-1454805.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-
 }
+
 #show3 {
     background-image: url("https://images.pexels.com/photos/358592/pexels-photo-358592.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-
 }
+
 #show4 {
     background-image: url("https://images.pexels.com/photos/279810/pexels-photo-279810.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
-
 }
+
 #show5 {
     background-image: url("https://zoneled.fr/wp-content/uploads/2019/02/cheminee-1140x855.jpg");
-
 }
+
 #show6 {
     background-image: url("https://images.pexels.com/photos/1573829/pexels-photo-1573829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-
 }
 
 .testoShow {
@@ -82,11 +82,30 @@ figcaption {
     text-align: center!important;
     width: 120px;
     height: 100%;
-    text-align: justify; 
+    text-align: justify;
     padding-top: 40%;
 }
 
-.show:hover > .testoShow {
-        transition: 0.2s;
-        width: 0px;
+.show:hover>.testoShow {
+    transition: 0.2s;
+    width: 0px;
+}
+
+.rowShow {
+    margin-top: 50px;
+}
+
+.imShow {
+    height: 350px;
+    left: 50%;
+}
+
+.imShow:hover {
+    transition: transform 1s cubic-bezier(.1, .6, .4, 1), -webkit-transform 1s cubic-bezier(.1, .6, .4, 1);
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.divImShow {
+    overflow: hidden;
+
 }
