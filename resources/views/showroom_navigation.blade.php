@@ -10,87 +10,45 @@
         <div style="width: 100%; padding: 10%">
             <h1 style="padding: 20px">Bagnicine</h1>
 
-            <div class="w3-row-padding rowShow">
+            <div class="w3-row rowShow">
                 <div class="w3-col divImShow l6">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
+                    </div>
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
                 </div>
                 <div class="w3-col divImShow l6">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
+                    </div>
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>                     
                 </div>
             </div>
 
-            <div class="w3-row-padding rowShow">
+            <div class="w3-row rowShow">
                 <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/157811/pexels-photo-157811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-                <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/157811/pexels-photo-157811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
+                    </div>
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>                
                 </div>
                 <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
+                    </div>        
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>             
                 </div>
                 <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-            </div>
-
-            <div class="w3-row-padding rowShow">
-                <div class="w3-col divImShow l6">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-                <div class="w3-col divImShow l6">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-            </div>
-
-            <div class="w3-row-padding rowShow">
-                <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/157811/pexels-photo-157811.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="The Pulpit Rock">
+                    </div>        
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>             
                 </div>
                 <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/584399/living-room-couch-interior-room-584399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-                <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uinui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
-                </div>
-                <div class="w3-col divImShow l3">
-                    <figure>
-                            <img class="imShow" src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
-                            <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>
-                    </figure>                 
+                    <div>
+                        <img class="imShow" src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Pulpit Rock">
+                    </div>        
+                    <figcaption>Ciaomodimnsoinm klsnjnsoidnjosni nio un iun uindfefefdfdfdfd fd dd fdfds f sdgfv derfg str hg vrth v trh vet nhr teynv ytne net ny veytn tey neyt nv etynv etn eytn vetn yt nvet ny tnvt eny vteynvn tyn ten eui nui nu n un iun iu n iuniu n iun uin iu n uin uin ui nu in uin ui hb ytf  rctr dcftr c trc tr crt</figcaption>             
                 </div>
             </div>
         </div>
