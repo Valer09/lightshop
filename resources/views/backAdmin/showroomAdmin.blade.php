@@ -6,7 +6,7 @@
         <div class="w3-container w3-blue-grey">
             <h1>Aggiungi un nuovo Articolo nello Showroom</h1>
             <p>Utilizza questa form per aggingere un nuovo articolo.</p>
-            <form class="w3-container" method="post" action="{{URL::to('/element_insertion_submit')}}" enctype="multipart/form-data" >
+            <form class="w3-container" method="post" action="{{URL::to('/article_showroom_insert')}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">
@@ -17,7 +17,7 @@
 
                         <select class="w3-select" name="subcategory" onchange="change(this.value)" required >
 
-                                <option>pippi franco1</option>
+                                <option value="cuaio">pippi franco1</option>
                                 <option>pippi franco23</option>
                                 <option>pippi franco23</option>
 
@@ -27,6 +27,7 @@
                     </div>
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Foto nuovo articolo</p>
+                        <input class="w3-input" name="link" type="text" placeholder="Link acquisto">
                         <div id="" class="labelFoto w3-left w3-input" style="border-bottom: 1px solid #ccc;"><b>Foto copertina: </b>
                             <input type="file" id="file" name="file_name"></div>
                         <div id="" class="labelFoto w3-left w3-input"><b>Altre foto: </b>

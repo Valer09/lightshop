@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File,App\Address;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -143,11 +143,6 @@ class insertionController extends Controller
         $name=$request->file_name->getClientOriginalName();
         $request->file('file_name')->storeAs(
             '/images/catalogo',$name ,'public');
-
-
-
-
-
         return view('test');
 
     }
@@ -202,7 +197,24 @@ class insertionController extends Controller
         $address->save();
 
         return view('test');
-
     }
 
+    public function insert_art_showroom(Request $request){
+
+        $element =  new ElementsShowRoom;
+
+        $element-> name = $request->name;
+        $element-> description = $request->description;
+        //$element-> pathPhoto = $request->path;
+        $element-> linkBuy = $request->link;
+        $element-> nameSubCategory = $request->subcategory;
+        
+        $name=$request->file_name->getClientOriginalName();
+        $request->file('file_name')->storeAs(
+            '/images/showroom',$name ,'public');
+        $element-> pathPhoto = "/images/showroom/$name";
+        $element->save();
+
+        return view('test');
+    }
 }
