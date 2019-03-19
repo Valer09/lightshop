@@ -59,3 +59,15 @@ function openTab(evt, cityName) {
     }
  }
 
+ //Se il paramentro "openAlert" è pieno, apri un alert
+ function openAlert() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('openAlert').toString();
+    if (myParam!=null){
+        window.alert(myParam);
+    }
+    else return null;
+ }
+
+ openAlert()
+ 

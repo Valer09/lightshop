@@ -151,7 +151,7 @@
                     {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
                     @foreach($addresses as $address)
                         <li class="w3-bar">
-                            <form id="cancellasped{{$address->id}}" action="{{ URL::to('/delete_user_address') }}{{$address->id}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questo indirizzo?', 'cancellasped{{$address->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
+                            <form id="cancellasped{{$address->id}}" action="{{ URL::to('/delete_user_address') }}{{$address->id}}?ref={{$_SERVER['REQUEST_URI']}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questo indirizzo?', 'cancellasped{{$address->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
                             @if( $address->id == Auth::user()->address_id )
                             <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
                             @else
@@ -181,7 +181,7 @@
         </div>
         <p>Qui puoi cambiare la tua password.</p>
         <div id="#password" class="w3-container w3-border city" style="display:none">
-            <form method="post" type="submit" action="{{ URL::to('/password_edit_submit') }}" >
+            <form method="post" type="submit" action="{{ URL::to('/password_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}" >
                 @csrf
                 <div>
                     <label>Vecchia Password: </label>
@@ -210,7 +210,7 @@
                         <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                         <h2>Modifica i tuoi dati.</h2>
                     </header>
-                    <form type="submit" method="post" action="{{URL::to('/user_edit')}}">
+                    <form type="submit" method="post" action="{{URL::to('/user_edit')}}?ref={{$_SERVER['REQUEST_URI']}}">
                         @csrf
                         <div class="w3-padding">
                             <div class="w3-row">
@@ -248,7 +248,7 @@
                     <span onclick="document.getElementById('nuovoIndirizzo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                     <h2>Nuovo indirizzo di spedizione</h2>
                 </header>
-                <form type="submit" method="post" action="{{URL::to('/address_insertion_submit')}}">
+                <form type="submit" method="post" action="{{URL::to('/address_insertion_submit')}}?ref={{$_SERVER['REQUEST_URI']}}">
                     @csrf
                     <div class="w3-padding">
                         <div class="w3-row">

@@ -6,7 +6,7 @@
         <div class="w3-container w3-blue-grey">
             <h1>Aggiungi un nuovo Articolo nello Showroom</h1>
             <p>Utilizza questa form per aggingere un nuovo articolo.</p>
-            <form class="w3-container" method="post" action="{{URL::to('/article_showroom_insert')}}" enctype="multipart/form-data" >
+            <form class="w3-container" method="post" action="{{URL::to('/article_showroom_insert')}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">

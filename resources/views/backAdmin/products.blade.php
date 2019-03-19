@@ -8,7 +8,7 @@
         <div class="w3-container w3-blue-grey">
             <h1>Aggiungi un nuovo Prodotto</h1>
             <p>Utilizza questa form per aggingere un nuovo prodotto.</p>
-            <form class="w3-container" method="post" action="{{URL::to('/element_insertion_submit')}}" enctype="multipart/form-data" >
+            <form class="w3-container" method="post" action="{{URL::to('/element_insertion_submit')}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data" >
                 @csrf
                 <div class="w3-row w3-container">
                     <div class="w3-col m6 w3-light-grey w3-center">

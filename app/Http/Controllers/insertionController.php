@@ -143,9 +143,11 @@ class insertionController extends Controller
         $name=$request->file_name->getClientOriginalName();
         $request->file('file_name')->storeAs(
             '/images/catalogo',$name ,'public');
-        return view('test');
-
-    }
+            
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati inviati con successo!');
+        }
     public function insert_news(Request $request){
 
         $news =  new News;
@@ -166,8 +168,11 @@ class insertionController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return view('test');
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati inviati con successo!');
     }
+
     public function insert_subcategory(Request $request){
 
         $subcategory = new Subcategory;
@@ -176,8 +181,9 @@ class insertionController extends Controller
         $subcategory-> category = $request -> category;
         $subcategory->save();
 
-        return view('test');
-
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati inviati con successo!');
     }
 
     public function insert_address(Request $request){
@@ -193,11 +199,13 @@ class insertionController extends Controller
         $address-> NomeCognome = $request -> NomeCognome;
         $address-> Provincia = $request -> Provincia;
         $address-> user_id = Auth::user()->id;
-
+        
         $address->save();
 
-        return view('test');
-    }
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati inviati con successo!');
+        }
 
     public function insert_art_showroom(Request $request){
 
@@ -215,6 +223,8 @@ class insertionController extends Controller
         $element-> pathPhoto = "/images/showroom/$name";
         $element->save();
 
-        return view('test');
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati inviati con successo!');
     }
 }

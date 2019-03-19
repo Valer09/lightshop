@@ -15,7 +15,7 @@
                     <h2><i class="w3-margin-right"></i>Registrazione</h2>
                 </div>
                 <div class="w3-container w3-white w3-padding-16">
-                    <form action="{{ route('register') }}" method="post" target="_blank">
+                    <form action="{{ route('register') }}?ref={{$_SERVER['REQUEST_URI']}}" method="post" target="_blank">
                         @csrf
                         <div class="w3-row-padding" style="margin:0 -16px;">
                             <div class="w3-row w3-margin-bottom">
