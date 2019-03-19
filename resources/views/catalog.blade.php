@@ -2,9 +2,55 @@
 
 @section('content')
 
-<!-- Sidebar/menu -->
+<!-- Sidebar/Filter -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="top: 49px;z-index:3;width:250px" id="mySidebar">
-        
+    <div class="w3-center">
+        <a class="w3-row" href="{{ url('home') }}">
+            <span><i class="fa fa-angle-left"></i> Home</span>
+        </a>
+        <a class="w3-row" href="{{ url('catalog') }}">
+            <span><i class="fa fa-angle-left"></i> Piastrelle<span> (332)</span>
+        </a>
+        <div class="w3-light-grey article-navigation">
+            <div class="body">
+                <ul class="first-level narrow dashed">
+                    <li class="active">
+                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-per-pavimenti/c/1150" wt_name="assortment_menu.level3">Piastrelle per pavimenti<span class="product-counter"> (69)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-da-rivestimento/c/786" wt_name="assortment_menu.level3">Piastrelle da rivestimento<span class="product-counter"> (36)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/bordure-e-zoccolini/c/1152" wt_name="assortment_menu.level3">Bordure e zoccolini<span class="product-counter"> (6)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/mosaici/c/572" wt_name="assortment_menu.level3">Mosaici<span class="product-counter"> (52)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/rivestimento-murale-e-placchette/c/481" wt_name="assortment_menu.level3">Rivestimento murale e placchette<span class="product-counter"> (34)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/pietre-naturali/c/1151" wt_name="assortment_menu.level3">Pietre naturali<span class="product-counter"> (50)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-decorative/c/1849" wt_name="assortment_menu.level3">Piastrelle decorative<span class="product-counter"> (38)</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.obi-italia.it/piastrelle/battiscopa-ceramici/c/1850" wt_name="assortment_menu.level3">Battiscopa ceramici<span class="product-counter"> (47)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="filter" data-filter="open">
+        <ul>
+            <li>
+                <div class="collapse-filter js-slider" tm-data="aues.filter.price.div">
+                </div>
+            </li>
+        </ul>
+    </div>     
 </nav>
 
 <!-- Top menu on small screens -->
