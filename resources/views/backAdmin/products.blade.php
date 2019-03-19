@@ -41,9 +41,9 @@
                         <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
 
                         <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile" required>
-                        <div id="labelFoto" class="w3-left" style="border-bottom: 1px solid #ccc;"><b>Foto principale: </b>
+                        <div id="" class="labelFoto w3-left w3-input"><b>Foto principale: </b>
                             <input type="file" id="file" name="file_name"></div>
-                        <div id="labelFoto" class="w3-left"><b>Altre foto: </b>
+                        <div id="" class="labelFoto w3-left w3-input"><b>Altre foto: </b>
                             <input type="file" name="myFile" multiple></div>
                     </div>
                 </div>
