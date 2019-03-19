@@ -15,13 +15,14 @@
                         <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                         <input class="w3-input" name="description" type="text" placeholder="Descrizione">
 
-                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required >
-
-                                <option value="cuaio">pippi franco1</option>
-                                <option>pippi franco23</option>
-                                <option>pippi franco23</option>
-
-
+                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required>
+                                <option disabled selected>Seleziona la categoria</option>
+                                <option value="pavimenti">Pavimenti e Rivestimenti</option>
+                                <option value="cucine">Cucine</option>
+                                <option value="bagni">Bagni</option>
+                                <option value="porte">Porte</option>
+                                <option value="caminetti">Caminetti</option>
+                                <option value="falegnameria">Falegnameria</option>
                         </select>
 
                     </div>
