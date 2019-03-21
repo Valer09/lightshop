@@ -213,6 +213,21 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
+//---------SHOPPING CART------------//
+
+//Route ::get('/add-to-cart/{id}',[
+//'uses'=> 'ElementsController@getaddtocart',
+  //  'as'=>'element.addtocart',]
+//);
+//Route ::get('/',[
+
+   // 'uses'=>'elementsController@getindex',
+   // 'as'=>'elements.index'
+
+  //  ]);
+
+
+
 //----------OPERATIONS TEST VIEWS------------//
 
 Route::get('order', function(){

@@ -12,7 +12,7 @@ class Element extends Model
    // protected $table = 'Elements';
 
     protected $fillable = [
-        'name', 'subcategories', 'availability','description'
+        'name', 'subcategories', 'availability','description','id'
     ];
 
     protected $guarded = ['price'];

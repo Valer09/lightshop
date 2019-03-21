@@ -19,6 +19,7 @@ $factory->define(App\Element::class, function () {
         'price' =>  random_int(1,300),
         'availability' => random_int(0,100),
         'subcategories' => 'test_category_1',
-        'description' => '---'
+        'description' => '---',
+        'id'=>random_int(1,30000)
     ];
 });

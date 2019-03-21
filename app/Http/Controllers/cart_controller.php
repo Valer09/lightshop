@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Auth;
+use Illuminate\Support\Str;
 
 class cart_controller extends Controller
 {
