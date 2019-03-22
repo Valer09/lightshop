@@ -110,6 +110,10 @@ Route::group(['prefix' => 'showroom'], function () {
         return view('showroom_navigation');
     });
 
+    Route::get('/element', function () {
+        return view('showroom_element');
+    });
+
 });
 
 //End showroom--/
