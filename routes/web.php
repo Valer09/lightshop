@@ -219,12 +219,18 @@ Route::group(['prefix' => 'admin'], function(){
 //'uses'=> 'ElementsController@getaddtocart',
   //  'as'=>'element.addtocart',]
 //);
+
 //Route ::get('/',[
-
-   // 'uses'=>'elementsController@getindex',
-   // 'as'=>'elements.index'
-
+   // 'uses'=>'ElementsController@getindex',
+   // 'as'=>'elements.pagina dove sono i prodotti'
   //  ]);
+
+ //Route:: get('/shopping-cart',[
+   // 'uses'=> 'ElementsController@getcart',
+    //'as'=>'element.shoppingcart'
+// ]);
+
+
 
 
 

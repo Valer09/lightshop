@@ -15,7 +15,7 @@ class ElementsController extends Controller{
 
 //public function getindex(){
   //  $elements=element::all();
-    //return view('shop.index',['elements'=>$elements]);
+    //return view('cartella dove sono i prodotti.pagina dei prodotti',['elements'=>$elements]);
 //}
 
 
@@ -45,6 +45,19 @@ class ElementsController extends Controller{
       //  $cart=new cart($oldcart);
         //$cart->add($elements,$elements->id);
         //$request->session()->put('cart',$cart);
-        //dd($request->session()->get('cart'));
-        //return redirect()->route('element.index');
+        //return redirect()->route('element.pagina  dove sono i prodotti');
         //}}
+
+
+//public function getCart() {
+  //if(!session::has('cart')){
+
+    //  return view('cartella del carrello.pagina del carrello');
+
+//}
+
+  //$oldcart=Session::get('cart');
+ //$cart=new Cart($oldcart);
+ //return view('cartella del carrello.pagina del carrelo',['elements'=>$cart->items,'totalprice'=>$cart->totalprice]);
+//}
+
