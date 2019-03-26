@@ -143,6 +143,7 @@ class insertionController extends Controller
         $name=$request->file_name->getClientOriginalName();
         $request->file('file_name')->storeAs(
             '/images/catalogo',$name ,'public');
+        
             
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
@@ -218,9 +219,10 @@ class insertionController extends Controller
         $element-> nameSubCategory = $request->subcategory;
         
         $name=$request->file_name->getClientOriginalName();
-        $request->file('file_name')->storeAs(
-            '/images/showroom',$name ,'public');
+
+        $request->file('file_name')->storeAs('/images/showroom',$name ,'public');
         $element-> pathPhoto = "/images/showroom/$name";
+
         $element->save();
 
         $path = $request-> ref;

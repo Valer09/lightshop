@@ -17,12 +17,12 @@
 
                         <select class="w3-select" name="subcategory" onchange="change(this.value)" required>
                                 <option disabled selected>Seleziona la categoria</option>
-                                <option value="pavimenti">Pavimenti e Rivestimenti</option>
-                                <option value="cucine">Cucine</option>
-                                <option value="bagni">Bagni</option>
-                                <option value="porte">Porte</option>
-                                <option value="caminetti">Caminetti</option>
-                                <option value="falegnameria">Falegnameria</option>
+                                <option value="showroom/pavimenti">Pavimenti e Rivestimenti</option>
+                                <option value="showroom/cucine">Cucine</option>
+                                <option value="showroom/bagni">Bagni</option>
+                                <option value="showroom/porte">Porte</option>
+                                <option value="showroom/caminetti">Caminetti</option>
+                                <option value="showroom/falegnameria">Falegnameria</option>
                         </select>
 
                     </div>
