@@ -23,7 +23,11 @@
                         @foreach($Subcategorylist as $Subcategory)
                         @if ($Subcategory->category == $Category->name)
                             <div class="w3-row">
-                                <form id="cancellaSottocat{{$Subcategory->id}}" action="{{ URL::to('/subcategory_deletion_submit') }}?subcategory={{$Subcategory->id}}&ref={{$_SERVER['REQUEST_URI']}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questa sottocategoria?', 'cancellaSottocat{{$Subcategory->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
+                                <form method="post" id="cancellaSottocat{{$Subcategory->id}}" action="{{ URL::to('subcategory_deletion_submit') }}">
+                                    <input style="display: none" name="subcategory" type="text" value="{{$Subcategory->id}}">
+                                    <input style="display: none" name="ref" type="text" value="{{$_SERVER['REQUEST_URI']}}">
+                                    <button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questa sottocategoria?', 'cancellaSottocat{{$Subcategory->id}}')">Elimina<br><i class="fa fa-close"></i></button>
+                                </form>
                                 <p>{{ $Subcategory->name }}</p>
                             </div>
                         @endif

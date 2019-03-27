@@ -27,14 +27,16 @@
 
                     </div>
                     <div class="w3-col m6 w3-light-grey w3-center">
-                        <p>Foto nuovo articolo</p>
+                        <p>Altre info</p>
                         <input class="w3-input" name="link" type="text" placeholder="Link acquisto">
-                        <div id="" class="labelFoto w3-left w3-input" style="border-bottom: 1px solid #ccc;"><b>Foto copertina: </b>
-                            <input type="file" id="file" name="file_name"></div>
-                        <div id="" class="labelFoto w3-left w3-input"><b>Altre foto: </b>
-                            <input type="file" name="myFile" multiple></div>
+                        
                     </div>
                 </div>
+                
+                <div id="" class="labelFoto w3-margin-top" style="border-bottom: 1px solid #ccc;"><b>Foto copertina: </b>
+                    <input type="file" id="file" name="file_name"></div>
+                <div id="" class="labelFoto w3-margin-bottom"><b>Altre foto: </b>
+                    <input type="file" name="myFile" multiple></div>
                 <hr>
                 <div class="w3-col m6 w3-center">
                     <button class="w3-button w3-ripple w3-green" type="submit" value="inserimentoProdotto" name="actionAd" style="width:50%">Salva</button>

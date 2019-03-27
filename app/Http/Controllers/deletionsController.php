@@ -53,8 +53,8 @@ class deletionsController extends Controller
         if (  $subcat != '[]' )
             echo "Attenzione, ci sono delle sottocategorie appartenenti";
         else{
-        App\Category::where('name', $request->category)->delete();
-        return view('test');
+            App\Category::where('name', $request->category)->delete();
+            return view('test');
         }
     }
 
@@ -65,7 +65,12 @@ class deletionsController extends Controller
             echo "Attenzione, ci sono degli elementi appartenenti";
         else{ */
             App\Subcategory::where('id', $request->subcategory)->delete();
-            return view('test');
-        
+           
+            //$path = $request-> ref;
+        //$path = substr($path, 1, strlen($path));
+        //return redirect($path.'?openAlert=Sottocategoria%20Eliminata%20con%20successo!'.$request->subcategory);
+        //Redirect::back();
+        return redirect(request()->headers->get('referer'));
+        //return redirect('test');
     }
 }

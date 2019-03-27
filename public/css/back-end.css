@@ -9,10 +9,12 @@
 }
 
 .labelFoto {
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
-    width: 100%;
+    width: 70%;
     background-color: #f7d794!important;
     border-bottom: 1px solid #ccc
 }

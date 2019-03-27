@@ -14,6 +14,7 @@
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Dati nuovo prodotto</p>
                         <select class="w3-select" name="brand" type="text" placeholder="Marca">
+                            <option disabled selected>Selezione il Brand</option>
                             {{$Brand = \App\Brand::all()}}
                             @foreach ($Brand as $Brand)
                                 <option>{{ $Brand->name}}</option>
@@ -23,31 +24,38 @@
                         <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                         <input class="w3-input" name="description" type="text" placeholder="Descrizione">
 
-                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required >
-
-                            {{$Subcategory = \App\Subcategory::all()}}
-                            @foreach ($Subcategory as $Subcategory)
-                                <option>{{ $Subcategory->name}}</option>
+                        <select class="w3-select" name="subcategory" required >
+                            <option disabled selected>Selezione una Sottocategoria</option>
+                            {{$Category = \App\Category::all()}}
+                            @foreach ($Category as $Category)
+                                <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
+                                {{$Subcategory = \App\Subcategory::all()}}
+                                @foreach ($Subcategory as $Subcategory)
+                                @if($Category->name===$Subcategory->category)
+                                <option value="{{ $Subcategory->name }}">{{ $Subcategory->name }}</option>
+                                @endif
+                                @endforeach
                             @endforeach
-
                         </select>
 
                     </div>
 
 
                     <div class="w3-col m6 w3-light-grey w3-center">
-                        <p>Prezzi </p>
+                        <p>Prezzi</p>
 
                         <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
 
                         <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile" required>
-                        <div id="" class="labelFoto w3-left w3-input"><b>Foto principale: </b>
-                            <input type="file" id="file" name="file_name"></div>
-                        <div id="" class="labelFoto w3-left w3-input"><b>Altre foto: </b>
-                            <input type="file" name="myFile" multiple></div>
+                        
                     </div>
                 </div>
-                <hr>
+                
+                <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
+                    <input type="file" id="file" name="file_name"></div>
+                <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
+                    <input type="file" name="myFile" multiple></div>
+
                 <div class="w3-col m6 w3-center">
                     <button class="w3-button w3-ripple w3-green" type="submit" value="inserimentoProdotto" name="actionAd" style="width:50%">Salva</button>
                 </div>

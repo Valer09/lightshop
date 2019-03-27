@@ -147,7 +147,7 @@ class insertionController extends Controller
             
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
-            return redirect($path.'?openAlert=Dati inviati con successo!');
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
     public function insert_news(Request $request){
 
@@ -171,7 +171,7 @@ class insertionController extends Controller
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati inviati con successo!');
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
     }
 
     public function insert_subcategory(Request $request){
@@ -184,7 +184,7 @@ class insertionController extends Controller
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati inviati con successo!');
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
     }
 
     public function insert_address(Request $request){
@@ -205,7 +205,7 @@ class insertionController extends Controller
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati inviati con successo!');
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
 
     public function insert_art_showroom(Request $request){
@@ -227,6 +227,6 @@ class insertionController extends Controller
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati inviati con successo!');
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
     }
 }
