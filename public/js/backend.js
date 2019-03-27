@@ -19,3 +19,8 @@ function openModal(idModale, idProdotto, nome, descr, category) {
     document.getElementById('catMod').value = category.toString();
     document.getElementById(idModale).style.display='block';
 }
+
+//close modal
+function closeModal(idModale){
+    document.getElementById(idModale).style.display='none';
+}

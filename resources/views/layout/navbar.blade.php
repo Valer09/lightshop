@@ -11,7 +11,7 @@
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
             @if(Auth::user())
-            <a href="{{ url('/cart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i></a>
+            <a href="{{ url('/cart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i>{{--{{Session::('cart') ? Session::get('cart')->totalbuyed :''}}--}}</a>
             @endif
                 <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
 

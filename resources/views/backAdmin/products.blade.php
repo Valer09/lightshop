@@ -69,37 +69,27 @@
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
                 <table class="w3-table-all w3-margin-top" id="myTable">
                     <tr>
-                        <th style="width:30%;">Nome</th>
-                        <th style="width:30%;">Categoria</th>
-                        <th style="width:10%;">Peso</th>
+                        <th style="width:15%;">Nome</th>
+                        <th style="width:15%;">Brand</th>
+                        <th style="width:40%;">Descrizione</th>
+                        <th style="width:10%;">Categoria</th>
+                        <th style="width:10%;">Disponibilità</th>
                         <th style="width:10%;">Prezzo</th>
-                        <th style="width:10%;">Prezzo Spedizione</th>
-                        <th style="width:10%;">Pezzi in magazino</th>
                     </tr>
 
-                    <!--ESEMPIO DA CANCELLARE-->
-                    <tr>
-                        <td>Ceratech</td>
-                        <td>ferramenta</td>
-                        <td>1,00</td>
-                        <td>3,44</td>
-                        <td>5,99</td>
-                        <td>45</td>
-                    </tr>
-                    <!--FINE ESEMPIO DA CANCELLARE-->
-
-                    <!--LISTA DEI PRODOTTI freemarker-->
-                    <list prodotti as prodotto-->
+                    <!--LISTA DEI PRODOTTI blade-->
+                    {{!$Elements=\App\Element::all()}}
+                    @foreach($Elements as $el)
                     <tr onclick="document.getElementById('id01').style.display='block'">
-                        <td class="nomeProdotto">${prodotto.nome?capitalize}</td>
-                        <td>${prodotto.categoria}</td>
-                        <td>${prodotto.scaglioni} unit/g</td>
-                        <td>€ ${prodotto.prezzoUni}</td>
-                        <td>€ ${prodotto.prezzoPoste}</td>
-                        <td>€ ${prodotto.prezzoServAgg}</td>
-                        <td><div location="button-${prodotto.id}" /></td>
+                        <td><b>{{ $el->name }}</b></td>
+                        <td>{{ $el->brand }}</td>
+                        <td>{{ $el->description }}</td>
+                        <td>{{ $el->subcategories }}</td>
+                        <td>{{ $el->availability }} unit/g</td>
+                        <td>€ {{ $el->price }}</td>
+                        
                     </tr>
-                </list>
+                    @endforeach
 
                 </table>
                 <!--MODALE CREAZIONE-->
@@ -107,7 +97,7 @@
                     <div id="modaleAdmin" class="w3-modal-content">
 
                         <div id="modalModUser" class="w3-container w3-blue-grey">
-                            <span onclick="closeModal()" class="w3-button w3-display-topright">&times;</span>
+                            <span onclick="closeModal('id01');" class="w3-button w3-display-topright">&times;</span>
                             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
                             <form class="w3-container" >

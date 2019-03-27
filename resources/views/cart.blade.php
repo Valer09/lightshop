@@ -53,6 +53,9 @@
             <span class="tot w3-left"><b>TOTALE</b></span>
             <span class="tot w3-right"><b>202.73 €</b></span>
         </div>
+        <div class="w3-center w3-margin-bottom" >
+            <a href="{{--route('checkout')--}}" type="button" class="w3-button w3-center">Checkout</a>
+        </div>
     </div>
 </div><!-- End PAGE CONTENT -->
 

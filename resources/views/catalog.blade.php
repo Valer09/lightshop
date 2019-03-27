@@ -92,8 +92,40 @@
         <p>8 items</p>
     </div>
 
-    <!-- Product grid -->
-    <div class="w3-row w3-grayscale">
+    <!-- Product grid 
+    <div class="w3-row w3-grayscale">-->
+        {{!$Elements=\App\Element::all()}}
+        @php
+            $conta = 1;
+        @endphp
+        @foreach($Elements as $el)
+            @if ($conta == 1)
+            <div class="w3-row w3-grayscale">
+            @endif
+                    <div class="w3-container w3-col l3">
+                        <div class="w3-display-container">
+                            <img src="./images/catalogo/bullone.jpg" style="width:100%">
+                            <span class="w3-tag w3-display-topleft">New</span>
+                            <div class="w3-display-middle w3-display-hover">
+                                <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista ora
+                                    <i class="fa fa-shopping-cart"></i></button>
+                            </div>
+                        </div>
+                        <p>{{ $el->name }}<br><b>€ {{ $el->price }}</b></p>
+                    </div>
+                @php
+                    $conta = $conta + 1;
+                @endphp
+
+            @if ($conta == 5)
+                </div>
+                @php
+                    $conta = 1;
+                @endphp
+            @endif
+        @endforeach
+
+<!--ESEMPIOPOO
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
@@ -188,5 +220,6 @@
                 <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
             </div>
         </div>
+-->
     </div>
 @stop

@@ -90,7 +90,7 @@
         <div id="modaleAdmin" class="w3-modal-content">
 
             <div id="modalModUser" class="w3-container w3-blue-grey">
-                <span onclick="closeModal()" class="w3-button w3-display-topright">&times;</span>
+                <span onclick="closeModal('modaleShowroomAdmin');" class="w3-button w3-display-topright">&times;</span>
                 <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                 <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
                 <form class="w3-container" >
