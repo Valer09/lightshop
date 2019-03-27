@@ -17,10 +17,10 @@ class AddressModder extends Migration
 
         Schema::table('addresses', function($table) {
 
-            $table->string('NomeCognome')->default('');
-            $table->string('Provincia')->default('0');
-            $table->renameColumn('municipality','CAP');
-            $table->string('municipality')->default('');
+            //$table->string('NomeCognome')->default('');
+            //$table->string('Provincia')->default('0');
+            //$table->renameColumn('municipality','CAP');
+            //$table->string('municipality')->default('');
 
 
         });

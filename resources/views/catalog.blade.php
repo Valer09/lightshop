@@ -107,7 +107,7 @@
                             <img src="./images/catalogo/bullone.jpg" style="width:100%">
                             <span class="w3-tag w3-display-topleft">New</span>
                             <div class="w3-display-middle w3-display-hover">
-                                <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista ora
+                                <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista
                                     <i class="fa fa-shopping-cart"></i></button>
                             </div>
                         </div>
