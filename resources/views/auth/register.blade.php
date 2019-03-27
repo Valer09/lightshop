@@ -15,7 +15,7 @@
                     <h2><i class="w3-margin-right"></i>Registrazione</h2>
                 </div>
                 <div class="w3-container w3-white w3-padding-16">
-                    <form action="{{ route('register') }}" method="post" target="_blank">
+                    <form action="{{ route('register') }}?ref={{$_SERVER['REQUEST_URI']}}" method="post" target="_blank">
                         @csrf
                         <div class="w3-row-padding" style="margin:0 -16px;">
                             <div class="w3-row w3-margin-bottom">
@@ -38,6 +38,28 @@
                                     </span>
                                 @endif
                             </div>
+
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('Codice Fiscale') }}</label>
+                                <input id="cf" class="w3-input form-control" type="text" name="CF" value="CF" required>
+                                @if ($errors->has('CF'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('CF') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('Partita IVA') }}</label>
+                                <input id="cf" class="w3-input form-control" type="text" name="IVA" value="P.Iva ">
+                                @if ($errors->has('IVA'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('IVA') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+
                             <div class="w3-row w3-margin-bottom">
                                 <label><i class="fa fa-user"></i> {{ __('E-Mail') }}</label>
                                 <input id="email" class="w3-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" 
@@ -52,6 +74,19 @@
                                 <label><i class="fa fa-user"></i> Ripeti email</label>
                                 <input class="w3-input" type="text" placeholder="mariorossi@gmail.com" name="CheckIn" required>
                             </div>
+
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> {{ __('PEC') }}</label>
+                                <input id="pec" class="w3-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text"
+                                       name="PEC" value="PEC " required>
+
+                            </div>
+                            <div class="w3-row w3-margin-bottom">
+                                <label><i class="fa fa-user"></i> Ripeti pec</label>
+                                <input class="w3-input" type="text"  name="CheckIn" required>
+                            </div>
+
+
                             <div class="w3-row w3-margin-bottom">
                                 <label><i class="fa fa-lock"></i> {{ __('Password') }}</label>
                                 <input id="password" class="w3-input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" 

@@ -26,7 +26,6 @@ class ReferredTableMigration extends Migration
             $table->string('country');
             $table->string('street');
             $table->string('city');
-            $table->integer('municipality')->unsigned();
             $table->integer('street_number')->unsigned();
             $table->integer('user_id')->unsigned();
 

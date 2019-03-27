@@ -61,6 +61,26 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
+Route::get('/verified', function () {
+    return view('verified');
+});
+
+Route::get('/password/reset', function () {
+    return view('password/reset');
+});
+Route::get('/password/email', function () {
+    return view('Auth/passwords/email/reset');
+});
+
+Route::get('recovered', function () {
+    return view('/recovered');
+});
+
+
+Route::get('/star_address{id}', 'general_edit_controller@address_star');
+Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
+Route::post('/email_recovery', 'gets_controller@get_user_cf');
+
 
 //--End Home--//
 
@@ -88,6 +108,10 @@ Route::group(['prefix' => 'showroom'], function () {
 
     Route::get('/cucine', function () {
         return view('showroom_navigation');
+    });
+
+    Route::get('/element', function () {
+        return view('showroom_element');
     });
 
 });
@@ -180,6 +204,9 @@ Route::group(['prefix' => 'admin'], function(){
         return view('backAdmin/users');
     });
 
+
+
+
 });
 
 //---------END ADMIN PAGES----------//
@@ -212,11 +239,18 @@ Route::get('/inside', function () {
 
 //----------POST Methods---------------------//
 
+//--post-get--//
+
+
+
+//--post-get--/
+
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
-
+Route::post('/address_insertion_submit', 'insertionController@insert_address' );
+Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
 
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
@@ -266,6 +300,7 @@ Route::post('/user_edit', 'user_edit_controller@general_edit' );
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Auth::routes();
 

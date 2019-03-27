@@ -1,15 +1,22 @@
+#mySidebar {
+    margin-top: 43px;
+    text-decoration-color: black!important;
+}
+
 #modaleAdmin {
     width: 80% !important;
 
 }
 
-#labelFoto {
+.labelFoto {
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
     width: 100%;
+    background-color: #f7d794!important;
+    border-bottom: 1px solid #ccc
 }
 
-#cardCategorie {
+.cardCategorie {
     border-bottom: 2px solid #ccc;
 }

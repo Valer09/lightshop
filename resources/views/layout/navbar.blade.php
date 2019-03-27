@@ -4,14 +4,17 @@
 <div class="w3-top w3-hide-small">
     <div class="w3-bar w3-white w3-wide w3-card">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
-        <a href="./#" class="barSx w3-bar-item w3-button"><b>Visca s.n.c.</b></a>
+        <a href="{{url('./#')}}" class="barSx w3-bar-item w3-button"><b>Visca s.n.c.</b></a>
         <a href="{{ url('/about ') }}" class="barDx w3-bar-item w3-button">Chi siamo</a>
-        <a href="./#orari" class="barDx w3-bar-item w3-button">Orari</a>
-        <a href="./#contact" class="barDx w3-bar-item w3-button">Contatti</a>
+        <a href="{{url('./#orari')}}" class="barDx w3-bar-item w3-button">Orari</a>
+        <a href="{{url('/#contact')}}" class="barDx w3-bar-item w3-button">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
+            @if(Auth::user())
             <a href="{{ url('/cart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i></a>
-            <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+            @endif
+                <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+
                 
                 <a id="prodot" href="{{ url('/catalog ') }}" class="barDx w3-button">Prodotti</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
