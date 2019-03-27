@@ -78,6 +78,7 @@
                     @endforeach
 
                 </table>
+                
                 <!--MODALE CREAZIONE-->
                 <div id="id01" class="w3-modal">
                     <div id="modaleAdmin" class="w3-modal-content">
