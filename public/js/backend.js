@@ -10,3 +10,12 @@ function soffietto(id) {
             x.previousElementSibling.className.replace(" w3-theme-d1", "");
     }
 }
+
+// open modale
+function openModal(idModale, idProdotto, nome, descr, category) {
+    document.getElementById('idMod').value = idProdotto.toString();
+    document.getElementById('nomeMod').value = nome.toString();
+    document.getElementById('descrMod').value = descr.toString();
+    document.getElementById('catMod').value = category.toString();
+    document.getElementById(idModale).style.display='block';
+}
