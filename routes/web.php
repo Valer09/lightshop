@@ -215,20 +215,20 @@ Route::group(['prefix' => 'admin'], function(){
 
 //---------SHOPPING CART------------//
 
-//Route ::get('/add-to-cart/{id}',[
-//'uses'=> 'ElementsController@getaddtocart',
-  //  'as'=>'Element.addtocart',]
-//);
+Route ::get('/add-to-cart/{id}',[
+'uses'=> 'ElementsController@getaddtocart',
+   'as'=>'Element.addtocart',]
+);
 
 //Route ::get('/',[
-   // 'uses'=>'ElementsController@getindex',
-   // 'as'=>'Elements.pagina dove sono i prodotti'
-  //  ]);
+  // 'uses'=>'ElementsController@getindex',
+    //'as'=>'catalog'
+    //]);
 
- //Route:: get('/shopping-cart',[
-   // 'uses'=> 'ElementsController@getcart',
-    //'as'=>'Element.shoppingcart'
-// ]);
+ Route:: get('/shopping-cart',[
+    'uses'=> 'ElementsController@getcart',
+    'as'=>'Element.shoppingcart'
+]);
 
 //------END SHOPPING CART SESSION-------//
 
