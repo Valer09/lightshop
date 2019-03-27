@@ -14,8 +14,8 @@ use session;
 class ElementsController extends Controller{
 
 //public function getindex(){
-  //  $elements=element::all();
-    //return view('cartella dove sono i prodotti.pagina dei prodotti',['elements'=>$elements]);
+  //  $Elements=Element::all();
+    //return view('cartella dove sono i prodotti.pagina dei prodotti',['Elements'=>$Element]);
 //}
 
 
@@ -60,4 +60,19 @@ class ElementsController extends Controller{
  //$cart=new Cart($oldcart);
  //return view('cartella del carrello.pagina del carrelo',['elements'=>$cart->items,'totalprice'=>$cart->totalprice]);
 //}
+
+
+//public function getcheckout(){
+  //  if(!session::has('cart')){
+    //    return view('cartella del carrello.pagina del carrello');
+    //}
+    //$oldcart=Session::get('cart');
+    //$cart= new Cart($oldcart);
+    //$total=$cart->totalprice;
+   // return view('cartella dello shop.checkout',['total'=>$total]);
+//}
+
+
+
+
 

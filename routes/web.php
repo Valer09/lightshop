@@ -217,18 +217,34 @@ Route::group(['prefix' => 'admin'], function(){
 
 //Route ::get('/add-to-cart/{id}',[
 //'uses'=> 'ElementsController@getaddtocart',
-  //  'as'=>'element.addtocart',]
+  //  'as'=>'Element.addtocart',]
 //);
 
 //Route ::get('/',[
    // 'uses'=>'ElementsController@getindex',
-   // 'as'=>'elements.pagina dove sono i prodotti'
+   // 'as'=>'Elements.pagina dove sono i prodotti'
   //  ]);
 
  //Route:: get('/shopping-cart',[
    // 'uses'=> 'ElementsController@getcart',
-    //'as'=>'element.shoppingcart'
+    //'as'=>'Element.shoppingcart'
 // ]);
+
+//------END SHOPPING CART SESSION-------//
+
+
+//-------CHECK OUT SESSION-----------//
+
+//Route::get('/checkout',[
+//'uses'=>'elementscontroller@getcheckout',
+//'as'=>'checkout'
+//]);
+
+//Route::post('/checkout',[
+//  'uses'=>'elementscontroller@postcheckout',
+//    'as'=>'checkout'
+//]);
+
 
 
 
