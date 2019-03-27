@@ -51,26 +51,21 @@ class deletionsController extends Controller
         $subcat=App\Subcategory::where('category', $request->category)->get();
 
         if (  $subcat != '[]' )
-            echo "Attenzione, ci sono delle sottocategorie appartenenti";
+        return redirect(request()->headers->get('referer').'?openAlert=La%20categoria%20'.$request->category.'%20contiene%20delle%20sottocategorie!');
         else{
             App\Category::where('name', $request->category)->delete();
-            return view('test');
         }
+        return redirect(request()->headers->get('referer'));
     }
 
     public function delete_subcategory(Request $request){
 
-    /*    $elements=App\Element::where('subcategories', $request->subcategory)->get();
+        $elements=App\Element::where('subcategories', $request->subcategory)->get();
         if (  $elements != '[]' )
-            echo "Attenzione, ci sono degli elementi appartenenti";
-        else{ */
-            App\Subcategory::where('id', $request->subcategory)->delete();
-           
-            //$path = $request-> ref;
-        //$path = substr($path, 1, strlen($path));
-        //return redirect($path.'?openAlert=Sottocategoria%20Eliminata%20con%20successo!'.$request->subcategory);
-        //Redirect::back();
+            return redirect(request()->headers->get('referer').'?openAlert=La%20sottocategoria%20'.$request->subcategory.'%20contiene%20degli%20elementi!');
+        else{ 
+            App\Subcategory::where('name', $request->subcategory)->delete();
+        }
         return redirect(request()->headers->get('referer'));
-        //return redirect('test');
     }
 }

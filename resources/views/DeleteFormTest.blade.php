@@ -1,4 +1,4 @@
-@extends('layout.def_ESHOP')
+@extends('layout.defaultLayoutAdmin')
 
 @section('content')
 
