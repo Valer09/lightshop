@@ -12,6 +12,7 @@
             <div class="w3-white">
 
                 {{!$Category=\App\Category::all()}}
+                {{!$Subcategorylist=\App\Subcategory::all()}}
                 @foreach($Category as $Category)
                     <button onclick="soffietto('{{$Category->name}}')" class="w3-button w3-block w3-theme-l1 w3-left-align">
                         <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>
@@ -20,12 +21,15 @@
 
                     <div id="{{$Category->name}}" class="w3-hide w3-container">
                         
-                        <div id="cardCategorie">
-                            <p>Some other text..</p>
-                            <p><button class="w3-button w3-block w3-theme-l1 w3-left-align">Aggiungi nuova sottoclasse
-                                </button>
-                            </p>
-                        </div>
+                            <div id="cardCategorie">
+                                @foreach($Subcategorylist as $Subcategory)
+                                @if ($Subcategory->category == $Category->name)
+                                    <p>{{ $Subcategory->name }}</p>
+                                @endif
+                                @endforeach
+                                <p><a>Aggiungi nuova sottoclasse</a></p>
+                            </div>
+
                     </div>
                 @endforeach
  
