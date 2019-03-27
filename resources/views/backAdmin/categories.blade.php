@@ -22,7 +22,10 @@
                     <div id="{{$Category->name}}" class="cardCategorie w3-hide w3-container w3-light-grey"> 
                         @foreach($Subcategorylist as $Subcategory)
                         @if ($Subcategory->category == $Category->name)
-                            <p>{{ $Subcategory->name }}</p>
+                            <div class="w3-row">
+                                <form id="cancellaSottocat{{$Subcategory->id}}" action="{{ URL::to('/subcategory_deletion_submit') }}?subcategory={{$Subcategory->id}}&ref={{$_SERVER['REQUEST_URI']}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questa sottocategoria?', 'cancellaSottocat{{$Subcategory->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
+                                <p>{{ $Subcategory->name }}</p>
+                            </div>
                         @endif
                         @endforeach
                         <p><button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button></p>

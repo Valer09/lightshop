@@ -39,3 +39,12 @@ function modaleSottocategoria(idModale, categoria) {
     document.getElementById('categoriaLabel').innerText = "  in: "+ categoria;
 
 }
+
+  //conferma operazioni critiche
+  function conferma(message,id) {
+    if (confirm(message)) {
+        document.getElementById(id).submit();
+    } else {
+        return false;
+    }
+ }

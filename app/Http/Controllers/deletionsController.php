@@ -60,12 +60,12 @@ class deletionsController extends Controller
 
     public function delete_subcategory(Request $request){
 
-      /**  $elements=App\Element::where('subcategories', $request->subcategory)->get();
+    /*    $elements=App\Element::where('subcategories', $request->subcategory)->get();
         if (  $elements != '[]' )
             echo "Attenzione, ci sono degli elementi appartenenti";
-        else{**/
-            App\Subcategory::where('name', $request->subcategory)->delete();
+        else{ */
+            App\Subcategory::where('id', $request->subcategory)->delete();
             return view('test');
-
+        
     }
 }
