@@ -12,7 +12,7 @@
     @switch(Request::path())
         @case('showroom/pavimenti')
             Pavimenti e rivestimenti
-            @breaks
+            @break
         @case('showroom/cucine')
             Cucine
             @break

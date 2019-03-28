@@ -54,7 +54,7 @@
                 <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
                     <input type="file" id="file" name="file_name"></div>
                 <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
-                    <input type="file" name="myFile" multiple></div>
+                    <input type="file" class="form-control" name="photos[]" multiple></div>
 
                 <div class="w3-col m6 w3-center">
                     <button class="w3-button w3-ripple w3-green" type="submit" value="inserimentoProdotto" name="actionAd" style="width:50%">Salva</button>
@@ -90,7 +90,7 @@
                     {{!$Elements=\App\Element::all()}}
                     @foreach($Elements as $el)
                     <tr onclick="document.getElementById('id01').style.display='block'">
-                        <td><img src="{{ asset('storage') }}/ccc"></td>
+                        <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
                         <td><b>{{ $el->name }}</b></td>
                         <td>{{ $el->brand }}</td>
                         <td>{{ $el->description }}</td>

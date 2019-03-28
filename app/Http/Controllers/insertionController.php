@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -130,25 +130,39 @@ class insertionController extends Controller
     public function insert_element(Request $request)
     {
         $element = new Element;
+
         $element->name = $request->name;
         $element->subcategories = $request->subcategory;
         $element->price = $request->price;
         $element->availability = $request-> quantity;
         $element->description = $request->description;
         $element->brand = $request->brand;
-        $element->save();
-        //$file=new File;
-        //$file = $request->file_name;
-        //$file->size = '1';
+
         $name=$request->file_name->getClientOriginalName();
-        $request->file('file_name')->storeAs(
-            '/images/catalogo',$name ,'public');
+        $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
+        $element-> pathPhoto = "/images/catalogo/$name";
+        $element->save();
         
-            
+        $el_id = $element->id;
+        
+        if($request->hasFile('photos')){
+            $files = $request->file('photos');
+            foreach ($files as $file) {
+                $n = $file->getClientOriginalName();
+                $file->storeAs('/images/catalogo',$n ,'public');
+                $photo = new PhotoElement;
+                $photo-> element_id = $el_id;
+                $photo-> path = "/images/catalogo/$n";
+                $photo-> name = $n;
+                $photo->save();
+            }
+        }
+
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
+
     public function insert_news(Request $request){
 
         $news =  new News;
@@ -211,7 +225,6 @@ class insertionController extends Controller
     public function insert_art_showroom(Request $request){
 
         $element =  new ElementsShowRoom;
-        $photo = new PhotoShowroom;
 
         $element-> name = $request->name;
         $element-> description = $request->description;
@@ -220,24 +233,22 @@ class insertionController extends Controller
         $element-> nameSubCategory = $request->subcategory;
         
         $name=$request->file_name->getClientOriginalName();
-
         $request->file('file_name')->storeAs('/images/showroom',$name ,'public');
         $element-> pathPhoto = "/images/showroom/$name";
         $element->save();
 
         $el_id = $element->id;
         
-        
         if($request->hasFile('photos')){
             $files = $request->file('photos');
             foreach ($files as $file) {
                 $n = $file->getClientOriginalName();
                 $file->storeAs('/images/showroom',$n ,'public');
-                $photo1 = new PhotoShowroom;
-                $photo1-> element_id = $el_id;
-                $photo1-> path = "/images/showroom/$n";
-                $photo1-> name = $n;
-                $photo1->save();
+                $photo = new PhotoShowroom;
+                $photo-> element_id = $el_id;
+                $photo-> path = "/images/showroom/$n";
+                $photo-> name = $n;
+                $photo->save();
             }
         }
 
