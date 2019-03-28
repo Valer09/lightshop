@@ -13,9 +13,7 @@
                         <p>Dati nuovo articolo</p>
 
                         <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
-                        <input class="w3-input" name="description" type="text" placeholder="Descrizione">
-
-                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required>
+                        <select class="w3-select" name="subcategory" required>
                                 <option disabled selected>Seleziona la categoria</option>
                                 <option value="showroom/pavimenti">Pavimenti e Rivestimenti</option>
                                 <option value="showroom/cucine">Cucine</option>
@@ -24,22 +22,23 @@
                                 <option value="showroom/caminetti">Caminetti</option>
                                 <option value="showroom/falegnameria">Falegnameria</option>
                         </select>
+                        <input class="w3-input" name="link" type="text" placeholder="Link acquisto">
 
                     </div>
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Altre info</p>
-                        <input class="w3-input" name="link" type="text" placeholder="Link acquisto">
-                        
+                        <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
+
                     </div>
                 </div>
                 
                 <div id="" class="labelFoto w3-margin-top" style="border-bottom: 1px solid #ccc;"><b>Foto copertina: </b>
                     <input type="file" id="file" name="file_name"></div>
                 <div id="" class="labelFoto w3-margin-bottom"><b>Altre foto: </b>
-                    <input type="file" name="myFile" multiple></div>
+                    <input type="file" class="form-control" name="photos[]" multiple></div>
                 <hr>
                 <div class="w3-col m6 w3-center">
-                    <button class="w3-button w3-ripple w3-green" type="submit" value="inserimentoProdotto" name="actionAd" style="width:50%">Salva</button>
+                    <button class="w3-button w3-ripple w3-green" type="submit" style="width:50%">Salva</button>
                 </div>
                 <div class="w3-col m6 w3-center">
                     <button class="w3-button w3-ripple w3-red" style="width:50%">Annulla</button>

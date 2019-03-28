@@ -226,20 +226,18 @@ class insertionController extends Controller
         $element->save();
 
         $el_id = $element->id;
-        $photo-> element_id = $el_id;
-        $photo-> path = "/images/showroom/$name";
-        $photo-> name = $name;
-        $photo->save();
-
-        if($request->hasFile('myFile')){
-            foreach ($request->allFiles('myFile') as $file) {
+        
+        
+        if($request->hasFile('photos')){
+            $files = $request->file('photos');
+            foreach ($files as $file) {
                 $n = $file->getClientOriginalName();
                 $file->storeAs('/images/showroom',$n ,'public');
-                $photo = new PhotoShowroom;
-                $photo-> element_id = $el_id;
-                $photo-> path = "/images/showroom/$n";
-                $photo-> name = $n;
-                $photo->save();
+                $photo1 = new PhotoShowroom;
+                $photo1-> element_id = $el_id;
+                $photo1-> path = "/images/showroom/$n";
+                $photo1-> name = $n;
+                $photo1->save();
             }
         }
 

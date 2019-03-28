@@ -5,17 +5,16 @@
     <div class="w3-display-bottommiddle w3-margin-top w3-margin">
         <h1 class="w3-xxlarge w3-center w3-text-white"><span class="w3-padding w3-green w3-opacity-min"><b>V</b></span> <span class="w3-hide-small w3-text-light-grey">Showroom</span></h1>
     </div>
-    <img src="{{asset('storage')}}{{$Element[0]->pathPhoto}}" style="width: 100%">
+    <div>
+      <img src="{{asset('storage')}}{{$Element[0]->pathPhoto}}" style="width: 100%;">
+    </div>
 </header>
 
 <div class="divCenter" style="width: 100%; padding: 10%">
     <h1>{{$Element[0]->name}}</h1>
     <div>
-        <p>{{$Element[0]->description}}</p>
-        <p>The latest addition to the successful restaurant chain Sticks’n’Sushi is found on the busy King’s Road near Sloane Square in London. The restaurant occupies all floors in a classic, white three-story townhouse while a protruding, black-and-grey tile-clad foundation finishes off the architectural elegance. With a fascinating body of work that merges architecture with design, interior design and art direction, the designers behind this restaurant are the award-winning Danish practice Norm Architects.
-            For the King’s Road job, they chose to highlight the architecture of the house by following the nature of the spaces and their intake of daylight: 
-            “We wanted to take the guests on a journey by creating a diversity in the design. You move from the dark cellar to the light first floor. 
-        </p>
+        <p>{!! nl2br($Element[0]->description) !!}</p>
+        <p><a href="{{ url($Element[0]->linkBuy) }}">Acquista qui!</a></p>
     </div>
 
     <!-- Slideshow -->
