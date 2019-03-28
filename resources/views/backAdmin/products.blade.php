@@ -77,18 +77,20 @@
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
                 <table class="w3-table-all w3-margin-top" id="myTable">
                     <tr>
+                        <th style="width:9%;">Immagine</th>
                         <th style="width:15%;">Nome</th>
-                        <th style="width:15%;">Brand</th>
+                        <th style="width:9%;">Brand</th>
                         <th style="width:40%;">Descrizione</th>
                         <th style="width:10%;">Categoria</th>
-                        <th style="width:10%;">Disponibilità</th>
-                        <th style="width:10%;">Prezzo</th>
+                        <th style="width:9%;">Disponibilità</th>
+                        <th style="width:8%;">Prezzo</th>
                     </tr>
 
                     <!--LISTA DEI PRODOTTI blade-->
                     {{!$Elements=\App\Element::all()}}
                     @foreach($Elements as $el)
                     <tr onclick="document.getElementById('id01').style.display='block'">
+                        <td><img src="{{ asset('storage') }}/ccc"></td>
                         <td><b>{{ $el->name }}</b></td>
                         <td>{{ $el->brand }}</td>
                         <td>{{ $el->description }}</td>

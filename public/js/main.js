@@ -65,6 +65,7 @@ function openTab(evt, cityName) {
     const myParam = urlParams.get('openAlert').toString();
     if (myParam!=null){
         window.alert(myParam);
+        window.location.href = document.documentURI.split('?')[0];
     }
     else return null;
  }

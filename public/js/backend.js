@@ -34,10 +34,12 @@ function closeModal(idModale){
 
 function modaleSottocategoria(idModale, categoria) {
     document.getElementsByClassName('inputModale').value = '';
-    document.getElementById('modaleCategorySub').value = categoria.toString();
+    if(document.getElementById('modaleCategorySub') != null)
+        document.getElementById('modaleCategorySub').value = categoria.toString();
+    if(document.getElementById('categoriaLabel') != null) 
+        document.getElementById('categoriaLabel').innerText = "  in: "+ categoria.toString().toUpperCase();
+    
     document.getElementById(idModale).style.display='block';
-    document.getElementById('categoriaLabel').innerText = "  in: "+ categoria;
-
 }
 
   //conferma operazioni critiche
@@ -75,6 +77,7 @@ function modaleSottocategoria(idModale, categoria) {
     const myParam = urlParams.get('openAlert').toString();
     if (myParam!=null){
         window.alert(myParam);
+        window.location.href = document.documentURI.split('?')[0];
     }
     else return null;
  }
