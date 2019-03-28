@@ -36,6 +36,10 @@ class Element extends Model
         return $this->belongsTo('App\Brand');
     }
 
+    public function get_photo(){
+        return $this->hasMany('App\PhotoElement','element_id','id');
+    }
+
     public $timestamps = false;
 
 }

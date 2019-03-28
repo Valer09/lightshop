@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -211,6 +211,7 @@ class insertionController extends Controller
     public function insert_art_showroom(Request $request){
 
         $element =  new ElementsShowRoom;
+        $photo = new PhotoShowroom;
 
         $element-> name = $request->name;
         $element-> description = $request->description;
@@ -222,8 +223,25 @@ class insertionController extends Controller
 
         $request->file('file_name')->storeAs('/images/showroom',$name ,'public');
         $element-> pathPhoto = "/images/showroom/$name";
-
         $element->save();
+
+        $el_id = $element->id;
+        $photo-> element_id = $el_id;
+        $photo-> path = "/images/showroom/$name";
+        $photo-> name = $name;
+        $photo->save();
+
+        if($request->hasFile('myFile')){
+            foreach ($request->allFiles('myFile') as $file) {
+                $n = $file->getClientOriginalName();
+                $file->storeAs('/images/showroom',$n ,'public');
+                $photo = new PhotoShowroom;
+                $photo-> element_id = $el_id;
+                $photo-> path = "/images/showroom/$n";
+                $photo-> name = $n;
+                $photo->save();
+            }
+        }
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));

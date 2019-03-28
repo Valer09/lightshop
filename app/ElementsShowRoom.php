@@ -18,5 +18,9 @@ class ElementsShowRoom extends Model
 
     ];
 
+    public function get_photo_shoroom(){
+        return $this->hasMany('App\PhotoShowroom','element_id','id');
+    }
+
     public $timestamps = false;
 }

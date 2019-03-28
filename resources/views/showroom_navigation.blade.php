@@ -90,7 +90,7 @@
                     
                     @if ($conta == 1)
                         <div class="w3-row rowShow">
-                        <div class="w3-col divImShow l6">
+                        <div class="w3-col divImShow l6" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
@@ -101,7 +101,7 @@
                         @endphp
 
                     @elseif ($conta == 2)
-                        <div class="w3-col divImShow l6">
+                        <div class="w3-col divImShow l6" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
@@ -114,7 +114,7 @@
 
                     @elseif ($conta == 3)
                         <div class="w3-row rowShow">
-                        <div class="w3-col divImShow l3">
+                        <div class="w3-col divImShow l3" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
@@ -125,7 +125,7 @@
                         @endphp
 
                     @elseif ($conta == 4)
-                        <div class="w3-col divImShow l3">
+                        <div class="w3-col divImShow l3" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
@@ -136,7 +136,7 @@
                         @endphp
 
                     @elseif ($conta == 5)
-                        <div class="w3-col divImShow l3">
+                        <div class="w3-col divImShow l3" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
@@ -147,7 +147,7 @@
                         @endphp
 
                     @elseif ($conta == 6)
-                        <div class="w3-col divImShow l3">
+                        <div class="w3-col divImShow l3" onclick="location.href='{{ url('showroom/et')}}{{$el->id}}'">
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
