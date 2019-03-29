@@ -285,6 +285,7 @@ Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
 Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
+Route::post('/insert_new_brand', 'insertionController@insert_brand' );
 
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -255,5 +255,19 @@ class insertionController extends Controller
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));
         return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+    }
+
+    public function insert_brand(Request $request){
+
+        $brand = new Brand;
+
+        $brand-> name = $request -> name;
+        $brand-> link = $request -> link;
+        $brand-> description = $request -> description;
+        $brand->save();
+
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
     }
 }

@@ -18,9 +18,13 @@ class gets_controller extends Controller
     }
 
     public function openElementShowroom($id_element){
+         
         $element = DB::select('select * from elementsshowrooms where id = ?', [$id_element]);
         $photos = DB::select('select * from showroom_photo_table where element_id = ?', [$id_element]);
         //dd($photos);
-        return view('showroom_element', ['Element' => $element], ['Photos' => $photos]);
+        if(!empty($element))
+            return view('showroom_element', ['Element' => $element], ['Photos' => $photos]);
+        else
+            return abort(404);
     }
 }

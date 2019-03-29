@@ -1,12 +1,9 @@
 @extends('layout.defaultLayout')
 @section('content')
 
-<header class="w3-display-container w3-wide" id="principalDivElement#">
+<header class="w3-display-container w3-wide" id="principalDivElement" style="background-image: url('{{asset('storage')}}{{$Element[0]->pathPhoto}}')!important;">
     <div class="w3-display-bottommiddle w3-margin-top w3-margin">
         <h1 class="w3-xxlarge w3-center w3-text-white"><span class="w3-padding w3-green w3-opacity-min"><b>V</b></span> <span class="w3-hide-small w3-text-light-grey">Showroom</span></h1>
-    </div>
-    <div>
-      <img src="{{asset('storage')}}{{$Element[0]->pathPhoto}}" style="width: 100%;">
     </div>
 </header>
 
@@ -14,7 +11,9 @@
     <h1>{{$Element[0]->name}}</h1>
     <div>
         <p>{!! nl2br($Element[0]->description) !!}</p>
+        @if(!empty($Element->linkBuy))
         <p><a href="{{ url($Element[0]->linkBuy) }}">Acquista qui!</a></p>
+        @endif
     </div>
 
     <!-- Slideshow -->

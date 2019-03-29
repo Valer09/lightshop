@@ -19,7 +19,7 @@
                             @foreach ($Brand as $Brand)
                                 <option>{{ $Brand->name}}</option>
                             @endforeach
-
+                                <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                         </select>
                         <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                         <input class="w3-input" name="description" type="text" placeholder="Descrizione">
@@ -162,5 +162,34 @@
             </div>
         </div>
     </div>
+<!--Modale Nuova categoria-->
+<div id="nuovoBrand" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('nuovoBrand');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Nuovo Brand</h2>
+        </header>
+        <form type="submit" method="post" action="{{URL::to('/insert_new_brand')}}?ref={{$_SERVER['REQUEST_URI']}}">
+            @csrf
+            <div class="w3-padding">
+                <div class="w3-row">
+                    <label>Brand: </label>
+                    <input class="inputModale" placeholder="Brand" type="text" name="name" required>
+                </div>
+                <div class="w3-row">
+                    <label>Link: </label>
+                    <input class="inputModale" placeholder="link del sito del brand" type="text" name="link">
+                </div>
+                <div class="w3-row">
+                    <label>Descrizione: </label>
+                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                </div>
+                <div class="w3-row">
+                    <button class="w3-right" type="submit">Salva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @stop
