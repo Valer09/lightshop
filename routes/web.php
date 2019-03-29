@@ -38,9 +38,6 @@ Route::get('/profile', function(){
 
 })->middleware('verified');
 
-Route::get('/catalog', function(){
-    return view('catalog');
-});
 Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
@@ -115,7 +112,15 @@ Route::group(['prefix' => 'showroom'], function () {
 
 //End showroom--/
 
+//CataLog /
 
+Route::get('/catalog', function () {
+    return view('catalog_navigation');
+});
+
+Route::get('/catalog{id}', 'gets_controller@catalog_controller');
+
+//EndCatalag/
 
 
 

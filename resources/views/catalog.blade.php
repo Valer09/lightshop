@@ -70,7 +70,7 @@
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left">Minuteria</p>
+        <p class="w3-left">{{ $Category }}</p>
         <p class="w3-right">
             <i class="fa fa-shopping-cart w3-margin-right"></i>
             <i class="fa fa-search"></i>
@@ -94,7 +94,6 @@
 
     <!-- Product grid 
     <div class="w3-row w3-grayscale">-->
-        {{!$Elements=\App\Element::all()}}
         @php
             $conta = 1;
         @endphp
@@ -104,7 +103,7 @@
             @endif
                     <div class="w3-container w3-col l3">
                         <div class="w3-display-container">
-                            <img src="./images/catalogo/bullone.jpg" style="width:100%">
+                            <img src=" {{ asset('storage') }} " style="width:100%">
                             <span class="w3-tag w3-display-topleft">New</span>
                             <div class="w3-display-middle w3-display-hover">
                                 <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista

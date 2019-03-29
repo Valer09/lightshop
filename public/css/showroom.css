@@ -96,7 +96,7 @@ figcaption {
 }
 
 .imShow {
-    height: 420px;
+    width: 100%;
     -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
@@ -112,7 +112,10 @@ animation-name:scalaImmagine;
 
 .divImShow > div {
     overflow: hidden;
-    align-content: center;
+    align-items: center;
+    position: relative;
+    height: 420px;
+    margin: auto;
 }
 
 .divImShow {

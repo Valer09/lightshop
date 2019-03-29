@@ -27,4 +27,18 @@ class gets_controller extends Controller
         else
             return abort(404);
     }
+
+    public function catalog_controller($id) {
+        if(!empty($id) || $id != null){
+            $cate = DB::select('select name from subcategories where category = ?', [$id]);
+            
+            $name = $cate[0]->name;
+            if($cate != null)
+                $element = DB::select('select * from elements where subcategories = ?', [$name]);
+            
+                return view('catalog', ['Elements' => $element], ['Category' => $id]);
+        } else {
+            return view('catalog_navigation');
+        }
+    }
 }
