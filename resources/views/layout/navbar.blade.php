@@ -20,7 +20,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     {{!$Category = \App\Category::all()}}
                     @foreach ($Category as $Category)
-                    <a href="{{ url('/inside') }}" class="w3-bar-item w3-button">{{ $Category->name }}</a></option>
+                    <a href="{{ url('/catalog').$Category->name }}" class="w3-bar-item w3-button">{{ $Category->name }}</a></option>
                     @endforeach
                 </div>
             </div>
