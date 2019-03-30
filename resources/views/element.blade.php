@@ -2,6 +2,9 @@
 
 @section('content')
 
+<!--FUNZIONE PER ALTRE FOTO DELL_OGETTO          {{!$photos = App\Http\Controllers\gets_controller::photo_element_controller($el->id)}}<img src=" {{ asset('storage').$photos[0]->path }}" style="width:100%">
+   -->
+
 <!-- !PAGE CONTENT! -->
     <div class="w3-main w3-white" style="margin-top:49px; margin-left:260px">
 

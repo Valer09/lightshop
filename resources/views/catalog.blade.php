@@ -103,7 +103,7 @@
             @endif
                     <div class="w3-container w3-col l3">
                         <div class="w3-display-container">
-                            <img src=" {{ asset('storage') }} " style="width:100%">
+                        <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
                             <span class="w3-tag w3-display-topleft">New</span>
                             <div class="w3-display-middle w3-display-hover">
                                 <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista

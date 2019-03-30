@@ -41,4 +41,13 @@ class gets_controller extends Controller
             return view('catalog_navigation');
         }
     }
+
+    public static function photo_element_controller($id_element) {
+        if(!empty($id_element) || $id_element != null){
+            //
+            $photos = DB::select('select * from photo_table where element_id = ?', [$id_element]);
+            //dd($photos);
+            return $photos;
+        }
+    }
 }
