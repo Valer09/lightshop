@@ -13,9 +13,7 @@
             @if(Auth::user())
             <a href="{{ url('/cart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i>{{--{{Session::('cart') ? Session::get('cart')->totalbuyed :''}}--}}</a>
             @endif
-                <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
-
-                
+            <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
                 <a id="prodot" href="{{ url('/catalog ') }}" class="barDx w3-button">Prodotti</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     {{!$Category = \App\Category::all()}}
@@ -24,7 +22,17 @@
                     @endforeach
                 </div>
             </div>
-            <a href="{{ url('/showroom ') }}" class="barDx w3-bar-item w3-button">Showroom</a>
+            <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+                <a id="prodot" href="{{ url('/showroom ') }}" class="barDx w3-button">Showroom</a>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="{{ url('/showroom/pavimenti') }}" class="w3-bar-item w3-button">Pavimenti e Rivestimenti</a></option>
+                    <a href="{{ url('/showroom/cucine') }}" class="w3-bar-item w3-button">Cucine</a></option>
+                    <a href="{{ url('/showroom/bagni') }}" class="w3-bar-item w3-button">Bagni</a></option>
+                    <a href="{{ url('/showroom/porte') }}" class="w3-bar-item w3-button">Porte</a></option>
+                    <a href="{{ url('/showroom/caminetti') }}" class="w3-bar-item w3-button">Caminetti</a></option>
+                    <a href="{{ url('/showroom/falegnameria') }}" class="w3-bar-item w3-button">Falegnameria</a></option>
+                </div>
+            </div>
             @auth
             <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
                 <a href="{{ url('/profile') }}" class="barDxButt w3-button">{{Auth::user()->name}}</a>
