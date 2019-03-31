@@ -7,7 +7,7 @@
     </div>
 </header>
 
-<div class="divCenter">
+<div class="divCenter w3-animate-right">
     <h1 style="padding: 20px">
     @switch(Request::path())
         @case('showroom/pavimenti')
@@ -163,4 +163,4 @@
                 @endforeach
         </div>
         </div>
-@stop
+    @stop
