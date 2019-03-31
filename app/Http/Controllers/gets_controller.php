@@ -50,4 +50,26 @@ class gets_controller extends Controller
             return $photos;
         }
     }
+
+    public function element_controller($id) {
+        if(!empty($id) || $id != null){
+            //$element = DB::select('select * from (select * from elements where id = ?) a left join photo_table b on a.id = b.element_id', [$id]);
+            $element = DB::select('select * from elements where id = ?', [$id]);
+            //dd($element);
+            if(!empty($element))
+                return view('element', ['Element' => $element]);
+            else return abort(404);
+        } else return abort(404);
+    }
+
+    public static function brand_controller($id) {
+        if(!empty($id) || $id != null){
+            //$element = DB::select('select * from (select * from elements where id = ?) a left join photo_table b on a.id = b.element_id', [$id]);
+            $element = DB::select('select * from brands where name = ?', [$id]);
+            //dd($element[0]);
+            if(!empty($element))
+                return $element[0];
+            else return null;
+        } else return null;
+    }
 }

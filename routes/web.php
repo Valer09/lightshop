@@ -126,9 +126,7 @@ Route::get('/catalog{id}', 'gets_controller@catalog_controller');
 
 
 //--INSIDE--//
-Route::get('/element', function () {
-    return view('element');
-});
+Route::get('/element{id}', 'gets_controller@element_controller');
 //--End Inside--//
 
 Auth::routes(['verify' => true]);

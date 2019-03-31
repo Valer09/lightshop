@@ -261,8 +261,13 @@ class insertionController extends Controller
 
         $brand = new Brand;
 
+        //controllo link
+        $link = $request -> link;
+        if(substr($link, 0, 3) != "http")
+            $link = "http://".$link;
+
         $brand-> name = $request -> name;
-        $brand-> link = $request -> link;
+        $brand-> link = $link;
         $brand-> description = $request -> description;
         $brand->save();
 

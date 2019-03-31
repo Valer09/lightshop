@@ -94,9 +94,7 @@
 
     <!-- Product grid 
     <div class="w3-row w3-grayscale">-->
-        @php
-            $conta = 1;
-        @endphp
+        {{!$conta = 1}}
         @foreach($Elements as $el)
             @if ($conta == 1)
             <div class="w3-row w3-grayscale">
@@ -106,21 +104,17 @@
                         <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
                             <span class="w3-tag w3-display-topleft">New</span>
                             <div class="w3-display-middle w3-display-hover">
-                                <button onclick="window.location.href='./element'" class="w3-button w3-black">Acquista
+                                <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
                                     <i class="fa fa-shopping-cart"></i></button>
                             </div>
                         </div>
                         <p>{{ $el->name }}<br><b>€ {{ $el->price }}</b></p>
                     </div>
-                @php
-                    $conta = $conta + 1;
-                @endphp
+                    {{!$conta = $conta + 1}}
 
             @if ($conta == 5)
                 </div>
-                @php
-                    $conta = 1;
-                @endphp
+                {{!$conta = 1}}
             @endif
         @endforeach
 
