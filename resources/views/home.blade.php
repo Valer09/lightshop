@@ -3,11 +3,60 @@
 @section('content')
 <!--HEADERS-->
   <!--BIG SCREEN-->
-  <header class="w3-display-container w3-hide-small w3-content w3-wide" style="width:100%; margin-top: 49px" id="home">
-    <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-      <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
-      <span class="w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
+  <header class="w3-display-container w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden">
+    
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item min-vh-100 active">
+          <img src="{{ asset('storage').'/images/home/DSCF4141 (FILEminimizer).JPG'}}" alt="Los Angeles">
+        </div>
+
+        <div class="item min-vh-100">
+          <img src="{{ asset('storage').'/images/home/DSCF4114 (FILEminimizer).JPG'}}" alt="Chicago">
+        </div>
+      
+        <div class="item min-vh-100">
+          <img src="{{ asset('storage').'/images/home/DSCF4155 (FILEminimizer).JPG'}}" alt="New york">
+        </div>
+      
+        <div class="item min-vh-100">
+          <img src="{{ asset('storage').'/images/home/DSCF4179 (FILEminimizer).JPG'}}" alt="New york">
+        </div>
+      
+        <div class="item min-vh-100">
+          <img src="{{ asset('storage').'/images/home/DSCF4275 (FILEminimizer).JPG'}}" alt="New york">
+        </div>
+      
+        <div class="item min-vh-100">
+          <img src="{{ asset('storage').'/images/home/DSCF4299 (FILEminimizer).JPG'}}" alt="New york">
+        </div>
+        
+        <div class="w3-display-middle w3-margin-top w3-center">
+          <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+          <span class="w3-hide-small w3-text-light-grey">di Visca Lucio e Filiberto</span>
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
   </header>
 
