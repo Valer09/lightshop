@@ -3,14 +3,16 @@
 @section('content')
 
 <!-- Sidebar/Filter -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="top: 49px;z-index:3;width:250px" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" style="top: 49px;z-index:3;width:250px" id="mySidebar">
     <div class="w3-center">
-        <a class="w3-row" href="{{ url('home') }}">
-            <span><i class="fa fa-angle-left"></i> Home</span>
-        </a>
         <a class="w3-row" href="{{ url('catalog') }}">
-            <span><i class="fa fa-angle-left"></i> Piastrelle<span> (332)</span>
+            <span><i class="fa fa-angle-left"></i> Catalogo</span>
         </a>
+        @if($Category[1] != null || $Category[1] != '')
+        <a class="w3-row" href="{{ url('catalog').$Category[0] }}">
+            <span><i class="fa fa-angle-left"></i> {{$Category[0]}}<span> (332)</span>
+        </a>
+        @endif
         <div class="w3-light-grey article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
@@ -64,7 +66,7 @@
 
     <!-- Image header -->
     <div class="w3-display-container w3-container">
-        <img class="wa" src="./images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
+        <img class="wa" src="{{ asset ('storage')}}/images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
             <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
@@ -102,7 +104,7 @@
                 {{!$conta = 1}}
             @endif
         @endforeach
-
+    </div>
 <!--ESEMPIOPOO
         <div class="w3-col l3 s6">
             <div class="w3-container">
