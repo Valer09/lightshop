@@ -120,6 +120,8 @@ Route::get('/catalog', function () {
 
 Route::get('/catalog{id}', 'gets_controller@catalog_controller');
 
+Route::get('/catalog{id}/{sub}', 'gets_controller@catalog_sub_controller');
+
 //EndCatalag/
 
 

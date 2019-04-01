@@ -30,13 +30,28 @@ class gets_controller extends Controller
 
     public function catalog_controller($id) {
         if(!empty($id) || $id != null){
+        $cate = DB::select('select name from subcategories where category = ?', [$id]);
+        
+        $name = $cate[0]->name;
+        if($cate != null)
+            $element = DB::select('select * from elements where subcategories = ?', [$name]);
+            $array[0] = $id;
+            $array[1] = null;
+            $array[2] = $cate;
+            return view('catalog', ['Elements' => $element], ['Category' => $array]);
+        } else {
+            return view('catalog_navigation');
+        }
+    }
+
+    public function catalog_sub_controller($id, $sub) {
+        if(!empty($sub) || $sub != null) {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
-            
-            $name = $cate[0]->name;
-            if($cate != null)
-                $element = DB::select('select * from elements where subcategories = ?', [$name]);
-            
-                return view('catalog', ['Elements' => $element], ['Category' => $id]);
+            $element = DB::select('select * from elements where subcategories = ?', [$sub]);
+            $array[0] = $id;
+            $array[1] = $sub;
+            $array[2] = $cate;
+            return view('catalog', ['Elements' => $element], ['Category' => $array]);
         } else {
             return view('catalog_navigation');
         }

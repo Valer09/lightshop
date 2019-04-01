@@ -14,30 +14,11 @@
         <div class="w3-light-grey article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
+                    @foreach($Category[2] as $subcat)
                     <li class="active">
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-per-pavimenti/c/1150" wt_name="assortment_menu.level3">Piastrelle per pavimenti<span class="product-counter"> (69)</span></a>
+                        <a href="{{ url('catalog'.$Category[0], $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}<span class="product-counter"> (69)</span></a>
                     </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-da-rivestimento/c/786" wt_name="assortment_menu.level3">Piastrelle da rivestimento<span class="product-counter"> (36)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/bordure-e-zoccolini/c/1152" wt_name="assortment_menu.level3">Bordure e zoccolini<span class="product-counter"> (6)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/mosaici/c/572" wt_name="assortment_menu.level3">Mosaici<span class="product-counter"> (52)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/rivestimento-murale-e-placchette/c/481" wt_name="assortment_menu.level3">Rivestimento murale e placchette<span class="product-counter"> (34)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/pietre-naturali/c/1151" wt_name="assortment_menu.level3">Pietre naturali<span class="product-counter"> (50)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-decorative/c/1849" wt_name="assortment_menu.level3">Piastrelle decorative<span class="product-counter"> (38)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/battiscopa-ceramici/c/1850" wt_name="assortment_menu.level3">Battiscopa ceramici<span class="product-counter"> (47)</span></a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -70,7 +51,11 @@
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left">{{ $Category }}</p>
+        @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
+        <p class="w3-left">{{ $Category[0] }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
+        @else
+        <p class="w3-left">{{ $Category[0] }}</p>
+        @endif
         <p class="w3-right">
             <i class="fa fa-shopping-cart w3-margin-right"></i>
             <i class="fa fa-search"></i>
@@ -89,7 +74,7 @@
     </div>
 
     <div class="w3-container w3-text-grey" id="jeans">
-        <p>8 items</p>
+        <p>{{count($Elements)}} elementi</p>
     </div>
 
     <!-- Product grid 
