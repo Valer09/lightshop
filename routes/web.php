@@ -54,9 +54,6 @@ Route::get('form', function () {
 Route::get('about', function () {
     return view('about');
 });
-Route::get('/cart', function () {
-    return view('cart');
-});
 
 Route::get('/verified', function () {
     return view('verified');
@@ -217,19 +214,14 @@ Route::group(['prefix' => 'admin'], function(){
 
 //---------SHOPPING CART------------//
 
-Route ::get('/add-to-cart/{id}',[
-'uses'=> 'ElementsController@getaddtocart',
-   'as'=>'Element.addtocart',]
+Route ::post('/add-to-cart/{id}',[
+'uses'=> 'ElementsController@getAddToCart',
+   'as'=>'Element.addToCart',]
 );
 
-//Route ::get('/',[
-  // 'uses'=>'ElementsController@getindex',
-    //'as'=>'catalog'
-    //]);
-
  Route:: get('/shopping-cart',[
-    'uses'=> 'ElementsController@getcart',
-    'as'=>'Element.shoppingcart'
+    'uses'=> 'ElementsController@getCart',
+    'as'=>'Element.shoppingCart'
 ]);
 
 //------END SHOPPING CART SESSION-------//
@@ -237,10 +229,10 @@ Route ::get('/add-to-cart/{id}',[
 
 //-------CHECK OUT SESSION-----------//
 
-//Route::get('/checkout',[
-//'uses'=>'elementscontroller@getcheckout',
-//'as'=>'checkout'
-//]);
+Route::get('/checkout',[
+'uses'=>'ElementsController@getCheckout',
+'as'=>'checkout'
+]);
 
 //Route::post('/checkout',[
 //  'uses'=>'elementscontroller@postcheckout',

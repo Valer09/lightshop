@@ -62,10 +62,10 @@
         <div class="l4 w3-container w3-center w3-padding-16" style="position: absolute; right: 0; bottom: 0;">
             <div>
                 <p>Prezzo: {{$el->price}} €</p>
-                <form method="post">
+                <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                     @csrf
                     <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
-                    <button type="button" class="w3-button w3-black">Aggiungi la carrello</button>
+                    <button type="submit" class="w3-button w3-black">Aggiungi la carrello</button>
                 </form>
             </div>
         </div>

@@ -137,7 +137,6 @@
                 </ul>
             </div>  
         </div> 
-
         <div id="#spedizione" class="w3-container w3-border city" style="display:none">
             <h2>Indirizzi di spedizione</h2>
             <div class="w3-container">
