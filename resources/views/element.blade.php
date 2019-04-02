@@ -23,7 +23,7 @@
                 production-intensive chair design aside in his archives, where it remained for nearly half a century
                 until it was brought back to life in 2005.</span>
         </div>
-        <div class="w3-col w3-display-topmiddle container l4" style="max-width:500px; margin-top: 80px">          
+        <div class="w3-col w3-display-topmiddle l4" style="max-width:500px; margin-top: 80px">          
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -36,12 +36,12 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                 <div class="item active" style=" height: 600px">
-                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
+                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}" style="height: 600px">
                 </div>
 
                 @foreach($photos as $photo)
-                <div class="item" style=" height: 600px">
-                    <img src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
+                <div class="item" style="height: 600px; overflow:hidden">
+                    <img class="w3-image" src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}" style="height: 600px;">
                 </div>
                 @endforeach
                 </div>
