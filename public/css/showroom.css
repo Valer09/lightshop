@@ -2,9 +2,10 @@
     background-image: url("../images/showroom/apartment-ceiling-chairs-1571460.jpg");
     background-position: center;
     background-size: cover;
-    margin: 49px 0px 0px 0px!important;
+    margin: 0px 0px 0px 0px!important;
     height: 100%;
     overflow: hidden;
+
 }
 
 #boxShow {
@@ -96,7 +97,7 @@ figcaption {
 }
 
 .imShow {
-    height: 420px;
+    width: 100%;
     -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
@@ -112,7 +113,10 @@ animation-name:scalaImmagine;
 
 .divImShow > div {
     overflow: hidden;
-    align-content: center;
+    align-items: center;
+    position: relative;
+    height: 420px;
+    margin: auto;
 }
 
 .divImShow {

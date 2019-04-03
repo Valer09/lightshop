@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use DB;
-use Auth;
+use DB, Auth, Session;
 
 class orderController extends Controller
 {
-       public function submit_order(Request $request){
+    public function submit_order(Request $request){
+        $cart = Session::get('cart');
+        $total = $cart->totalPrice;
 
-
-    DB::table('orders')->insert(array([
-
+        DB::table('orders')->insert(array([
             'user_id' => Auth::user()->id,
-            'total' => $request->input('total'),
+            'total' => $total,
             'address_id' => Auth::user()->address_id,
             'courier_id' => '1',
-            'shipping_cost' => '20',
+            'shipping_cost' => '12.50',
             'tax' => '0.22',
-            'tracking' => '1',
-            'order_shipped' => '10',
-            ]));
+            'tracking' => '0',
+            'order_shipped' => '0',
+        ]));
+        
         return view('home');
 
     }

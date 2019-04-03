@@ -14,40 +14,48 @@
                     <div class="w3-col m6 w3-light-grey w3-center">
                         <p>Dati nuovo prodotto</p>
                         <select class="w3-select" name="brand" type="text" placeholder="Marca">
+                            <option disabled selected>Selezione il Brand</option>
                             {{$Brand = \App\Brand::all()}}
                             @foreach ($Brand as $Brand)
                                 <option>{{ $Brand->name}}</option>
                             @endforeach
-
+                                <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                         </select>
                         <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                         <input class="w3-input" name="description" type="text" placeholder="Descrizione">
 
-                        <select class="w3-select" name="subcategory" onchange="change(this.value)" required >
-
-                            {{$Subcategory = \App\Subcategory::all()}}
-                            @foreach ($Subcategory as $Subcategory)
-                                <option>{{ $Subcategory->name}}</option>
+                        <select class="w3-select" name="subcategory" required >
+                            <option disabled selected>Selezione una Sottocategoria</option>
+                            {{$Category = \App\Category::all()}}
+                            @foreach ($Category as $Category)
+                                <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
+                                {{$Subcategory = \App\Subcategory::all()}}
+                                @foreach ($Subcategory as $Subcategory)
+                                @if($Category->name===$Subcategory->category)
+                                <option value="{{ $Subcategory->name }}">{{ $Subcategory->name }}</option>
+                                @endif
+                                @endforeach
                             @endforeach
-
                         </select>
 
                     </div>
 
 
                     <div class="w3-col m6 w3-light-grey w3-center">
-                        <p>Prezzi </p>
+                        <p>Prezzi</p>
 
                         <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
 
                         <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile" required>
-                        <div id="" class="labelFoto w3-left w3-input"><b>Foto principale: </b>
-                            <input type="file" id="file" name="file_name"></div>
-                        <div id="" class="labelFoto w3-left w3-input"><b>Altre foto: </b>
-                            <input type="file" name="myFile" multiple></div>
+                        
                     </div>
                 </div>
-                <hr>
+                
+                <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
+                    <input type="file" id="file" name="file_name"></div>
+                <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
+                    <input type="file" class="form-control" name="photos[]" multiple></div>
+
                 <div class="w3-col m6 w3-center">
                     <button class="w3-button w3-ripple w3-green" type="submit" value="inserimentoProdotto" name="actionAd" style="width:50%">Salva</button>
                 </div>
@@ -69,37 +77,29 @@
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
                 <table class="w3-table-all w3-margin-top" id="myTable">
                     <tr>
-                        <th style="width:30%;">Nome</th>
-                        <th style="width:30%;">Categoria</th>
-                        <th style="width:10%;">Peso</th>
-                        <th style="width:10%;">Prezzo</th>
-                        <th style="width:10%;">Prezzo Spedizione</th>
-                        <th style="width:10%;">Pezzi in magazino</th>
+                        <th style="width:9%;">Immagine</th>
+                        <th style="width:15%;">Nome</th>
+                        <th style="width:9%;">Brand</th>
+                        <th style="width:40%;">Descrizione</th>
+                        <th style="width:10%;">Categoria</th>
+                        <th style="width:9%;">Disponibilità</th>
+                        <th style="width:8%;">Prezzo</th>
                     </tr>
 
-                    <!--ESEMPIO DA CANCELLARE-->
-                    <tr>
-                        <td>Ceratech</td>
-                        <td>ferramenta</td>
-                        <td>1,00</td>
-                        <td>3,44</td>
-                        <td>5,99</td>
-                        <td>45</td>
-                    </tr>
-                    <!--FINE ESEMPIO DA CANCELLARE-->
-
-                    <!--LISTA DEI PRODOTTI freemarker-->
-                    <list prodotti as prodotto-->
+                    <!--LISTA DEI PRODOTTI blade-->
+                    {{!$Elements=\App\Element::all()}}
+                    @foreach($Elements as $el)
                     <tr onclick="document.getElementById('id01').style.display='block'">
-                        <td class="nomeProdotto">${prodotto.nome?capitalize}</td>
-                        <td>${prodotto.categoria}</td>
-                        <td>${prodotto.scaglioni} unit/g</td>
-                        <td>€ ${prodotto.prezzoUni}</td>
-                        <td>€ ${prodotto.prezzoPoste}</td>
-                        <td>€ ${prodotto.prezzoServAgg}</td>
-                        <td><div location="button-${prodotto.id}" /></td>
+                        <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
+                        <td><b>{{ $el->name }}</b></td>
+                        <td>{{ $el->brand }}</td>
+                        <td>{{ $el->description }}</td>
+                        <td>{{ $el->subcategories }}</td>
+                        <td>{{ $el->availability }} unit/g</td>
+                        <td>€ {{ $el->price }}</td>
+                        
                     </tr>
-                </list>
+                    @endforeach
 
                 </table>
                 <!--MODALE CREAZIONE-->
@@ -107,7 +107,7 @@
                     <div id="modaleAdmin" class="w3-modal-content">
 
                         <div id="modalModUser" class="w3-container w3-blue-grey">
-                            <span onclick="closeModal()" class="w3-button w3-display-topright">&times;</span>
+                            <span onclick="closeModal('id01');" class="w3-button w3-display-topright">&times;</span>
                             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
                             <form class="w3-container" >
@@ -162,5 +162,34 @@
             </div>
         </div>
     </div>
+<!--Modale Nuova categoria-->
+<div id="nuovoBrand" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('nuovoBrand');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Nuovo Brand</h2>
+        </header>
+        <form type="submit" method="post" action="{{URL::to('/insert_new_brand')}}?ref={{$_SERVER['REQUEST_URI']}}">
+            @csrf
+            <div class="w3-padding">
+                <div class="w3-row">
+                    <label>Brand: </label>
+                    <input class="inputModale" placeholder="Brand" type="text" name="name" required>
+                </div>
+                <div class="w3-row">
+                    <label>Link: </label>
+                    <input class="inputModale" placeholder="link del sito del brand" type="text" name="link">
+                </div>
+                <div class="w3-row">
+                    <label>Descrizione: </label>
+                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                </div>
+                <div class="w3-row">
+                    <button class="w3-right" type="submit">Salva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @stop

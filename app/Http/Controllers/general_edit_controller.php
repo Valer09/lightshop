@@ -9,7 +9,7 @@ use DB;
 
 class general_edit_controller extends Controller
 {
-    public function address_star($id){
+    public static function address_star($id){
         $uid=Auth::user()->id;
         DB::table('users')->where('id', $uid)->update(['address_id' => $id]);
 

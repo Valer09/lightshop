@@ -38,9 +38,6 @@ Route::get('/profile', function(){
 
 })->middleware('verified');
 
-Route::get('/catalog', function(){
-    return view('catalog');
-});
 Route::get('/homes', function () {
     if ( Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
@@ -56,9 +53,6 @@ Route::get('form', function () {
 });
 Route::get('about', function () {
     return view('about');
-});
-Route::get('/cart', function () {
-    return view('cart');
 });
 
 Route::get('/verified', function () {
@@ -110,23 +104,28 @@ Route::group(['prefix' => 'showroom'], function () {
         return view('showroom_navigation');
     });
 
-    Route::get('/element', function () {
-        return view('showroom_element');
-    });
-
+    Route::get('/et{id_element}', 'gets_controller@openElementShowroom');
 });
 
 //End showroom--/
 
+//CataLog /
 
+Route::get('/catalog', function () {
+    return view('catalog_navigation');
+});
+
+Route::get('/catalog{id}', 'gets_controller@catalog_controller');
+
+Route::get('/catalog{id}/{sub}', 'gets_controller@catalog_sub_controller');
+
+//EndCatalag/
 
 
 
 
 //--INSIDE--//
-Route::get('/element', function () {
-    return view('element');
-});
+Route::get('/element{id}', 'gets_controller@element_controller');
 //--End Inside--//
 
 Auth::routes(['verify' => true]);
@@ -213,6 +212,39 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 
+//---------SHOPPING CART------------//
+
+Route ::post('/add-to-cart/{id}',[
+'uses'=> 'ElementsController@getAddToCart',
+   'as'=>'Element.addToCart',]
+);
+
+Route ::get('/del-to-cart/{id}',[
+    'uses'=> 'ElementsController@delToCart',
+       'as'=>'Element.delToCart',]
+);
+
+ Route:: get('/shopping-cart',[
+    'uses'=> 'ElementsController@getCart',
+    'as'=>'Element.shoppingCart'
+]);
+
+//------END SHOPPING CART SESSION-------//
+
+
+//-------CHECK OUT SESSION-----------//
+
+Route::get('/checkout',[
+'uses'=>'ElementsController@getCheckout',
+'as'=>'checkout'
+]);
+
+
+
+
+
+
+
 //----------OPERATIONS TEST VIEWS------------//
 
 Route::get('order', function(){
@@ -239,18 +271,13 @@ Route::get('/inside', function () {
 
 //----------POST Methods---------------------//
 
-//--post-get--//
-
-
-
-//--post-get--/
-
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
 Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
 Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
+Route::post('/insert_new_brand', 'insertionController@insert_brand' );
 
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );

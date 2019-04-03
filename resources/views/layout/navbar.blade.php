@@ -2,7 +2,7 @@
 <!-- Navbar (sit on top) -->
 
 <div class="w3-top w3-hide-small">
-    <div class="w3-bar w3-white w3-wide w3-card">
+    <div class="w3-bar w3-white w3-card">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="{{url('./#')}}" class="barSx w3-bar-item w3-button"><b>Visca s.n.c.</b></a>
         <a href="{{ url('/about ') }}" class="barDx w3-bar-item w3-button">Chi siamo</a>
@@ -10,21 +10,27 @@
         <a href="{{url('/#contact')}}" class="barDx w3-bar-item w3-button">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
-            @if(Auth::user())
-            <a href="{{ url('/cart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i></a>
-            @endif
-                <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
-
-                
+            <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</a>
+            <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
                 <a id="prodot" href="{{ url('/catalog ') }}" class="barDx w3-button">Prodotti</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     {{!$Category = \App\Category::all()}}
                     @foreach ($Category as $Category)
-                    <a href="{{ url('/inside') }}" class="w3-bar-item w3-button">{{ $Category->name }}</a></option>
+                    <a href="{{ url('/catalog').$Category->name }}" class="w3-bar-item w3-button">{{ $Category->name }}</a></option>
                     @endforeach
                 </div>
             </div>
-            <a href="{{ url('/showroom ') }}" class="barDx w3-bar-item w3-button">Showroom</a>
+            <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
+                <a id="prodot" href="{{ url('/showroom ') }}" class="barDx w3-button">Showroom</a>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="{{ url('/showroom/pavimenti') }}" class="w3-bar-item w3-button">Pavimenti e Rivestimenti</a></option>
+                    <a href="{{ url('/showroom/cucine') }}" class="w3-bar-item w3-button">Cucine</a></option>
+                    <a href="{{ url('/showroom/bagni') }}" class="w3-bar-item w3-button">Bagni</a></option>
+                    <a href="{{ url('/showroom/porte') }}" class="w3-bar-item w3-button">Porte</a></option>
+                    <a href="{{ url('/showroom/caminetti') }}" class="w3-bar-item w3-button">Caminetti</a></option>
+                    <a href="{{ url('/showroom/falegnameria') }}" class="w3-bar-item w3-button">Falegnameria</a></option>
+                </div>
+            </div>
             @auth
             <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
                 <a href="{{ url('/profile') }}" class="barDxButt w3-button">{{Auth::user()->name}}</a>
@@ -32,11 +38,11 @@
                 <div class="w3-dropdown-content content-right w3-bar-block w3-card-4">
                     <?php $group = Auth::user()->group ?>
                     @if( $group == "Administrator" )
-                    <a href="{{ url('/admin/home ') }}" class="w3-button">DASHBOARD</a>
+                    <a href="{{ url('/admin/home ') }}" class="w3-bar-item w3-button">DASHBOARD</a>
 
                     @endif
-                    <a href="{{ url('/profile ') }}" class="w3-button">Profilo</a>
-                    <a href="{{ url('/logout') }}" class="w3-button">Log Out</a>
+                    <a href="{{ url('/profile ') }}" class="w3-bar-item w3-button">Profilo</a>
+                    <a href="{{ url('/logout') }}" class="w3-bar-item w3-button">Log Out</a>
                 </div>
             </div>
             @else

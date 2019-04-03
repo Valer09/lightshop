@@ -14,9 +14,13 @@ class ElementsShowRoom extends Model
 
     protected $table = 'elementsshowrooms';
 
-    protected $fillable = ['id','name','description', 'pathPhoto', 'linkBuy', 'nameSubCategory'
+    protected $fillable = ['id','name','description', 'pathPhoto', 'nameSubCategory'
 
     ];
+
+    public function get_photo_shoroom(){
+        return $this->hasMany('App\PhotoShowroom','element_id','id');
+    }
 
     public $timestamps = false;
 }

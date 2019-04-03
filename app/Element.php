@@ -12,7 +12,7 @@ class Element extends Model
    // protected $table = 'Elements';
 
     protected $fillable = [
-        'name', 'subcategories', 'availability','description'
+        'name', 'subcategories', 'availability','description','id'
     ];
 
     protected $guarded = ['price'];
@@ -34,6 +34,10 @@ class Element extends Model
 
     public function get_brand(){
         return $this->belongsTo('App\Brand');
+    }
+
+    public function get_photo(){
+        return $this->hasMany('App\PhotoElement','element_id','id');
     }
 
     public $timestamps = false;

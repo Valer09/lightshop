@@ -3,41 +3,24 @@
 @section('content')
 
 <!-- Sidebar/Filter -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="top: 49px;z-index:3;width:250px" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" style="top: 49px;z-index:3;width:250px" id="mySidebar">
     <div class="w3-center">
-        <a class="w3-row" href="{{ url('home') }}">
-            <span><i class="fa fa-angle-left"></i> Home</span>
-        </a>
         <a class="w3-row" href="{{ url('catalog') }}">
-            <span><i class="fa fa-angle-left"></i> Piastrelle<span> (332)</span>
+            <span><i class="fa fa-angle-left"></i> Catalogo</span>
         </a>
+        @if($Category[1] != null || $Category[1] != '')
+        <a class="w3-row" href="{{ url('catalog').$Category[0] }}">
+            <span><i class="fa fa-angle-left"></i> {{$Category[0]}}<span> (332)</span>
+        </a>
+        @endif
         <div class="w3-light-grey article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
+                    @foreach($Category[2] as $subcat)
                     <li class="active">
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-per-pavimenti/c/1150" wt_name="assortment_menu.level3">Piastrelle per pavimenti<span class="product-counter"> (69)</span></a>
+                        <a href="{{ url('catalog'.$Category[0], $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}<span class="product-counter"> (69)</span></a>
                     </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-da-rivestimento/c/786" wt_name="assortment_menu.level3">Piastrelle da rivestimento<span class="product-counter"> (36)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/bordure-e-zoccolini/c/1152" wt_name="assortment_menu.level3">Bordure e zoccolini<span class="product-counter"> (6)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/mosaici/c/572" wt_name="assortment_menu.level3">Mosaici<span class="product-counter"> (52)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/rivestimento-murale-e-placchette/c/481" wt_name="assortment_menu.level3">Rivestimento murale e placchette<span class="product-counter"> (34)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/pietre-naturali/c/1151" wt_name="assortment_menu.level3">Pietre naturali<span class="product-counter"> (50)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/piastrelle-decorative/c/1849" wt_name="assortment_menu.level3">Piastrelle decorative<span class="product-counter"> (38)</span></a>
-                    </li>
-                    <li>
-                        <a href="https://www.obi-italia.it/piastrelle/battiscopa-ceramici/c/1850" wt_name="assortment_menu.level3">Battiscopa ceramici<span class="product-counter"> (47)</span></a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -70,7 +53,11 @@
 
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
-        <p class="w3-left">Minuteria</p>
+        @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
+        <p class="w3-left">{{ $Category[0] }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
+        @else
+        <p class="w3-left">{{ $Category[0] }}</p>
+        @endif
         <p class="w3-right">
             <i class="fa fa-shopping-cart w3-margin-right"></i>
             <i class="fa fa-search"></i>
@@ -79,7 +66,7 @@
 
     <!-- Image header -->
     <div class="w3-display-container w3-container">
-        <img class="wa" src="./images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
+        <img class="wa" src="{{ asset ('storage')}}/images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
             <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
@@ -89,11 +76,36 @@
     </div>
 
     <div class="w3-container w3-text-grey" id="jeans">
-        <p>8 items</p>
+        <p>{{count($Elements)}} elementi</p>
     </div>
 
-    <!-- Product grid -->
-    <div class="w3-row w3-grayscale">
+    <!-- Product grid 
+    <div class="w3-row w3-grayscale">-->
+        {{!$conta = 1}}
+        @foreach($Elements as $el)
+            @if ($conta == 1)
+            <div class="w3-row w3-grayscale">
+            @endif
+                    <div class="w3-container w3-col l3">
+                        <div class="w3-display-container">
+                        <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
+                            <span class="w3-tag w3-display-topleft">New</span>
+                            <div class="w3-display-middle w3-display-hover">
+                                <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
+                                    <i class="fa fa-shopping-cart"></i></button>
+                            </div>
+                        </div>
+                        <p>{{ $el->name }}<br><b>€ {{ $el->price }}</b></p>
+                    </div>
+                    {{!$conta = $conta + 1}}
+
+            @if ($conta == 5)
+                </div>
+                {{!$conta = 1}}
+            @endif
+        @endforeach
+    </div>
+<!--ESEMPIOPOO
         <div class="w3-col l3 s6">
             <div class="w3-container">
                 <div class="w3-display-container">
@@ -188,5 +200,6 @@
                 <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
             </div>
         </div>
+-->
     </div>
 @stop

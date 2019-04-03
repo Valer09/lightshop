@@ -1,100 +1,138 @@
 @extends('layout.defaultLayout')
 
 @section('content')
+@php
+ $el = $Element[0];
+ $photos = App\Http\Controllers\gets_controller::photo_element_controller($el->id);
+ $brand = App\Http\Controllers\gets_controller::brand_controller($el->brand);
+@endphp
 
+<!--BIG DISPLAY-->
 <!-- !PAGE CONTENT! -->
-    <div class="w3-main w3-white" style="margin-top:49px; margin-left:260px">
+<div class="w3-row w3-hide-small w3-hide-medium" style="padding-top: 49px; min-height: 100%;">
+        <div class="l4 w3-container w3-padding-16" style="position: absolute; left: 0; bottom: 0; max-width: 33%">
+            <h1>{{$el->name}}</h1>
+            @if($brand->link != null || $brand->link != "")
+            <a target="_blank" href="{{$brand->link}}"><h4>{{ $el->brand }}</h4></a>
+            @endif
+            <span>Hans J. Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005. Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005.Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005.</span>
+        </div>
+        <div class="w3-col w3-display-topmiddle l4" style="max-width:500px; margin-top: 80px">          
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                @for($i=1; $i <= count($photos); $i++)
+                <li data-target="#myCarousel" data-slide-to="{{$i}}"></li>
+                @endfor
+                </ol>
 
-    <!-- Push down content on small screens -->
-    <div class="w3-hide-large" style="margin-top:80px"></div>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                <div class="item active" style=" height: 600px">
+                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}" style="height: 600px">
+                </div>
 
-    <!-- Slideshow Header -->
-    <div class="w3-container" id="apartment">
-    <h2 class="w3-text-green">Minuteria</h2>
-    <div class="w3-display-container mySlides">
-        <img src="./images/catalogo/bullone.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
-        <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Bullone</p>
-        </div>
-    </div>
-    <div class="w3-display-container mySlides">
-        <img src="./images/catalogo/bullone1.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
-        <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Dining Room</p>
-        </div>
-    </div>
-    <div class="w3-display-container mySlides">
-        <img src="./images/catalogo/bullone2.jpg" style="max-width: 500px; max-height: 500px; height:100%; margin-bottom:-6px">
-        <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Bedroom</p>
-        </div>
-    </div>
-    <div class="w3-display-container mySlides">
-        <img src="./images/catalogo/bullone3.jpg" style="max-width: 500px; max-height: 500px; height:100%;margin-bottom:-6px">
-        <div class="w3-display-bottomleft w3-container w3-black">
-        <p>Living Room II</p>
-        </div>
-    </div>
-    </div>
-    <div class="w3-row-padding w3-section">
-    <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone.jpg" style="width:100%;cursor:pointer"
-        onclick="currentDiv(1)" title="Living room">
-    </div>
-    <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone1.jpg" style="width:100%;cursor:pointer"
-        onclick="currentDiv(2)" title="Dining room">
-    </div>
-    <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone2.jpg" style="width:100%;cursor:pointer"
-        onclick="currentDiv(3)" title="Bedroom">
-    </div>
-    <div class="w3-col s3">
-        <img class="demo w3-opacity w3-hover-opacity-off" src="./images/catalogo/bullone3.jpg" style="width:100%;cursor:pointer"
-        onclick="currentDiv(4)" title="Second Living Room">
-    </div>
-    </div>
+                @foreach($photos as $photo)
+                <div class="item" style="height: 600px; overflow:hidden">
+                    <img class="w3-image" src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}" style="height: 600px;">
+                </div>
+                @endforeach
+                </div>
 
-    <div class="w3-container">
-    <h4><strong>Dettagli</strong></h4>
-    <div class="w3-row w3-large">
-        <div class="w3-col s6">
-        <p><i class="fa fa-fw fa-male"></i> Max people: 4</p>
-        <p><i class="fa fa-fw fa-bath"></i> Bathrooms: 2</p>
-        <p><i class="fa fa-fw fa-bed"></i> Bedrooms: 1</p>
+                <!-- Left and right controls -->
+                @if(!empty($photos) || count($photos) > 0)
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+                </a>
+                @endif
+            </div>
         </div>
-        <div class="w3-col s6">
-        <p><i class="fa fa-fw fa-clock-o"></i> Check In: After 3PM</p>
-        <p><i class="fa fa-fw fa-clock-o"></i> Check Out: 12PM</p>
+        <div class="l4 w3-container w3-center w3-padding-16" style="position: absolute; right: 0; bottom: 0;">
+            <div>
+                <p>Prezzo: {{$el->price}} €</p>
+                <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
+                    @csrf
+                    <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
+                    <button type="submit" class="w3-button w3-black">Aggiungi la carrello</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <hr>
+</div>
 
-    <h4><strong>Amenities</strong></h4>
-    <div class="w3-row w3-large">
-        <div class="w3-col s6">
-        <p><i class="fa fa-fw fa-shower"></i> Shower</p>
-        <p><i class="fa fa-fw fa-wifi"></i> WiFi</p>
-        <p><i class="fa fa-fw fa-tv"></i> TV</p>
+<!--SMALL AND MEDIUM-->
+<!-- !PAGE CONTENT! -->
+<div class="w3-hide-large" style="padding-top: 49px;">
+        <div class="w3-container" style="margin-top: 80px">          
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                @for($i=1; $i <= count($photos); $i++)
+                <li data-target="#myCarousel" data-slide-to="{{$i}}"></li>
+                @endfor
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                <div class="item active" style=" height: 600px">
+                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
+                </div>
+
+                @foreach($photos as $photo)
+                <div class="item" style=" height: 600px">
+                    <img src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
+                </div>
+                @endforeach
+                </div>
+
+                <!-- Left and right controls -->
+                @if(!empty($photos) || count($photos) > 0)
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+                </a>
+                @endif
+            </div>
         </div>
-        <div class="w3-col s6">
-        <p><i class="fa fa-fw fa-cutlery"></i> Kitchen</p>
-        <p><i class="fa fa-fw fa-thermometer"></i> Heating</p>
-        <p><i class="fa fa-fw fa-wheelchair"></i> Accessible</p>
+        <div class="w3-container w3-padding-16">
+            <h1>{{$el->name}}</h1>
+            @if($brand->link != null || $brand->link != "")
+            <a target="_blank" href="{{$brand->link}}"><h4>{{ $el->brand }}</h4></a>
+            @endif
+            <span>Hans J. Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005. Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005.Wegner designed the stackable Elbow Chair in 1956. After crafting two prototypes, he set the
+                production-intensive chair design aside in his archives, where it remained for nearly half a century
+                until it was brought back to life in 2005.</span>
         </div>
-    </div>
-    <hr>
+        <div class="w3-container w3-center w3-padding-16">
+            <div>
+                <p>Prezzo: {{$el->price}} €</p>
+                <form method="post">
+                    @csrf
+                    <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
+                    <button type="button" class="w3-button w3-black">Aggiungi la carrello</button>
+                </form>
+            </div>
+        </div>
+</div>
 
-    <h4><strong>Extra Info</strong></h4>
-    <p>Our apartment is really clean and we like to keep it that way. Enjoy the lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i>
-        <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
-
-    </div>
-    <hr>
-
-    <!-- End page content -->
-    </div>
 @stop

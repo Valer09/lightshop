@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
-    protected $fillable = ['name', 'link', 'description'];
+    protected $fillable = ['name'];
 
 
     public function get_elements(){
