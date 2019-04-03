@@ -58,17 +58,22 @@ class ElementsController extends Controller
     }
 
     public function getCheckout(){
-        if(!Session::has('cart')){
-            return view('cart');
-        }
-        $oldCart=Session::get('cart');
-        $cart= new Cart($oldCart);
-        $total=$cart->totalPrice;
-        //indirizzo preferito di spedizione
-        $id=Auth::user()->address_id;
-        $address = Address::find($id);
+        if(Auth::check()) {
+            if(!Session::has('cart')){
+                return view('cart');
+            }
+            $oldCart=Session::get('cart');
+            $cart= new Cart($oldCart);
+            $total=$cart->totalPrice;
+            //indirizzo preferito di spedizione
+            $id=Auth::user()->address_id;
+            $address = Address::find($id);
 
-        return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address]);
+            return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address]);
+        } else {
+            return redirect('login');
+        }
+        
     }
 }
 
