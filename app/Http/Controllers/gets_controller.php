@@ -42,7 +42,7 @@ class gets_controller extends Controller
                     //dd($elementFin);
                 }
             } else {
-                dd('2');
+                //dd('2');
                 $elementFin = DB::select('select * from elements where subcategories = ?', [$id]);
 
             }
