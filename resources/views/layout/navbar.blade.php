@@ -38,11 +38,11 @@
                 <div class="w3-dropdown-content content-right w3-bar-block w3-card-4">
                     <?php $group = Auth::user()->group ?>
                     @if( $group == "Administrator" )
-                    <a href="{{ url('/admin/home ') }}" class="w3-button">DASHBOARD</a>
+                    <a href="{{ url('/admin/home ') }}" class="w3-bar-item w3-button">DASHBOARD</a>
 
                     @endif
-                    <a href="{{ url('/profile ') }}" class="w3-button">Profilo</a>
-                    <a href="{{ url('/logout') }}" class="w3-button">Log Out</a>
+                    <a href="{{ url('/profile ') }}" class="w3-bar-item w3-button">Profilo</a>
+                    <a href="{{ url('/logout') }}" class="w3-bar-item w3-button">Log Out</a>
                 </div>
             </div>
             @else
