@@ -216,6 +216,9 @@ class insertionController extends Controller
         $address-> user_id = Auth::user()->id;
         
         $address->save();
+        
+        //stellina preferito
+        general_edit_controller::address_star($address->id);
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));

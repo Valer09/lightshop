@@ -12,14 +12,6 @@ use Auth;
 
 class ElementsController extends Controller
 {
-
-    public function getindex()
-    {
-        $Elements = Element::all();
-        return view('catalog', ['Elements' => $Elements]);
-    }
-
-
     public function showElements()
     {
         $menus = Element::all();

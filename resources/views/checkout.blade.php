@@ -8,10 +8,44 @@
             <span><b>1. Indirizzo di spedizione</b></span>
         </div>
         <div class="w3-col l4">
+        @if($address != null)
             <p>A: {{ $address->NomeCognome }}</p>
             <p>{{ $address->street }}, {{ $address->street_number }}</p>
             <p>{{ $address->city }}, {{ $address->Provincia }} {{ $address->CAP }}</p>
             <p>{{ $address->country }}</p>
+        @else
+        <form type="submit" method="post" action="{{URL::to('/address_insertion_submit')}}?ref={{$_SERVER['REQUEST_URI']}}">
+                    @csrf
+                    <div class="w3-padding">
+                        <div class="w3-row">
+                            <label>Nome e cognome del Destinatario</label>
+                            <input placeholder="Nome e cognome" type="text" name="NomeCognome" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Indirizzo</label>
+                            <input placeholder="Indirizzo" type="text" name="street" required>
+                            <label>Civico</label>
+                            <input placeholder="Civico" type="text" name="street_number">
+                        </div>
+
+                        <div class="w3-row">
+                            <label>Citta</label>
+                            <input placeholder="Città" type="text" name="city" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
+                            <label>CAP</label>
+                            <input placeholder="CAP" type="text" name="CAP" id="newCap" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Provincia</label>
+                            <input placeholder="Provincia" type="text" name="Provincia" id="newProvincia" required>
+                        </div>
+                        <div class="w3-row">
+                            <label>Stato</label>
+                            <input placeholder="Stato" type="text" name="country" required>
+                            <button class="w3-right" type="submit">Salva</button>
+                        </div>
+                    </div>
+                </form>
+        @endif
         </div>
         <div class="w3-col l4">
             <a href="{{ url('profile#spedizione') }}"><p>Seleziona un altro indirizzo preferito</p></a>
