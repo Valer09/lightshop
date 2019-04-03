@@ -35,7 +35,7 @@ class Cart
         }
         $this->totalPrice = $tot;
         $this->totalQty = $quant;
-        //dd($this);
+
      }
 
      public function del($id){
@@ -52,6 +52,9 @@ class Cart
         }
         $this->totalPrice = $tot;
         $this->totalQty = $quant;
-        //dd($this);
+
      }
+    // public function decrease(){
+    // $storedItem['qty'] == --$quantity;
+    //}
 }
