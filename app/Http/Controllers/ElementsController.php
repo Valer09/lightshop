@@ -75,6 +75,15 @@ class ElementsController extends Controller
         }
         
     }
+
+    public function delToCart(request $request, $id) {
+        $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->del($id);
+
+        $request->session()->put('cart', $cart);
+        return redirect('shopping-cart');
+    }
 }
 
 

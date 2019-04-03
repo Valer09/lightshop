@@ -8,10 +8,9 @@
         <div class="w3-card">
             <div class="w3-black w3-center"><h2>CARRELLO</h2></div>
         </div>
-
         <div class="w3-card">
             <!--ELEMENTO 1 DEL CARRELLO-->
-            @if(Session::has('cart'))
+            @if(Session::has('cart') && count($elements) > 0 )
             @foreach($elements as $el)
             <div class="w3-padding w3-row">
                 <div class="fotoCarrello w3-container w3-quarter" style="max-width: 150px">
@@ -21,6 +20,7 @@
                     <h5><b>{{ $el['item']->name }}</b></h5>
                     <P>{{ $el['item']->description }}</P>
                     <P>Quantità: {{ $el['qty'] }} pz</P>
+                    <div class="w3-right"><a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a></div>
                 </div>
             </div>
             @endforeach
@@ -34,7 +34,7 @@
         
     </div>
     <!--TOTALE-->
-    @if(Session::has('cart'))
+    @if(Session::has('cart') && count($elements) > 0 )
     <div class="w3-container w3-third w3-black">   
     <h1>Riepilogo</h1>
         <div class="boxTotale w3-row">
@@ -54,6 +54,6 @@
         </div>
     </div>
     @endif
-</div><!-- End PAGE CONTENT -->
+</div><!-- End PAGE CONTENT --> 
 
 @endsection

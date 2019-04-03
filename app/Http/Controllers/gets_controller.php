@@ -29,23 +29,36 @@ class gets_controller extends Controller
     }
 
     public function catalog_controller($id) {
-        if(!empty($id) || $id != null){
-        $cate = DB::select('select name from subcategories where category = ?', [$id]);
-        
-        $name = $cate[0]->name;
-        if($cate != null)
-            $element = DB::select('select * from elements where subcategories = ?', [$name]);
+        $name = null;
+        $elementFin = array();
+        if(isset($id) && $id != ''){
+            $cate = DB::select('select name from subcategories where category = ?', [$id]);
+            //dd($cate);
+            if(isset($cate) && $cate != null) {
+                //dd('1');
+                foreach ($cate as $nameSubat) {
+                    $element = DB::select('select * from elements where subcategories = ?', [$nameSubat->name]);
+                    $elementFin = array_merge($elementFin, $element);
+                    //dd($elementFin);
+                }
+            } else {
+                dd('2');
+                $elementFin = DB::select('select * from elements where subcategories = ?', [$id]);
+
+            }
+                
             $array[0] = $id;
             $array[1] = null;
             $array[2] = $cate;
-            return view('catalog', ['Elements' => $element], ['Category' => $array]);
+            return view('catalog', ['Elements' => $elementFin], ['Category' => $array]);
+            
         } else {
             return view('catalog_navigation');
         }
     }
 
     public function catalog_sub_controller($id, $sub) {
-        if(!empty($sub) || $sub != null) {
+        if(isset($sub) || $sub != '') {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $element = DB::select('select * from elements where subcategories = ?', [$sub]);
             $array[0] = $id;

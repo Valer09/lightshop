@@ -219,6 +219,11 @@ Route ::post('/add-to-cart/{id}',[
    'as'=>'Element.addToCart',]
 );
 
+Route ::get('/del-to-cart/{id}',[
+    'uses'=> 'ElementsController@delToCart',
+       'as'=>'Element.delToCart',]
+);
+
  Route:: get('/shopping-cart',[
     'uses'=> 'ElementsController@getCart',
     'as'=>'Element.shoppingCart'
@@ -269,12 +274,6 @@ Route::get('/inside', function () {
 
 
 //----------POST Methods---------------------//
-
-//--post-get--//
-
-
-
-//--post-get--/
 
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');

@@ -37,4 +37,21 @@ class Cart
         $this->totalQty = $quant;
         //dd($this);
      }
+
+     public function del($id){
+        if($this->items){
+            if(array_key_exists($id, $this->items)){
+                unset($this->items[$id]);
+            }
+        }
+        $tot = 0;
+        $quant = 0;
+        foreach($this->items as $item) {
+            $tot += $item['price'];
+            $quant += $item['qty'];
+        }
+        $this->totalPrice = $tot;
+        $this->totalQty = $quant;
+        //dd($this);
+     }
 }
