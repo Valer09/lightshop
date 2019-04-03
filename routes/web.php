@@ -239,10 +239,6 @@ Route::get('/checkout',[
 'as'=>'checkout'
 ]);
 
-//Route::post('/checkout',[
-//  'uses'=>'elementscontroller@postcheckout',
-//    'as'=>'checkout'
-//]);
 
 
 

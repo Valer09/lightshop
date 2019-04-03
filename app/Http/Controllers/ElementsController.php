@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category, App\Subcategory, App\Element, App\Cart, App\Address;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+
 
 use Session;
 use Auth;
@@ -42,7 +42,7 @@ class ElementsController extends Controller
         $cart->add($element, $element->id, $request->quantity);
 
         $request->session()->put('cart', $cart);
-//dd($request->session()->get('cart'));
+
         return redirect('catalog');
     }
 
@@ -65,7 +65,7 @@ class ElementsController extends Controller
             $oldCart=Session::get('cart');
             $cart= new Cart($oldCart);
             $total=$cart->totalPrice;
-            //indirizzo preferito di spedizione
+
             $id=Auth::user()->address_id;
             $address = Address::find($id);
 
