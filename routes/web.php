@@ -203,8 +203,9 @@ Route::group(['prefix' => 'admin'], function(){
         return view('backAdmin/users');
     });
 
-
-
+    Route::get('/couriers', function(){
+        return view('backAdmin/couriers');
+    });
 
 });
 

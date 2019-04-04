@@ -10,7 +10,7 @@
         <a href="{{url('/#contact')}}" class="barDx w3-bar-item w3-button">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right ">
-            <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') ? Session::get('cart')->totalQty : ''}}</a>
+            <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item w3-button"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : ''}}</a>
             <div class="w3-dropdown-hover w3-bar-item" style="padding: 0 0 0 0;">
                 <a id="prodot" href="{{ url('/catalog ') }}" class="barDx w3-button">Prodotti</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
