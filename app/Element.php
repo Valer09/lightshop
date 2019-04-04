@@ -40,6 +40,14 @@ class Element extends Model
         return $this->hasMany('App\PhotoElement','element_id','id');
     }
 
+    public static function deleteAll($el){
+        $path = str_replace("/","\\", $el->pathPhoto);
+        unlink(public_path('storage'.$path));
+
+        Element::where('id', $el->id)->delete();
+    }
+
+
     public $timestamps = false;
 
 }

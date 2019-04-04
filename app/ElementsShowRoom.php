@@ -23,4 +23,11 @@ class ElementsShowRoom extends Model
     }
 
     public $timestamps = false;
+
+    public static function deleteAll($el){
+        $path = str_replace("/","\\", $el->pathPhoto);
+        unlink(public_path('storage'.$path));
+
+        ElementShowRoom::where('id', $el->id)->delete();
+    }
 }

@@ -14,4 +14,17 @@ class PhotoShowroom extends Model
         return $this->hasOne('App\ElementsShowRoom','element_id');
     }
 
+    public static function deleteAll($id_element){
+        $arrayPhoto = PhotoShowroom::where('element_id', $id_element)->get();
+        
+        if(isset($arrayPhoto)){
+            foreach($arrayPhoto as $pho) {
+                $path = str_replace("/","\\",$pho->path);
+                unlink(public_path('storage'.$path));
+            }  
+        }
+
+        PhotoShowroom::where('element_id', $id_element)->delete();
+    }
+
 }

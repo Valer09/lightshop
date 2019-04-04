@@ -18,15 +18,6 @@ function soffietto(id, idButton) {
     }
 }
 
-// open modale
-function openModal(idModale, idProdotto, nome, descr, category) {
-    document.getElementById('idMod').value = idProdotto.toString();
-    document.getElementById('nomeMod').value = nome.toString();
-    document.getElementById('descrMod').value = descr.toString();
-    document.getElementById('catMod').value = category.toString();
-    document.getElementById(idModale).style.display = 'block';
-}
-
 //close modal
 function closeModal(idModale) {
     document.getElementById(idModale).style.display = 'none';
@@ -83,3 +74,25 @@ function openAlert() {
 }
 
 openAlert()
+
+
+function openModalAdmin(id, el, show) {
+    if(show == null) {
+        document.getElementById('brandModal').value = el['brand'];
+        document.getElementById('nameModal').value = el['name'];
+        document.getElementById('descriptionModal').value = el['description'];
+        document.getElementById('subcategoryModal').value = el['subcategories'];
+        document.getElementById('priceModal').value = el['price'];
+        document.getElementById('quantityModal').value = el['availability'];
+        document.getElementById('element_idModal').value = el['id'];
+        document.getElementById(id).style.display = 'block';
+    } else {
+        document.getElementById('idMod').value = show['id'];
+        document.getElementById('nomeMod').value = show['name'];
+        document.getElementById('descrMod').value = show['description'];
+        document.getElementById('catMod').value = show['nameSubCategory'];
+        document.getElementById('linkMod').value = show['linkBuy'];
+        document.getElementById(id).style.display = 'block';
+    }
+    
+}
