@@ -84,6 +84,29 @@ class ElementsController extends Controller
         $request->session()->put('cart', $cart);
         return redirect('shopping-cart');
     }
+
+  //  public function getincreased($id,$quantity)
+
+    //{
+
+    //    $element = Element::find($id);
+      //  $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+        //$cart = new Cart($oldCart);
+        //$cart->add($element, $element->id);
+        //$quantity->add(++$quantity);
+    //}
+
+    //public function getdecreased($id,$quantity)
+
+    //{
+
+      //  $element = Element::find($id);
+       // $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+        //$cart = new Cart($oldCart);
+        //$cart->add($element, $element->id);
+        //$quantity->add(--$quantity);
+
+    //}
 }
 
 

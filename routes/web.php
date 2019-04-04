@@ -229,10 +229,21 @@ Route ::get('/del-to-cart/{id}',[
     'as'=>'Element.shoppingCart'
 ]);
 
+ //Route :: get('/increase-quantity',[
+   //  'uses'=> 'ElementsController@getincreased',
+     //'as'=>'Element.shoppingcart'
+ //]);
+
+//Route :: get('/decrease-quantity',[
+  //  'uses'=> 'ElementsController@getdecreased',
+    //'as'=>'Element.shoppingcart'
+//]);
+
 //------END SHOPPING CART SESSION-------//
 
 
 //-------CHECK OUT SESSION-----------//
+
 
 Route::get('/checkout',[
 'uses'=>'ElementsController@getCheckout',

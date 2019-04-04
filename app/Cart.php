@@ -54,7 +54,12 @@ class Cart
         $this->totalQty = $quant;
 
      }
-    // public function decrease(){
-    // $storedItem['qty'] == --$quantity;
+
+    // public function decrease($quantity){
+    // $storedItem['qty'] =--$quantity;
+    //}
+
+    // public function increase($quantity){
+    // $storedItem['qty'] =++$quantity;
     //}
 }
