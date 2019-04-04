@@ -12,15 +12,19 @@
             <!--ELEMENTO 1 DEL CARRELLO-->
             @if(Session::has('cart') && count($elements) > 0 )
             @foreach($elements as $el)
-            <div class="w3-padding w3-row">
-                <div class="fotoCarrello w3-container w3-quarter" style="max-width: 150px">
-                    <img style="max-width: 150px" src="{{ asset('storage').$el['item']->pathPhoto }}">
+            <div class="divCarrelloEl w3-padding w3-row">
+                <div class="fotoCarrello w3-quarter">
+                    <img class="w3-image" src="{{ asset('storage').$el['item']->pathPhoto }}">
                 </div> 
-                <div class="w3-container w3-rest">
+                <div class="w3-container w3-half">
                     <h5><b>{{ $el['item']->name }}</b></h5>
                     <P>{{ $el['item']->description }}</P>
                     <P>Quantità: {{ $el['qty'] }} pz</P>
-                    <div class="w3-right"><a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a></div>
+                </div>
+                <div class="w3-container w3-quarter w3-right w3-center">
+                    <a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a>
+                    <button class="w3-button" onclick="location.href='{{url('element/').$el['item']->id,$el['qty']}}'">+</button>
+                    <button class="w3-button" onclick="location.href='{{url('element/').$el['item']->id,$el['qty']}}'">-</button>
                 </div>
             </div>
             @endforeach
