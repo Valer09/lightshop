@@ -24,15 +24,66 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        <a href={{url('/admin/home')}} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/home"))
+        <a href="{{url('/admin/home')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
+        @else
+        <a href="{{url('/admin/home')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>  Home</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/orders"))
+        <a href="{{url('admin/orders')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
+        @else
         <a href="{{url('admin/orders')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-clock-o fa-fw"></i>  Ordini</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/products"))
+        <a href="{{url('admin/products')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
+        @else
         <a href="{{url('admin/products')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/news"))
+        <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bell fa-fw"></i>  News</a>
+        @else
         <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
+        @endif
+
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/categories"))
+        <a href="{{url('admin/categories')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
+        @else
         <a href="{{url('admin/categories')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/showroomAdmin"))
+        <a href="{{url('admin/showroomAdmin')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-book fa-fw"></i>  Showroom</a>
+        @else
         <a href="{{url('admin/showroomAdmin')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Showroom</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/orderscompleted"))
+        <a href="{{url('admin/orderscompleted')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
+        @else
         <a href="{{url('admin/orderscompleted')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/couriers"))
+        <a href="{{url('admin/couriers')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-truck fa-fw"></i>  Corrieri</a>
+        @else
+        <a href="{{url('admin/couriers')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-truck fa-fw"></i>  Corrieri</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/users"))
+        <a href="{{url('admin/users')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Utenti</a>
+        @else
         <a href="{{url('admin/users')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Utenti</a>
+        @endif
+
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/settings"))
+        <a href="{{url('admin/settings')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cog fa-fw"></i>  Impostazione</a><br><br>
+        @else
         <a href="{{url('admin/settings')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Impostazione</a><br><br>
+        @endif
     </div>
 </nav>
 
