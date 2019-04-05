@@ -16,7 +16,7 @@
                 @foreach($Category as $Category)
                     <!--FORM PULSANTE DI ELIMINAZIONE-->
                     <div class="w3-row" style="padding-right: 16px">
-                        <div class="w3-right w3-col"  style="width: 58px">
+                        <div class="w3-right w3-col"  style="width: auto;">
                             <form method="post" id="cancellaCat{{$Category->name}}" action="{{URL::to('/category_deletion_submit')}}">
                                 @csrf
                                 <input style="display: none" name="category" class="form-control" type="text" value="{{ $Category->name}}">
@@ -33,8 +33,6 @@
                         </div>
                     </div>
 
-                    
-
                     <div id="{{$Category->name}}" class="cardCategorie w3-hide w3-container w3-light-grey"> 
                         @foreach($Subcategorylist as $Subcategory)
                         @if ($Subcategory->category == $Category->name)
@@ -49,7 +47,12 @@
                             </div>
                         @endif
                         @endforeach
-                        <p style="margin-top: 0px"><button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button></p>
+                        <p style="margin-top: 0px">
+                            <button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button>
+                            <label class="w3-button w3-right">Foto categoria: <input type="file" class="" onclick="location.href='#'"></label>
+                            
+                        </p>
+                
                     </div>
                 @endforeach
  

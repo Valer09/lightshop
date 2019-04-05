@@ -15,7 +15,11 @@ class ModColumnUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('PEC')->nullable()->default(null)->change();
-            $table->string('CF')->default(null)->change();
+            $table->string('CF')->change();
+        });
+
+        Schema::table('categories', function (Blueprint $table) {
+            $table->string('pathPhoto')->nullable();
         });
     }
 
