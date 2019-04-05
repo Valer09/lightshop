@@ -54,7 +54,7 @@
         <p>Questa è una lista degli articoli attualmente visibili in showroom.</p>
         <p>Clicca su un elemento della lista per visualizzare più informazioni o modificarle.</p>
         <hr>
-        <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="myFunction()">
+        <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="finderElement()">
 
         <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
             <table class="w3-table-all w3-margin-top" id="myTable">
