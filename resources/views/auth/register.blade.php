@@ -1,11 +1,9 @@
 @extends('layout.defaultLayout')
-
 @section('content')
     <!--CONTENT PAGE-->
     <div class="w3-container w3-row" style="margin-top:65px">
         
         <div class="w3-container w3-half">
-
         </div>
 
         <!--REGISTER-->
@@ -78,12 +76,12 @@
                             <div class="w3-row w3-margin-bottom">
                                 <label><i class="fa fa-user"></i> {{ __('PEC') }}</label>
                                 <input id="pec" class="w3-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text"
-                                       name="PEC" value="PEC " required>
+                                       name="PEC" value="PEC ">
 
                             </div>
                             <div class="w3-row w3-margin-bottom">
                                 <label><i class="fa fa-user"></i> Ripeti pec</label>
-                                <input class="w3-input" type="text"  name="CheckIn" required>
+                                <input class="w3-input" type="text"  name="CheckIn">
                             </div>
 
 
@@ -109,25 +107,4 @@
         </div>
     </div>    
     
-    <!-- SCRIPT -->
-    <script>
-        carousel();
-        aggiungiFoto("slider", "bagno")
-        
-        function aggiungiFoto(id, tipoFoto)
-        {
-            var mio_div = null;
-            var nuovoDiv = null;
-            for (i = 0; i < 5; i++) {
-                // crea un nuovo elemento DIV
-                // e gli assegna un contenuto
-                nuovoDiv = document.createElement("div");
-                nuovoDiv.innerHTML = "<div class=\"mySlides w3-display-container w3-center\"><img src=\"../Foto sito/"+ tipo + "/" + tipo + " (" + numero + ")" + "\" style=\"width:90%\" alt=\"image\"><div class=\"w3-display-middle  w3-margin-top w3-center w3-hide-small\"><h1 class=\"w3-xxlarge w3-text-white\"><span class=\"w3-padding w3-black w3-opacity-min\"><b>Visca s.n.c.</b></span></h1><span class=\"w3-hide-small w3-text-light-grey\">di Visca Lucio e Filiberto</span></div></div>";
-            } 
-            
-            // aggiunge l'elemento appena creato e il suo contenuto al DOM
-            mio_div = document.getElementById(id);
-            document.body.insertBefore(nuovoDiv, mio_div);
-        }
-    </script>
-@stop
+@endsection
