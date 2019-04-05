@@ -8,6 +8,7 @@ class Cart
     public $totalQty = 0;
     public $totalPrice = 0;
 
+
     public function __construct($oldCart){
        if($oldCart) {
             $this->items = $oldCart->items;
@@ -55,11 +56,27 @@ class Cart
 
      }
 
-    // public function decrease($quantity){
-    // $storedItem['qty'] =--$quantity;
-    //}
+    public function decrease($item,$id){
 
-    // public function increase($quantity){
-    // $storedItem['qty'] =++$quantity;
-    //}
+        $storedItem=$this->items[$id];
+        $storedItem['qty']--;
+        $storedItem['price']=$item->price * $storedItem['qty'];
+        $this->items[$id]=$storedItem;
+        $this->totalQty--;
+        $this->totalPrice -=$item->price;
+
+
+    }
+
+     public function increase($item,$id){
+
+         $storedItem=$this->items[$id];
+         $storedItem['qty']++;
+         $storedItem['price']=$item->price * $storedItem['qty'];
+         $this->items[$id]=$storedItem;
+         $this->totalQty++;
+         $this->totalPrice +=$item->price;
+
+
+     }
 }

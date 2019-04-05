@@ -230,15 +230,15 @@ Route ::get('/del-to-cart/{id}',[
     'as'=>'Element.shoppingCart'
 ]);
 
- //Route :: get('/increase-quantity',[
-   //  'uses'=> 'ElementsController@getincreased',
-     //'as'=>'Element.shoppingcart'
- //]);
+ Route :: get('/get-increased/{id}',[
+     'uses'=> 'ElementsController@getincreased',
+     'as'=>'Element.getincreased'
+ ]);
 
-//Route :: get('/decrease-quantity',[
-  //  'uses'=> 'ElementsController@getdecreased',
-    //'as'=>'Element.shoppingcart'
-//]);
+Route :: get('get-decreased/{id}',[
+    'uses'=> 'ElementsController@getdecreased',
+    'as'=>'Element.getdecreased'
+]);
 
 //------END SHOPPING CART SESSION-------//
 

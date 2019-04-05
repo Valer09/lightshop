@@ -10,6 +10,7 @@ use Session;
 use Auth;
 
 
+
 class ElementsController extends Controller
 {
     public function showElements()
@@ -85,28 +86,31 @@ class ElementsController extends Controller
         return redirect('shopping-cart');
     }
 
-  //  public function getincreased($id,$quantity)
+    public function getincreased(request $request,$id)
 
-    //{
+    {
+        $element = Element::find($id);
+        $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->increase($element, $element->id);
 
-    //    $element = Element::find($id);
-      //  $oldCart = Session::has('cart') ? Session:: get('cart') : null;
-        //$cart = new Cart($oldCart);
-        //$cart->add($element, $element->id);
-        //$quantity->add(++$quantity);
-    //}
+        $request->session()->put('cart', $cart);
 
-    //public function getdecreased($id,$quantity)
+        return redirect('shopping-cart');
+    }
 
-    //{
+    public function getdecreased(request $request,$id)
 
-      //  $element = Element::find($id);
-       // $oldCart = Session::has('cart') ? Session:: get('cart') : null;
-        //$cart = new Cart($oldCart);
-        //$cart->add($element, $element->id);
-        //$quantity->add(--$quantity);
+    {
+        $element = Element::find($id);
+        $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->decrease($element, $element->id);
 
-    //}
+        $request->session()->put('cart', $cart);
+
+        return redirect('shopping-cart');
+    }
 }
 
 
