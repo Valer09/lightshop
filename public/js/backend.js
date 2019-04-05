@@ -51,14 +51,20 @@ function finderElement() {
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+        td_temp = tr[i].getElementsByTagName("td");
+        //RICERCA NEL 1,2,3 e 4 CAMPO
+        for (j = 1; j <= 4; j++) {
+            td = td_temp[j];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
         }
+
     }
 }
 
@@ -77,7 +83,7 @@ openAlert()
 
 
 function openModalAdmin(id, el, show) {
-    if(show == null) {
+    if (show == null) {
         document.getElementById('brandModal').value = el['brand'];
         document.getElementById('nameModal').value = el['name'];
         document.getElementById('descriptionModal').value = el['description'];
@@ -94,5 +100,5 @@ function openModalAdmin(id, el, show) {
         document.getElementById('linkMod').value = show['linkBuy'];
         document.getElementById(id).style.display = 'block';
     }
-    
+
 }
