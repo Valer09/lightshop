@@ -177,11 +177,25 @@ class insertionController extends Controller
 
         return view('test');
     }
+
     public function insert_category(Request $request){
 
         $category =  new Category;
         $category->name = $request->name;
         $category->save();
+
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+    }
+
+    public function insert__photo_category(Request $request, $name){
+
+        $name=$request->file_name->getClientOriginalName();
+        $request->file('file_name')->storeAs('/images/siteImg',$name ,'public');
+        $pathPhoto = "/images/siteImg/$name";
+
+        Category::where('name', $name)->update(array('pathPhoto' => $pathPhoto));
 
         $path = $request-> ref;
         $path = substr($path, 1, strlen($path));

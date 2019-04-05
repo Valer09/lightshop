@@ -49,7 +49,10 @@
                         @endforeach
                         <p style="margin-top: 0px">
                             <button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button>
-                            <label class="w3-button w3-right">Foto categoria: <input type="file" class="" onclick="location.href='#'"></label>
+                            <form method="post" action="{{ route('add_photo_category').$Category->name}}">
+                                <label class="w3-button w3-right">Foto categoria: <input type="file" name="file_name"></label>
+                                <button type="submit">
+                            </form>
                             
                         </p>
                 
