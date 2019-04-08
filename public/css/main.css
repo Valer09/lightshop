@@ -89,7 +89,7 @@ a.w3-bar-item:hover{
 .w3-button{
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
-    color: white !important;
+    color: black !important;
 }
 
 .w3-button:hover{
