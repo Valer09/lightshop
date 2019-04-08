@@ -23,27 +23,30 @@ body {
     padding-top: 12px;
     text-align: center;
     line-height: 2;
+    color: white!important;
+    text-shadow: 3px 2px 10px black;
 }
 
 .barDxButt{
     font-family: 'Roboto', sans-serif;
-    background-color: #ffffff !important;
-    color: #2c993f !important;
     font-size: 17px;
+    color: white !important;
     letter-spacing: 0.5px;
     height: 49px;
     padding-top: 12px;
     text-align: center;
     line-height: 2;
+    text-shadow: 3px 2px 10px black;
 }
 
 .barSx{
     font-family: 'Roboto', sans-serif;
-    color: #2e2e2e !important;
+    color: white !important;
     font-size: 22px;
     letter-spacing: 3px;
     text-align: center;
     height: 49px;
+    text-shadow: 3px 2px 10px black;
 }
 
 .barDxM{
@@ -76,7 +79,6 @@ body {
 
 a.w3-bar-item{
     font-family: 'Roboto', sans-serif;
-    color: #757575 !important;
 }
 
 a.w3-bar-item:hover{
@@ -87,7 +89,7 @@ a.w3-bar-item:hover{
 .w3-button{
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
-    color: #757575 !important;
+    color: white !important;
 }
 
 .w3-button:hover{
