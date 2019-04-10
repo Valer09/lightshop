@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NameCourier extends Model
 {
+    protected $table = 'couriers_name';
     protected $fillable = ['name'];
 
 

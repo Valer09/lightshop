@@ -87,7 +87,11 @@
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
                     <td><b>{{ $el->name }}</b></td>
                     <td>{{ $el->brand }}</td>
+                    @if(strlen($el->description) > 190)
+                    <td>{{ substr($el->description, 0, 190).'...' }}</td>
+                    @else                    
                     <td>{{ $el->description }}</td>
+                    @endif
                     <td>{{ $el->subcategories }}</td>
                     <td>{{ $el->availability }} unit/g</td>
                     <td>€ {{ $el->price }}</td>

@@ -4,25 +4,25 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <!--TITOLO DELLA PAGINE-->
     <div class="w3-container w3-blue-grey">
-        <h1>Aggiungi un nuovo Corriere</h1>
-        <p>Utilizza questa form per aggingere un nuovo corriere.</p>
-        <form class="w3-container" method="post" action="{{URL::to('###')}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data" >
+        <h1>Aggiungi un nuova spedizione </h1>
+        <p>Utilizza questa form per aggingere un nuova spedizione.</p>
+        <form class="w3-container" method="post" action="{{URL::to('/add_new_sped')}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data" >
             @csrf
             <div class="w3-row w3-container">
                 <div class="w3-col m6 w3-light-grey w3-center">
-                    <p>Dati nuovo corriere</p>
-                    <select class="w3-select" name="brand" type="text" placeholder="Marca">
+                    <p>Dati nuova spedizione. <button onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</button></p>
+                    <select class="w3-select" name="courier" type="text" placeholder="Marca">
                         <option disabled selected>Selezione il Corriere</option>
                         @php
-                        $couriers = \App\Courier::all()
+                        $couriers = \App\NameCourier::all()
                         @endphp
                         @foreach ($couriers as $courier)
-                            <option>{{ $courier->courier_name}}</option>
+                            <option>{{ $courier->name}}</option>
                         @endforeach
                             <option onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</option>
                     </select>
-                    <input class="w3-input" name="min_weidth" type="text" placeholder="Peso minimo per collo" required>
-                    <input class="w3-input" name="max_weidth" type="text" placeholder="Peso massimo per collo" required>
+                    <input class="w3-input" name="min_weidth" type="text" placeholder="Peso minimo per collo (kg)" required>
+                    <input class="w3-input" name="max_weidth" type="text" placeholder="Peso massimo per collo (kg)" required>
                 </div>
 
 
@@ -53,21 +53,24 @@
         <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
             <table class="w3-table-all w3-margin-top" id="myTable">
                 <tr>
-                    <th style="width:20%;">Corriere</th>
+                    <th style="width:0%;"></th>
+                    <th style="width:40%;">Corriere</th>
                     <th style="width:20%;">Peso collo</th>
                     <th style="width:20%;">Prezzo</th>
                     <th style="width:20%;">Tempi di consegna</th>
-                    <th style="width:20%;">Link tracking</th>
                 </tr>
 
                 <!--LISTA DEI PRODOTTI blade-->
-                @foreach($couriers as $courier)
+                @php
+                $speds = \App\Courier::all()
+                @endphp
+                @foreach($speds as $sped)
                 <tr onclick="document.getElementById('id01').style.display='block'">
-                    <td><b>{{ $courier->courier_name }}</b></td>
-                    <td>{{ $courier->courier_name }}</td>
-                    <td>{{ $courier->courier_name }}</td>
-                    <td>{{ $courier->courier_name }}</td>
-                    <td>{{ $courier->link }}</td>
+                    <td></td>
+                    <td><b>{{ $sped->courier_name }}</b></td>
+                    <td>{{ $sped->pesomin }} - {{ $sped->pesomax }} kg</td>
+                    <td>{{ number_format($sped->price, 2, ',', '.') }} €</td>
+                    <td>{{ $sped->stima_giorni }} gg</td>
                 </tr>
                 @endforeach
 
@@ -83,7 +86,7 @@
             <span onclick="closeModal('nuovoCorriere');" class="w3-button w3-display-topright">&times;</span>
             <h2>Nuovo Corriere</h2>
         </header>
-        <form type="submit" method="post" action="{{URL::to('/insert_new_brand')}}?ref={{$_SERVER['REQUEST_URI']}}">
+        <form type="submit" method="post" action="{{URL::to('/insert_courier')}}?ref={{$_SERVER['REQUEST_URI']}}">
             @csrf
             <div class="w3-padding">
                 <div class="w3-row">

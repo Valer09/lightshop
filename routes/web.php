@@ -31,7 +31,7 @@ Route::get('/home', function () {
         return view('home');
 });
 Route::get('/profile', function(){
-    if ( Auth::check() && Auth::user()->group != "Administrator" )
+    if ( Auth::check() )
         return view('profile');
     else
         return redirect('login');
@@ -291,6 +291,8 @@ Route::post('/element_insertion_submit', 'insertionController@insert_element' );
 Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
 Route::post('/insert_new_brand', 'insertionController@insert_brand' );
+Route::post('/insert_courier', 'insertionController@insert_courier' );
+Route::post('/add_new_sped', 'insertionController@insert_spedition' );
 Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, App\Courier, App\NameCourier;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -299,6 +299,45 @@ class insertionController extends Controller
             $brand-> link = $link;
             $brand-> description = $request -> description;
             $brand->save();
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        }
+    }
+
+    public function insert_courier(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $courier = new NameCourier;
+
+            //controllo link
+            $link = $request -> link;
+            if(substr($link, 0, 3) != "http")
+                $link = "http://".$link;
+
+            $courier-> name = $request -> name;
+            $courier-> tracking_link = $link;
+            $courier->save();
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        }
+    }
+
+    public function insert_spedition(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $courier = new Courier;
+
+            $courier-> courier_name = $request -> courier;
+            $courier-> pesomin = $request -> min_weidth;
+            $courier-> pesomax = $request -> max_weidth;
+            $courier-> stima_giorni = $request -> time;
+            $courier-> price = $request -> price;
+
+            $courier->save();
 
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
