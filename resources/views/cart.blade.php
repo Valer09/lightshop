@@ -54,6 +54,10 @@
             <span class="tot w3-right">{{ number_format('12.50', 2, ',', '.') }} €</span>
         </div>
         <div class="boxTotale w3-row">
+            <span class="tot w3-left">Peso collo:</span>
+            <span class="tot w3-right">{{$totalWeight}} kg</span>
+        </div>
+        <div class="boxTotale w3-row">
             <span class="tot w3-left"><b>TOTALE</b></span>
             <span class="tot w3-right"><b>{{ number_format(($totalPrice + 12.50), 2, ',', '.')  }} €</b></span>
         </div>

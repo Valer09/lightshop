@@ -29,14 +29,11 @@
             <div class="w3-col l4">
                 <span><b>3. Selezione il corriere che preferisci</b></span>
             </div>
-            <div class="w3-col l6">
-                @php
-                $couriers = \App\Courier::all()
-                @endphp            
-                @foreach ($couriers as $courier)
+            <div class="w3-col l6">         
+                @foreach ($Spedizioni as $sped)
                 <p>
-                    <input class="w3-radio" type="radio" name="courier" value="{{ $courier->id }}" required>
-                    <label>{{ $courier->courier_name }}</label>
+                    <input class="w3-radio" type="radio" name="courier" value="{{ $sped->id }}" required>
+                    <label>{{ $sped->stima_giorni }}gg stimati per la consegna. {{ $sped->courier_name }} - {{ number_format($sped->price, 2, ',', '.')  }} €</label>
                 </p>
                 @endforeach
             </div>
@@ -68,7 +65,7 @@
                     <tr>
                         <td>{{$el['item']->name}}</td>
                         <td>{{$el['qty']}} pz.</td>
-                        <td>{{$el['item']->price}} €</td>
+                        <td>{{ number_format($el['item']->price, 2, ',', '.')  }} €</td>
                     </tr>
                 @endforeach
                 </table>

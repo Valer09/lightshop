@@ -19,84 +19,6 @@ Use Illuminate\Support\Facades\Auth;
 
 class insertionController extends Controller
 {
-
-//--DB methods--//
-    /**public function insert_user(request $request){
-
-    DB::table('users')->insert(array([
-
-    'name' => $request->input('name'),
-    'surname' => $request->input('surname'),
-    'email' => $request->input('email'),
-    'password' => $request->input('password'),
-    'group' => $request->input('group'), // FORM CON LISTA DA RICAVARE CON QUERY SU GROUP
-
-    ]));
-    return view('test');
-
-
-    }
-
-    public function insert_element(request $request){
-
-    DB::table('elements')->insert(array([
-
-    'name' => $request->input('name'),
-    'subcategories' => $request->input('subcategories'),
-    'price' => $request->input('price'),
-    'availability' => $request->input('quantity'),
-    'brand' => $request->input('brand'), // FORM CON LISTA DA RICAVARE CON QUERY SU BRAND
-    'description' => $request->input('brand'),
-
-    ]));
-    return view('test');
-
-
-    }
-
-    public function insert_news(request $request){
-
-    DB::table('news')->insert(array([
-
-    'name' => $request->input('name'),
-    'description' => $request->input('description'),
-    'startDate' => $request->input('start_date'),
-    'stopDate' => $request->input('stop_date'),
-    'pathPhoto' => $request->input('path'),
-    'linkBuy' => $request->input('link'),
-
-    ]));
-    return view('test');
-
-
-    }
-
-    public function insert_category(request $request){
-
-    DB::table('categories')->insert(array([
-
-    'name' => $request->input('name')
-
-    ]));
-    return view('test');
-
-
-    }
-
-    public function insert_subcategory(request $request){
-
-    DB::table('subcategories')->insert(array([
-
-    'name' => $request->input('name'),
-    'category' => $request->input('category'), // FORM CON LISTA DA RICAVARE CON QUERY SU categories
-
-    ]));
-    return view('test');
-
-
-    } **/
-
-
     public function insert_user(Request $request)
     {
         $user = new User;
@@ -137,6 +59,7 @@ class insertionController extends Controller
             $element->availability = $request-> quantity;
             $element->description = $request->description;
             $element->brand = $request->brand;
+            $element->weight = $request->weight;
 
             $name=$request->file_name->getClientOriginalName();
             $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');

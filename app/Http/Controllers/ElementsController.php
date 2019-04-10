@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Category, App\Subcategory, App\Element, App\Cart, App\Address;
+use App\Category, App\Subcategory, App\Element, App\Cart, App\Address, App\Courier;
 use Illuminate\Http\Request;
 
 
@@ -55,7 +55,8 @@ class ElementsController extends Controller
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+
+        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight]);
     }
 
     public function getCheckout(){
@@ -70,7 +71,11 @@ class ElementsController extends Controller
             $id=Auth::user()->address_id;
             $address = Address::find($id);
 
-            return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address]);
+            //calcolo costo spedizione
+            $spedizioni = Courier::where('pesomax', '>=', $cart->totalWeight)
+            ->where('pesomin', '<=', $cart->totalWeight)->get(); 
+
+            return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
         } else {
             return redirect('login');
         }
@@ -86,9 +91,7 @@ class ElementsController extends Controller
         return redirect('shopping-cart');
     }
 
-    public function getincreased(request $request,$id)
-
-    {
+    public function getincreased(request $request,$id){
         $element = Element::find($id);
         $oldCart = Session::has('cart') ? Session:: get('cart') : null;
         $cart = new Cart($oldCart);
@@ -99,9 +102,7 @@ class ElementsController extends Controller
         return redirect('shopping-cart');
     }
 
-    public function getdecreased(request $request,$id)
-
-    {
+    public function getdecreased(request $request,$id){
         $element = Element::find($id);
         $oldCart = Session::has('cart') ? Session:: get('cart') : null;
         $cart = new Cart($oldCart);

@@ -20,6 +20,14 @@
                             <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                     </select>
                     <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
+                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
+
+                </div>
+
+
+                <div class="w3-col m6 w3-light-grey w3-center">
+                    <p>Prezzi</p>
+
                     <select class="w3-select" name="subcategory" required >
                         <option disabled selected>Selezione una Sottocategoria</option>
                         {{$Category = \App\Category::all()}}
@@ -33,15 +41,9 @@
                             @endforeach
                         @endforeach
                     </select>
-
-                </div>
-
-
-                <div class="w3-col m6 w3-light-grey w3-center">
-                    <p>Prezzi</p>
-                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
                     <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
-                    <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile" required>
+                    <input class="w3-input" name="weight" type="number" placeholder="Peso singolo prodotto (kg)">
+                    <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile (pz)" required>
                 </div>
             </div>
             
