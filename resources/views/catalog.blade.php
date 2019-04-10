@@ -9,8 +9,8 @@
             <span><i class="fa fa-angle-left"></i> Catalogo</span>
         </a>
         @if($Category[1] != null || $Category[1] != '')
-        <a class="w3-row" href="{{ url('catalog').$Category[0] }}">
-            <span><i class="fa fa-angle-left"></i> {{$Category[0]}}<span> (332)</span>
+        <a class="w3-row" href="{{ url('catalog').$Category[0]->name }}">
+            <span><i class="fa fa-angle-left"></i> {{$Category[0]->name }}<span> (332)</span>
         </a>
         @endif
         <div class="w3-light-grey article-navigation">
@@ -18,7 +18,7 @@
                 <ul class="first-level narrow dashed">
                     @foreach($Category[2] as $subcat)
                     <li class="active">
-                        <a href="{{ url('catalog'.$Category[0], $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}<span class="product-counter"> (69)</span></a>
+                        <a href="{{ url('catalog'.$Category[0]->name, $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}<span class="product-counter"> (69)</span></a>
                     </li>
                     @endforeach
                 </ul>
@@ -27,12 +27,7 @@
     </div>
 
     <div id="filter" data-filter="open">
-        <ul>
-            <li>
-                <div class="collapse-filter js-slider" tm-data="aues.filter.price.div">
-                </div>
-            </li>
-        </ul>
+        <!--FILTER-->
     </div>     
 </nav>
 
@@ -54,9 +49,9 @@
     <!-- Top header -->
     <header class="w3-container w3-xlarge">
         @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
-        <p class="w3-left">{{ $Category[0] }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
+        <p class="w3-left">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
         @else
-        <p class="w3-left">{{ $Category[0] }}</p>
+        <p class="w3-left">{{ $Category[0]->name }}</p>
         @endif
         <p class="w3-right">
             <i class="fa fa-shopping-cart w3-margin-right"></i>
@@ -66,7 +61,8 @@
 
     <!-- Image header -->
     <div class="w3-display-container w3-container">
-        <img class="wa" src="{{ asset ('storage')}}/images/catalogo/minuteria_header.jpg" alt="Jeans" style="width:100%">
+
+        <img class="wa" src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
             <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
@@ -88,14 +84,16 @@
             @endif
                     <div class="w3-container w3-col l3">
                         <div class="w3-display-container">
-                        <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
-                            <span class="w3-tag w3-display-topleft">New</span>
+                            <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
+                            @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
+                            <span class="w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
+                            @endif
                             <div class="w3-display-middle w3-display-hover">
                                 <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
                                     <i class="fa fa-shopping-cart"></i></button>
                             </div>
                         </div>
-                        <p>{{ $el->name }}<br><b>€ {{ $el->price }}</b></p>
+                        <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
                     </div>
                     {{!$conta = $conta + 1}}
 

@@ -20,7 +20,9 @@ class PhotoShowroom extends Model
         if(isset($arrayPhoto)){
             foreach($arrayPhoto as $pho) {
                 $path = str_replace("/","\\",$pho->path);
-                unlink(public_path('storage'.$path));
+                if(file_exists($path)){
+                    unlink(public_path('storage'.$path));
+                }
             }  
         }
 

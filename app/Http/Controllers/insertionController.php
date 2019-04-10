@@ -193,14 +193,14 @@ class insertionController extends Controller
         }
     }
 
-    public function insert__photo_category(Request $request, $name){
+    public function insert_photo_category(Request $request, $nameCat){
         if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
         else {
             $name=$request->file_name->getClientOriginalName();
             $request->file('file_name')->storeAs('/images/siteImg',$name ,'public');
             $pathPhoto = "/images/siteImg/$name";
 
-            Category::where('name', $name)->update(array('pathPhoto' => $pathPhoto));
+            Category::where('name', $nameCat)->update(array('pathPhoto' => $pathPhoto));
 
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));

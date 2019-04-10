@@ -33,6 +33,7 @@ class gets_controller extends Controller
         $elementFin = array();
         if(isset($id) && $id != ''){
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
+            $catSUP = DB::select('select * from categories where name = ?', [$id]);
             //dd($cate);
             if(isset($cate) && $cate != null) {
                 //dd('1');
@@ -46,8 +47,7 @@ class gets_controller extends Controller
                 $elementFin = DB::select('select * from elements where subcategories = ?', [$id]);
 
             }
-                
-            $array[0] = $id;
+            $array[0] = $catSUP[0];
             $array[1] = null;
             $array[2] = $cate;
             return view('catalog', ['Elements' => $elementFin], ['Category' => $array]);
@@ -60,8 +60,9 @@ class gets_controller extends Controller
     public function catalog_sub_controller($id, $sub) {
         if(isset($sub) || $sub != '') {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
+            $catSUP = DB::select('select * from categories where name = ?', [$id]);
             $element = DB::select('select * from elements where subcategories = ?', [$sub]);
-            $array[0] = $id;
+            $array[0] = $catSUP;
             $array[1] = $sub;
             $array[2] = $cate;
             return view('catalog', ['Elements' => $element], ['Category' => $array]);

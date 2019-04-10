@@ -47,14 +47,13 @@
                             </div>
                         @endif
                         @endforeach
-                        <p style="margin-top: 0px">
-                            <button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button>
-                            <form method="post" action="{{ route('add_photo_category').$Category->name}}">
-                                <label class="w3-button w3-right">Foto categoria: <input type="file" name="file_name"></label>
-                                <button type="submit">
+                        <div class="w3-row" style="margin-bottom:10px">
+                            <button onclick="modaleSottocategoria('nuovaSottoclasse', '{{$Category->name}}')" class="w3-button w3-third"><i class="fa fa-plus"></i> Aggiungi nuova sottoclasse</button>
+                            <form method="post" action="{{URL::to('add_photo_category').'-'.$Category->name}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data">
+                            @csrf
+                                <label class=" w3-button w3-twothird w3-right" style="padding: 5px;">Foto categoria: <input type="file" name="file_name"><button type="submit">Salva foto</button></label>
                             </form>
-                            
-                        </p>
+                        </div>
                 
                     </div>
                 @endforeach

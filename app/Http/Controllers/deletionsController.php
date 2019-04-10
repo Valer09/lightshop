@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App, DB, Storage;
+use Auth;
 use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom;
 
 class deletionsController extends Controller
@@ -11,7 +12,7 @@ class deletionsController extends Controller
     //------ELEMENTS_ACTIONS-------//
 
     public function delete_element(Request $request){
-        if ( Auth::user()!= null && Auth::user()->group == "Administrator" ) {
+        if ( Auth::check() && Auth::user()->group == "Administrator" ) {
             $id_element = $request->element_idModal;
             $arrayPhoto = App\PhotoElement::where('element_id', $id_element)->get();
             $ell = Element::where('id', $id_element)->first();
@@ -30,7 +31,7 @@ class deletionsController extends Controller
 
 
     public function delete_element_subcategory(Request $request){
-        if ( Auth::user()!= null && Auth::user()->group == "Administrator" ){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
             $id_element = $request->element_idModal;
             $arrayPhoto = App\PhotoShowroom::where('element_id', $id_element)->get();
             $ell = ElementsShowRoom::where('id', $id_element)->first();
@@ -65,7 +66,7 @@ class deletionsController extends Controller
 //------ELEMENT-ACTIONS-END--------//
 
     public function delete_user(Request $request){
-        if ( Auth::user()!= null && Auth::user()->group == "Administrator" ){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
             App\User::where('email', $request->email)->delete();
             return view('test');
         } else {
@@ -79,7 +80,7 @@ class deletionsController extends Controller
     }
 
     public function delete_category(Request $request){
-        if ( Auth::user()!= null && Auth::user()->group == "Administrator" ){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
             $subcat=App\Subcategory::where('category', $request->category)->get();
 
             if (  $subcat != '[]' )
@@ -95,7 +96,7 @@ class deletionsController extends Controller
     }
 
     public function delete_subcategory(Request $request){
-        if ( Auth::user()!= null && Auth::user()->group == "Administrator" ){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
             $elements=App\Element::where('subcategories', $request->subcategory)->get();
             if (  $elements != '[]' )
                 return redirect(request()->headers->get('referer').'?openAlert=La%20sottocategoria%20'.$request->subcategory.'%20contiene%20degli%20elementi!');

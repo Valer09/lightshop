@@ -31,7 +31,7 @@ Route::get('/home', function () {
         return view('home');
 });
 Route::get('/profile', function(){
-    if ( Auth::user()!= null && Auth::user()->group != "Administrator" )
+    if ( Auth::check() && Auth::user()->group != "Administrator" )
         return view('profile');
     else
         return redirect('login');
@@ -39,7 +39,7 @@ Route::get('/profile', function(){
 })->middleware('verified');
 
 Route::get('/homes', function () {
-    if ( Auth::user()!= null && Auth::user()->group == "Administrator" )
+    if ( Auth::check() && Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
         return redirect('home');
@@ -291,6 +291,7 @@ Route::post('/element_insertion_submit', 'insertionController@insert_element' );
 Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
 Route::post('/insert_new_brand', 'insertionController@insert_brand' );
+Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
 
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );

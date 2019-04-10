@@ -11,7 +11,7 @@ use App;
 class Category extends Model
 {
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'pathPhoto'];
 
 
     public function get_subcategories(){

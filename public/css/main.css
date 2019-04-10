@@ -134,11 +134,13 @@ a.w3-bar-item:hover{
 
 .w3-row-padding img {margin-bottom: 12px}
 
-#footer {
+footer {
     /*background-color: #2c993f;*/
     background-color: #617765;
     color: white;
     margin-top: auto;
+    height: auto;
+    bottom: 0px;
 }
 
 #header {
@@ -192,4 +194,22 @@ margin: 0 auto;
     padding: 4px 6px 4px 6px!important;
     line-height: 1;
     font-size: 14px!important;
+}
+
+
+.categories {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    -webkit-filter: grayscale(75%);
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(75%);
+}
+
+.categories:hover{
+    -webkit-filter: grayscale(0%)!important;
+    /* Safari 6.0 - 9.0 */
+    filter: grayscale(0%)!important;
+    filter: saturate(130%)!important;
 }
