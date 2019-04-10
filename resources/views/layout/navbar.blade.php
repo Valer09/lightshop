@@ -42,7 +42,7 @@
             </div>
             @auth
             <div class="w3-dropdown-hover" style="padding: 0 0 0 0;">
-                <a href="{{ url('/profile') }}" class="barDxButt w3-bar-item">{{Auth::user()->name}}</a>
+                <a href="{{ url('/profile') }}" class="barDx w3-bar-item">{{Auth::user()->name}}</a>
 
                 <div class="w3-dropdown-content content-right w3-bar-block w3-card-4" style="margin-top:49px">
                     <?php $group = Auth::user()->group ?>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             @else
-            <a href="{{ route('login') }}" class="barDxButt w3-bar-item">Accedi</a>
+            <a href="{{ route('login') }}" class="barDx w3-bar-item">Accedi</a>
             @endauth
         </div>
     </div>

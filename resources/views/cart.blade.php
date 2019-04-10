@@ -18,8 +18,12 @@
                 </div> 
                 <div class="w3-container w3-half">
                     <h5><b>{{ $el['item']->name }}</b></h5>
+                    @if(strlen($el['item']->description) > 190)
+                    <P>{{ substr($el['item']->description, 0, 190).'...' }}</P>
+                    @else                    
                     <P>{{ $el['item']->description }}</P>
-                    <P>Quantità: {{ $el['qty'] }} pz</P>
+                    @endif
+                    <P>Quantità: <b>{{ $el['qty'] }} pz</b></P>
                 </div>
                 <div class="w3-container w3-quarter w3-right w3-center">
                     <a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a>
