@@ -1,7 +1,7 @@
 <!-- Header -->
 <!-- Navbar (sit on top) -->
 
-<div class="w3-top w3-hide-small">
+<div class="w3-top w3-hide-small" id="navMar">
     <div class="w3-bar">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="{{url('./#')}}" class="barSx w3-bar-item"><b>Visca s.n.c.</b></a>
