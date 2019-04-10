@@ -18,3 +18,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <!--LOCAL-->
+  <script src="lib/jquery/dist/jquery.min.js" type="text/javascript"></script> 
+  <script src="lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script> 
+  <script src="lib/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css"></script> 
+  <script src="lib/Roboto/Roboto-Light.ttf"></script> 
+  <script src="lib/w3css-master/w3.css" type="text/css"></script> 
