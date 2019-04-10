@@ -31,20 +31,21 @@ Route::get('/home', function () {
         return view('home');
 });
 Route::get('/profile', function(){
-    if ( Auth::user()->group != "Administrator" )
+    if ( Auth::user()!= null && Auth::user()->group != "Administrator" )
         return view('profile');
     else
-        return view('profile');
+        return redirect('login');
 
 })->middleware('verified');
 
 Route::get('/homes', function () {
-    if ( Auth::user()->group == "Administrator" )
+    if ( Auth::user()!= null && Auth::user()->group == "Administrator" )
         return redirect ('admin/home');
     else
         return redirect('home');
 });
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::get('register', function () {
     return view('auth/register');
 });

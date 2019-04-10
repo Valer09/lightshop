@@ -9,7 +9,7 @@ Use App;
 class element_edit_controller extends Controller
 {
     public function edit_name(Request $request){
-        if (! (Auth::check() ) ) echo 'Devi loggarti';
+        if (! (Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
         else
             {
                 $elementID=App\Element::where('name', "$request->name")->first()->id;
@@ -24,7 +24,7 @@ class element_edit_controller extends Controller
     }
 
     public function edit_subcategories(Request $request){
-        if (! (Auth::check() ) ) echo 'Devi loggarti';
+        if (! (Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
         else
         {
             $elementID=App\Element::where('name', "$request->name")->first()->id;
@@ -40,7 +40,7 @@ class element_edit_controller extends Controller
     }
 
     public function edit_price(Request $request){
-        if (! (Auth::check() ) ) echo 'Devi loggarti';
+        if (! (Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
         else
         {
             $elementID=App\Element::where('name', "$request->name")->first()->id;
@@ -56,7 +56,7 @@ class element_edit_controller extends Controller
     }
 
     public function edit_description(Request $request){
-        if (! (Auth::check() ) ) echo 'Devi loggarti';
+        if (! (Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
         else
         {
             $elementID=App\Element::where('name', "$request->name")->first()->id;

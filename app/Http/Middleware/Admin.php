@@ -17,8 +17,8 @@ class Admin
     public function handle($request, Closure $next)
     {
 
-        if (! (Auth::user()->group == 'Administrator') )
-            return response('Unauthorized.', 401);
+        if (!(Auth::check() ) || !(Auth::user()->group == 'Administrator') )
+            return abort(403, 'Azione non permessa!');
         else
             return $next($request);
     }

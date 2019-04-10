@@ -127,169 +127,182 @@ class insertionController extends Controller
 
     }
 
-    public function insert_element(Request $request)
-    {
-        $element = new Element;
+    public function insert_element(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $element = new Element;
+            $element->name = $request->name;
+            $element->subcategories = $request->subcategory;
+            $element->price = $request->price;
+            $element->availability = $request-> quantity;
+            $element->description = $request->description;
+            $element->brand = $request->brand;
 
-        $element->name = $request->name;
-        $element->subcategories = $request->subcategory;
-        $element->price = $request->price;
-        $element->availability = $request-> quantity;
-        $element->description = $request->description;
-        $element->brand = $request->brand;
-
-        $name=$request->file_name->getClientOriginalName();
-        $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
-        $element-> pathPhoto = "/images/catalogo/$name";
-        $element->save();
-        
-        $el_id = $element->id;
-        
-        if($request->hasFile('photos')){
-            $files = $request->file('photos');
-            foreach ($files as $file) {
-                $n = $file->getClientOriginalName();
-                $file->storeAs('/images/catalogo',$n ,'public');
-                $photo = new PhotoElement;
-                $photo-> element_id = $el_id;
-                $photo-> path = "/images/catalogo/$n";
-                $photo-> name = $n;
-                $photo->save();
+            $name=$request->file_name->getClientOriginalName();
+            $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
+            $element-> pathPhoto = "/images/catalogo/$name";
+            $element->save();
+            
+            $el_id = $element->id;
+            
+            if($request->hasFile('photos')){
+                $files = $request->file('photos');
+                foreach ($files as $file) {
+                    $n = $file->getClientOriginalName();
+                    $file->storeAs('/images/catalogo',$n ,'public');
+                    $photo = new PhotoElement;
+                    $photo-> element_id = $el_id;
+                    $photo-> path = "/images/catalogo/$n";
+                    $photo-> name = $n;
+                    $photo->save();
+                }
             }
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
+    }
+
+    public function insert_news(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $news =  new News;
+
+            $news->name = $request->name;
+            $news->description = $request->description;
+            $news->startDate = $request->startDate;
+            $news->stopDate = $request->stopDate;
+            $news->pathPhoto = $request->path;
+            $news->linkBuy = $request->link;
+            $news->save();
+
+            return view('test');
+        }
+    }
+
+    public function insert_category(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $category =  new Category;
+            $category->name = $request->name;
+            $category->save();
 
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
-
-    public function insert_news(Request $request){
-
-        $news =  new News;
-
-        $news->name = $request->name;
-        $news->description = $request->description;
-        $news->startDate = $request->startDate;
-        $news->stopDate = $request->stopDate;
-        $news->pathPhoto = $request->path;
-        $news->linkBuy = $request->link;
-        $news->save();
-
-        return view('test');
-    }
-
-    public function insert_category(Request $request){
-
-        $category =  new Category;
-        $category->name = $request->name;
-        $category->save();
-
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
     }
 
     public function insert__photo_category(Request $request, $name){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $name=$request->file_name->getClientOriginalName();
+            $request->file('file_name')->storeAs('/images/siteImg',$name ,'public');
+            $pathPhoto = "/images/siteImg/$name";
 
-        $name=$request->file_name->getClientOriginalName();
-        $request->file('file_name')->storeAs('/images/siteImg',$name ,'public');
-        $pathPhoto = "/images/siteImg/$name";
+            Category::where('name', $name)->update(array('pathPhoto' => $pathPhoto));
 
-        Category::where('name', $name)->update(array('pathPhoto' => $pathPhoto));
-
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+        }
     }
 
     public function insert_subcategory(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $subcategory = new Subcategory;
+            $subcategory-> name = $request -> name;
+            $subcategory-> category = $request -> category;
+            $subcategory->save();
 
-        $subcategory = new Subcategory;
-
-        $subcategory-> name = $request -> name;
-        $subcategory-> category = $request -> category;
-        $subcategory->save();
-
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+        }
     }
 
     public function insert_address(Request $request){
+        if (!(Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $address = new Address;
 
-        $address = new Address;
+            $address-> country = $request -> country;
+            $address-> street = $request -> street;
+            $address-> city = $request -> city;
+            $address-> CAP = $request -> CAP;
+            $address-> street_number = $request -> street_number;
+            $address-> user_id = $request -> user_id;
+            $address-> NomeCognome = $request -> NomeCognome;
+            $address-> Provincia = $request -> Provincia;
+            $address-> user_id = Auth::user()->id;
+            
+            $address->save();
+            
+            //stellina preferito
+            general_edit_controller::address_star($address->id);
 
-        $address-> country = $request -> country;
-        $address-> street = $request -> street;
-        $address-> city = $request -> city;
-        $address-> CAP = $request -> CAP;
-        $address-> street_number = $request -> street_number;
-        $address-> user_id = $request -> user_id;
-        $address-> NomeCognome = $request -> NomeCognome;
-        $address-> Provincia = $request -> Provincia;
-        $address-> user_id = Auth::user()->id;
-        
-        $address->save();
-        
-        //stellina preferito
-        general_edit_controller::address_star($address->id);
-
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
+    }
 
     public function insert_art_showroom(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $element =  new ElementsShowRoom;
 
-        $element =  new ElementsShowRoom;
+            $element-> name = $request->name;
+            $element-> description = $request->description;
+            //$element-> pathPhoto = $request->path;
+            $element-> linkBuy = $request->link;
+            $element-> nameSubCategory = $request->subcategory;
+            
+            $name=$request->file_name->getClientOriginalName();
+            $request->file('file_name')->storeAs('/images/showroom',$name ,'public');
+            $element-> pathPhoto = "/images/showroom/$name";
+            $element->save();
 
-        $element-> name = $request->name;
-        $element-> description = $request->description;
-        //$element-> pathPhoto = $request->path;
-        $element-> linkBuy = $request->link;
-        $element-> nameSubCategory = $request->subcategory;
-        
-        $name=$request->file_name->getClientOriginalName();
-        $request->file('file_name')->storeAs('/images/showroom',$name ,'public');
-        $element-> pathPhoto = "/images/showroom/$name";
-        $element->save();
-
-        $el_id = $element->id;
-        
-        if($request->hasFile('photos')){
-            $files = $request->file('photos');
-            foreach ($files as $file) {
-                $n = $file->getClientOriginalName();
-                $file->storeAs('/images/showroom',$n ,'public');
-                $photo = new PhotoShowroom;
-                $photo-> element_id = $el_id;
-                $photo-> path = "/images/showroom/$n";
-                $photo-> name = $n;
-                $photo->save();
+            $el_id = $element->id;
+            
+            if($request->hasFile('photos')){
+                $files = $request->file('photos');
+                foreach ($files as $file) {
+                    $n = $file->getClientOriginalName();
+                    $file->storeAs('/images/showroom',$n ,'public');
+                    $photo = new PhotoShowroom;
+                    $photo-> element_id = $el_id;
+                    $photo-> path = "/images/showroom/$n";
+                    $photo-> name = $n;
+                    $photo->save();
+                }
             }
-        }
 
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+        }
     }
 
     public function insert_brand(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $brand = new Brand;
 
-        $brand = new Brand;
+            //controllo link
+            $link = $request -> link;
+            if(substr($link, 0, 3) != "http")
+                $link = "http://".$link;
 
-        //controllo link
-        $link = $request -> link;
-        if(substr($link, 0, 3) != "http")
-            $link = "http://".$link;
+            $brand-> name = $request -> name;
+            $brand-> link = $link;
+            $brand-> description = $request -> description;
+            $brand->save();
 
-        $brand-> name = $request -> name;
-        $brand-> link = $link;
-        $brand-> description = $request -> description;
-        $brand->save();
-
-        $path = $request-> ref;
-        $path = substr($path, 1, strlen($path));
-        return redirect($path);
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        }
     }
 }
