@@ -1,6 +1,12 @@
 @extends('layout.defaultLayout')
 @section('content')
 
+@php
+    $conta = 1;
+    $nameCat = \App\CatShowroom::where('name_path', Request::path())->first();
+    $ElementsShowRoom=\App\ElementsShowRoom::where('nameSubCategory', $nameCat->name)->get();
+@endphp
+
 <header class="w3-display-container w3-wide" id="principalDiv" style="min-height: 100%">
     <div class="w3-display-middle w3-margin-top w3-margin">
         <h1 class="w3-xxlarge w3-center w3-text-white"><span class="w3-padding w3-green w3-opacity-min"><b>V</b></span> <span class="w3-hide-small w3-text-light-grey">Showroom</span></h1>
@@ -8,39 +14,11 @@
 </header>
 
 <div class="divCenter w3-animate-right">
-    <h1 style="padding: 20px">
-    @switch(Request::path())
-        @case('pavimenti')
-            Pavimenti e rivestimenti
-            @break
-        @case('cucine')
-            Cucine
-            @break
-        @case('bagni')
-            Bagni
-            @break
-        @case('porte')
-            Porte
-            @break
-        @case('caminetti')
-            Caminetti
-            @break
-        @case('falegnameria')
-            Falegnameria
-            @break
-        @case('esterno')
-            Giardino ed Esterni
-            @break
-    @endswitch
-    </h1>
+    <h1 style="padding: 20px">{{$nameCat->name}}</h1>
 
             <!--ELEMENTO PER LA CREAZINOE DINAMICA DEGLI ARTICOLI per ora solo "BAGNI"-->
             
-                @php
-                    $conta = 1;
-                    $nameCat = \App\CatShowroom::where('name_path', Request::path())->first();
-                    $ElementsShowRoom=\App\ElementsShowRoom::where('nameSubCategory', $nameCat->name)->get();
-                @endphp
+
                 @foreach($ElementsShowRoom as $el)
                     
                     @if ($conta == 1)

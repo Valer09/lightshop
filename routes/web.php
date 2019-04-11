@@ -85,7 +85,7 @@ Route::get('/bagni', function () {
     return view('showroom_navigation');
 });
 
-Route::get('/pavimenti', function () {
+Route::get('/pavimenti_rivestimenti', function () {
     return view('showroom_navigation');
 });
 
@@ -105,7 +105,7 @@ Route::get('/cucine', function () {
     return view('showroom_navigation');
 });
 
-Route::get('/esterno', function () {
+Route::get('/giardini_esterni', function () {
     return view('showroom_navigation');
 });
 

@@ -11,7 +11,8 @@
     </div>
 </header>
 <div id="boxShow" class="w3-row w3-white w3-container">
-    <div id="show1" class="show w3-col" style="width: 14.28571%;" onclick="location.href='{{ url('pavimenti')}}'">
+    <!--MAX 7 ELEMENTI-->
+    <div id="show1" class="show w3-col" style="width: 14.28571%;" onclick="location.href='{{ url('pavimenti_rivestimenti')}}'">
         <div class="testoShow w3-right w3-white w3-opacity-min">
         <span><b>Pavimenti e Rivestimenti</b></span></div>
     </div>
@@ -41,7 +42,7 @@
         <span><b>Falegnameria</b></span></div>
     </div>
 
-    <div id="show7" class="show w3-col" style="width: 14.28571%;" onclick="location.href='{{ url('esterno')}}'">
+    <div id="show7" class="show w3-col" style="width: 14.28571%;" onclick="location.href='{{ url('giardini_esterni')}}'">
         <div class="testoShow w3-right w3-white w3-opacity-min">
         <span><b>Giardino ed Esterno</b></span></div>
     </div>
