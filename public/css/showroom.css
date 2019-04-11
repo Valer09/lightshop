@@ -63,7 +63,7 @@ figcaption {
 }
 
 #show3 {
-    background-image: url("https://images.pexels.com/photos/358592/pexels-photo-358592.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    background-image: url("https://images.pexels.com/photos/145512/pexels-photo-145512.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 #show4 {
@@ -76,6 +76,10 @@ figcaption {
 
 #show6 {
     background-image: url("https://images.pexels.com/photos/1573829/pexels-photo-1573829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+
+#show7 {
+    background-image: url("https://images.pexels.com/photos/238377/pexels-photo-238377.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 .testoShow {

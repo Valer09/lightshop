@@ -32,12 +32,10 @@
             <div class="w3-dropdown-hover" style="padding: 0 0 0 0;">
                 <a id="prodot" href="{{ url('/showroom ') }}" class="barDx w3-bar-item">Showroom</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4" style="margin-top:49px">
-                    <a href="{{ url('/showroom/pavimenti') }}" class="w3-bar-item">Pavimenti e Rivestimenti</a></option>
-                    <a href="{{ url('/showroom/cucine') }}" class="w3-bar-item">Cucine</a></option>
-                    <a href="{{ url('/showroom/bagni') }}" class="w3-bar-item">Bagni</a></option>
-                    <a href="{{ url('/showroom/porte') }}" class="w3-bar-item">Porte</a></option>
-                    <a href="{{ url('/showroom/caminetti') }}" class="w3-bar-item">Caminetti</a></option>
-                    <a href="{{ url('/showroom/falegnameria') }}" class="w3-bar-item">Falegnameria</a></option>
+                    {{!$Cats=\App\CatShowroom::all()}}
+                    @foreach($Cats as $cat)
+                    <a href="{{ url('$cat->name_path') }}" class="w3-bar-item">{{$cat->name}}</a></option>
+                    @endforeach
                 </div>
             </div>
             @auth

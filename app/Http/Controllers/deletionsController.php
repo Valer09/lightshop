@@ -110,4 +110,22 @@ class deletionsController extends Controller
         }
 
     }
+
+    public function delete_element_showroom(Request $request){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ) {
+            $id_element = $request->element_idModal;
+            $arrayPhoto = PhotoShowroom::where('element_id', $id_element)->get();
+            $ell = ElementsShowRoom::where('id', $id_element)->first();
+
+            PhotoShowroom::deleteAll($id_element);
+            ElementsShowRoom::deleteAll($ell);
+ 
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
+    }
 }

@@ -41,8 +41,8 @@ class Element extends Model
     }
 
     public static function deleteAll($el){
-        $path = str_replace("/","\\", $el->pathPhoto);
-        if(file_exists($path)){
+        $path =  $el->pathPhoto;
+        if(file_exists('storage'.$path)){
             unlink(public_path('storage'.$path));
         }
 

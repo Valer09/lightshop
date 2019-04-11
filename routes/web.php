@@ -80,33 +80,37 @@ Route::post('/email_recovery', 'gets_controller@get_user_cf');
 //--End Home--//
 
 //--Showroom--//
-Route::group(['prefix' => 'showroom'], function () {
-    Route::get('/bagni', function () {
-        return view('showroom_navigation');
-    });
 
-    Route::get('/pavimenti', function () {
-        return view('showroom_navigation');
-    });
-
-    Route::get('/porte', function () {
-        return view('showroom_navigation');
-    });
-
-    Route::get('/caminetti', function () {
-        return view('showroom_navigation');
-    });
-
-    Route::get('/falegnameria', function () {
-        return view('showroom_navigation');
-    });
-
-    Route::get('/cucine', function () {
-        return view('showroom_navigation');
-    });
-
-    Route::get('/et{id_element}', 'gets_controller@openElementShowroom');
+Route::get('/bagni', function () {
+    return view('showroom_navigation');
 });
+
+Route::get('/pavimenti', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/porte', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/caminetti', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/falegnameria', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/cucine', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/esterno', function () {
+    return view('showroom_navigation');
+});
+
+Route::get('/el_showroom-{id_element}', 'gets_controller@openElementShowroom');
+
 
 //End showroom--/
 
@@ -306,6 +310,7 @@ Route::post('/user_deletion_submit', 'deletionsController@delete_user' );
 Route::post('/news_deletion_submit', 'deletionsController@delete_news' );
 Route::post('/category_deletion_submit', 'deletionsController@delete_category' );
 Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
+Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_element_showroom' );
 
 
 

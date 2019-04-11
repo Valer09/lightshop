@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cat_Showroom extends Model
+class CatShowroom extends Model
 {
     protected $fillable = ['name','description'];
 
     public function get_subcategories(){
-        return $this->hasMany('App\Cat_Showroom','name');
+        return $this->hasMany('App\CatShowroom','name');
     }
 
 }

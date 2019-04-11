@@ -15,12 +15,10 @@
                     <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                     <select class="w3-select" name="subcategory" required>
                             <option disabled selected>Seleziona la categoria</option>
-                            <option value="showroom/pavimenti">Pavimenti e Rivestimenti</option>
-                            <option value="showroom/cucine">Cucine</option>
-                            <option value="showroom/bagni">Bagni</option>
-                            <option value="showroom/porte">Porte</option>
-                            <option value="showroom/caminetti">Caminetti</option>
-                            <option value="showroom/falegnameria">Falegnameria</option>
+                            {{!$Cats=\App\CatShowroom::all()}}
+                            @foreach($Cats as $cat)
+                            <option>{{ $cat->name }}</option>
+                            @endforeach
                     </select>
                     <input class="w3-input" name="link" type="text" placeholder="Link acquisto">
 
@@ -104,12 +102,9 @@
                             <input id="nomeMod" class="w3-input" name="nome" type="text" placeholder="Nome">
                             <select id="catMod" class="w3-select" name="categoria" onchange="change(this.value)" required>
                                 <option disabled selected>Seleziona la categoria</option>
-                                <option value="showroom/pavimenti">Pavimenti e Rivestimenti</option>
-                                <option value="showroom/cucine">Cucine</option>
-                                <option value="showroom/bagni">Bagni</option>
-                                <option value="showroom/porte">Porte</option>
-                                <option value="showroom/caminetti">Caminetti</option>
-                                <option value="showroom/falegnameria">Falegnameria</option>
+                                @foreach($Cats as $cat)
+                                <option>{{ $cat->name }}</option>
+                                @endforeach
                             </select>
                             <input class="w3-input" id="linkMod" name="link" type="text" placeholder="Link acquisto">
                         </div>
@@ -132,10 +127,10 @@
                         <button id="save" class="w3-button w3-ripple w3-red" style="width:80%; visibility: hidden">Salva</button>
                     </div>
             </form>
-                    <form id="formDeleteShowroom" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+                    <form id="formDeleteShowroom" method="post" action="{{ url('/elementshowroom_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                         @csrf
                         <div class="w3-col l4 s4 w3-center">
-                            <input style="display: none" id="element_idModal" name="element_idModal">
+                            <input style="display: none" id="element_idModal" name="element_idModal" required>
                             <button class="w3-button w3-ripple w3-red w3-block w3-hover-red" style="width:80%;"
                                 onclick="conferma('Vuoi eliminare '+ document.getElementById('nomeMod').value +' dallo showroom?', 'formDeleteShowroom')"
                                 type="button">Elimina Prodotto</button>

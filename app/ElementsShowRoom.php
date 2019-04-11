@@ -25,10 +25,10 @@ class ElementsShowRoom extends Model
     public $timestamps = false;
 
     public static function deleteAll($el){
-        $path = str_replace("/","\\", $el->pathPhoto);
-        if(file_exists($path)){
+        $path =  $el->pathPhoto;
+        if(file_exists('storage'.$path)){
             unlink(public_path('storage'.$path));
         }
-        ElementShowRoom::where('id', $el->id)->delete();
+        ElementsShowRoom::where('id', $el->id)->delete();
     }
 }
