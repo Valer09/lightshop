@@ -19,4 +19,6 @@ class OrderDetail extends Model
     public function get_elements(){
         return $this->belongsTo('App\Element');
     }
+
+    public $timestamps = false;
 }

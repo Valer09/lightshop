@@ -58,7 +58,7 @@
             <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
             <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                 @csrf
-                <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
+                <input style="color:black" type="number" name="quantity" min="1" max="{{$el->availability}}" required>
                 <button type="submit" class="w3-button w3-black">Aggiungi la carrello</button>
             </form>
         </div>

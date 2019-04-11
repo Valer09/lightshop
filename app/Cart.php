@@ -78,14 +78,15 @@ class Cart
 
     }
 
-     public function increase($item,$id){
-         $storedItem=$this->items[$id];
-         $storedItem['qty']++;
-         $storedItem['price']=$item->price * $storedItem['qty'];
-         $storedItem['weight'] = $item->weight * $storedItem['qty'];
-         $this->items[$id]=$storedItem;
-         $this->totalQty++;
-         $this->totalPrice +=$item->price;
-         $this->totalWeight += $item->weight;
-     }
+    public function increase($item,$id){
+        $storedItem=$this->items[$id];
+        $storedItem['qty']++;
+        $storedItem['price']=$item->price * $storedItem['qty'];
+        $storedItem['weight'] = $item->weight * $storedItem['qty'];
+        $this->items[$id]=$storedItem;
+        $this->totalQty++;
+        $this->totalPrice +=$item->price;
+        $this->totalWeight += $item->weight;
+    }
+
 }
