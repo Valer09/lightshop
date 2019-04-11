@@ -53,8 +53,8 @@
             @endif
         </div>
     </div>
-    <div class="l4 w3-container w3-center w3-padding-16" style="position: absolute; right: 0; bottom: 0;">
-        <div>
+    <div class="l4 w3-container w3-center w3-right">
+        <div class="w3-padding" style="background-color: #2c993f; color: white">
             <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
             <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                 @csrf
