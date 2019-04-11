@@ -27,8 +27,8 @@
                 </div>
                 <div class="w3-container w3-quarter w3-right w3-center">
                     <a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a>
-                    <a href="{{ route('Element.getincreased', ['id' => $el['item']->id]) }}">+elementi</a>
-                    <a href="{{ route('Element.getdecreased', ['id' => $el['item']->id]) }}">-elementi</a>
+                    <button class="w3-button" onclick="location.href='{{ route('Element.getincreased', ['id' => $el['item']->id]) }}'">+</button>
+                    <button class="w3-button" onclick="location.href='{{ route('Element.getdecreased', ['id' => $el['item']->id]) }}'">-</button>
                 </div>
             </div>
             @endforeach
