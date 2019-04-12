@@ -50,57 +50,52 @@
     <header class="w3-container w3-xlarge">
         @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
         <p class="w3-left">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
-        @else
-        <p class="w3-left">{{ $Category[0]->name }}</p>
         @endif
     </header>
 
     <!-- Image header -->
+    @if($Category[1] == null)
     <div class="w3-display-container w3-container">
-
-        <img class="wa" src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
+        <img class="w3-image" src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
-            <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
-            <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
-            <h1 class="w3-hide-small">COLLECTION 2016</h1>
-            <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+            <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
+            <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
+            <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
+            <p><a href="#elementi" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
         </div>
     </div>
+    @endif
 
-    <div class="w3-container w3-text-grey" id="jeans">
-        <p>{{count($Elements)}} elementi</p>
-    </div>
+    <!-- Product grid -->
+    {{!$conta = 1}}
+    @foreach($Elements as $el)
+    @if ($conta == 1)
+    <div class="w3-row w3-grayscale w3-margin-top" id="elementi">
+    @endif
 
-    <!-- Product grid 
-    <div class="w3-row w3-grayscale">-->
-        {{!$conta = 1}}
-        @foreach($Elements as $el)
-            @if ($conta == 1)
-            <div class="w3-row w3-grayscale">
-            @endif
-                    <div class="w3-container w3-col l3">
-                        <div class="w3-display-container">
-                            <img class="w3-image" src=" {{ asset('storage').$el->pathPhoto }}">
-                            @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
-                            <span class="w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
-                            @endif
-                            <div class="w3-display-middle w3-display-hover">
-                                <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
-                                    <i class="fa fa-shopping-cart"></i></button>
-                            </div>
-                        </div>
-                        <div class="divElP">
-                        <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
-                        </div>
-                    </div>
-                    {{!$conta = $conta + 1}}
-
-            @if ($conta == 5)
+        <div class="w3-container w3-col l3">
+            <div class="w3-display-container">
+                <img class="w3-image" src=" {{ asset('storage').$el->pathPhoto }}">
+                @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
+                <span class="w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
+                @endif
+                <div class="w3-display-middle w3-display-hover">
+                    <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
+                        <i class="fa fa-shopping-cart"></i></button>
                 </div>
-                {{!$conta = 1}}
-            @endif
-        @endforeach
-        </div> <!--diV RIDONDANTE-->
+            </div>
+            <div class="divElP">
+            <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
+            </div>
+        </div>
+        
+    {{!$conta = $conta + 1}}
+    @if ($conta == 5)
     </div>
+    {{!$conta = 1}}
+    @endif
+    @endforeach
+        </div> <!--diV RIDONDANTE-->
+    
 </div>
 @stop

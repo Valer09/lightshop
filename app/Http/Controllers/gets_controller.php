@@ -62,7 +62,7 @@ class gets_controller extends Controller
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
             $element = DB::select('select * from elements where subcategories = ?', [$sub]);
-            $array[0] = $catSUP;
+            $array[0] = $catSUP[0];
             $array[1] = $sub;
             $array[2] = $cate;
             return view('catalog', ['Elements' => $element], ['Category' => $array]);
