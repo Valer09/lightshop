@@ -80,7 +80,7 @@
             @endif
                     <div class="w3-container w3-col l3">
                         <div class="w3-display-container">
-                            <img src=" {{ asset('storage').$el->pathPhoto }}" style="width:100%">
+                            <img class="w3-image" src=" {{ asset('storage').$el->pathPhoto }}">
                             @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
                             <span class="w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
                             @endif
@@ -100,6 +100,7 @@
                 {{!$conta = 1}}
             @endif
         @endforeach
+        </div> <!--diV RIDONDANTE-->
     </div>
 </div>
 @stop
