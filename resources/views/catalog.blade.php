@@ -4,21 +4,24 @@
 
 <!-- Sidebar/Filter -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" style="top: 49px;z-index:3;width:250px" id="mySidebar">
-    <div class="w3-center">
-        <a class="w3-row" href="{{ url('catalog') }}">
+    <div class="">
+        <div class="w3-margin-left">
+            <a class="w3-row w3-margin" href="{{ url('catalog') }}">
             <span><i class="fa fa-angle-left"></i> Catalogo</span>
-        </a>
-        @if($Category[1] != null || $Category[1] != '')
-        <a class="w3-row" href="{{ url('catalog').$Category[0]->name }}">
-            <span><i class="fa fa-angle-left"></i> {{$Category[0]->name }}<span> (332)</span>
-        </a>
-        @endif
-        <div class="w3-light-grey article-navigation">
+            </a>
+            @if($Category[1] != null || $Category[1] != '')
+            <a class="w3-row w3-margin-top" href="{{ url('catalog').$Category[0]->name }}">
+                <span><i class="fa fa-angle-left"></i> {{$Category[0]->name }}</span>
+            </a>
+            @endif
+        </div>
+        <div class="w3-light-grey w3-margin-top article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
+                    <p>Sottocategorie</p>
                     @foreach($Category[2] as $subcat)
-                    <li class="active">
-                        <a href="{{ url('catalog'.$Category[0]->name, $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}<span class="product-counter"> (69)</span></a>
+                    <li>
+                        <a href="{{ url('catalog'.$Category[0]->name, $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -47,9 +50,10 @@
     <div class="w3-hide-large" style="margin-top:83px"></div>
 
     <!-- Top header -->
-    <header class="w3-container w3-xlarge">
+    <header class="w3-container">
         @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
-        <p class="w3-left">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</p>
+        <h2 class="w3-xlarge">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</h2>
+        <h5>{{count($Elements)}} elementi</h5>
         @endif
     </header>
 
