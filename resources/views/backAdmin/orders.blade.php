@@ -8,39 +8,34 @@
         <div class="w3-container w3-blue-grey" style="padding-bottom: 16px;">
             <h1>Lista nuovi ordini.</h1>
             <p>Questa è una lista dei nuovi ordini.</p>
-            <p>Clicca su un ordine della lista per visualizzare più informazioni.</p>
             <hr>
             <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="finderElement()">
 
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
                 <table class="w3-table-all w3-margin-top" id="myTable" style="text-decoration-color: black">
                     <tr>
-                        <th style="width:10%;">ID</th>
-                        <th style="width:30%;">User ID</th>
-                        <th style="width:30%;">Name</th>
-                        <th style="width:6%;">Prezzo Poste</th>
-                        <th style="width:6%;">TOTAL</th>
-
-
+                        <th style="width:0%;"></th>
+                        <th style="width:25%;">Data ordine</th>
+                        <th style="width:25%;">Utente</th>
+                        <th style="width:25%;">Indirizzo</th>
+                        <th style="width:25%;">TOTAL</th>
                     </tr>
 
                     <!--ESEMPIO DA CANCELLARE-->
-                    {{!$orders=\App\Order::all()}}
-                    @foreach($orders as $orders)
-                        @if( ($orders->order_shipped) == 0 )
-                            <tr>
-
-                                <td name="id" ><a href="">{{$orders->id}}</a></td>
-                                <td name="user_id">{{$orders->user_id}}</td>
-                                <td name="user">
-                                    {{
-                                        DB::table('users')->where('id', $orders->user_id)->value('surname')
-                                    }}
-                                </td>
-                                <td name="shipping_cost">{{$orders->shipping_cost}}</td>
-                                <td name="total">{{$orders->total}}</td>
-                            </tr>
-                        @endif
+                    {{!$orders=\App\Order::where('order_shipped', null)->orderBy('created_at','asc')->get()}}
+                    @foreach($orders as $order)
+                    @php
+                        $user = \App\User::where('id', $order->user_id)->first();
+                        $address = \App\Address::where('id', $order->address_id)->first();
+                    @endphp
+                        <tr>
+                            <td></td>
+                            <td>{{ date($order->created_at) }}</td>
+                            <td>{{$user->surname}} {{$user->name}}<br><a href='mailto:{{$user->email}}'>{{$user->email}}</a></td>
+                            <td>{{$address->street}}, {{$address->street_number}}<br>
+                            {{$address->city}} ({{$address->Provincia}}) {{$address->CAP}}</td>
+                            <td>{{$order->total}}</td>
+                        </tr>
                     @endforeach
 
                     <!--LISTA DEI PRODOTTI

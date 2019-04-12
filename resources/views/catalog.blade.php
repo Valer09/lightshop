@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Sidebar/Filter -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" style="top: 49px;z-index:3;width:250px" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left w3-light-grey" style="top: 49px;z-index:3;width:250px" id="mySidebar">
     <div class="">
         <div class="w3-margin-left">
             <a class="w3-row w3-margin" href="{{ url('catalog') }}">
@@ -29,8 +29,20 @@
         </div>
     </div>
 
-    <div id="filter" data-filter="open">
+    <div id="filter">
         <!--FILTER-->
+        <div class="w3-container">
+            <form method="post" action="/action_page_post.php">
+            <div>
+                <label for="price-min">Prezzo minimo:</label>
+                <input calss="w3-input w3-border-0" type="number" name="price-min" id="price-min" value="200" min="0" max="10000">
+                <label for="price-max">Prezzo massimo:</label>
+                <input calss="w3-input w3-border-0" type="number" name="price-max" id="price-max" value="800" min="0" max="10000">
+            </div>
+                <input type="submit" data-inline="true" value="Submit">
+                <p>The range slider can be useful for allowing users to select a specific price range when browsing products.</p>
+            </form>
+        </div>
     </div>     
 </nav>
 
