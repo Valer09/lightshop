@@ -47,6 +47,8 @@ class orderController extends Controller
                 $orderDetail->save();
             }
 
+            //DECREASE ELEMENT
+
             Session::forget('cart');
 
             return view('home');

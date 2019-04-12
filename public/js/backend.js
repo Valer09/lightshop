@@ -82,8 +82,8 @@ function openAlert() {
 openAlert()
 
 
-function openModalAdmin(id, el, show) {
-    if (show == null) {
+function openModalAdmin(id, el, show, order) {
+    if (el != null) {
         document.getElementById('brandModal').value = el['brand'];
         document.getElementById('nameModal').value = el['name'];
         document.getElementById('descriptionModal').value = el['description'];
@@ -91,15 +91,15 @@ function openModalAdmin(id, el, show) {
         document.getElementById('priceModal').value = el['price'];
         document.getElementById('quantityModal').value = el['availability'];
         document.getElementById('element_idModal').value = el['id'];
-        document.getElementById(id).style.display = 'block';
-    } else {
+    } else if(show != null) {
         document.getElementById('idMod').value = show['id'];
         document.getElementById('element_idModal').value = show['id'];
         document.getElementById('nomeMod').value = show['name'];
         document.getElementById('descrMod').value = show['description'];
         document.getElementById('catMod').value = show['nameSubCategory'];
         document.getElementById('linkMod').value = show['linkBuy'];
-        document.getElementById(id).style.display = 'block';
+    } else {
+        
     }
-
+    document.getElementById(id).style.display = 'block';
 }

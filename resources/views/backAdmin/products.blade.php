@@ -85,7 +85,7 @@
                 <!--LISTA DEI PRODOTTI blade-->
                 {{!$Elements=\App\Element::all()}}
                 @foreach($Elements as $el)
-                <tr onclick="openModalAdmin('modaleEditProduct', {{$el}}, null);">
+                <tr onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null);">
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
                     <td><b>{{ $el->name }}</b></td>
                     <td>{{ $el->brand }}</td>
