@@ -327,6 +327,7 @@ Route::post('/password_edit_submit', 'user_edit_controller@edit_password' );
 Route::post('/name_edit_submit', 'user_edit_controller@edit_name' );
 Route::post('/surname_edit_submit', 'user_edit_controller@edit_surname' );
 Route::post('/element_edit_submit', 'element_edit_controller@edit_element' );
+Route::post('/showroom_edit_submit', 'element_edit_controller@edit_showroom_element' );
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
 
 /**---DELETED---

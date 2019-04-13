@@ -68,7 +68,7 @@
                             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
                             <form class="w3-container">
-                                <fieldset id="provola" style="border: none">
+                                <fieldset id="fieldsetModale" style="border: none">
                                     <div class="w3-row">
                                         <div class="w3-col m6 w3-light-grey w3-center">
                                             <p>Dati nuovo prodotto</p>

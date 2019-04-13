@@ -112,7 +112,7 @@
             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
             <form method="post" class="w3-container" action="##">
                 @csrf
-                <fieldset id="provola" style="border: none">
+                <fieldset id="fieldsetModale" style="border: none">
                     <div class="w3-row w3-container">
                         <div class="w3-col m6 w3-light-grey w3-center">
                             <p>Dati prodotto</p>

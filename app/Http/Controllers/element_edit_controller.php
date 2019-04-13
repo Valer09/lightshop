@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Element;
+use App\Element, App\ElementsShowRoom;
 use Auth;
 Use App;
 
@@ -30,4 +30,19 @@ class element_edit_controller extends Controller
             }
     }
 
+    public function edit_showroom_element(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else
+            {
+                $element = ElementsShowRoom::where('id', "$request->element_idModal")->first();
+                if($element->name != $request->nomeMod) $element->update(['name' => $request->nomeMod]);
+                if($element->description != $request->descrizione) $element->update(['description' => $request->descrizione]);
+                if($element->linkBuy != $request->link) $element->update(['linkBuy' => $request->link]);
+                if($element->nameSubCategory != $request->catMod) $element->update(['nameSubCategory' => $request->catMod]);
+
+                $path = $request-> ref;
+                $path = substr($path, 1, strlen($path));
+                return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            }
+    }
 }

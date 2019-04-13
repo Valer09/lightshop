@@ -94,8 +94,8 @@ function openModalAdmin(id, el, show, order) {
         document.getElementById('element_idModal').value = el['id'];
         document.getElementById('element_idModal1').value = el['id'];
     } else if(show != null) {
-        document.getElementById('idMod').value = show['id'];
         document.getElementById('element_idModal').value = show['id'];
+        document.getElementById('element_idModal1').value = show['id'];
         document.getElementById('nomeMod').value = show['name'];
         document.getElementById('descrMod').value = show['description'];
         document.getElementById('catMod').value = show['nameSubCategory'];

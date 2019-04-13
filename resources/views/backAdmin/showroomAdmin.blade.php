@@ -92,27 +92,34 @@
             <span onclick="closeModal('modaleShowroomAdmin');" class="w3-button w3-display-topright">&times;</span>
             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
-            <form method="post" class="w3-container" action="##">
+            <form id="formModaleShowroom" method="post" class="w3-container" action="{{ url('showroom_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                 @csrf
-                <fieldset id="provola" style="border: none">
-                    <div class="w3-row w3-container">
-                        <div class="w3-col m6 w3-light-grey w3-center">
-                            <p>Dati Articolo</p>
-                            <input id="idMod" class="w3-input w3-hide" name="id" type="text">
-                            <input id="nomeMod" class="w3-input" name="nome" type="text" placeholder="Nome">
-                            <select id="catMod" class="w3-select" name="categoria" onchange="change(this.value)" required>
+                <fieldset id="fieldsetModale" style="border: none">
+                    <div class="w3-row-padding w3-container">
+                        <div class="w3-col m6">
+                            <input style="display: none" id="element_idModal" name="element_idModal">
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Titolo:</span>
+                            <input id="nomeMod" class="w3-input" name="nomeMod" type="text" placeholder="Nome">
+                            
+                            <span class="w3-block w3-blue-grey" style="margin: none">Testo:</span>
+                            <textarea id="descrMod" class="w3-input" name="descrizione" type="text" placeholder="Descrizione"></textarea>
+
+                        </div>
+                        <div class="w3-col m6">
+                            <span class="w3-block w3-blue-grey" style="margin: none">Categoria:</span>
+                            <select id="catMod" class="w3-select" name="catMod" onchange="change(this.value)" required>
                                 <option disabled selected>Seleziona la categoria</option>
                                 @foreach($Cats as $cat)
                                 <option>{{ $cat->name }}</option>
                                 @endforeach
                             </select>
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Link acquisto:</span>
                             <input class="w3-input" id="linkMod" name="link" type="text" placeholder="Link acquisto">
                         </div>
-                        <div class="w3-col m6 w3-light-grey w3-center">
-                            <p>Altre info</p>
-                            <textarea id="descrMod" class="w3-input" name="descrizione" type="text" placeholder="Descrizione"></textarea>
-                        </div>
                     </div>
+
                     <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
                         <input type="file" id="file" name="file_nameModal"></div>
                     <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
@@ -120,18 +127,19 @@
 
                 </fieldset>
                 <div class="w3-row">
-                    <div class="w3-col m4  w3-center">
-                        <button class="w3-button w3-ripple w3-green" style="width:80%" onclick="enableField()">Modifica</button>
+                    <div class="w3-col m4 w3-center">
+                        <button class="w3-button w3-ripple w3-yellow" type="button" style="width:80%" onclick="enableField()">Modifica</button>
                     </div>
-                    <div class="w3-col m4  w3-center">
-                        <button id="save" class="w3-button w3-ripple w3-red" style="width:80%; visibility: hidden">Salva</button>
+                    <div class="w3-col m4 w3-center">
+                        <button id="save" class="w3-button w3-ripple w3-green" type="button" style="width:80%; visibility: hidden"
+                        onclick="conferma('Vuoi modificare '+ document.getElementById('nomeMod').value +'?', 'formModaleShowroom')">Salva</button>
                     </div>
             </form>
                     <form id="formDeleteShowroom" method="post" action="{{ url('/elementshowroom_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                         @csrf
                         <div class="w3-col l4 s4 w3-center">
-                            <input style="display: none" id="element_idModal" name="element_idModal" required>
-                            <button class="w3-button w3-ripple w3-red w3-block w3-hover-red" style="width:80%;"
+                            <input style="display: none" id="element_idModal1" name="element_idModal" required>
+                            <button class="w3-button w3-ripple w3-red" style="width:80%;"
                                 onclick="conferma('Vuoi eliminare '+ document.getElementById('nomeMod').value +' dallo showroom?', 'formDeleteShowroom')"
                                 type="button">Elimina Prodotto</button>
                         </div>
