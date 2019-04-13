@@ -212,6 +212,9 @@ Route::group(['prefix' => 'admin'], function(){
         return view('backAdmin/couriers');
     });
 
+    Route::get('/offers', function(){
+        return view('backAdmin/offers');
+    });
 });
 
 //---------END ADMIN PAGES----------//

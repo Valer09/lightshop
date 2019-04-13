@@ -47,7 +47,12 @@
         @else
         <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         @endif
-
+        
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/offers"))
+        <a href="{{url('admin/offers')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-percent fa-fw"></i>  Offerte</a>
+        @else
+        <a href="{{url('admin/offers')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-percent fa-fw"></i>  Offerte</a>
+        @endif
 
         @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/categories"))
         <a href="{{url('admin/categories')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
