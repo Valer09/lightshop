@@ -114,23 +114,34 @@
             <span onclick="closeModal('modaleEditProduct');" class="w3-button w3-display-topright">&times;</span>
             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
-            <form method="post" class="w3-container" action="##">
+            <form id="formModEl" method="post" class="w3-container" action="{{ url('element_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                 @csrf
-                <fieldset id="provola" style="border: none">
-                    <div class="w3-row w3-container">
-                        <div class="w3-col m6 w3-light-grey w3-center">
-                            <p>Dati prodotto</p>
+                <fieldset id="fieldsetModale" style="border: none">
+                    <div class="w3-row-padding w3-container">
+                        <div class="w3-col m6">
+                            <input style="display: none" id="element_idModal" name="element_idModal">
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Marca:</span>
                             <select class="w3-select" id="brandModal" name="brandModal" type="text" placeholder="Marca">
                                 <option disabled selected>Selezione il Brand</option>
                                 {{$Brand = \App\Brand::all()}}
                                 @foreach ($Brand as $Brand)
-                                    <option>{{ $Brand->name}}</option>
+                                    <option value="{{ $Brand->name}}">{{ $Brand->name}}</option>
                                 @endforeach
                                     <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                             </select>
-                            <input class="w3-input" id="nameModal" name="nameModal" type="text" placeholder="Nome prodotto" required>
-                            <input class="w3-input" id="descriptionModal" name="descriptionModal" type="text" placeholder="Descrizione">
 
+                            <span class="w3-block w3-blue-grey" style="margin: none">Nome:</span>
+                            <input class="w3-input" id="nameModal" name="nameModal" type="text" placeholder="Nome prodotto" required>
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Descrizione:</span>
+                            <textarea class="w3-input" id="descriptionModal" name="descriptionModal" type="text" placeholder="Descrizione"></textarea>
+
+                        </div>
+
+
+                        <div class="w3-col m6">
+                            <span class="w3-block w3-blue-grey" style="margin: none">Categoria:</span>
                             <select class="w3-select" id="subcategoryModal" name="subcategoryModal" required >
                                 <option disabled selected>Selezione una Sottocategoria</option>
                                 {{$Category = \App\Category::all()}}
@@ -145,16 +156,14 @@
                                 @endforeach
                             </select>
 
-                        </div>
-
-
-                        <div class="w3-col m6 w3-light-grey w3-center">
-                            <p>Prezzi</p>
-
+                            <span class="w3-block w3-blue-grey" style="margin: none">Prezzo unitario:</span>
                             <input class="w3-input" id="priceModal" name="priceModal" type="text" placeholder="Prezzo unitario" required>
 
+                            <span class="w3-block w3-blue-grey" style="margin: none">Quantità disponibile:</span>
                             <input class="w3-input" id="quantityModal" name="quantityModal" type="number" placeholder="Quantità disponibile" required>
                             
+                            <span class="w3-block w3-blue-grey" style="margin: none">Peso singola unità (kg):</span>
+                            <input class="w3-input" id="weightModal" name="weightModal" type="number" placeholder="Peso prodotto (kg)" required>
                         </div>
                     </div>
                     
@@ -166,17 +175,18 @@
                 </fieldset>
                 <div class="w3-row">
                     <div class="w3-col l4 s4 w3-center">
-                        <button class="w3-button w3-ripple w3-green" style="width:80%" onclick="enableField()">Modifica</button>
+                        <button type="button" class="w3-button w3-ripple w3-yellow" style="width:80%" onclick="enableField()">Modifica</button>
                     </div>
                     <div class="w3-col l4 s4 w3-center">
-                        <button id="save" class="w3-button w3-ripple w3-red" style="width:80%; visibility: hidden">Salva</button>
+                        <button id="save" type="button" class="w3-button w3-ripple w3-green" style="width:80%; visibility: hidden"
+                        onclick="conferma('Vuoi modificare '+ document.getElementById('nameModal').value +'?', 'formModEl')">Salva</button>
                     </div>
             </form>
                     <form id="formDeleteProduct" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                     @csrf
                     <div class="w3-col l4 s4 w3-center">
-                        <input style="display: none" id="element_idModal" name="element_idModal">
-                        <button class="w3-button w3-ripple w3-red w3-block w3-hover-red" style="width:80%;"
+                        <input style="display: none" id="element_idModal1" name="element_idModal">
+                        <button class="w3-button w3-ripple w3-red" style="width:80%;"
                             onclick="conferma('Vuoi eliminare '+ document.getElementById('nameModal').value +' dal catalogo?', 'formDeleteProduct')"
                             type="button">Elimina Prodotto</button>
                     </div>

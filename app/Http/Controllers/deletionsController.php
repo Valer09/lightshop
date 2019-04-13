@@ -49,18 +49,28 @@ class deletionsController extends Controller
         }
     }
 
-
     public function decrease_element(Request $request){
-        DB::table('elements')->where('name', $request->decrease)->decrement('availability');
-        return view('test');
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
+            Element::where('id', $request->id_decrease)->decrement('availability');
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
     }
 
     public function decrease_element_of(Request $request){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
+            Element::where('id', $request->id_decrease)->decrement('availability',$request->quantity);
 
-        $quantity=$request->quantity;
-        DB::table('elements')->where('name', $request->decrease)->decrement('availability',$quantity);
-        return view('test');
-
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
     }
 
 //------ELEMENT-ACTIONS-END--------//

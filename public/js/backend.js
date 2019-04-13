@@ -90,7 +90,9 @@ function openModalAdmin(id, el, show, order) {
         document.getElementById('subcategoryModal').value = el['subcategories'];
         document.getElementById('priceModal').value = el['price'];
         document.getElementById('quantityModal').value = el['availability'];
+        document.getElementById('weightModal').value = el['weight'];
         document.getElementById('element_idModal').value = el['id'];
+        document.getElementById('element_idModal1').value = el['id'];
     } else if(show != null) {
         document.getElementById('idMod').value = show['id'];
         document.getElementById('element_idModal').value = show['id'];
@@ -101,5 +103,12 @@ function openModalAdmin(id, el, show, order) {
     } else {
         
     }
+    document.getElementById('save').style.visibility = "hidden";
+    document.getElementById("fieldsetModale").disabled = true;
     document.getElementById(id).style.display = 'block';
+}
+
+function enableField() {
+    document.getElementById("fieldsetModale").disabled = false;
+    document.getElementById('save').style.visibility = "";
 }

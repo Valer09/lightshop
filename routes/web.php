@@ -326,10 +326,7 @@ Route::post('/email_edit_submit', 'user_edit_controller@edit_email' );
 Route::post('/password_edit_submit', 'user_edit_controller@edit_password' );
 Route::post('/name_edit_submit', 'user_edit_controller@edit_name' );
 Route::post('/surname_edit_submit', 'user_edit_controller@edit_surname' );
-Route::post('/element_name_edit_submit', 'element_edit_controller@edit_name' );
-Route::post('/element_subcategories_edit_submit', 'element_edit_controller@edit_subcategories' );
-Route::post('/element_subcategories_edit_price', 'element_edit_controller@edit_price' );
-Route::post('/element_subcategories_edit_description', 'element_edit_controller@edit_description' );
+Route::post('/element_edit_submit', 'element_edit_controller@edit_element' );
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
 
 /**---DELETED---
