@@ -1,6 +1,9 @@
 @extends('layout.defaultLayout')
 
 @section('content')
+
+<script src="{{url('/js/home.js')}}"></script>
+
 <!--HEADERS-->
   <!--BIG SCREEN-->
   <header class="w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden">

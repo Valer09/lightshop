@@ -1,7 +1,7 @@
 <!-- Header -->
 <!-- Navbar (sit on top) -->
 
-<div class="w3-top w3-hide-small" id="navMar">
+<div class="w3-top w3-hide-small w3-card-4" id="navMar">
     <div class="w3-bar">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="{{url('./#')}}" class="barSx w3-bar-item"><b>Visca s.n.c.</b></a>
@@ -21,7 +21,7 @@
             </div>
             
             <div class="w3-dropdown-hover" style="padding: 0 0 0 0;">
-                <a id="prodot" href="{{ url('/catalog ') }}" class="w3-bar-item barDx">Prodotti</a>
+                <a href="{{ url('/catalog ') }}" class="w3-bar-item barDx">Prodotti</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4" style="margin-top:49px">
                     {{!$Category = \App\Category::all()}}
                     @foreach ($Category as $Category)
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="w3-dropdown-hover" style="padding: 0 0 0 0;">
-                <a id="prodot" href="{{ url('/showroom ') }}" class="barDx w3-bar-item">Showroom</a>
+                <a href="{{ url('/showroom ') }}" class="barDx w3-bar-item">Showroom</a>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4" style="margin-top:49px">
                     {{!$Cats=\App\CatShowroom::all()}}
                     @foreach($Cats as $cat)
