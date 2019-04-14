@@ -113,3 +113,13 @@ function enableField() {
     document.getElementById('save').style.visibility = "";
 }
 
+function openModalList(idmodale) {
+    /*
+    var ul = document.getElementById("listProd");
+    list.forEach(element => {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(element['name'] + ".\b pezzi disponibili: "+ element['availability']));
+        ul.appendChild(li);
+    }); */
+    document.getElementById(idmodale).style.display = 'block';
+}

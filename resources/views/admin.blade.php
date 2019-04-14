@@ -7,6 +7,10 @@
 
 @section('content')
 
+@php
+$prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
+@endphp
+
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
@@ -42,7 +46,7 @@
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-teal w3-padding-16">
-                    <a onclick="openModalList('ListaProdotti in esaurimento')">
+                    <a href="#" onclick="openModalList('ProdEsauriti')">
                         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3>23</h3>
@@ -174,4 +178,23 @@
                 </div>
             </div>
         </div>
-@stop
+
+        <!--Modale Nuova categoria-->
+<div id="ProdEsauriti" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('ProdEsauriti');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Prodotti in esaurimento minori di 10 pezzi</h2>
+        </header>
+        
+        <div class="w3-padding">
+            <ul id="listProd" class="w3-ul">
+                @foreach($prodEsaurimento as $prod)
+                <li><a href="{{url('element').$prod->id}}">{{$prod->name}}</a>.<b> Pezzi disponibili: {{$prod->availability}}</b></li>
+                @endforeach
+            </ul>
+        </div>
+    
+    </div>
+</div>
+@endsection
