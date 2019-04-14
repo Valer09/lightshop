@@ -1,15 +1,15 @@
 <!-- Header -->
 <!-- Navbar (sit on top) -->
 
-<div class="w3-top w3-hide-small w3-card-4" id="navMar">
-    <div class="w3-bar">
+<div class="w3-top w3-hide-small " id="navMar">
+    <div class="w3-bar ">
         <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="{{url('./#')}}" class="barSx w3-bar-item"><b>Visca s.n.c.</b></a>
         <a href="{{ url('/about ') }}" class="barDx w3-bar-item">Chi siamo</a>
         <a href="{{url('./#orari')}}" class="barDx w3-bar-item">Orari</a>
         <a href="{{url('/#contact')}}" class="barDx w3-bar-item">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
-        <div class="w3-right ">
+        <div class="w3-right">
             <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : ''}}</a>
             
             <a class="w3-bar-item barDx" onclick="this.style.display='none'; document.getElementById('searchButton').style.display = 'block';"><i class="fa fa-search"></i></a>

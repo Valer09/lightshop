@@ -42,13 +42,13 @@
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-teal w3-padding-16">
-                    <a href="#">
+                    <a onclick="openModalList('ListaProdotti in esaurimento')">
                         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3>23</h3>
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Condividi un prodotto</h4>
+                        <h4>Prodotti in esaurimento</h4>
                     </a>
                 </div>
             </div>

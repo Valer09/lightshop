@@ -19,7 +19,7 @@ class element_edit_controller extends Controller
                 if($element->name != $request->nameModal) $element->update(['name' => $request->nameModal]);
                 if($element->subcategories != $request->subcategoryModal) $element->update(['subcategories' => $request->subcategoryModal]);
                 if($element->price !== $request->priceModal) $element->update(['price' => $request->priceModal]);
-                if((int)$element->availability != (int)$request->quantityModal) $element->update(['availability' => $request->quantityModal]);
+                if((int)$element->availability != (int)$request->quantityModal) $element::modAvailability($element->id,$request->quantityModal);
                 if($element->description != $request->descriptionModal) $element->update(['description' => $request->descriptionModal]);
                 if($element->brand != $request->brandModal) $element->update(['brand' => $request->brandModal]);
                 if($element->weight != $request->weightModal) $element->update(['weight' => $request->weightModal]);

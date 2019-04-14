@@ -45,9 +45,9 @@ class orderController extends Controller
                 $orderDetail->details = '';
                 $orderDetail->quantity = $item['qty'];
                 $orderDetail->save();
-            }
 
-            //DECREASE ELEMENT
+                $el::modAvailability($el->id,($el->availability - $item['qty']));
+            }
 
             Session::forget('cart');
 

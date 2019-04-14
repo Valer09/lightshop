@@ -48,4 +48,10 @@ class Element extends Model
 
         Element::where('id', $el->id)->delete();
     }
+
+    public static function modAvailability($id, $quantity){
+        $element = Element::where('id', $id)->first();
+        $element->update(['availability' => $quantity]);
+    }
+
 }

@@ -12,8 +12,9 @@ $(function () {
                     "text-shadow": "none",
                 });
                 $("#navMar").css({
-                    "background-color": "#dfe4ea",
+                    "background-color": "white",
                 });
+                $("#navMar").addClass("w3-card-4");
             } else if ($(this).scrollTop() < somma) { // se si rientra sotto i px indicti..
                 $(".barDx").css({
                     "color": "white",
@@ -26,6 +27,7 @@ $(function () {
                 $("#navMar").css({
                     "background-color": "",
                 });
+                $("#navMar").removeClass("w3-card-4");
             }
         //}
 
