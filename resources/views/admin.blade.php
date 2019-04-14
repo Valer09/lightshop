@@ -1,5 +1,9 @@
 @extends('layout.defaultLayoutAdmin')
+@section('title', 'Visca s.n.c.')
 
+@section('head')
+  
+@endsection
 
 @section('content')
 

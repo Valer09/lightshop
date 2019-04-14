@@ -1,8 +1,14 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarTrasp.css')}}" />
+  <script src="{{url('/js/navbarDinamic.js')}}"></script>
+@endsection
 
 @section('content')
 
-<script src="{{url('/js/home.js')}}"></script>
+
 
 <!--HEADERS-->
   <!--BIG SCREEN-->

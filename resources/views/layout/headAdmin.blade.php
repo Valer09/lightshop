@@ -1,5 +1,4 @@
 
-<title>Visca s.n.c</title>
 <meta charset="UTF-8">
 <link rel="icon" href="/images/logo_visca.png" type="image/gif" sizes="16x16">
 

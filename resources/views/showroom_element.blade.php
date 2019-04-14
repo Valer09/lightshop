@@ -1,4 +1,12 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarTrasp.css')}}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/showroom.css')}}" />
+    <script src="{{url('/js/navbarDinamic.js')}}"></script>
+@endsection
+
 @section('content')
 
 <header class="w3-display-container w3-wide" id="principalDivElement" style="background-image: url('{{asset('storage')}}{{$Element[0]->pathPhoto}}')!important;">
