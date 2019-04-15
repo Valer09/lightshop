@@ -144,6 +144,7 @@ Auth::routes(['verify' => true]);
 Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
    Route::get('', 'AccessController@adminAccess');
    Route::get('home', 'AccessController@adminAccess');
+   
    Route::get('orders', function () {
        return view('backAdmin/orders');
    });
@@ -156,54 +157,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
     Route::get('orderscompleted', function () {
         return view('backAdmin/orderscompleted');
     });
-
-});
-//---End Control---//
-
-
-//Route::group(['middleware' => 'Admin'], function () {
-   //  Route::get('/admin', 'Auth\LoginController@AdminAccess');
-   //  Route::get('admin', 'Auth\LoginController');
-   //  Route::resource('book', 'BookController');
-//});
-
-
-//Route::group(['prefix' => 'elements'], function () {
-//    Route::get('all', 'ElementsController@showElements');
-//    Route::get('cat', 'ElementsController@showCategories');
-//    Route::get('sub', 'ElementsController@showSubCategories');
-//});
-
-
-Route::group(['prefix' => 'admin'], function(){
-
-    Route::get('/categories', function(){
-        return view('backAdmin/categories');
-    });
-
-    Route::get('/products', function(){
-        return view('backAdmin/products');
-    });
-
     Route::get('/news', function(){
         return view('backAdmin/news');
     });
-    Route::get('/orders', function(){
-        return view('backAdmin/orders');
-    });
-
-    Route::get('/orderscompleted', function(){
-        return view('backAdmin/orderscompleted');
-    });
-
-    Route::get('/settings', function(){
-        return view('backAdmin/settings');
-    });
-
     Route::get('/showroomAdmin', function(){
         return view('backAdmin/showroomAdmin');
     });
-
     Route::get('/users', function(){
         return view('backAdmin/users');
     });
@@ -215,8 +174,10 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('/offers', function(){
         return view('backAdmin/offers');
     });
+    Route::get('/settings', function(){
+        return view('backAdmin/settings');
+    });
 });
-
 //---------END ADMIN PAGES----------//
 
 
