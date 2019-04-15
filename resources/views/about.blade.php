@@ -157,4 +157,4 @@
 
 </style>
 
-@stop
+@endsection

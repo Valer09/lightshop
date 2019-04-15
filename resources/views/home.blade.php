@@ -228,7 +228,7 @@
       <p id="caption" class="w3-opacity w3-large">A phone</p>
     </div>
   </div>
-@stop
+@endsection
 
 
 

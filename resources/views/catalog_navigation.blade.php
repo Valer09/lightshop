@@ -54,4 +54,4 @@
         @endforeach
     </div><!--DIV RIDONDANTE-->
     </div>
-@stop
+@endsection

@@ -155,4 +155,4 @@
     </div>
 </div>
 <!--MODALE CHIUSURA-->
-@stop
+@endsection

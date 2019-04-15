@@ -119,4 +119,4 @@
         </div> <!--diV RIDONDANTE-->
     
 </div>
-@stop
+@endsection
