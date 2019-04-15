@@ -61,21 +61,24 @@ class ElementsController extends Controller
 
     public function getCheckout(){
         if(Auth::check()) {
-            if(!Session::has('cart')){
-                return view('cart');
+            if(empty(Auth::user()->email_verified_at) || Auth::user()->email_verified_at == '0000-00-00 00:00:00') return abort(403, 'Non puoi ordinare. Devi prima verificare la tua e-mail.');
+            else {
+                if(!Session::has('cart')){
+                    return view('cart');
+                }
+                $oldCart=Session::get('cart');
+                $cart= new Cart($oldCart);
+                $total=$cart->totalPrice;
+
+                $id=Auth::user()->address_id;
+                $address = Address::find($id);
+
+                //calcolo costo spedizione
+                $spedizioni = Courier::where('pesomax', '>=', $cart->totalWeight)
+                ->where('pesomin', '<=', $cart->totalWeight)->get(); 
+
+                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
             }
-            $oldCart=Session::get('cart');
-            $cart= new Cart($oldCart);
-            $total=$cart->totalPrice;
-
-            $id=Auth::user()->address_id;
-            $address = Address::find($id);
-
-            //calcolo costo spedizione
-            $spedizioni = Courier::where('pesomax', '>=', $cart->totalWeight)
-            ->where('pesomin', '<=', $cart->totalWeight)->get(); 
-
-            return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
         } else {
             return redirect('login');
         }

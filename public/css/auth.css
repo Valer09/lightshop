@@ -1,0 +1,43 @@
+.whiteForm{
+    text-decoration-color:  white;
+    color: white;
+}
+
+.buttonLogin{
+    text-decoration: underline;
+    color: #f0fbf2!important;
+}
+
+.tab {
+    display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #999999;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+.step.active {
+opacity: 1;
+    background-color: #ffffff!important;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+background-color: #ffffff;
+opacity: 1;
+}
+
+#aziendaRegistrazione{
+    display: none;
+}
