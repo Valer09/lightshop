@@ -110,7 +110,7 @@
                     <div class="w3-row w3-margin-bottom">
                         <label><i class="fa fa-lock"></i> {{ __('Password') }}</label>
                         <input id="password" class="w3-input form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" 
-                        type="password" placeholder="*********" name="password" required>
+                        type="password" placeholder="Password" name="password" required>
                         @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -120,7 +120,7 @@
                     <div class="w3-row w3-margin-bottom">
                         <label><i class="fa fa-lock"></i> {{ __('Ripeti Password') }}</label>
                         <input id="password-confirm" class="w3-input form-control {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                        type="password" placeholder="*********" name="password_confirmation" autocomplete="off" required>
+                        type="password" placeholder="Ripeti password" name="password_confirmation" autocomplete="off" required>
                         @if ($errors->has('password_confirmation'))
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -150,6 +150,8 @@
 
 
 <script>
+
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -222,6 +224,17 @@ function fixStepIndicator(n) {
     //... and adds the "active" class on the current step:
     x[n].className += " active";
 }
+
+
+//Richiamo funz.
+@php
+    $error1 = $errors->has('email') || $errors->has('email');
+    $error2 = $errors->has('IVA') || $errors->has('PEC') || $errors->has('PEC_confirmation');
+    $error3 = $errors->has('password') || $errors->has('password_confirmation');
+@endphp
+{{ $error1 ? 'nextPrev(1);' : '' }}
+{{ !$error1 && $error2 ? 'nextPrev(2);' : '' }}
+{{ !$error1 && !$error2 && $error3 ? 'nextPrev(3);' : '' }}
 </script>
 
 @endsection
