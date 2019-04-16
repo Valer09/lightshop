@@ -142,12 +142,12 @@
                         onclick="conferma('Vuoi modificare '+ document.getElementById('name_serviceModal').value +'?', 'formModEl')">Salva</button>
                     </div>
             </form>
-                    <form id="formDeleteProduct" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+                    <form id="formDeleteProduct" method="post" action="{{ url('courier_deletion') }}?ref={{$_SERVER['REQUEST_URI']}}">
                     @csrf
                     <div class="w3-col l4 s4 w3-center">
                         <input style="display: none" id="courier_idModal1" name="element_idModal">
                         <button class="w3-button w3-ripple w3-red" style="width:80%;"
-                            onclick="conferma('Vuoi eliminare '+ document.getElementById('nameModal').value +' dal catalogo?', 'formDeleteProduct')"
+                            onclick="conferma('Vuoi eliminare la spedizione: '+ document.getElementById('name_service').value +'?', 'formDeleteProduct')"
                             type="button">Elimina Prodotto</button>
                     </div>
                     </form>

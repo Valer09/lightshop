@@ -275,7 +275,7 @@ Route::post('/news_deletion_submit', 'deletionsController@delete_news' );
 Route::post('/category_deletion_submit', 'deletionsController@delete_category' );
 Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
 Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_element_showroom' );
-
+Route::post('/courier_deletion', 'deletionsController@delete_courier' );
 
 
 //---INCREMENT-DECREMENT---//

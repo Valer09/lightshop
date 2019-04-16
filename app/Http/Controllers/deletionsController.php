@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App, DB, Storage;
 use Auth;
-use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom;
+use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier;
 
 class deletionsController extends Controller
 {
@@ -131,6 +131,18 @@ class deletionsController extends Controller
             ElementsShowRoom::deleteAll($ell);
  
 
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
+    }
+    
+    public function delete_courier(Request $request){
+        if ( Auth::check() && Auth::user()->group == "Administrator" ){
+            Courier::where('id', $request->element_idModal)->delete();
+            
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path);
