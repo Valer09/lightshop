@@ -293,7 +293,7 @@ Route::post('/surname_edit_submit', 'user_edit_controller@edit_surname' );
 Route::post('/element_edit_submit', 'element_edit_controller@edit_element' );
 Route::post('/showroom_edit_submit', 'element_edit_controller@edit_showroom_element' );
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
-Route::post('/user_edit', '@general_edit' );
+Route::post('/courier_edit', 'element_edit_controller@edit_courier' );
 
 /**---DELETED---
 

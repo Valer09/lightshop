@@ -5,3 +5,9 @@ a.w3-bar-item:hover {
     transition: all 0.3s;
     /*background-color: #f1f2f6 !important;*/
 }
+
+@media screen and (max-width: 1400px) {
+    .w3-main b {
+        font-size: 26px;
+    }
+}

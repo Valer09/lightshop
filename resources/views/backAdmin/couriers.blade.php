@@ -87,33 +87,6 @@
     </div>
 </div>
 
-<!--Modale Nuovo Cirrere-->
-<div id="nuovoCorriere" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
-        <header class="w3-container w3-teal">
-            <span onclick="closeModal('nuovoCorriere');" class="w3-button w3-display-topright">&times;</span>
-            <h2>Nuovo Corriere</h2>
-        </header>
-        <form type="submit" method="post" action="{{URL::to('/insert_courier')}}?ref={{$_SERVER['REQUEST_URI']}}">
-            @csrf
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Corriere: </label>
-                    <input class="inputModale" placeholder="Nome corriere" type="text" name="name" required>
-                </div>
-                <div class="w3-row">
-                    <label>Link: </label>
-                    <input class="inputModale" placeholder="Link del sito di tracking corriere" type="text" name="link">
-                </div>
-                <div class="w3-row">
-                    <button class="w3-right" type="submit">Salva</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
 <!--MODALE edit courier-->
 <div id="modaleEditCourier" class="w3-modal">
     <div id="modaleAdmin" class="w3-modal-content">
@@ -122,7 +95,7 @@
             <span onclick="closeModal('modaleEditCourier');" class="w3-button w3-display-topright">&times;</span>
             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
             <p>Utilizza questa form per modificare i dati della spedizione.</p>
-            <form id="formModEl" method="post" class="w3-container" action="{{ url('#') }}?ref={{$_SERVER['REQUEST_URI']}}">
+            <form id="formModEl" method="post" class="w3-container" action="{{ url('courier_edit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                 @csrf
                 <fieldset id="fieldsetModale" style="border: none">
                     <div class="w3-row-padding w3-container">
@@ -136,7 +109,7 @@
                                 @foreach ($nameCouriers as $nameCourier)
                                     <option value="{{ $nameCourier->name}}">{{ $nameCourier->name}}</option>
                                 @endforeach
-                                    <option onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</option>
+                                    <option onclick="modaleSottocategoria('nuovoCorriere', '');">Nuovo Corriere</option>
                             </select>
 
                             <span class="w3-block w3-blue-grey" style="margin: none">Nome servizio:</span>
@@ -166,7 +139,7 @@
                     </div>
                     <div class="w3-col l4 s4 w3-center">
                         <button id="save" type="button" class="w3-button w3-ripple w3-green" style="width:80%; visibility: hidden"
-                        onclick="conferma('Vuoi modificare '+ document.getElementById('nameModal').value +'?', 'formModEl')">Salva</button>
+                        onclick="conferma('Vuoi modificare '+ document.getElementById('name_serviceModal').value +'?', 'formModEl')">Salva</button>
                     </div>
             </form>
                     <form id="formDeleteProduct" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
@@ -184,5 +157,31 @@
     </div>
 </div>
 <!--MODALE CHIUSURA-->
+
+<!--Modale Nuovo Cirrere-->
+<div id="nuovoCorriere" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('nuovoCorriere');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Nuovo Corriere</h2>
+        </header>
+        <form type="submit" method="post" action="{{URL::to('/insert_courier')}}?ref={{$_SERVER['REQUEST_URI']}}">
+            @csrf
+            <div class="w3-padding">
+                <div class="w3-row">
+                    <label>Corriere: </label>
+                    <input class="inputModale" placeholder="Nome corriere" type="text" name="name" required>
+                </div>
+                <div class="w3-row">
+                    <label>Link: </label>
+                    <input class="inputModale" placeholder="Link del sito di tracking corriere" type="text" name="link">
+                </div>
+                <div class="w3-row">
+                    <button class="w3-right" type="submit">Salva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @endsection

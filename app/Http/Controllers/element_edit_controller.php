@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Element, App\ElementsShowRoom;
+use App\Element, App\ElementsShowRoom, App\Courier;
 use Auth;
 Use App;
 
@@ -45,4 +45,23 @@ class element_edit_controller extends Controller
                 return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
             }
     }
+
+    public function edit_courier(Request $request){
+        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        else
+            {
+                $courier = Courier::where('id', "$request->courier_idModal")->first();
+                if($courier->courier_name != $request->brandModal) $courier->update(['courier_name' => $request->brandModal]);
+                if($courier->pesomin !== $request->pesomin) $courier->update(['pesomin' => $request->pesomin]);
+                if($courier->pesomax !== $request->pesomax) $courier->update(['pesomax' => $request->pesomax]);
+                if($courier->stima_giorni != $request->stima_giorni) $courier->update(['stima_giorni' => $request->stima_giorni]);
+                if($courier->price !== $request->price) $courier->update(['price' => $request->price]);
+                if($courier->name_service != $request->name_service) $courier->update(['name_service' => $request->name_service]);
+
+                $path = $request-> ref;
+                $path = substr($path, 1, strlen($path));
+                return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            }
+    }
+
 }
