@@ -61,7 +61,7 @@
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-top: 49px;margin-left:250px; max-width: 1500px;">
+<div class="w3-main" style="margin-top: 49px;margin-left:250px;">
 
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
@@ -77,7 +77,7 @@
     <!-- Image header -->
     @if($Category[1] == null)
     <div class="w3-display-container w3-container">
-        <img class="w3-image" src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
+        <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
         <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
             <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
             <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
@@ -91,27 +91,30 @@
     {{!$conta = 1}}
     @foreach($Elements as $el)
     @if ($conta == 1)
-    <div class="w3-row w3-grayscale w3-margin-top" id="elementi">
+    
+    <div class="first w3-row-padding w3-grayscale w3-margin-top" id="elementi">
     @endif
 
-        <div class="w3-container w3-col l3">
-            <div class="w3-display-container">
-                <img class="w3-image" src=" {{ asset('storage').$el->pathPhoto }}">
+        <div class="second w3-col l2">
+
+            <div class="third w3-display-container w3-white">
+                <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}">
                 @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
-                <span class="w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
+                <span class="w3-round-xlarge w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
                 @endif
                 <div class="w3-display-middle w3-display-hover">
-                    <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista
-                        <i class="fa fa-shopping-cart"></i></button>
+                    <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista<i class="fa fa-shopping-cart"></i></button>
                 </div>
             </div>
-            <div class="divElP">
-            <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
+
+            <div class="divElP w3-row">
+                <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
             </div>
+
         </div>
         
     {{!$conta = $conta + 1}}
-    @if ($conta == 5)
+    @if ($conta == 7)
     </div>
     {{!$conta = 1}}
     @endif

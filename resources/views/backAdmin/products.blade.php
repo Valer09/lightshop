@@ -48,8 +48,8 @@
                         @endforeach
                     </select>
                     <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
-                    <input class="w3-input" name="weight" type="number" placeholder="Peso singolo prodotto (kg)">
-                    <input class="w3-input" name="quantity" type="number" placeholder="Quantità disponibile (pz)" required>
+                    <input class="w3-input" name="weight" min="1" type="number" placeholder="Peso singolo prodotto (kg)">
+                    <input class="w3-input" name="quantity" min="1" type="number" placeholder="Quantità disponibile (pz)" required>
                 </div>
             </div>
             
@@ -91,7 +91,7 @@
                 <!--LISTA DEI PRODOTTI blade-->
                 {{!$Elements=\App\Element::all()}}
                 @foreach($Elements as $el)
-                <tr onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null);">
+                <tr onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null, null, null);">
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
                     <td><b>{{ $el->name }}</b></td>
                     <td>{{ $el->brand }}</td>

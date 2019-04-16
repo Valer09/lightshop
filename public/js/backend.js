@@ -82,7 +82,7 @@ function openAlert() {
 openAlert()
 
 
-function openModalAdmin(id, el, show, order) {
+function openModalAdmin(id, el, show, order, courier, other) {
     if (el != null) {
         document.getElementById('brandModal').value = el['brand'];
         document.getElementById('nameModal').value = el['name'];
@@ -100,8 +100,17 @@ function openModalAdmin(id, el, show, order) {
         document.getElementById('descrMod').value = show['description'];
         document.getElementById('catMod').value = show['nameSubCategory'];
         document.getElementById('linkMod').value = show['linkBuy'];
+    } else if(courier != null) {
+        document.getElementById('courier_idModal').value = courier['id'];
+        document.getElementById('courier_idModal1').value = courier['id'];
+        document.getElementById('brandModal').value = courier['courier_name'];
+        document.getElementById('name_serviceModal').value = courier['name_service'];
+        document.getElementById('priceModal').value = courier['price'];
+        document.getElementById('pesominModal').value = courier['pesomin'];
+        document.getElementById('pesomaxModal').value = courier['pesomax'];
+        document.getElementById('stima_giorniModal').value = courier['stima_giorni'];
     } else {
-        
+
     }
     document.getElementById('save').style.visibility = "hidden";
     document.getElementById("fieldsetModale").disabled = true;

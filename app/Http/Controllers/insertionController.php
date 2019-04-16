@@ -259,6 +259,7 @@ class insertionController extends Controller
             $courier-> pesomax = $request -> max_weidth;
             $courier-> stima_giorni = $request -> time;
             $courier-> price = $request -> price;
+            $courier-> name_service = $request -> name_service;
 
             $courier->save();
 

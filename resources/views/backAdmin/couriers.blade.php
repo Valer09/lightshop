@@ -16,9 +16,9 @@
             @csrf
             <div class="w3-row w3-container">
                 <div class="w3-col m6 w3-light-grey w3-center">
-                    <p>Dati nuova spedizione. <button onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</button></p>
+                    <p style="margin-top: 12px;margin-bottom:12px">Dati nuova spedizione. <button onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</button></p>
                     <select class="w3-select" name="courier" type="text" placeholder="Marca">
-                        <option disabled selected>Selezione il Corriere</option>
+                        <option disabled selected>Seleziona il Corriere</option>
                         @php
                         $couriers = \App\NameCourier::all()
                         @endphp
@@ -27,15 +27,17 @@
                         @endforeach
                             <option onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</option>
                     </select>
-                    <input class="w3-input" name="min_weidth" type="text" placeholder="Peso minimo per collo (kg)" required>
-                    <input class="w3-input" name="max_weidth" type="text" placeholder="Peso massimo per collo (kg)" required>
+
+                    <input class="w3-input" id="name_service" name="name_service" type="string" placeholder="Nome servizio" required>
+                    <input class="w3-input" name="price" type="text" placeholder="Prezzo di spedizione" required>
                 </div>
 
 
                 <div class="w3-col m6 w3-light-grey w3-center">
-                    <p>Prezzi</p>
+                    <p>Altre info</p>
+                    <input class="w3-input" name="min_weidth" type="text" placeholder="Peso minimo per collo (kg)" required>
+                    <input class="w3-input" name="max_weidth" type="text" placeholder="Peso massimo per collo (kg)" required>
                     <input class="w3-input" name="time" type="number" placeholder="Giorni stimati di consegna" required>
-                    <input class="w3-input" name="price" type="text" placeholder="Prezzo di spedizione" required>
                 </div>
             </div>
         
@@ -71,9 +73,9 @@
                 $speds = \App\Courier::all()
                 @endphp
                 @foreach($speds as $sped)
-                <tr onclick="document.getElementById('id01').style.display='block'">
+                <tr onclick="openModalAdmin('modaleEditCourier', null, null, null, {{$sped}}, null);">
                     <td></td>
-                    <td><b>{{ $sped->courier_name }}</b></td>
+                    <td><b>{{ $sped->courier_name }}</b><br>{{$sped->name_service}}</td>
                     <td>{{ $sped->pesomin }} - {{ $sped->pesomax }} kg</td>
                     <td>{{ number_format($sped->price, 2, ',', '.') }} €</td>
                     <td>{{ $sped->stima_giorni }} gg</td>
@@ -110,5 +112,77 @@
         </form>
     </div>
 </div>
+
+
+<!--MODALE edit courier-->
+<div id="modaleEditCourier" class="w3-modal">
+    <div id="modaleAdmin" class="w3-modal-content">
+
+        <div id="modalModUser" class="w3-container w3-blue-grey">
+            <span onclick="closeModal('modaleEditCourier');" class="w3-button w3-display-topright">&times;</span>
+            <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
+            <p>Utilizza questa form per modificare i dati della spedizione.</p>
+            <form id="formModEl" method="post" class="w3-container" action="{{ url('#') }}?ref={{$_SERVER['REQUEST_URI']}}">
+                @csrf
+                <fieldset id="fieldsetModale" style="border: none">
+                    <div class="w3-row-padding w3-container">
+                        <div class="w3-col m6">
+                            <input style="display: none" id="courier_idModal" name="courier_idModal">
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Corriere:</span>
+                            <select class="w3-select" id="brandModal" name="brandModal" type="text" placeholder="Marca">
+                                <option disabled selected>Seleziona il Corriere</option>
+                                {{$nameCouriers = \App\NameCourier::all()}}
+                                @foreach ($nameCouriers as $nameCourier)
+                                    <option value="{{ $nameCourier->name}}">{{ $nameCourier->name}}</option>
+                                @endforeach
+                                    <option onclick="modaleSottocategoria('nuovoCorriere', '')">Nuovo Corriere</option>
+                            </select>
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Nome servizio:</span>
+                            <input class="w3-input" id="name_serviceModal" name="name_service" type="string" placeholder="Pacco celere 2" required>
+                            
+                            <span class="w3-block w3-blue-grey" style="margin: none">Prezzo spedizione:</span>
+                            <input class="w3-input" id="priceModal" name="price" type="text" placeholder="Costo spedizione" required>
+                        </div>
+
+
+                        <div class="w3-col m6">
+                            <span class="w3-block w3-blue-grey" style="margin: none">Peso collo minimo (kg):</span>
+                            <input class="w3-input" id="pesominModal" name="pesomin" type="number" placeholder="Peso minimo" required>
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Peso collo massimo (kg):</span>
+                            <input class="w3-input" id="pesomaxModal" name="pesomax" type="number" placeholder="Peso massimo">
+                            
+                            <span class="w3-block w3-blue-grey" style="margin: none">Stima giorni:</span>
+                            <input class="w3-input" id="stima_giorniModal" name="stima_giorni" type="number" placeholder="Giorni stimati dal corriere per la spedizione" required>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+                <div class="w3-row">
+                    <div class="w3-col l4 s4 w3-center">
+                        <button type="button" class="w3-button w3-ripple w3-yellow" style="width:80%" onclick="enableField()">Modifica</button>
+                    </div>
+                    <div class="w3-col l4 s4 w3-center">
+                        <button id="save" type="button" class="w3-button w3-ripple w3-green" style="width:80%; visibility: hidden"
+                        onclick="conferma('Vuoi modificare '+ document.getElementById('nameModal').value +'?', 'formModEl')">Salva</button>
+                    </div>
+            </form>
+                    <form id="formDeleteProduct" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+                    @csrf
+                    <div class="w3-col l4 s4 w3-center">
+                        <input style="display: none" id="courier_idModal1" name="element_idModal">
+                        <button class="w3-button w3-ripple w3-red" style="width:80%;"
+                            onclick="conferma('Vuoi eliminare '+ document.getElementById('nameModal').value +' dal catalogo?', 'formDeleteProduct')"
+                            type="button">Elimina Prodotto</button>
+                    </div>
+                    </form>
+                </div>
+            
+        </div>
+    </div>
+</div>
+<!--MODALE CHIUSURA-->
 
 @endsection

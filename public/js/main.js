@@ -62,8 +62,8 @@ function openTab(evt, cityName) {
  //Se il paramentro "openAlert" è pieno, apri un alert
  function openAlert() {
     const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('openAlert').toString();
-    if (myParam!=null){
+    if (urlParams.get('openAlert')!=null){
+        const myParam = urlParams.get('openAlert').toString();
         window.alert(myParam);
         window.location.href = document.documentURI.split('?')[0];
     }
@@ -98,3 +98,12 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-white";
 }
  
+//lazy
+$( document ).ready(function() {
+  [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.onload = function() {
+           img.removeAttribute('data-src');
+        };
+  });
+});

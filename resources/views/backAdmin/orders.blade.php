@@ -32,7 +32,7 @@
                         $user = \App\User::where('id', $order->user_id)->first();
                         $address = \App\Address::where('id', $order->address_id)->first();
                     @endphp
-                        <tr onclick="openModalAdmin('modaleOrder', null, null, {{$order}});">
+                        <tr onclick="openModalAdmin('modaleOrder', null, null, {{$order}}, null, null);">
                             <td></td>
                             <td>{{ date($order->created_at) }}</td>
                             <td>{{$user->surname}} {{$user->name}}<br><a href='mailto:{{$user->email}}'>{{$user->email}}</a></td>

@@ -74,7 +74,7 @@
                 <!--LISTA DEI PRODOTTI blade-->
                 {{!$ElementsShowRoom=\App\ElementsShowRoom::all()}}
                 @foreach($ElementsShowRoom as $el)
-                    <tr onclick="openModalAdmin('modaleShowroomAdmin', null, {{ $el }}, null);">
+                    <tr onclick="openModalAdmin('modaleShowroomAdmin', null, {{ $el }}, null, null, null);">
                         <td><img src="{{asset('storage'.$el->pathPhoto)}}" style="width: 100px;"></td>
                         <td><b>{{ $el->name }}</b></td>
                         <td>{{ $el->description }}</td>

@@ -85,7 +85,7 @@
                 @endphp
 
                 @foreach($users as $user)
-                <tr onclick="openModalAdmin('modaleEditProduct', null, null, null);">
+                <tr onclick="openModalAdmin('modaleEditProduct', null, null, null, null, null);">
                     <td></td>
                     <td><b>{{ $user->name }} {{ $user->surname }}</b></td>
                     <td>{{ $user->email }}

@@ -17,7 +17,7 @@
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="padding-top: 80px;margin-left:auto; margin-right:auto; max-width: 1500px;">
+<div class="w3-main" style="padding-top: 80px;margin-left:auto; margin-right:auto;">
 
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
@@ -34,7 +34,7 @@
                     <div class="w3-container w3-col l3">
                         <a href="{{ url('catalog').$cat->name }}">
                             <div class="w3-display-container categories">
-                                <img src="{{ asset('storage').$cat->pathPhoto }}" style="width:100%" alt="{{ $cat->name }}">
+                                <img class="lazy" data-src="{{ asset('storage').$cat->pathPhoto }}" style="width:100%" alt="{{ $cat->name }}">
                                 <div class="w3-display-middle w3-margin-top w3-center">
                                     <h2 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>{{ $cat->name }}</b></span></h2>
                                 </div>
