@@ -14,15 +14,15 @@
 
 <!--BIG DISPLAY-->
 <!-- !PAGE CONTENT! -->
-<div class="w3-row w3-hide-small w3-hide-medium" style="padding-top: 49px;">
-    <div class="l4 w3-container w3-padding-16" style="max-width: 33%">
+<div class="w3-row w3-hide-small w3-hide-medium w3-display-container" style="min-height:100%">
+    <div class="l4 w3-display-bottomleft w3-padding" style="max-width: 33%">
         <h1>{{$el->name}}</h1>
         @if($brand->link != null || $brand->link != "")
         <a target="_blank" href="{{$brand->link}}"><h4>{{ $el->brand }}</h4></a>
         @endif
         <span>{!! nl2br($el->description) !!}</span>
     </div>
-    <div class="w3-col w3-display-topmiddle l4" style="max-width:500px; margin-top: 80px">          
+    <div class="w3-col w3-display-topmiddle l4" style="max-width:500px;margin-top: 100px;">          
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -34,13 +34,13 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active" style="height: 60%">
-                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
+                <div class="item active" style="overflow:hidden">
+                    <img data-src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
                 </div>
 
                 @foreach($photos as $photo)
-                <div class="item" style="height: 60%; overflow:hidden">
-                    <img class="w3-image" src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
+                <div class="item" style="overflow:hidden">
+                    <img class="w3-image" data-src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
                 </div>
                 @endforeach
             </div>
@@ -58,12 +58,12 @@
             @endif
         </div>
     </div>
-    <div class="l4 w3-container w3-center w3-right">
+    <div class="l4 w3-display-bottomright w3-center">
         <div class="w3-padding" style="background-color: #2c993f; color: white">
             <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
             <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                 @csrf
-                <input style="color:black" type="number" name="quantity" min="1" max="{{$el->availability}}" required>
+                <input style="color:black" type="number" name="quantity" min="1" max="{{$el->availability}}" value="1" required>
                 <button type="submit" class="w3-button w3-black">Aggiungi la carrello</button>
             </form>
         </div>
