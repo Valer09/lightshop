@@ -34,7 +34,7 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-blue w3-padding-16">
-                    <a href="./Ordini.html">
+                    <a href="{{url('admin/orders')}}">
                         <div class="w3-left"><i class="fa fa-diamond w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3>99</h3>
@@ -49,7 +49,7 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
                     <a href="#" onclick="openModalList('ProdEsauriti')">
                         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>23</h3>
+                            <h3>{{count($prodEsaurimento)}}</h3>
                         </div>
                         <div class="w3-clear"></div>
                         <h4>Prodotti in esaurimento</h4>
