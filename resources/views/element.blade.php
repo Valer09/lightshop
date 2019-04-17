@@ -19,10 +19,12 @@
         <h1>{{$el->name}}</h1>
         @if($brand->link != null || $brand->link != "")
         <a target="_blank" href="{{$brand->link}}"><h4>{{ $el->brand }}</h4></a>
+        @else
+        <h4>{{ $el->brand }}</h4>
         @endif
-        <span>{!! nl2br($el->description) !!}</span>
+        <span>{!! nl2br(utf8_decode($el->description)) !!}</span>
     </div>
-    <div class="w3-col w3-display-topmiddle l4" style="max-width:500px;margin-top: 100px;">          
+    <div class="containerCarousel w3-col w3-display-topmiddle l4" style="margin-top: 100px;">          
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -34,12 +36,12 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active" style="overflow:hidden">
+                <div class="item active" style="overflow:hidden; max-height:60%">
                     <img data-src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
                 </div>
 
                 @foreach($photos as $photo)
-                <div class="item" style="overflow:hidden">
+                <div class="item" style="overflow:hidden; max-height:60%">
                     <img class="w3-image" data-src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
                 </div>
                 @endforeach
@@ -72,8 +74,8 @@
 
 <!--SMALL AND MEDIUM-->
 <!-- !PAGE CONTENT! -->
-<div class="w3-hide-large" style="padding-top: 49px;">
-    <div class="w3-container" style="margin-top: 80px">          
+<div class="w3-hide-large" style="margin-top: 80px">
+    <div class="w3-container w3-white">          
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -85,13 +87,13 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
-                <div class="item active" style=" height: 600px">
-                    <img src="{{ asset('storage').$el->pathPhoto}}" alt="{{ $el->name }}">
+                <div class="item active" style=" height: 80%">
+                    <img src="{{ asset('storage').$el->pathPhoto}}" style=" height: 80%" alt="{{ $el->name }}">
                 </div>
 
                 @foreach($photos as $photo)
-                <div class="item" style=" height: 600px">
-                    <img src="{{ asset('storage').$photo->path}}" alt="{{$photo->alt}}">
+                <div class="item" style=" height: 80%">
+                    <img src="{{ asset('storage').$photo->path}}" style=" height: 80%" alt="{{$photo->alt}}">
                 </div>
                 @endforeach
             </div>

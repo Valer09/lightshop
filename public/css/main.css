@@ -190,9 +190,6 @@ footer {
     filter: saturate(130%)!important;
 }
 
-.divElP {
-padding: 8px 20px;
-}
 
 a:hover {
     text-decoration: none!important;
@@ -229,5 +226,10 @@ img[data-src] {
 
 .third img {
     height: 210px;
+    object-fit:contain;
+}
+
+.containerCarousel div img{
+    max-height: 650px;
     object-fit:contain;
 }

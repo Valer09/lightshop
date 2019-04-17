@@ -44,9 +44,8 @@
 
                 <div class="w3-dropdown-content content-right w3-bar-block w3-card-4" style="margin-top:49px">
                     <?php $group = Auth::user()->group ?>
-                    @if( $group == "Administrator" )
+                    @if( $group == "Administrator" || $group == "Privileged" )
                     <a href="{{ url('/admin/home ') }}" class="w3-bar-item">DASHBOARD</a>
-
                     @endif
                     <a href="{{ url('/profile ') }}" class="w3-bar-item">Profilo</a>
                     <a href="{{ url('/logout') }}" class="w3-bar-item">Log Out</a>
