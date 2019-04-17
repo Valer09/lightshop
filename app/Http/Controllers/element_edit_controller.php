@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Element, App\ElementsShowRoom, App\Courier;
+use App\Http\Controllers\VerifiedPrivileged;
 use Auth;
 Use App;
 
 class element_edit_controller extends Controller
 {
     public function edit_element(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else
             {
                 $element = Element::where('id', "$request->element_idModal")->first();
@@ -18,11 +19,19 @@ class element_edit_controller extends Controller
                 //dd($element->price !== $request->priceModal);
                 if($element->name != $request->nameModal) $element->update(['name' => $request->nameModal]);
                 if($element->subcategories != $request->subcategoryModal) $element->update(['subcategories' => $request->subcategoryModal]);
-                if($element->price !== $request->priceModal) $element->update(['price' => $request->priceModal]);
                 if((int)$element->availability != (int)$request->quantityModal) $element::modAvailability($element->id,$request->quantityModal);
                 if($element->description != $request->descriptionModal) $element->update(['description' => $request->descriptionModal]);
                 if($element->brand != $request->brandModal) $element->update(['brand' => $request->brandModal]);
                 if($element->weight != $request->weightModal) $element->update(['weight' => $request->weightModal]);
+                
+                if(($element->price != $request->priceModal)) {
+                    if(VerifiedPrivileged::verificaAdmin($request)) $element->update(['price' => $request->priceModal]);
+                    else {
+                        $path = $request-> ref;
+                        $path = substr($path, 1, strlen($path));
+                        return redirect($path.'?openAlert=Non%20sei%20autorizzato%20a%20modificare%20il%20prezzo!');
+                    }
+                }
 
                 $path = $request-> ref;
                 $path = substr($path, 1, strlen($path));
@@ -31,7 +40,7 @@ class element_edit_controller extends Controller
     }
 
     public function edit_showroom_element(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else
             {
                 $element = ElementsShowRoom::where('id', "$request->element_idModal")->first();
@@ -47,7 +56,7 @@ class element_edit_controller extends Controller
     }
 
     public function edit_courier(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else
             {
                 $courier = Courier::where('id', "$request->courier_idModal")->first();

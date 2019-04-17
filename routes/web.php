@@ -80,6 +80,9 @@ Route::post('/email_recovery', 'gets_controller@get_user_cf');
 //--End Home--//
 
 //--Showroom--//
+Route::get('/showroom', function () {
+    return view('showroom');
+});
 
 Route::get('/bagni', function () {
     return view('showroom_navigation');
@@ -178,6 +181,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'Admin'], function () {
         return view('backAdmin/settings');
     });
 });
+
 //---------END ADMIN PAGES----------//
 
 
@@ -222,39 +226,10 @@ Route::get('/checkout',[
 
 
 
-
-
-
-
-//----------OPERATIONS TEST VIEWS------------//
-
-Route::get('order', function(){
-  return view('OrderFormTest'); });
-
-Route::get('deletions', function(){
-    return view('DeleteFormTest'); });
-
-Route::get('edits', function(){
-    return view('EditFormTest'); });
-
-Route::get('/showroom', function () {
-    return view('showroom'); });
-
-Route::get('/inside', function () {
-    return view('inside'); });
-
-//-----------END OPERATIONS------------//
-
-
-
-
-
-
 //----------POST Methods---------------------//
 
 //---INSERTIONS---/
 Route::post('/order_submit', 'orderController@submit_order');
-Route::post('/user_insertion_submit', 'insertionController@insert_user' );
 Route::post('/element_insertion_submit', 'insertionController@insert_element' );
 Route::post('/address_insertion_submit', 'insertionController@insert_address' );
 Route::post('/article_showroom_insert', 'insertionController@insert_art_showroom' );
@@ -279,8 +254,6 @@ Route::post('/courier_deletion', 'deletionsController@delete_courier' );
 
 
 //---INCREMENT-DECREMENT---//
-Route::post('/element_increase_submit', 'insertionController@increase_element' ); //increment 1
-Route::post('/element_increase_of_submit', 'insertionController@increase_element_of' ); //increment x
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
 Route::post('/element_decrease_of_submit', 'deletionsController@decrease_element_of' );
 
@@ -312,11 +285,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

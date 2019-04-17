@@ -7,6 +7,7 @@ use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, Ap
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\VerifiedPrivileged;
 
 
 
@@ -19,38 +20,8 @@ Use Illuminate\Support\Facades\Auth;
 
 class insertionController extends Controller
 {
-    public function insert_user(Request $request)
-    {
-        $user = new User;
-        $user->name = $request->name;
-        $user->surname = $request->surname;
-        $user->email = $request->email;
-        $user->password = Hash::make ($request->password);
-        $user->group = $request->group;
-        $user->save();
-
-        return view('test');
-
-    }
-
-
-    public function increase_element(Request $request){
-
-        DB::table('elements')->where('name', $request->increase)->increment('availability',1);
-        return view('test');
-
-    }
-
-    public function increase_element_of(Request $request){
-
-        $quantity=$request->quantity;
-        DB::table('elements')->where('name', $request->increase)->increment('availability',$quantity);
-        return view('test');
-
-    }
-
     public function insert_element(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $element = new Element;
             $element->name = $request->name;
@@ -87,7 +58,7 @@ class insertionController extends Controller
     }
 
     public function insert_news(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $news =  new News;
 
@@ -104,7 +75,7 @@ class insertionController extends Controller
     }
 
     public function insert_category(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $category =  new Category;
             $category->name = $request->name;
@@ -117,7 +88,7 @@ class insertionController extends Controller
     }
 
     public function insert_photo_category(Request $request, $nameCat){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $name=$request->file_name->getClientOriginalName();
             $request->file('file_name')->storeAs('/images/siteImg',$name ,'public');
@@ -132,7 +103,7 @@ class insertionController extends Controller
     }
 
     public function insert_subcategory(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $subcategory = new Subcategory;
             $subcategory-> name = $request -> name;
@@ -172,7 +143,7 @@ class insertionController extends Controller
     }
 
     public function insert_art_showroom(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $element =  new ElementsShowRoom;
 
@@ -209,7 +180,7 @@ class insertionController extends Controller
     }
 
     public function insert_brand(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $brand = new Brand;
 
@@ -230,7 +201,7 @@ class insertionController extends Controller
     }
 
     public function insert_courier(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $courier = new NameCourier;
 
@@ -250,7 +221,7 @@ class insertionController extends Controller
     }
 
     public function insert_spedition(Request $request){
-        if (!(Auth::check() ) && Auth::user()->group != "Administrator" ) return abort(403, 'Azione non autorizzata!');
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             $courier = new Courier;
 

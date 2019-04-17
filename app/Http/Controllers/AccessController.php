@@ -11,10 +11,10 @@ class AccessController extends Controller
     {
         if (Auth::check()) {
 
-            if ( Auth::user()->group == 'Administrator' )
+            if ( Auth::user()->group == 'Administrator' || Auth::user()->group == 'Privileged' )
                 return view('admin');
             else
-                return response('Unauthorized.', 401);
+                return abort('Unauthorized.', 403);
 
         }
         else return redirect('login');

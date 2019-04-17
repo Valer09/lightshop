@@ -24,7 +24,7 @@
     </div>
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/home"))
+        @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/home") || !strcmp($_SERVER['REQUEST_URI'], "/admin"))
         <a href="{{url('/admin/home')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home fa-fw"></i>  Home</a>
         @else
         <a href="{{url('/admin/home')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-home fa-fw"></i>  Home</a>
