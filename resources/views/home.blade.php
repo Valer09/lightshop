@@ -12,7 +12,7 @@
 
 <!--HEADERS-->
   <!--BIG SCREEN-->
-  <header class="w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden; width: 100%">
+  <header class="w3-hide-small w3-hide-medium w3-wide" style="min-height: 100%; overflow: hidden; width: 100%">
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
       <!-- Indicators -->
@@ -70,11 +70,10 @@
   </header>
 
   <!--SMALL SCREEN-->
-  <header class="w3-display-container w3-hide-medium w3-hide-large w3-content w3-wide" style="width:100%; margin-top: 49px"
-    id="home">
+  <header class="w3-display-container w3-hide-large w3-content w3-wide" style="width:100%;">
     <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
     <div class="w3-display-middle w3-center">
-      <h1 class="w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+      <h1 class="w3-large w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
     </div>
   </header>
 

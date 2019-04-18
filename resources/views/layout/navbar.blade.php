@@ -3,7 +3,7 @@
 
 <div class="w3-top w3-hide-small " id="navMar">
     <div class="w3-bar ">
-        <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
+        <a href="./#"><img class="logoBar w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"></a>
         <a href="{{url('./#')}}" class="barSx w3-bar-item"><b>Visca s.n.c.</b></a>
         <a href="{{ url('/about ') }}" class="barDx w3-bar-item">Chi siamo</a>
         <a href="{{url('./#orari')}}" class="barDx w3-bar-item">Orari</a>
@@ -60,11 +60,17 @@
 
 <div class="w3-top w3-hide-medium w3-hide-large">
     <div class="w3-bar w3-white w3-wide w3-card">
-        <a href="./#"><img id="logoBar" class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"
-                width="51"></a>
-        <button onclick="myFunction('tendina')" class="barSxM w3-bar-item w3-block w3-button"><b>Visca s.n.c.</b>
-            <i class="w3-margin-left fa fa-bars"></i></button>
-
+        <div class="w3-row">
+            <div class="logoBar">
+                <a href="./#"><img class="w3-image w3-left" src="{{ url('/images/logo_visca.png')}}"
+                    width="51"></a>
+            </div>
+            <div class="w3-rest">
+                <button onclick="myFunction('tendina')" class="barSxM w3-margin-left w3-block w3-button"><b>Visca s.n.c.</b>
+                    <i class="w3-xlarge fa fa-angle-down"></i></button>
+            </div>
+        </div>
+        
         <!-- Float links to the right. Hide them on small screens -->
         <div id="tendina" class="w3-hide w3-bar w3-container">
             <p><a href="./#" class="barDxM w3-bar-item w3-button w3-row-padding"
