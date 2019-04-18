@@ -12,7 +12,7 @@ class Element extends Model
    // protected $table = 'Elements';
 
     protected $fillable = [
-        'name', 'subcategories', 'availability','description','id'
+        'name', 'subcategories', 'availability','description', 'price', 'weight', 'brand'
     ];
 
     protected $guarded = ['price'];
@@ -40,6 +40,18 @@ class Element extends Model
         return $this->hasMany('App\PhotoElement','element_id','id');
     }
 
-    public $timestamps = false;
+    public static function deleteAll($el){
+        $path =  $el->pathPhoto;
+        if(file_exists('storage'.$path)){
+            unlink(public_path('storage'.$path));
+        }
+
+        Element::where('id', $el->id)->delete();
+    }
+
+    public static function modAvailability($id, $quantity){
+        $element = Element::where('id', $id)->first();
+        $element->update(['availability' => $quantity]);
+    }
 
 }

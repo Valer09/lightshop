@@ -1,4 +1,9 @@
 @extends('layout.defaultLayoutAdmin')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+  
+@endsection
 
 @section('content')
     <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -9,7 +14,7 @@
             <p>Questa è una lista degli ordini che sono stati evasi.</p>
             <p>Clicca su un ordine della lista per visualizzare più informazioni.</p>
             <hr>
-            <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="myFunction()">
+            <input class="w3-input w3-border w3-padding" type="text" placeholder="Cerca un utente per Nome o Cognome" id="myInput" onkeyup="finderElement()">
 
             <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
                 <table class="w3-table-all w3-margin-top" id="myTable" style="text-decoration-color: black">
@@ -68,7 +73,7 @@
                             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
                             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
                             <form class="w3-container">
-                                <fieldset id="provola" style="border: none">
+                                <fieldset id="fieldsetModale" style="border: none">
                                     <div class="w3-row">
                                         <div class="w3-col m6 w3-light-grey w3-center">
                                             <p>Dati nuovo prodotto</p>
@@ -113,4 +118,4 @@
             </div>
         </div>
     </div>
-@stop
+@endsection

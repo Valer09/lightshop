@@ -1,10 +1,19 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarTrasp.css')}}" />
+  <script src="{{url('/js/navbarDinamic.js')}}"></script>
+@endsection
 
 @section('content')
+
+
+
 <!--HEADERS-->
   <!--BIG SCREEN-->
-  <header class="w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden">
-    
+  <header class="w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden; width: 100%">
+
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -219,7 +228,7 @@
       <p id="caption" class="w3-opacity w3-large">A phone</p>
     </div>
   </div>
-@stop
+@endsection
 
 
 

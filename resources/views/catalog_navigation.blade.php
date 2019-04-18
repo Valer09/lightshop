@@ -1,4 +1,9 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+@endsection
 
 @section('content')
 
@@ -12,11 +17,10 @@
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-top: 49px;margin-left:auto; margin-right:auto; max-width: 1500px;">
+<div class="w3-main" style="padding-top: 80px;margin-left:auto; margin-right:auto;">
 
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
-    <span>Clicca sul nome della categoria per aprire la sezione dedicata</span>
     <!-- Product grid 
     <div class="w3-row w3-grayscale">-->
         @php
@@ -25,12 +29,17 @@
         {{!$Category = \App\Category::all()}}
         @foreach($Category as $cat)
             @if ($conta == 1)
-            <div class="w3-row w3-grayscale">
+            <div class="">
             @endif
-                    <div class="w3-container w3-col l3" onclick="location.href='{{ url('catalog').$cat->name }}'">
-                        <div class="w3-display-container">
-                            <img src=" {{ asset('storage') }} " style="width:100%" alt="{{ $cat->name }}">
-                        </div>
+                    <div class="w3-container w3-col l3">
+                        <a href="{{ url('catalog').$cat->name }}">
+                            <div class="w3-display-container categories">
+                                <img class="lazy" data-src="{{ asset('storage').$cat->pathPhoto }}" style="width:100%" alt="{{ $cat->name }}">
+                                <div class="w3-display-middle w3-margin-top w3-center">
+                                    <h2 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>{{ $cat->name }}</b></span></h2>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 @php
                     $conta = $conta + 1;
@@ -43,5 +52,6 @@
                 @endphp
             @endif
         @endforeach
+    </div><!--DIV RIDONDANTE-->
     </div>
-@stop
+@endsection

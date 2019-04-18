@@ -1,7 +1,15 @@
 @extends('layout.defaultLayoutAdmin')
+@section('title', 'Visca s.n.c.')
 
+@section('head')
+  
+@endsection
 
 @section('content')
+
+@php
+$prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
+@endphp
 
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -26,7 +34,7 @@
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-blue w3-padding-16">
-                    <a href="./Ordini.html">
+                    <a href="{{url('admin/orders')}}">
                         <div class="w3-left"><i class="fa fa-diamond w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3>99</h3>
@@ -38,13 +46,13 @@
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-teal w3-padding-16">
-                    <a href="#">
+                    <a href="#" onclick="openModalList('ProdEsauriti')">
                         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>23</h3>
+                            <h3>{{count($prodEsaurimento)}}</h3>
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Condividi un prodotto</h4>
+                        <h4>Prodotti in esaurimento</h4>
                     </a>
                 </div>
             </div>
@@ -170,4 +178,23 @@
                 </div>
             </div>
         </div>
-@stop
+
+        <!--Modale Nuova categoria-->
+<div id="ProdEsauriti" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('ProdEsauriti');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Prodotti in esaurimento minori di 10 pezzi</h2>
+        </header>
+        
+        <div class="w3-padding">
+            <ul id="listProd" class="w3-ul">
+                @foreach($prodEsaurimento as $prod)
+                <li><a href="{{url('element').$prod->id}}">{{$prod->name}}</a>.<b> Pezzi disponibili: {{$prod->availability}}</b></li>
+                @endforeach
+            </ul>
+        </div>
+    
+    </div>
+</div>
+@endsection

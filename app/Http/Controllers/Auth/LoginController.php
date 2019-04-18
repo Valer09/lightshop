@@ -62,9 +62,4 @@ class LoginController extends Controller
     }
 
 
-
-  /**  public function check_group($email){
-        $user= DB::table('users')->get()->where('email', $email)->first();
-
-    }**/
 }

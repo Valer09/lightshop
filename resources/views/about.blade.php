@@ -1,4 +1,11 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+@endsection
+
 @section('content')
 
 <div class="w3-row">
@@ -150,4 +157,4 @@
 
 </style>
 
-@stop
+@endsection

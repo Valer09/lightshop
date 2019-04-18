@@ -1,4 +1,11 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/cart.css')}}" />
+@endsection
+
 @section('content')
 
 <!-- PAGE CONTENT -->
@@ -12,15 +19,23 @@
             <!--ELEMENTO 1 DEL CARRELLO-->
             @if(Session::has('cart') && count($elements) > 0 )
             @foreach($elements as $el)
-            <div class="w3-padding w3-row">
-                <div class="fotoCarrello w3-container w3-quarter" style="max-width: 150px">
-                    <img style="max-width: 150px" src="{{ asset('storage').$el['item']->pathPhoto }}">
+            <div class="divCarrelloEl w3-padding w3-row">
+                <div class="fotoCarrello w3-quarter">
+                    <img class="w3-image" src="{{ asset('storage').$el['item']->pathPhoto }}">
                 </div> 
-                <div class="w3-container w3-rest">
+                <div class="w3-container w3-half">
                     <h5><b>{{ $el['item']->name }}</b></h5>
+                    @if(strlen($el['item']->description) > 190)
+                    <P>{{ substr($el['item']->description, 0, 190).'...' }}</P>
+                    @else                    
                     <P>{{ $el['item']->description }}</P>
-                    <P>Quantità: {{ $el['qty'] }} pz</P>
-                    <div class="w3-right"><a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a></div>
+                    @endif
+                    <P>Quantità: <b>{{ $el['qty'] }} pz</b></P>
+                </div>
+                <div class="w3-container w3-quarter w3-right w3-center">
+                    <a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a>
+                    <button class="w3-button" onclick="location.href='{{ route('Element.getincreased', ['id' => $el['item']->id]) }}'">+</button>
+                    <button class="w3-button" onclick="location.href='{{ route('Element.getdecreased', ['id' => $el['item']->id]) }}'">-</button>
                 </div>
             </div>
             @endforeach
@@ -44,6 +59,10 @@
         <div class="boxTotale w3-row">
             <span class="tot w3-left">Costi di spedizione e gestione:</span>
             <span class="tot w3-right">{{ number_format('12.50', 2, ',', '.') }} €</span>
+        </div>
+        <div class="boxTotale w3-row">
+            <span class="tot w3-left">Peso collo:</span>
+            <span class="tot w3-right">{{$totalWeight}} kg</span>
         </div>
         <div class="boxTotale w3-row">
             <span class="tot w3-left"><b>TOTALE</b></span>

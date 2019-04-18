@@ -14,7 +14,7 @@ class ElementsShowRoom extends Model
 
     protected $table = 'elementsshowrooms';
 
-    protected $fillable = ['id','name','description', 'pathPhoto', 'nameSubCategory'
+    protected $fillable = ['name','description', 'pathPhoto', 'nameSubCategory', 'linkBuy'
 
     ];
 
@@ -23,4 +23,12 @@ class ElementsShowRoom extends Model
     }
 
     public $timestamps = false;
+
+    public static function deleteAll($el){
+        $path =  $el->pathPhoto;
+        if(file_exists('storage'.$path)){
+            unlink(public_path('storage'.$path));
+        }
+        ElementsShowRoom::where('id', $el->id)->delete();
+    }
 }
