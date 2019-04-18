@@ -48,6 +48,36 @@
                 <p>The range slider can be useful for allowing users to select a specific price range when browsing products.</p>
             </form>
         </div>
+
+        <div class="w3-container">
+            <div class="exp-left-nav-filter-heading">
+                <div class="">Marca</div>
+                <span class="exp-left-nav-more-glyph nsg-glyph--plus collapsed"></span>
+                <span class="exp-left-nav-less-glyph nsg-glyph--minus"></span>
+            </div>
+
+                    <div class="">
+                        <ul>
+                        @php
+                        $brands = array();
+                        foreach($Elements as $el) {
+                            if(empty($brands[$el->brand])){
+                                $brands[$el->brand] = 1;
+                            } else{
+                                $brands[$el->brand]++;
+                            }
+                        }
+                        @endphp
+                        @foreach ($brands as $key => $value)
+                            <li class="">
+                                <input type="checkbox" onchange='filterSelection("{{$key}}");'>
+                                <label>{{$key}} ({{$value}})</label>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+            </div>                   
+                                      
     </div>     
 </nav>
 
@@ -82,7 +112,7 @@
             <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
             <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
             <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
-            <p><a href="#elementi" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+            <p><a href="#elementi" class="w3-black w3-padding-large w3-large w3-card-4 w3-hover-red">Prodotti</a></p>
         </div>
     </div>
     @endif
@@ -95,7 +125,7 @@
     <div class="first w3-row-padding w3-grayscale w3-margin-top" id="elementi">
     @endif
 
-        <div class="second w3-col l2">
+        <div class="second w3-col l2 filterDiv {{$el->brand}}">
 
             <div class="third w3-display-container w3-white">
                 <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}">

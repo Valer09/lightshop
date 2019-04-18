@@ -1,7 +1,7 @@
 $(function () {
     $(window).scroll(function () {
         //if (window.URL) {
-            var somma = screen.height;// i px dopo i quali parte tutto
+            var somma = screen.height - 50;// i px dopo i quali parte tutto
             if ($(this).scrollTop() >= somma) {
                 $(".barDx").css({
                     "color": "#2d3436",
