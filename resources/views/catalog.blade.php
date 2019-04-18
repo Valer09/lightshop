@@ -2,16 +2,25 @@
 @section('title', 'Visca s.n.c.')
 
 @section('head')
-  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
-@endsection
+          
+    <!--Plugin Slider-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <!-- end Plugin slider-->
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/catalog.css')}}" />
+    <script src="{{url('/js/catalog.js')}}"></script>
+
+  @endsection
 
 @section('content')
 
 <!-- Sidebar/Filter -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left w3-light-grey" style="top: 49px;z-index:3;width:250px" id="mySidebar">
-    <div class="">
+    <div id="filter" class="w3-margin-left w3-margin-top">
         <div class="w3-margin-left">
-            <a class="w3-row w3-margin" href="{{ url('catalog') }}">
+            <a class="w3-row" href="{{ url('catalog') }}">
             <span><i class="fa fa-angle-left"></i> Catalogo</span>
             </a>
             @if($Category[1] != null || $Category[1] != '')
@@ -20,10 +29,10 @@
             </a>
             @endif
         </div>
-        <div class="w3-light-grey w3-margin-top article-navigation">
+        <span><h4>Sottocategorie</h4></span>
+        <div class="w3-light-grey w3-margin-bottom article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
-                    <p>Sottocategorie</p>
                     @foreach($Category[2] as $subcat)
                     <li>
                         <a href="{{ url('catalog'.$Category[0]->name, $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}</a>
@@ -32,52 +41,43 @@
                 </ul>
             </div>
         </div>
-    </div>
 
-    <div id="filter">
         <!--FILTER-->
-        <div class="w3-container">
-            <form method="post" action="/action_page_post.php">
+        <span><h4>Filtra per</h4></span>
+        <div class="w3-container w3-margin-bottom">
             <div>
-                <label for="price-min">Prezzo minimo:</label>
-                <input calss="w3-input w3-border-0" type="number" name="price-min" id="price-min" value="200" min="0" max="10000">
-                <label for="price-max">Prezzo massimo:</label>
-                <input calss="w3-input w3-border-0" type="number" name="price-max" id="price-max" value="800" min="0" max="10000">
+                <label>Prezzo:</label>
+                <input type="text" id="js-range-slider" name="price" value="" />
             </div>
-                <input type="submit" data-inline="true" value="Submit">
-                <p>The range slider can be useful for allowing users to select a specific price range when browsing products.</p>
-            </form>
         </div>
 
         <div class="w3-container">
             <div class="exp-left-nav-filter-heading">
-                <div class="">Marca</div>
+                <label>Marca</label>
                 <span class="exp-left-nav-more-glyph nsg-glyph--plus collapsed"></span>
                 <span class="exp-left-nav-less-glyph nsg-glyph--minus"></span>
             </div>
-
-                    <div class="">
-                        <ul>
-                        @php
-                        $brands = array();
-                        foreach($Elements as $el) {
-                            if(empty($brands[$el->brand])){
-                                $brands[$el->brand] = 1;
-                            } else{
-                                $brands[$el->brand]++;
-                            }
-                        }
-                        @endphp
-                        @foreach ($brands as $key => $value)
-                            <li class="">
-                                <input type="checkbox" onchange='filterSelection("{{$key}}");'>
-                                <label>{{$key}} ({{$value}})</label>
-                            </li>
-                        @endforeach
-                        </ul>
-                    </div>
-            </div>                   
-                                      
+            <div class="">
+                <ul>
+                @php
+                $brands = array();
+                foreach($Elements as $el) {
+                    if(empty($brands[$el->brand])){
+                        $brands[$el->brand] = 1;
+                    } else{
+                        $brands[$el->brand]++;
+                    }
+                }
+                @endphp
+                @foreach ($brands as $key => $value)
+                    <li class="">
+                        <input type="checkbox" id="filter-{{$key}}" class="checkFilter" value="{{$key}}">
+                        <span>{{$key}} ({{$value}})</span>
+                    </li>
+                @endforeach
+                </ul>
+            </div>
+        </div>                                               
     </div>     
 </nav>
 
@@ -117,15 +117,13 @@
     </div>
     @endif
 
-    <!-- Product grid -->
-    {{!$conta = 1}}
-    @foreach($Elements as $el)
-    @if ($conta == 1)
-    
-    <div class="first w3-row-padding w3-grayscale w3-margin-top" id="elementi">
-    @endif
 
-        <div class="second w3-col l2 filterDiv {{$el->brand}}">
+    <div class="first w3-container w3-grayscale w3-margin-top" id="elementi">
+
+    <!-- Product grid -->
+    @foreach($Elements as $el)
+
+        <div class="filterDiv {{$el->brand}} " value="{{$el->id}}/{{$el->brand}}/{{number_format($el->price, 2, '.', ',')}}">
 
             <div class="third w3-display-container w3-white">
                 <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}">
@@ -138,18 +136,15 @@
             </div>
 
             <div class="divElP w3-row">
-                <p>{{ $el->name }}<br><b>€ {{ number_format($el->price, 2, ',', '.') }}</b></p>
+                <p>{{ $el->name }}<br><b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b></p>
             </div>
 
         </div>
         
-    {{!$conta = $conta + 1}}
-    @if ($conta == 7)
-    </div>
-    {{!$conta = 1}}
-    @endif
+   
     @endforeach
-        </div> <!--diV RIDONDANTE-->
+
+    </div>
     
 </div>
 @endsection

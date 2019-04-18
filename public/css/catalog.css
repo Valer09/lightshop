@@ -1,0 +1,42 @@
+.third {
+    height: 210px;
+}
+
+.third img {
+    height: 210px;
+    object-fit: contain;
+}
+
+.containerCarousel div img {
+    max-height: 650px;
+    object-fit: contain;
+}
+
+.filterDiv {
+    float: left!important;
+    text-align: center;
+    display: none;
+    width: 16.6666%;
+}
+
+.show {
+    display: block;
+}
+
+@media screen and (max-width: 1000px) {
+    .filterDiv {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .filterDiv {
+        width: 33%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .filterDiv {
+        width: 100%;
+    }
+}

@@ -215,21 +215,3 @@ img[data-src] {
     -webkit-transform: translateY(20px) scale(1);
     transform: translateY(20px) scale(1);
 }
-
-.second {
-    height: 300px;
-}
-
-.third {
-    height: 210px;
-}
-
-.third img {
-    height: 210px;
-    object-fit:contain;
-}
-
-.containerCarousel div img{
-    max-height: 650px;
-    object-fit:contain;
-}
