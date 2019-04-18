@@ -190,7 +190,6 @@ footer {
     filter: saturate(130%)!important;
 }
 
-
 a:hover {
     text-decoration: none!important;
     text-shadow: none;
@@ -209,9 +208,24 @@ img {
     -webkit-transition: -webkit-transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
     transition: transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
 }
+
 img[data-src] {
     opacity: 0;
     visibility: visible;
     -webkit-transform: translateY(20px) scale(1);
     transform: translateY(20px) scale(1);
+}
+
+#mySidebar {
+    background-color: #f5f6fa!important;
+    top: 49px;
+    width: 250px;
+    background-image: linear-gradient(#dfe4ea 5%, #f5f6fa 80%);
+    
+}
+
+#borderGradient{
+    height: 2px;
+    background-color: #dfe4ea!important;
+    background-image: linear-gradient(to right, #2c993f 30%, #dfe4ea 70%);
 }

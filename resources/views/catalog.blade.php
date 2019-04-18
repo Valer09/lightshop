@@ -17,7 +17,8 @@
 @section('content')
 
 <!-- Sidebar/Filter -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left w3-light-grey" style="top: 49px;z-index:3;width:250px" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" id="mySidebar">
+    <div id="borderGradient"></div>
     <div id="filter" class="w3-margin-left w3-margin-top">
         <div class="w3-margin-left">
             <a class="w3-row" href="{{ url('catalog') }}">
@@ -30,7 +31,7 @@
             @endif
         </div>
         <span><h4>Sottocategorie</h4></span>
-        <div class="w3-light-grey w3-margin-bottom article-navigation">
+        <div class="w3-margin-bottom article-navigation">
             <div class="body">
                 <ul class="first-level narrow dashed">
                     @foreach($Category[2] as $subcat)
