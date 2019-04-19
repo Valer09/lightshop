@@ -24,12 +24,13 @@
             <a class="w3-row" href="{{ url('catalog') }}">
             <span><i class="fa fa-angle-left"></i> Catalogo</span>
             </a>
-            @if($Category[1] != null || $Category[1] != '')
+            @if($Category != null && ($Category[1] != null || $Category[1] != ''))
             <a class="w3-row w3-margin-top" href="{{ url('catalog').$Category[0]->name }}">
                 <span><i class="fa fa-angle-left"></i> {{$Category[0]->name }}</span>
             </a>
             @endif
         </div>
+        @if($Category != null)
         <span><h4>Sottocategorie</h4></span>
         <div class="w3-margin-bottom article-navigation">
             <div class="body">
@@ -42,6 +43,7 @@
                 </ul>
             </div>
         </div>
+        @endif
 
         <!--FILTER-->
         <span><h4>Filtra per</h4></span>
@@ -97,27 +99,33 @@
     <!-- Push down content on small screens -->
     <div class="w3-hide-large" style="margin-top:83px"></div>
 
-    <!-- Top header -->
-    <header class="w3-container">
-        @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
-        <h2 class="w3-xlarge">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</h2>
-        <h5>{{count($Elements)}} elementi</h5>
-        @endif
-    </header>
+    @if($Category != null)
+        <!-- Top header -->
+        <header class="w3-container">
+            @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
+            <h2 class="w3-xlarge">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</h2>
+            <h5>{{count($Elements)}} elementi</h5>
+            @endif
+        </header>
 
-    <!-- Image header -->
-    @if($Category[1] == null)
-    <div class="w3-display-container w3-container">
-        <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
-        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
-            <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
-            <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
-            <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
-            <p><a href="#elementi" class="w3-black w3-padding-large w3-large w3-card-4 w3-hover-red">Prodotti</a></p>
+        <!-- Image header -->
+        @if($Category[1] == null && empty($search))
+        <div class="w3-display-container w3-container">
+            <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
+            <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+                <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
+                <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
+                <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
+                <p><a href="#elementi" class="w3-black w3-padding-large w3-large w3-card-4 w3-hover-red">Prodotti</a></p>
+            </div>
         </div>
-    </div>
+        @endif
+    @else
+        <header class="w3-container">
+            <h2 class="w3-xlarge"><i class="fa fa-search"></i>Ricerca per: {{$search}}</h2>
+            <h5>{{count($Elements)}} elementi</h5>
+        </header>
     @endif
-
 
     <div class="first w3-container w3-grayscale w3-margin-top" id="elementi">
 

@@ -12,7 +12,7 @@
 
 <!--HEADERS-->
   <!--BIG SCREEN-->
-  <header class="w3-hide-small w3-hide-medium w3-wide" style="min-height: 100%; overflow: hidden; width: 100%">
+  <header class="w3-hide-small w3-hide-medium w3-wide w3-animate-opacity" style="min-height: 100%; overflow: hidden; width: 100%">
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
       <!-- Indicators -->

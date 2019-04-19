@@ -49,9 +49,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('register', function () {
     return view('auth/register');
 });
-Route::get('form', function () {
-    return view('register');
-});
+
 Route::get('about', function () {
     return view('about');
 });
@@ -71,6 +69,7 @@ Route::get('recovered', function () {
     return view('/recovered');
 });
 
+Route::get('/search', 'search_controller@searchContr');
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');

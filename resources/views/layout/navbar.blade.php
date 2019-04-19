@@ -10,13 +10,13 @@
         <a href="{{url('/#contact')}}" class="barDx w3-bar-item">Contatti</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right">
-            <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : ''}}</a>
+            <a href="{{ route('Element.shoppingCart') }}" class="barDx w3-bar-item w3-animate-opacity"><i class="fa fa-shopping-cart"></i> {{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : ''}}</a>
             
             <a class="w3-bar-item barDx" onclick="this.style.display='none'; document.getElementById('searchButton').style.display = 'block';"><i class="fa fa-search"></i></a>
-            <div id="searchButton" class="w3-bar-item barDx" style="display:none">
-                <form action="/action_page.php">
-                <input type="text" placeholder="Search.." style="color:black" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <div id="searchButton" class="w3-bar-item barDx w3-animate-opacity w3-animate-right" style="display:none; padding:4.5px">
+                <form action="{{url('search')}}" method="get">
+                    <input type="text" placeholder="Trapano blu.." style="color:black;" name="search" required>
+                    <button type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
             
