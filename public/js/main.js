@@ -70,7 +70,7 @@ function openTab(evt, cityName) {
     else return null;
  }
 
- openAlert()
+ openAlert();
 
 
  // Slideshow
