@@ -2,8 +2,9 @@
 <html>
 
 <head>
+    <title>@yield('title')</title>
     @include('layout.head')
-
+    @yield('head')
 </head>
 
 <body>

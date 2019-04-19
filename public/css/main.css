@@ -104,7 +104,6 @@ a.w3-bar-item {
 }
 
 #logo {
-    background-image: url("../public/logo/visca.png");
     background-repeat: no-repeat;
     width: 51px;
     /*or your image's width*/
@@ -234,4 +233,19 @@ img[data-src] {
     height: 2px;
     background-color: #dfe4ea!important;
     background-image: linear-gradient(to right, #2c993f 30%, #dfe4ea 70%);
+}
+
+.buttonRed {
+    background-color: #ff4433;
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
 }

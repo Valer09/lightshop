@@ -25,12 +25,12 @@
                 </div> 
                 <div class="w3-container w3-half">
                     <h5><b>{{ $el['item']->name }}</b></h5>
-                    @if(strlen($el['item']->description) > 190)
-                    <P>{{ substr($el['item']->description, 0, 190).'...' }}</P>
+                    @if(strlen($el['item']->description) > 100)
+                    <P>{{ substr($el['item']->description, 0, 100).'...' }}</P>
                     @else                    
                     <P>{{ $el['item']->description }}</P>
                     @endif
-                    <P>Quantità: <b>{{ $el['qty'] }} pz</b></P>
+                    <P>Prezzo unità: <b>{{ $el['price'] }} €.</b><br>Quantità: <b>{{ $el['qty'] }} pz.</b></P>
                 </div>
                 <div class="w3-container w3-quarter w3-right w3-center">
                     <a href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Elimina dal carrello</a>
@@ -53,20 +53,12 @@
     <div class="w3-container w3-third w3-black">   
     <h1>Riepilogo</h1>
         <div class="boxTotale w3-row">
-            <span class="tot w3-left">Subtotale:</span>
-            <span class="tot w3-right">{{ number_format($totalPrice, 2, ',', '.') }} €</span>
-        </div>
-        <div class="boxTotale w3-row">
-            <span class="tot w3-left">Costi di spedizione e gestione:</span>
-            <span class="tot w3-right">{{ number_format('12.50', 2, ',', '.') }} €</span>
-        </div>
-        <div class="boxTotale w3-row">
             <span class="tot w3-left">Peso collo:</span>
             <span class="tot w3-right">{{$totalWeight}} kg</span>
         </div>
         <div class="boxTotale w3-row">
-            <span class="tot w3-left"><b>TOTALE</b></span>
-            <span class="tot w3-right"><b>{{ number_format(($totalPrice + 12.50), 2, ',', '.')  }} €</b></span>
+            <span class="tot w3-left">Subtotale:</span>
+            <span class="tot w3-right"><b>{{ number_format($totalPrice, 2, ',', '.') }} €</b></span>
         </div>
         <div class="w3-center w3-margin-bottom" >
             <a href="{{ route('checkout') }}" type="button" class="w3-button w3-center">Checkout</a>

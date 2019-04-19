@@ -98,11 +98,12 @@ class ElementsController extends Controller
         $element = Element::find($id);
         $oldCart = Session::has('cart') ? Session:: get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->increase($element, $element->id);
 
-        $request->session()->put('cart', $cart);
-
-        return redirect('shopping-cart');
+        if($cart->increase($element, $element->id)){
+            $request->session()->put('cart', $cart);
+            return redirect('shopping-cart');
+        }
+        else return redirect('shopping-cart?openAlert=Non puoi aggiugere altre quantita di questo articolo. Ci dispiace, Contatta l\'assistenza se ne hai bisogno.');
     }
 
     public function getdecreased(request $request,$id){

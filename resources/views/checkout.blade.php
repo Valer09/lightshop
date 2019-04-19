@@ -1,7 +1,14 @@
 @extends('layout.defaultCheckout')
+@section('title', 'Checkout')
+
+@section('head')
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/cart.css')}}" />
+@endsection
+
 @section('content')
 @if(Session::has('cart'))
-<div class="w3-padding-64" style="width: 1000px; margin-left:auto; margin-right:auto;">
+<div class="w3-padding" style="margin-top: 70px; width: 1000px; margin-left:auto; margin-right:auto;">
     <form action="{{ url('order_submit') }}" method="post">
     @csrf
         <!--INDIRIZZO DI SPEDIIONE-->
@@ -16,12 +23,15 @@
                 <p>{{ $address->city }}, {{ $address->Provincia }} {{ $address->CAP }}</p>
                 <p>{{ $address->country }}</p>
             @else
-            <button class="w3-button w3-red" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">Nuovo indirizzo di spedizione</button>
+            <button class="buttonRed" type="button" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">Nuovo indirizzo di spedizione</button>
+            <input style="display:none" required>
             @endif
             </div>
+            @if($address != null)
             <div class="w3-col l4">
                 <a href="{{ url('profile#spedizione') }}"><p>Seleziona un altro indirizzo preferito</p></a>
             </div>
+            @endif
         </div>
         <hr>
         <!--MODALITA DI Spedizione-->
@@ -29,13 +39,17 @@
             <div class="w3-col l4">
                 <span><b>3. Selezione il corriere che preferisci</b></span>
             </div>
-            <div class="w3-col l6">         
+            <div class="w3-col l6">
+                @if(isset($Spedizioni))       
                 @foreach ($Spedizioni as $sped)
                 <p>
                     <input class="w3-radio" type="radio" name="courier" value="{{ $sped->id }}" required>
                     <label>{{ $sped->stima_giorni }}gg stimati per la consegna. {{ $sped->courier_name }} - {{ number_format($sped->price, 2, ',', '.')  }} €</label>
                 </p>
                 @endforeach
+                @else
+                <input style="display:none" required>
+                @endif
             </div>
         </div>
         <hr>
