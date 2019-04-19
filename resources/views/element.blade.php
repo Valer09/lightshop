@@ -24,7 +24,7 @@
         @endif
         <span>{!! nl2br(utf8_decode($el->description)) !!}</span>
     </div>
-    <div class="containerCarousel w3-col w3-display-topmiddle l4" style="margin-top: 100px;">          
+    <div class="containerCarousel w3-col w3-display-topmiddle l4" style="margin-top: 70px;">          
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">

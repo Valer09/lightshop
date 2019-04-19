@@ -31,7 +31,7 @@
                 </div>
                 <div class="w3-col m6 w3-light-grey w3-center">
                     <p>Altre info</p>
-                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
+                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione" required></textarea>
 
                 </div>
             </div>
