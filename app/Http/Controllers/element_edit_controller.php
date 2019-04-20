@@ -23,6 +23,7 @@ class element_edit_controller extends Controller
                 if($element->description != $request->descriptionModal) $element->update(['description' => $request->descriptionModal]);
                 if($element->brand != $request->brandModal) $element->update(['brand' => $request->brandModal]);
                 if($element->weight != $request->weightModal) $element->update(['weight' => $request->weightModal]);
+                if($element->product_code != $request->product_codeModal) $element->update(['product_code' => $request->product_codeModal]);
                 
                 if(($element->price != $request->priceModal)) {
                     if(VerifiedPrivileged::verificaAdmin($request)) $element->update(['price' => $request->priceModal]);

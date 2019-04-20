@@ -91,6 +91,7 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('priceModal').value = el['price'];
         document.getElementById('quantityModal').value = el['availability'];
         document.getElementById('weightModal').value = el['weight'];
+        document.getElementById('product_codeModal').value = el['product_code'];
         document.getElementById('element_idModal').value = el['id'];
         document.getElementById('element_idModal1').value = el['id'];
     } else if(show != null) {

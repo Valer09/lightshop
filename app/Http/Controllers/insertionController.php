@@ -31,6 +31,7 @@ class insertionController extends Controller
             $element->description = $request->description;
             $element->brand = $request->brand;
             $element->weight = $request->weight;
+            $element->product_code = $request->product_code;
 
             $name=$request->file_name->getClientOriginalName();
             $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');

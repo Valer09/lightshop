@@ -25,6 +25,7 @@
                         @endforeach
                             <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                     </select>
+                    <input class="w3-input" name="product_code" type="text" placeholder="Codice prodotto">
                     <input class="w3-input" name="name" type="text" placeholder="Nome prodotto" required>
                     <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
 
@@ -136,6 +137,9 @@
                                 @endforeach
                                     <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
                             </select>
+
+                            <span class="w3-block w3-blue-grey" style="margin: none">Codice prodotto:</span>
+                            <input class="w3-input" id="product_codeModal" name="product_codeModal" type="text" placeholder="Codice">
 
                             <span class="w3-block w3-blue-grey" style="margin: none">Nome:</span>
                             <input class="w3-input" id="nameModal" name="nameModal" type="text" placeholder="Nome prodotto" required>
