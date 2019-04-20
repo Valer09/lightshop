@@ -60,14 +60,18 @@
             @endif
         </div>
     </div>
-    <div class="l4 w3-display-bottomright w3-center">
-        <div class="w3-padding" style="background-color: #2c993f; color: white">
+    <div class="l4 w3-display-bottomright w3-center w3-padding">
+        <div class="w3-padding w3-card-4" style="background-color: #2c993f; color: white">
             <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
+            @if($el->availability > 0)
             <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                 @csrf
                 <input style="color:black" type="number" name="quantity" min="1" max="{{$el->availability}}" value="1" required>
                 <button type="submit" class="w3-button w3-black">Aggiungi la carrello</button>
             </form>
+            @else
+            <span class="w3-red">Questo prodotto non è disponibile al momento.</span>
+            @endif
         </div>
     </div>
 </div>
@@ -126,6 +130,7 @@
                 <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
                 <button type="button" class="w3-button w3-black">Aggiungi la carrello</button>
             </form>
+
         </div>
     </div>
 </div>

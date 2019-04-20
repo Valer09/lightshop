@@ -212,6 +212,9 @@ img {
     transform: translateY(0) scale(1);
     -webkit-transition: -webkit-transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
     transition: transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
+    transition-duration: 0.5s;
+    transition-delay: 0.2s;
+    
 }
 
 img[data-src] {
@@ -248,4 +251,16 @@ img[data-src] {
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
+}
+
+.textAnimation {
+    animation: opac 2s;
+    animation-name: opac;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
 }

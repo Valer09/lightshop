@@ -38,13 +38,18 @@ class ElementsController extends Controller
     public function getAddToCart(request $request, $id)
     {
         $element = Element::find($id);
-        $oldCart = Session::has('cart') ? Session:: get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($element, $element->id, $request->quantity);
+        if($element->availability > 0) {
+            $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($element, $element->id, $request->quantity);
 
-        $request->session()->put('cart', $cart);
+            $request->session()->put('cart', $cart);
 
-        return redirect('catalog');
+            return redirect('catalog');
+        } else {
+            return redirect(request()->headers->get('referer').'?openAlert=Il prodotto non è al momento disponibile.');
+        }
+        
     }
 
     public function getCart()

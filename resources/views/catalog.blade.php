@@ -111,8 +111,8 @@
         <!-- Image header -->
         @if($Category[1] == null && empty($search))
         <div class="w3-display-container w3-container">
-            <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="Jeans" style="width:100%">
-            <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+            <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="{{ $Category[0]->name }}" style="width:100%">
+            <div class="w3-display-topleft w3-text-white textAnimation" style="padding:24px 48px">
                 <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
                 <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
                 <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
