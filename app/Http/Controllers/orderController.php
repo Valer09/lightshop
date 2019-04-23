@@ -43,7 +43,7 @@ class orderController extends Controller
                     $orderDetail->element_id = $item['item']->id;
                     $orderDetail->element_name = $item['item']->name;
                     $orderDetail->price = $el->price;
-                    $orderDetail->details = '';
+                    $orderDetail->details = $el->product_code;
                     $orderDetail->quantity = $item['qty'];
                     $orderDetail->save();
 

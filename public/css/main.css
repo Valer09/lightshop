@@ -264,3 +264,13 @@ img[data-src] {
     animation-fill-mode: none;
     animation-play-state: running;
 }
+
+@media print {
+    a[href]:after {
+        content: none !important;
+    }
+
+    #logo {
+        display: none!important;
+    }
+}

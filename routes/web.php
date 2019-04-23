@@ -75,6 +75,8 @@ Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
 Route::post('/email_recovery', 'gets_controller@get_user_cf');
 
+Route::get('/order_details-{id}', 'gets_controller@controllerPageOrderDetails');
+
 
 //--End Home--//
 
