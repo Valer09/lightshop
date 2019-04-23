@@ -19,7 +19,7 @@
                     <p>Dati nuovo prodotto</p>
                     <select class="w3-select" name="brand" type="text" placeholder="Marca">
                         <option disabled selected>Selezione il Brand</option>
-                        {{$Brand = \App\Brand::all()}}
+                        {{!$Brand = \App\Brand::all()}}
                         @foreach ($Brand as $Brand)
                             <option>{{ $Brand->name}}</option>
                         @endforeach
@@ -37,11 +37,11 @@
 
                     <select class="w3-select" name="subcategory" required >
                         <option disabled selected>Selezione una Sottocategoria</option>
-                        {{$Category = \App\Category::all()}}
-                        @foreach ($Category as $Category)
+                        {{!$Categories = \App\Category::all()}}
+                        {{!$Subcategories = \App\Subcategory::all()}}
+                        @foreach ($Categories as $Category)
                             <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
-                            {{$Subcategory = \App\Subcategory::all()}}
-                            @foreach ($Subcategory as $Subcategory)
+                            @foreach ($Subcategories as $Subcategory)
                             @if($Category->name===$Subcategory->category)
                             <option value="{{ $Subcategory->name }}">{{ $Subcategory->name }}</option>
                             @endif
