@@ -110,7 +110,11 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('pesominModal').value = courier['pesomin'];
         document.getElementById('pesomaxModal').value = courier['pesomax'];
         document.getElementById('stima_giorniModal').value = courier['stima_giorni'];
-    } else {
+    } else if (order != null) {
+        document.getElementById('element_idModal').value = order['id'];
+        document.getElementById('element_idModal1').value = order['id'];
+        document.getElementById('spedModal').value = order['courier_id'];
+        document.getElementById('stateModal').value = order['state'];
 
     }
     document.getElementById('save').style.visibility = "hidden";
