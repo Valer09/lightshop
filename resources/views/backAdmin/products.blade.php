@@ -154,12 +154,12 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Categoria:</span>
                             <select class="w3-select" id="subcategoryModal" name="subcategoryModal" required >
                                 <option disabled selected>Selezione una Sottocategoria</option>
-                                {{!$Category = \App\Category::all()}}
-                                {{!$Subcategory = \App\Subcategory::all()}}
-                                @foreach ($Category as $Category)
+                                {{!$Categories = \App\Category::all()}}
+                                {{!$Subcategories = \App\Subcategory::all()}}
+                                @foreach ($Categories as $Category)
                                     <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
-                                    @foreach ($Subcategory as $Subcategory)
-                                    @if($Category->name===$Subcategory->category)
+                                    @foreach ($Subcategories as $Subcategory)
+                                    @if($Category->name === $Subcategory->category)
                                     <option value="{{ $Subcategory->name }}">{{ $Subcategory->name }}</option>
                                     @endif
                                     @endforeach
