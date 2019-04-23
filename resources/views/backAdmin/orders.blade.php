@@ -60,7 +60,7 @@
             <span onclick="closeModal('modaleEditProduct');" class="w3-button w3-display-topright">&times;</span>
             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
-            <form id="formModEl" method="post" class="w3-container" action="{{ url('element_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+            <form id="formModEl" method="post" class="w3-container" action="{{ url('order_edit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                 @csrf
                 <fieldset id="fieldsetModale" style="border: none">
                     <div class="w3-row-padding w3-container">
@@ -68,11 +68,11 @@
                             <input style="display: none" id="element_idModal" name="element_idModal">
 
                             <span class="w3-block w3-blue-grey" style="margin: none">Stato ordine:</span>
-                            <select class="w3-select" id="stateModal" name="stateModal" type="text" placeholder="Marca">
-                                <option disabled selected>Selezione lo stato dell'ordine</option>
-                                {{$states = \App\OrderState::all()}}
+                            <select class="w3-select" id="stateModal" name="stateModal" type="text">
+                                <option value="0" selected>Selezione lo stato dell'ordine</option>
+                                {{!$states = \App\OrderState::all()}}
                                 @foreach ($states as $state)
-                                <option value="{{ $state->id}}">{{ $state->name}}</option>
+                                <option value="{{$state->id}}">{{ $state->name}}</option>
                                 @endforeach
                             </select>
 
@@ -86,10 +86,10 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Tipo di spedizione:</span>
                             <select class="w3-select" id="spedModal" name="spedModal" required >
                                 <option disabled selected>Selezione la spedizione</option>
-                                {{$nameCouriers = \App\NameCourier::all()}}
+                                {{!$nameCouriers = \App\NameCourier::all()}}
+                                {{!$couriers = \App\Courier::all()}}
                                 @foreach ($nameCouriers as $nameCourier)
                                     <option disabled><b>{{ strtoupper($nameCourier->name) }}</b></option>
-                                    {{$couriers = \App\Courier::all()}}
                                     @foreach ($couriers as $courier)
                                     @if($nameCourier->name===$courier->courier_name)
                                     <option value="{{ $courier->id }}">{{ $courier->name_service }}. Peso max: {{$courier->pesomax}}kg ({{$courier->price}} €)</option>
@@ -108,16 +108,16 @@
                     </div>
                     <div class="w3-col l4 s4 w3-center">
                         <button id="save" type="button" class="w3-button w3-ripple w3-green" style="width:80%; visibility: hidden"
-                        onclick="conferma('Vuoi modificare '+ document.getElementById('nameModal').value +'?', 'formModEl')">Salva</button>
+                        onclick="conferma('Vuoi modificare l\'ordine?', 'formModEl')">Salva</button>
                     </div>
             </form>
-                    <form id="formDeleteProduct" method="post" action="{{ url('/element_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+                    <form id="formDeleteProduct" method="post" action="{{ url('order_deletion_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
                     @csrf
                     <div class="w3-col l4 s4 w3-center">
                         <input style="display: none" id="element_idModal1" name="element_idModal">
                         <button class="w3-button w3-ripple w3-red" style="width:80%;"
-                            onclick="conferma('Vuoi eliminare '+ document.getElementById('nameModal').value +' dal catalogo?', 'formDeleteProduct')"
-                            type="button">Elimina Prodotto</button>
+                            onclick="conferma('Vuoi eliminare questo ordine? (Le quantità degli articoli contenuti in questo ordine saranno reincrementate).', 'formDeleteProduct')"
+                            type="button">Annulla ordine</button>
                     </div>
                     </form>
                 </div>

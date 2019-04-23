@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App, DB, Storage;
 
 use App\Http\Controllers\VerifiedPrivileged;
-use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier;
+use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier, App\Order, App\OrderDetail;
 
 class deletionsController extends Controller
 {
@@ -144,6 +144,27 @@ class deletionsController extends Controller
         if ( VerifiedPrivileged::verificaAdmin($request) ){
             Courier::where('id', $request->element_idModal)->delete();
             
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
+    }
+
+    public function delete_order(Request $request){
+        if ( VerifiedPrivileged::verificaAdmin($request) ){
+            $order = Order::where('id', $request->element_idModal)->first();
+            $detais = OrderDetail::where('orders_id', $order->id)->get();
+
+            //Reincrementare i pezzi
+            foreach($detais as $det) {
+                $el = Element::where('id', $det->element_id)->first();
+                $el::modAvailability($el->id,($el->availability + $det->quantity));
+            }
+
+            $order->delete();
+
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path);

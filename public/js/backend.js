@@ -115,6 +115,7 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('element_idModal1').value = order['id'];
         document.getElementById('spedModal').value = order['courier_id'];
         document.getElementById('stateModal').value = order['state'];
+        document.getElementById('trackingModal').value = order['tracking'];
 
     }
     document.getElementById('save').style.visibility = "hidden";

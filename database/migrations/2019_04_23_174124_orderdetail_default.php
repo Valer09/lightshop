@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class StateOrder extends Migration
+class OrderdetailDefault extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class StateOrder extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer('state')->unsigned()->change();
-            $table->foreign('state')->references('id')->on('order_states')->onDelete('cascade');
-            $table->dropColumn('order_shipped');
+        Schema::table('orderdetails', function (Blueprint $table) {
+            $table->string('details')->nullable()->default(null)->change();
         });
     }
 
@@ -27,7 +25,7 @@ class StateOrder extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
+        Schema::table('orderdetails', function (Blueprint $table) {
             //
         });
     }

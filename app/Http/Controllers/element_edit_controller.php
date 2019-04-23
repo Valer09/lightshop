@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Element, App\ElementsShowRoom, App\Courier;
+use App\Element, App\ElementsShowRoom, App\Courier, App\Order;
 use App\Http\Controllers\VerifiedPrivileged;
 use Auth;
 Use App;
@@ -60,7 +60,7 @@ class element_edit_controller extends Controller
         if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else
             {
-                $courier = Courier::where('id', "$request->courier_idModal")->first();
+                $courier = Courier::where('id', $request->courier_idModal)->first();
                 if($courier->courier_name != $request->brandModal) $courier->update(['courier_name' => $request->brandModal]);
                 if($courier->pesomin !== $request->pesomin) $courier->update(['pesomin' => $request->pesomin]);
                 if($courier->pesomax !== $request->pesomax) $courier->update(['pesomax' => $request->pesomax]);
@@ -74,4 +74,18 @@ class element_edit_controller extends Controller
             }
     }
 
+    public function order_edit(Request $request){
+        if (!VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else
+            {
+                $order = Order::where('id', $request->element_idModal)->first();
+                if((int)$order->state !== (int)$request->stateModal) $order->update(['state' => (int)$request->stateModal]);
+                if($order->tracking != $request->trackingModal) $order->update(['tracking' => $request->trackingModal]);
+                if($order->courier_id !== $request->spedModal) $order->update(['courier_id' => $request->spedModal]);
+
+                $path = $request-> ref;
+                $path = substr($path, 1, strlen($path));
+                return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            }
+    }
 }

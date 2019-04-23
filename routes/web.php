@@ -252,7 +252,7 @@ Route::post('/category_deletion_submit', 'deletionsController@delete_category' )
 Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
 Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_element_showroom' );
 Route::post('/courier_deletion', 'deletionsController@delete_courier' );
-
+Route::post('/order_deletion_submit', 'deletionsController@delete_order' );
 
 //---INCREMENT-DECREMENT---//
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
@@ -268,6 +268,7 @@ Route::post('/element_edit_submit', 'element_edit_controller@edit_element' );
 Route::post('/showroom_edit_submit', 'element_edit_controller@edit_showroom_element' );
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
 Route::post('/courier_edit', 'element_edit_controller@edit_courier' );
+Route::post('/order_edit', 'element_edit_controller@order_edit' );
 
 /**---DELETED---
 

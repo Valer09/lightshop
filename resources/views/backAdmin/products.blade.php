@@ -131,7 +131,7 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Marca:</span>
                             <select class="w3-select" id="brandModal" name="brandModal" type="text" placeholder="Marca">
                                 <option disabled selected>Selezione il Brand</option>
-                                {{$Brand = \App\Brand::all()}}
+                                {{!$Brand = \App\Brand::all()}}
                                 @foreach ($Brand as $Brand)
                                     <option value="{{ $Brand->name}}">{{ $Brand->name}}</option>
                                 @endforeach
@@ -154,10 +154,10 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Categoria:</span>
                             <select class="w3-select" id="subcategoryModal" name="subcategoryModal" required >
                                 <option disabled selected>Selezione una Sottocategoria</option>
-                                {{$Category = \App\Category::all()}}
+                                {{!$Category = \App\Category::all()}}
+                                {{!$Subcategory = \App\Subcategory::all()}}
                                 @foreach ($Category as $Category)
                                     <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
-                                    {{$Subcategory = \App\Subcategory::all()}}
                                     @foreach ($Subcategory as $Subcategory)
                                     @if($Category->name===$Subcategory->category)
                                     <option value="{{ $Subcategory->name }}">{{ $Subcategory->name }}</option>

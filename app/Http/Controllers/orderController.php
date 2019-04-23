@@ -34,6 +34,7 @@ class orderController extends Controller
                 $order->order_shipped = null;
                 $order->tracking = null;
                 $order->courier_id = $idCourier;
+                $order->state = 0;
                 $order->save();
 
                 foreach($cart->items as $item) {

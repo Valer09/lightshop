@@ -20,7 +20,7 @@ class Order extends Model
 
     protected $table = 'Orders';
 
-    protected $fillable = ['user_id','total','tracking','courier_id'
+    protected $fillable = ['user_id','total','tracking','courier_id', 'state',
 
     ];
 
@@ -35,10 +35,6 @@ class Order extends Model
 
     ];
 
-  /**  public function get_elements_list(){
-   *     return $this->hasMany('Element','id');
-   * }
-**/
     public function get_user(){
         return $this->belongsTo('App\User');
     }
@@ -47,8 +43,9 @@ class Order extends Model
         return $this->belongsTo('App\Address');
     }
 
-//    public function get_details(){
-//        return $this->hasMany('App\OrderDetails');
-//    }
+    public function state(){
+        return $this->hasOne('App\OrderState', 'id');
+    }
+
 }
 
