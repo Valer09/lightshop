@@ -33,6 +33,17 @@ function modaleSottocategoria(idModale, categoria) {
     document.getElementById(idModale).style.display = 'block';
 }
 
+//
+function modalOffers(idModale, element) {
+    document.getElementsByClassName('inputModale').value = '';
+    if (document.getElementById('modaleCategorySub') != null)
+        document.getElementById('modaleCategorySub').value = categoria.toString();
+    if (document.getElementById('categoriaLabel') != null)
+        document.getElementById('categoriaLabel').innerText = "  in: " + categoria.toString().toUpperCase();
+
+    document.getElementById(idModale).style.display = 'block';
+}
+
 //conferma operazioni critiche
 function conferma(message, id) {
     if (confirm(message)) {

@@ -14,9 +14,8 @@ class Offert extends Model
      * @var array
      */
 
-    protected $table = 'Offerts';
+    protected $table = 'offerts';
 
-    protected $fillable = ['id','name','description','pathPhoto', 'linkBuy'
-
+    protected $fillable = ['id','name','description','pathPhoto', 'linkBuy', 'duration_day'
     ];
 }

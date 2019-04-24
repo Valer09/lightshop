@@ -15,11 +15,13 @@ class ModOfferts extends Migration
     {
         Schema::table('offerts', function (Blueprint $table) {
             $table->integer('id_element')->unsigned();
-            $table->string('description')->nullable()->default(null)->change();
-            $table->string('pathPhoto')->nullable()->default(null)->change();
-            $table->string('linkBuy')->nullable()->default(null)->change();
+            $table->dropColumn('description');
+            $table->dropColumn('pathPhoto');
+            $table->dropColumn('linkBuy');
+            $table->double('discount_perc')->unsigned();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
+            $table->timestamp('date_start')->nullable();
             $table->integer('duration_day')->unsigned();
 
             $table->foreign('id_element')->references('id')->on('elements')->onDelete('cascade');

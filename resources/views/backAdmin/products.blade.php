@@ -80,31 +80,30 @@
         <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
             <table class="w3-table-all w3-margin-top" id="myTable">
                 <tr>
-                    <th style="width:9%;">Immagine</th>
-                    <th style="width:15%;">Nome</th>
-                    <th style="width:9%;">Brand</th>
-                    <th style="width:40%;">Descrizione</th>
-                    <th style="width:10%;">Categoria</th>
-                    <th style="width:9%;">Disponibilità</th>
-                    <th style="width:8%;">Prezzo</th>
+                    <th style="width:15%;">Immagine</th>
+                    <th style="width:20%;">Nome</th>
+                    <th style="width:15%;">Brand</th>
+                    <th style="width:15%;">Categoria</th>
+                    <th style="width:15%;">Disponibilità</th>
+                    <th style="width:10%;">Prezzo</th>
+                    <th style="width:10%;"></th>
                 </tr>
 
                 <!--LISTA DEI PRODOTTI blade-->
                 {{!$Elements=\App\Element::all()}}
                 @foreach($Elements as $el)
-                <tr onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null, null, null);">
+                <tr>
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
                     <td><b>{{ $el->name }}</b></td>
                     <td>{{ $el->brand }}</td>
-                    @if(strlen($el->description) > 190)
-                    <td>{{ substr($el->description, 0, 190).'...' }}</td>
-                    @else                    
-                    <td>{{ $el->description }}</td>
-                    @endif
                     <td>{{ $el->subcategories }}</td>
-                    <td>{{ $el->availability }} unit/g</td>
+                    <td>{{ $el->availability }} unit/pz</td>
                     <td>€ {{ $el->price }}</td>
-                    
+                    <td>
+                        <button class="w3-btn w3-yellow w3-block" onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null, null, null);">Modifica</button>
+                        <button class="w3-btn w3-green w3-block" onclick="modalOffers('nuovaOfferta', {{$el}})">Aggiungi offerta</button>
+                        <button class="w3-btn w3-red w3-block" onclick="modaleSottocategoria('nuovoBrand', '')">Elimina offerta</button>
+                    </td>
                 </tr>
                 @endforeach
 
@@ -229,6 +228,40 @@
                 </div>
                 <div class="w3-row">
                     <label>Descrizione: </label>
+                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                </div>
+                <div class="w3-row">
+                    <button class="w3-right" type="submit">Salva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Modale Nuova OFFERTA-->
+<div id="nuovaOfferta" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+        <header class="w3-container w3-teal">
+            <span onclick="closeModal('nuovaOfferta');" class="w3-button w3-display-topright">&times;</span>
+            <h2>Nuova Offerta</h2>
+        </header>
+        <form type="submit" method="post" action="{{URL::to('##')}}?ref={{$_SERVER['REQUEST_URI']}}">
+            @csrf
+            <div class="w3-padding">
+                <div class="w3-row">
+                    <label>Sconto in percentuale: </label>
+                    <input class="inputModale" placeholder="Brand" type="text" name="name" required>
+                </div>
+                <div class="w3-row">
+                    <label>Link: </label>
+                    <input class="inputModale" placeholder="link del sito del brand" type="text" name="link">
+                </div>
+                <div class="w3-row">
+                    <label>Descrizione: </label>
+                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                </div>
+                <div class="w3-row">
+                    <label>Durata in giorni: </label>
                     <input class="inputModale" placeholder="descrizione" type="text" name="description">
                 </div>
                 <div class="w3-row">
