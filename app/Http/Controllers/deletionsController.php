@@ -78,8 +78,11 @@ class deletionsController extends Controller
 
     public function delete_user(Request $request){
         if ( VerifiedPrivileged::verificaAdmin($request) ){
-            App\User::where('email', $request->email)->delete();
-            return view('test');
+            App\User::where('id', $request->element_idModal)->delete();
+            
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
         } else {
             return abort(403, 'Azione non autorizzata!');
         }

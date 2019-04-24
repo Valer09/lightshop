@@ -89,7 +89,7 @@ function openAlert() {
 openAlert()
 
 
-function openModalAdmin(id, el, show, order, courier, other) {
+function openModalAdmin(id, el, show, order, courier, user) {
     if (el != null) {
         document.getElementById('brandModal').value = el['brand'];
         document.getElementById('nameModal').value = el['name'];
@@ -123,6 +123,17 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('spedModal').value = order['courier_id'];
         document.getElementById('stateModal').value = order['state'];
         document.getElementById('trackingModal').value = order['tracking'];
+
+    } else if (user != null) {
+        document.getElementById('element_idModal').value = user['id'];
+        document.getElementById('element_idModal1').value = user['id'];
+        document.getElementById('nomeMod').value = user['name'];
+        document.getElementById('cognomeMod').value = user['surname'];
+        document.getElementById('emailMod').value = user['email'];
+        document.getElementById('catMod').value = user['group'];
+        document.getElementById('cfMod').value = user['CF'];
+        document.getElementById('pecMod').value = user['PEC'];
+        document.getElementById('ivaMod').value = user['IVA'];
 
     }
     document.getElementById('save').style.visibility = "hidden";

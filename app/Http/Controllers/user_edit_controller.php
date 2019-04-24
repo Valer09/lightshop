@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App;
 use Hash;
-
+use App\User;
 class user_edit_controller extends Controller
 {
     public function edit_email(Request $request){
@@ -23,7 +23,7 @@ class user_edit_controller extends Controller
 
             else{
                  $userID=Auth::user()->id;
-                 $user=App\User::find($userID);
+                 $user=User::find($userID);
                  $user->email=$request->control_email;
                  $user->save();
                  return view('test');
@@ -42,7 +42,7 @@ class user_edit_controller extends Controller
 
             $compare=$request->old_password;
             $userID=Auth::user()->id;
-            $old=App\User::find($userID)->password;
+            $old=User::find($userID)->password;
 
         //Check if old password is equal with old password input form
             if (!  (Hash::check($compare, $old ))  ){
@@ -56,7 +56,7 @@ class user_edit_controller extends Controller
                 }
                 else
                     {
-                     $user=App\User::find($userID);
+                     $user=User::find($userID);
                      $user->password=Hash::make($request->password);
                      $user->save();
 
@@ -121,6 +121,32 @@ class user_edit_controller extends Controller
         }
     }
 
+    public function user_admin_edit(Request $request){
+        if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
+        else
+            {
+                $user = User::where('id', "$request->element_idModal")->first();
 
+                if($user->name != $request->nomeMod) $user->update(['name' => $request->nomeMod]);
+                if($user->surname != $request->cognomeMod) $user->update(['surname' => $request->cognomeMod]);
+                if($user->email != $request->emailMod) $user->update(['email' => $request->emailMod]);
+                if($user->PEC != $request->pecMod) $user->update(['PEC' => $request->pecMod]);
+                if($user->IVA != $request->ivaMod) $user->update(['IVA' => $request->ivaMod]);
+                if($user->CF != $request->cfMod) $user->update(['CF' => $request->cfMod]);
+
+                if(($user->group != $request->catMod)) {
+                    if(VerifiedPrivileged::verificaAdmin($request)) $user->update(['group' => $request->catMod]);
+                    else {
+                        $path = $request-> ref;
+                        $path = substr($path, 1, strlen($path));
+                        return redirect($path.'?openAlert=Non%20sei%20autorizzato%20a%20modificare%20il%20tipo%20di%20utente!');
+                    }
+                }
+
+                $path = $request-> ref;
+                $path = substr($path, 1, strlen($path));
+                return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            }
+    }
 
 }

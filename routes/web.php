@@ -270,6 +270,7 @@ Route::post('/showroom_edit_submit', 'element_edit_controller@edit_showroom_elem
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
 Route::post('/courier_edit', 'element_edit_controller@edit_courier' );
 Route::post('/order_edit', 'element_edit_controller@order_edit' );
+Route::post('/user_admin_edit', 'user_edit_controller@user_admin_edit' );
 
 /**---DELETED---
 
