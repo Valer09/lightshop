@@ -133,8 +133,11 @@
 
     <!-- Product grid -->
     @foreach($Elements as $el)
-
+        @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+        <div class="filterDiv {{$el->brand}} " value="{{$el->id}}/{{$el->brand}}/{{($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc))}}/offert">
+        @else
         <div class="filterDiv {{$el->brand}} " value="{{$el->id}}/{{$el->brand}}/{{number_format($el->price, 2, '.', ',')}}">
+        @endif
 
             <div class="third w3-display-container w3-white">
                 <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}">
