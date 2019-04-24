@@ -16,6 +16,8 @@
 
 @section('content')
 
+{{!$Offerts = \App\Offert::allWithKey()}}
+
 <!-- Sidebar/Filter -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" id="mySidebar">
     <div id="borderGradient"></div>
@@ -127,7 +129,7 @@
         </header>
     @endif
 
-    <div class="first w3-container w3-grayscale w3-margin-top" id="elementi">
+    <div class="first w3-container w3-margin-top" id="elementi">
 
     <!-- Product grid -->
     @foreach($Elements as $el)
@@ -145,7 +147,14 @@
             </div>
 
             <div class="divElP w3-row">
-                <p>{{ $el->name }}<br><b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b></p>
+                <p>{{ $el->name }}<br>
+                    @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+                    € <label class="prices" style="text-decoration: line-through">{{ number_format($el->price, 2, '.', ',') }}</label>
+                    <b>€ <label class="prices">{{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }}</label></b>
+                    @else
+                    <b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b>
+                    @endif
+                </p>
             </div>
 
         </div>

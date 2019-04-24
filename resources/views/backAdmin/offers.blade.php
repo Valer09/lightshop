@@ -39,7 +39,7 @@
                     <td>{{ $el->subcategories }}</td>
                     <td>{{ $el->availability }} unit/pz</td>
                     <td>€ {{ $el->price }}</td>
-                    @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end >= date('Y-m-d'))
+                    @if($of->date_end > date('Y-m-d h:i:sa'))
                     <td class="">-{{$Offerts[$el->id]->discount_perc}}%<br><b>€ {{ $el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc) }}</b></td>
                     @else
                     <td></td>
