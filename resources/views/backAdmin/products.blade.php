@@ -250,19 +250,15 @@
             <div class="w3-padding">
                 <div class="w3-row">
                     <label>Sconto in percentuale: </label>
-                    <input class="inputModale" placeholder="Brand" type="text" name="name" required>
+                    <input class="inputModale" placeholder="12.50" type="text" name="discount_perc" required>
                 </div>
                 <div class="w3-row">
-                    <label>Link: </label>
-                    <input class="inputModale" placeholder="link del sito del brand" type="text" name="link">
-                </div>
-                <div class="w3-row">
-                    <label>Descrizione: </label>
-                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                    <label>Inizio offerta: </label>
+                    <input class="inputModale" placeholder="descrizione" type="date" name="date_start">
                 </div>
                 <div class="w3-row">
                     <label>Durata in giorni: </label>
-                    <input class="inputModale" placeholder="descrizione" type="text" name="description">
+                    <input class="inputModale" type="number" name="duration_day">
                 </div>
                 <div class="w3-row">
                     <button class="w3-right" type="submit">Salva</button>

@@ -18,6 +18,7 @@ class ModOfferts extends Migration
             $table->dropColumn('description');
             $table->dropColumn('pathPhoto');
             $table->dropColumn('linkBuy');
+            $table->dropColumn('name');
             $table->double('discount_perc')->unsigned();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
