@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use URL;
 
 class Admin
 {
@@ -20,6 +21,6 @@ class Admin
         if (Auth::check() && (Auth::user()->group == 'Administrator' || Auth::user()->group == 'Privileged') )
             return $next($request);
         else
-            return abort(403, 'Azione non permessa!');
+            return redirect('/login?ref='.URL::previous());
     }
 }
