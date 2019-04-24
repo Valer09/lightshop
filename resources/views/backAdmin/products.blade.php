@@ -85,9 +85,9 @@
         <div class="w3-white" id="divLocationMain" style="margin-top: 2%;">
             <table class="w3-table-all w3-margin-top" id="myTable">
                 <tr>
-                    <th style="width:15%;">Immagine</th>
-                    <th style="width:20%;">Nome</th>
-                    <th style="width:10%;">Brand</th>
+                    <th style="width:10%;">Immagine</th>
+                    <th style="width:25%;">Nome</th>
+                    <th style="width:10%;">Codice prodotto</th>
                     <th style="width:15%;">Categoria</th>
                     <th style="width:12%;">Disponibilità</th>
                     <th style="width:8%;">Prezzo</th>
@@ -99,8 +99,8 @@
                 @foreach($Elements as $el)
                 <tr>
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
-                    <td><b>{{ $el->name }}</b></td>
-                    <td>{{ $el->brand }}</td>
+                    <td><b>{{ $el->name }}</b><br>{{ $el->brand }}</td>
+                    <td>{{ $el->product_code }}</td>
                     <td>{{ $el->subcategories }}</td>
                     <td>{{ $el->availability }} unit/pz</td>
                     <td>€ {{ $el->price }}</td>

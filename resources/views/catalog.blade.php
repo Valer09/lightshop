@@ -152,7 +152,8 @@
             <div class="divElP w3-row">
                 <p>{{ $el->name }}<br>
                     @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
-                    € <label class="prices" style="text-decoration: line-through">{{ number_format($el->price, 2, '.', ',') }}</label>
+                    <p class="w3-red">Offerta</p>
+                    <label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label>
                     <b>€ <label class="prices">{{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }}</label></b>
                     @else
                     <b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b>

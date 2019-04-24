@@ -49,11 +49,11 @@
 
             <!-- Left and right controls -->
             @if(!empty($photos) || count($photos) > 0)
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="background-image: none !important; color: black !important">
             <span class="glyphicon glyphicon-chevron-left"></span>
             <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <a class="right carousel-control" href="#myCarousel" data-slide="next" style="background-image: none !important; color: black !important">
             <span class="glyphicon glyphicon-chevron-right"></span>
             <span class="sr-only">Next</span>
             </a>
