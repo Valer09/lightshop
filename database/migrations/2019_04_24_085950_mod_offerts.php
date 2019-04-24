@@ -18,6 +18,10 @@ class ModOfferts extends Migration
             $table->string('description')->nullable()->default(null)->change();
             $table->string('pathPhoto')->nullable()->default(null)->change();
             $table->string('linkBuy')->nullable()->default(null)->change();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->integer('duration_day')->unsigned();
+
             $table->foreign('id_element')->references('id')->on('elements')->onDelete('cascade');
         });
     }
