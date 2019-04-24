@@ -137,7 +137,7 @@
             <span onclick="closeModal('modaleEditProduct');" class="w3-button w3-display-topright">&times;</span>
             <h1>Stai modificando <!--INSERIRE DATI DB--></h1>
             <p>Utilizza questa form per modificare i dati di un Prodotto.</p>
-            <form id="formModEl" method="post" class="w3-container" action="{{ url('element_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+            <form id="formModEl" method="post" class="w3-container" action="{{ url('element_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data">
                 @csrf
                 <fieldset id="fieldsetModale" style="border: none">
                     <div class="w3-row-padding w3-container">
@@ -191,9 +191,9 @@
                     </div>
                     
                     <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
-                        <input type="file" id="file" name="file_nameModal"></div>
+                        <input type="file" id="file" name="file_name"></div>
                     <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
-                        <input type="file" class="form-control" name="photosModal[]" multiple></div>
+                        <input type="file" class="form-control" name="photos[]" multiple></div>
                         
                 </fieldset>
                 <div class="w3-row">

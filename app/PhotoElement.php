@@ -17,10 +17,10 @@ class PhotoElement extends Model
 
     public static function deleteAll($id_element){
         $arrayPhoto = PhotoElement::where('element_id', $id_element)->get();
-        
+        dd(isset($arrayPhoto));
         if(isset($arrayPhoto)){
             foreach($arrayPhoto as $pho) {
-                $path = str_replace("/","\\",$pho->path);
+                $path = $pho->path;
                 if(file_exists($path)){
                     unlink(public_path('storage'.$path));    
                 }

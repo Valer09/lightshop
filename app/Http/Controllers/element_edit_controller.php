@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Element, App\ElementsShowRoom, App\Courier, App\Order;
+use App\Element, App\ElementsShowRoom, App\Courier, App\Order, App\PhotoElement;
 use App\Http\Controllers\VerifiedPrivileged;
+use App\Http\Controllers\insertionController;
 use Auth;
 Use App;
 
@@ -33,6 +34,26 @@ class element_edit_controller extends Controller
                         return redirect($path.'?openAlert=Non%20sei%20autorizzato%20a%20modificare%20il%20prezzo!');
                     }
                 }
+
+                if(isset($request->file_name)){
+                    //cancella foto
+                    $path =  $element->pathPhoto;
+                    if(file_exists('storage'.$path)){
+                        unlink(public_path('storage'.$path));
+                    }
+                    
+                    //salva nuova foto
+                    insertionController::insert_principal_photo($request,$request->element_idModal);
+                }
+
+                if(isset($request->photos)){
+                    //cancella foto
+                    PhotoElement::deleteAll($request->element_idModal);
+                    
+                    //salva nuove foto
+                    insertionController::insert_other_photos($request,$request->element_idModal);
+                }
+
 
                 $path = $request-> ref;
                 $path = substr($path, 1, strlen($path));
