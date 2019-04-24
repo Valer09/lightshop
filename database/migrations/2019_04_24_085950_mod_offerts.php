@@ -24,6 +24,7 @@ class ModOfferts extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('date_start')->nullable();
             $table->integer('duration_day')->unsigned();
+            $table->timestamp('date_end')->nullable();
 
             $table->foreign('id_element')->references('id')->on('elements')->onDelete('cascade');
         });

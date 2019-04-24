@@ -34,13 +34,9 @@ function modaleSottocategoria(idModale, categoria) {
 }
 
 //
-function modalOffers(idModale, element) {
+function modalOffers(idModale, idElement) {
     document.getElementsByClassName('inputModale').value = '';
-    if (document.getElementById('modaleCategorySub') != null)
-        document.getElementById('modaleCategorySub').value = categoria.toString();
-    if (document.getElementById('categoriaLabel') != null)
-        document.getElementById('categoriaLabel').innerText = "  in: " + categoria.toString().toUpperCase();
-
+    document.getElementById('id_element').value = idElement;
     document.getElementById(idModale).style.display = 'block';
 }
 
@@ -105,14 +101,14 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('product_codeModal').value = el['product_code'];
         document.getElementById('element_idModal').value = el['id'];
         document.getElementById('element_idModal1').value = el['id'];
-    } else if(show != null) {
+    } else if (show != null) {
         document.getElementById('element_idModal').value = show['id'];
         document.getElementById('element_idModal1').value = show['id'];
         document.getElementById('nomeMod').value = show['name'];
         document.getElementById('descrMod').value = show['description'];
         document.getElementById('catMod').value = show['nameSubCategory'];
         document.getElementById('linkMod').value = show['linkBuy'];
-    } else if(courier != null) {
+    } else if (courier != null) {
         document.getElementById('courier_idModal').value = courier['id'];
         document.getElementById('courier_idModal1').value = courier['id'];
         document.getElementById('brandModal').value = courier['courier_name'];

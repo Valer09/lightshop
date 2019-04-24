@@ -238,7 +238,7 @@ Route::post('/insert_new_brand', 'insertionController@insert_brand' );
 Route::post('/insert_courier', 'insertionController@insert_courier' );
 Route::post('/add_new_sped', 'insertionController@insert_spedition' );
 Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
-
+Route::post('/add_offert', 'insertionController@insert_offert' );
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
@@ -253,6 +253,7 @@ Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcateg
 Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_element_showroom' );
 Route::post('/courier_deletion', 'deletionsController@delete_courier' );
 Route::post('/order_deletion_submit', 'deletionsController@delete_order' );
+Route::get('/offert_delete-{id}', 'deletionsController@offert_delete' );
 
 //---INCREMENT-DECREMENT---//
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );

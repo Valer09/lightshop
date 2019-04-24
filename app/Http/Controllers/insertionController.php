@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, App\Courier, App\NameCourier;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
+App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
+App\Courier, App\NameCourier, App\Offert;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -234,6 +236,26 @@ class insertionController extends Controller
             $courier-> name_service = $request -> name_service;
 
             $courier->save();
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        }
+    }
+
+    public function insert_offert(Request $request){
+        if ( !VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $offert = new Offert;
+
+            $offert-> id_element = $request -> id_element;
+            $offert-> discount_perc = $request -> discount_perc;
+            $offert-> date_start = $request -> date_start;
+            $dur = $request -> duration_day;
+            $offert-> date_end = date('Y-m-d', strtotime($request -> date_start."+$dur days"));
+            $offert-> duration_day = $dur;
+
+            $offert->save();
 
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));

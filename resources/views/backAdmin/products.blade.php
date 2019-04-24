@@ -7,6 +7,13 @@
 
 @section('content')
 
+{{!$Brands = \App\Brand::all()}}
+{{!$Categories = \App\Category::all()}}
+{{!$Subcategories = \App\Subcategory::all()}}
+{{!$Elements=\App\Element::all()}}
+{{!$Offerts = \App\Offert::allWithKey()}}
+
+
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <!--TITOLO DELLA PAGINE-->
     <div class="w3-container w3-blue-grey">
@@ -19,8 +26,8 @@
                     <p>Dati nuovo prodotto</p>
                     <select class="w3-select" name="brand" type="text" placeholder="Marca">
                         <option disabled selected>Selezione il Brand</option>
-                        {{!$Brand = \App\Brand::all()}}
-                        @foreach ($Brand as $Brand)
+                        
+                        @foreach ($Brands as $Brand)
                             <option>{{ $Brand->name}}</option>
                         @endforeach
                             <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
@@ -37,8 +44,6 @@
 
                     <select class="w3-select" name="subcategory" required >
                         <option disabled selected>Selezione una Sottocategoria</option>
-                        {{!$Categories = \App\Category::all()}}
-                        {{!$Subcategories = \App\Subcategory::all()}}
                         @foreach ($Categories as $Category)
                             <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
                             @foreach ($Subcategories as $Subcategory)
@@ -82,15 +87,15 @@
                 <tr>
                     <th style="width:15%;">Immagine</th>
                     <th style="width:20%;">Nome</th>
-                    <th style="width:15%;">Brand</th>
+                    <th style="width:10%;">Brand</th>
                     <th style="width:15%;">Categoria</th>
-                    <th style="width:15%;">Disponibilità</th>
-                    <th style="width:10%;">Prezzo</th>
+                    <th style="width:12%;">Disponibilità</th>
+                    <th style="width:8%;">Prezzo</th>
+                    <th style="width:10%;">In Offerta</th>
                     <th style="width:10%;"></th>
                 </tr>
 
                 <!--LISTA DEI PRODOTTI blade-->
-                {{!$Elements=\App\Element::all()}}
                 @foreach($Elements as $el)
                 <tr>
                     <td><img src="{{ asset('storage') }}{{ $el->pathPhoto }}" style="width: 100px"></td>
@@ -99,10 +104,22 @@
                     <td>{{ $el->subcategories }}</td>
                     <td>{{ $el->availability }} unit/pz</td>
                     <td>€ {{ $el->price }}</td>
+                    @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end >= date('Y-m-d h:i:sa'))
+                    <td class="">-{{$Offerts[$el->id]->discount_perc}}%<br>prezzo scontato:<br><b>€ {{ $el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc) }}</b></td>
+                    @else
+                    <td></td>
+                    @endif
                     <td>
                         <button class="w3-btn w3-yellow w3-block" onclick="openModalAdmin('modaleEditProduct', {{$el}}, null, null, null, null);">Modifica</button>
-                        <button class="w3-btn w3-green w3-block" onclick="modalOffers('nuovaOfferta', {{$el}})">Aggiungi offerta</button>
-                        <button class="w3-btn w3-red w3-block" onclick="modaleSottocategoria('nuovoBrand', '')">Elimina offerta</button>
+                        @if(isset($Offerts[$el->id]))
+                            @if($Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+                            <button class="w3-btn w3-red w3-block" onclick="location.href='{{url('offert_delete-').$Offerts[$el->id]->id}}'">Elimina offerta<br>scade il: {{$Offerts[$el->id]->date_end}}</button>
+                            @else
+                            <button class="w3-btn w3-dark-grey w3-block" onclick="location.href='{{url('offert_delete-').$Offerts[$el->id]->id}}'">Elimina offerta<br>scaduta il: {{$Offerts[$el->id]->date_end}}</button>
+                            @endif
+                        @else
+                        <button class="w3-btn w3-green w3-block" onclick="modalOffers('nuovaOfferta', '{{$el->id}}')">Aggiungi offerta</button>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -130,8 +147,7 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Marca:</span>
                             <select class="w3-select" id="brandModal" name="brandModal" type="text" placeholder="Marca">
                                 <option disabled selected>Selezione il Brand</option>
-                                {{!$Brand = \App\Brand::all()}}
-                                @foreach ($Brand as $Brand)
+                                @foreach ($Brands as $Brand)
                                     <option value="{{ $Brand->name}}">{{ $Brand->name}}</option>
                                 @endforeach
                                     <option onclick="modaleSottocategoria('nuovoBrand', '')">Nuovo Brand</option>
@@ -153,8 +169,6 @@
                             <span class="w3-block w3-blue-grey" style="margin: none">Categoria:</span>
                             <select class="w3-select" id="subcategoryModal" name="subcategoryModal" required >
                                 <option disabled selected>Selezione una Sottocategoria</option>
-                                {{!$Categories = \App\Category::all()}}
-                                {{!$Subcategories = \App\Subcategory::all()}}
                                 @foreach ($Categories as $Category)
                                     <option disabled><b>{{ strtoupper($Category->name) }}</b></option>
                                     @foreach ($Subcategories as $Subcategory)
@@ -245,20 +259,21 @@
             <span onclick="closeModal('nuovaOfferta');" class="w3-button w3-display-topright">&times;</span>
             <h2>Nuova Offerta</h2>
         </header>
-        <form type="submit" method="post" action="{{URL::to('##')}}?ref={{$_SERVER['REQUEST_URI']}}">
+        <form type="submit" method="post" action="{{URL::to('add_offert')}}?ref={{$_SERVER['REQUEST_URI']}}">
             @csrf
             <div class="w3-padding">
+                <input style="display:none" type="number" name="id_element" id="id_element" required>
                 <div class="w3-row">
                     <label>Sconto in percentuale: </label>
                     <input class="inputModale" placeholder="12.50" type="text" name="discount_perc" required>
                 </div>
                 <div class="w3-row">
                     <label>Inizio offerta: </label>
-                    <input class="inputModale" placeholder="descrizione" type="date" name="date_start">
+                    <input class="inputModale" placeholder="descrizione" type="date" name="date_start" required>
                 </div>
                 <div class="w3-row">
                     <label>Durata in giorni: </label>
-                    <input class="inputModale" type="number" name="duration_day">
+                    <input class="inputModale" type="number" name="duration_day" required>
                 </div>
                 <div class="w3-row">
                     <button class="w3-right" type="submit">Salva</button>
