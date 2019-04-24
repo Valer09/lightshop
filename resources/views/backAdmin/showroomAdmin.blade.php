@@ -126,11 +126,6 @@
                         </div>
                     </div>
 
-                    <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
-                        <input type="file" id="file" name="file_nameModal"></div>
-                    <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
-                        <input type="file" class="form-control" name="photosModal[]" multiple></div>
-
                 </fieldset>
                 <div class="w3-row">
                     <div class="w3-col m4 w3-center">
