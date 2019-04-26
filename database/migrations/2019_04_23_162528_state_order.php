@@ -14,7 +14,7 @@ class StateOrder extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('state')->unsigned()->change();
+            $table->integer('state')->unsigned();
             $table->foreign('state')->references('id')->on('order_states')->onDelete('cascade');
             $table->dropColumn('order_shipped');
         });
