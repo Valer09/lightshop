@@ -10,6 +10,7 @@
  $el = $Element[0];
  $photos = App\Http\Controllers\gets_controller::photo_element_controller($el->id);
  $brand = App\Http\Controllers\gets_controller::brand_controller($el->brand);
+ $Offerts = \App\Offert::allWithKey();
 @endphp
 
 <!--BIG DISPLAY-->
@@ -62,7 +63,11 @@
     </div>
     <div class="l4 w3-display-bottomright w3-center w3-padding">
         <div class="w3-padding w3-card-4" style="background-color: #2c993f; color: white">
-            <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
+            @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+            <label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label> -{{$Offerts[$el->id]->discount_perc}}%<br><p>Scontato a: <b>€ {{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }}</b></p>
+            @else
+                <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
+            @endif
             @if($el->availability > 0)
             <form method="post" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
                 @csrf
@@ -124,7 +129,11 @@
     </div>
     <div class="w3-container w3-center w3-padding-16">
         <div>
+        
+        @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+        @else
             <p>Prezzo: {{ number_format($el->price, 2, ',', '.') }} €</p>
+        @endif
             <form method="post">
                 @csrf
                 <input type="number" name="quantity" min="1" max="{{$el->availability}}" required>
