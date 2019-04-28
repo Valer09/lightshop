@@ -102,19 +102,29 @@ class user_edit_controller extends Controller
     public function general_edit(Request $request){
         if (!(Auth::check() ) ) return abort(403, 'Devi loggarti');
         else {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:191',
+                'surname' => 'required|string|max:191',
+                'CF' => 'required|string|max:191',
+                'PIVA' => 'nullable|string|max:191',
+                'email' => 'required|email|max:191',
+                'pec' => 'nullable|email|max:191',
+            ]);
+
+
             $user=Auth::user();
-            if($request->name != "" || $request->name != " ")
-                $user->name=$request->name;
-            if($request->suername != "" || $request->surname != " ")
-                $user->surname=$request->surname;
-            if($request->CF != "" || $request->CF != " ")
-                $user->CF=$request->CF;
-            if($request->PIVA != "" || $request->PIVA != " ")
-                $user->IVA=$request->PIVA;
-            if($request->email != "" || $request->email != " ")
-                $user->email=$request->email;
-            if($request->pec != "" || $request->pec != " ")
-                $user->PEC=$request->pec;
+            if($user->name != $validatedData['name'])
+                $user->name=$validatedData['name'];
+            if($user->suername != $validatedData['surname'])
+                $user->surname=$validatedData['surname'];
+            if($user->CF != $validatedData['CF'])
+                $user->CF=$validatedData['CF'];
+            if($user->PIVA != $validatedData['PIVA'])
+                $user->IVA=$validatedData['PIVA'];
+            if($user->email != $validatedData['email'])
+                $user->email=$validatedData['email'];
+            if($user->PEC != $validatedData['pec'])
+                $user->PEC=$validatedData['pec'];
 
             $user->save();
             return redirect('/profile#dati');

@@ -231,7 +231,7 @@
             <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
             <h2>Modifica i tuoi dati.</h2>
         </header>
-        <form type="submit" method="post" action="{{URL::to('/user_edit')}}?ref={{$_SERVER['REQUEST_URI']}}">
+        <form type="submit" method="post" action="{{URL::to('/user_edit')}}?ref={{$_SERVER['REQUEST_URI']}}#dati">
             @csrf
             <div class="w3-padding">
                 <div class="w3-row">
@@ -261,6 +261,36 @@
     </div>
 </div>
 
+@if($errors->has('name') || $errors->has('surname') || $errors->has('CF') || $errors->has('email') || $errors->has('PIVA') || $errors->has('PEC'))
+<script>
+    var stringError="Errore salvataggio!";
+    @if($errors->has('name'))
+    stringError += "Errore campo nome: {{$errors->first('name')}}\n";
+    @endif
+
+    @if($errors->has('surname'))
+    stringError += "Errore campo cognome: {{$errors->first('name')}}\n";
+    @endif
+
+    @if($errors->has('CF'))
+    stringError += "Errore campo Codice fiscale: {{$errors->first('CF')}}\n";
+    @endif
+
+    @if($errors->has('email'))
+    stringError += "Errore campo email: {{$errors->first('email')}}\n";
+    @endif
+
+    @if($errors->has('PEC'))
+    stringError += "il campo PEC: {{$errors->first('PEC')}}\n";
+    @endif
+
+    @if($errors->has('PIVA'))
+    stringError += "il campo Partita IVA: {{$errors->first('PIVA')}}\n";
+    @endif
+
+    alert(stringError);
+</script>   
+@endif
 
 <!--Modale Nuovo indirizzo-->
 <div id="nuovoIndirizzo" class="w3-modal">
