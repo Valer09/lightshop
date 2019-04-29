@@ -34,7 +34,7 @@
                 <div class="w3-dropdown-content w3-bar-block w3-card-4" style="margin-top:49px">
                     {{!$Cats=\App\CatShowroom::all()}}
                     @foreach($Cats as $cat)
-                    <a href="{{ url('$cat->name_path') }}" class="w3-bar-item">{{$cat->name}}</a></option>
+                    <a href="{{ url($cat->name_path) }}" class="w3-bar-item">{{$cat->name}}</a></option>
                     @endforeach
                 </div>
             </div>
