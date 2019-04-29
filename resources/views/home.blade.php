@@ -88,7 +88,11 @@
       <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Offerte</b></h2>
       <div class="carousel-frame" style="height:fit-content">
         <ul>
-          {{!$Offerts = \App\Offert::allWithKey() }}
+          @php
+          $Offerts = \App\Offert::allWithKey();
+          $conta = 0;
+          @endphp
+
           @foreach($Offerts as $of)
           {{!$el =\App\Element::find($of->id_element)}}
           <li class="carousel-item">
@@ -102,6 +106,10 @@
                 </div>
             </div>
           </li>
+          @php
+          $conta++;
+          if($conta >= 10 ) @stop
+          @endphp
           @endforeach
         </ul>
       </div>
