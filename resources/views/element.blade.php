@@ -15,8 +15,8 @@
 
 <!--BIG DISPLAY-->
 <!-- !PAGE CONTENT! -->
-<div class="w3-row w3-hide-small w3-hide-medium w3-display-container" style="min-height:100%">
-    <div class="l4 w3-display-bottomleft w3-padding" style="max-width: 33%">
+<div class="w3-row w3-hide-small w3-hide-medium w3-display-container" style="margin-top:70px">
+    <div class="l4 w3-padding" style="max-width: 33%">
         <h1>{{$el->name}}</h1>
         @if($brand->link != null || $brand->link != "")
         <a target="_blank" href="{{$brand->link}}"><h4>{{ $el->brand }}</h4></a>
@@ -25,7 +25,7 @@
         @endif
         <span>{!! nl2br(utf8_decode($el->description)) !!}</span>
     </div>
-    <div class="containerCarousel w3-col w3-display-topmiddle l4" style="margin-top: 70px;">          
+    <div class="containerCarousel w3-col w3-display-topmiddle l4" style="">          
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -61,7 +61,7 @@
             @endif
         </div>
     </div>
-    <div class="l4 w3-display-bottomright w3-center w3-padding">
+    <div class="l4 w3-display-bottomright pricesidebar w3-animate-right w3-center w3-padding">
         <div class="w3-padding w3-card-4" style="background-color: #2c993f; color: white">
             @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
             <label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label> -{{$Offerts[$el->id]->discount_perc}}%<br><p>Scontato a: <b>€ {{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }}</b></p>

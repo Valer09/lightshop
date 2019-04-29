@@ -265,6 +265,12 @@ img[data-src] {
     animation-play-state: running;
 }
 
+.pricesidebar{
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+}
+
 @media print {
     a[href]:after {
         content: none !important;
