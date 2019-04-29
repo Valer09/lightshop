@@ -76,7 +76,7 @@
                 @endphp
                 @foreach ($brands as $key => $value)
                     <li class="">
-                        <input type="checkbox" id="filter-{{$key}}" class="checkFilter" value="{{$key}}">
+                        <input type="checkbox" id="filter-{{str_replace(' ', '_', $key)}}" class="checkFilter" value="{{str_replace(' ', '_', $key)}}">
                         <span>{{$key}} ({{$value}})</span>
                     </li>
                 @endforeach
@@ -134,9 +134,9 @@
     <!-- Product grid -->
     @foreach($Elements as $el)
         @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
-        <div class="filterDiv {{$el->brand}} " value="{{$el->id}}/{{$el->brand}}/{{($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc))}}/offert">
+        <div class="filterDiv {{str_replace(' ', '_', $el->brand)}} " value="{{$el->id}}/{{str_replace(' ', '_', $el->brand)}}/{{($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc))}}/offert">
         @else
-        <div class="filterDiv {{$el->brand}} " value="{{$el->id}}/{{$el->brand}}/{{number_format($el->price, 2, '.', ',')}}">
+        <div class="filterDiv {{str_replace(' ', '_', $el->brand)}} " value="{{$el->id}}/{{str_replace(' ', '_', $el->brand)}}/{{number_format($el->price, 2, '.', ',')}}">
         @endif
 
             <div class="third w3-display-container w3-white">
@@ -149,8 +149,8 @@
                 </div>
             </div>
 
-            <div class="divElP w3-row">
-                <p>{{ $el->name }}<br>
+            <div class="w3-row">
+                <div class="w3-padding divElP">
                     @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
                     <p class="w3-red">Offerta</p>
                     <label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label>
@@ -158,7 +158,9 @@
                     @else
                     <b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b>
                     @endif
-                </p>
+                </div>
+                <p>{{ $el->name }}</p>
+                
             </div>
 
         </div>

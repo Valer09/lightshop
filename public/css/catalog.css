@@ -18,6 +18,11 @@
     text-align: center;
     display: none;
     width: 16.6666%;
+    height: 420px;
+}
+
+.divElP {
+    text-align: left;
 }
 
 .show {

@@ -24,7 +24,7 @@
             <div class="w3-row w3-container">
                 <div class="w3-col m6 w3-light-grey w3-center">
                     <p>Dati nuovo prodotto</p>
-                    <select class="w3-select" name="brand" type="text" placeholder="Marca">
+                    <select class="w3-select" name="brand" type="text" placeholder="Marca" required>
                         <option disabled selected>Selezione il Brand</option>
                         
                         @foreach ($Brands as $Brand)
