@@ -33,7 +33,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         @php
                             $conta = 2
@@ -44,7 +47,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         </div>
                         @php
@@ -57,7 +63,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         @php
                             $conta = 4
@@ -68,7 +77,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         @php
                             $conta = 5
@@ -79,7 +91,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         @php
                             $conta = 6
@@ -90,7 +105,10 @@
                             <div>
                                 <img class="imShow" src="{{asset('storage'.$el->pathPhoto)}}" alt="{{ $el->name }}">
                             </div>
-                            <figcaption><b>{{ $el->name }}.</b> {{ $el->description }}</figcaption>
+                            <figcaption>
+                                <label><b>{{ $el->name }}.</b></label>
+                                <p>{{ $el->description }}</p>
+                            </figcaption>
                         </div>
                         </div>
                         @php
