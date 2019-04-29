@@ -1,7 +1,19 @@
 /*HOME*/
+@font-face {
+    font-family: DINRoundPro;
+    src: url("../fonts/DINRoundPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: DINRoundPro;
+    font-weight: bold;
+    src: url("../fonts/DINRoundPro-Bold.otf") format("opentype");
+}
+
 
 html, body {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'DINRoundPro',Arial,sans-serif;
+    line-height: 24px;
     scroll-behavior: smooth;
     height: 100%!important;
 }
@@ -18,7 +30,6 @@ body {
 }
 
 .barDx {
-    font-family: 'Roboto', sans-serif;
     font-size: 17px;
     letter-spacing: 0.5px;
     height: 49px;
@@ -30,7 +41,6 @@ body {
 }
 
 .barSx {
-    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     letter-spacing: 3px;
     text-align: center;
@@ -40,7 +50,6 @@ body {
 }
 
 .barDxM {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: #2e2e2e !important;
     font-size: 14px !important;
@@ -72,12 +81,7 @@ body {
     vertical-align: text-bottom;
 }
 
-a.w3-bar-item {
-    font-family: 'Roboto', sans-serif;
-}
-
 .w3-button {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: black !important;
 }
@@ -91,17 +95,6 @@ a.w3-bar-item {
     float: right;
 }
 
-#contact {
-    font-family: 'Roboto', sans-serif;
-}
-
-#about {
-    font-family: 'Roboto', sans-serif;
-}
-
-#band {
-    font-family: 'Roboto', sans-serif;
-}
 
 #logo {
     background-repeat: no-repeat;
