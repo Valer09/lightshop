@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App;
 use DB;
 use Auth;
+use App\Http\Controllers\VerifiedPrivileged;
+use App\Order, App\OrderDetail, App\User, App\Element, App\Address, App\Courier;
 
 class gets_controller extends Controller
 {
@@ -100,5 +102,23 @@ class gets_controller extends Controller
                 return $element[0];
             else return null;
         } else return null;
+    }
+
+    public static function controllerPageOrderDetails(Request $request, $id) {
+        if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
+        else {
+
+            if(!empty($id) || $id != null){
+                $order = Order::where('id', $id)->first();
+                $orderElements = OrderDetail::where('orders_id', $id)->get();
+                $user = User::where('id', $order->user_id)->first();
+                $address = Address::where('id' , $order->address_id)->first();
+                $courier = Courier::where('id', $order->courier_id)->first();
+               
+                return view('backAdmin.orderDetails', ['Order' => $order, 'OrderElements' => $orderElements, 'User' => $user, 'Address' => $address, 'Courier' => $courier]);
+
+            } else abort(500, 'Ordine non trovato.');
+
+        }
     }
 }

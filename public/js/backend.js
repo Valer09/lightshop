@@ -33,6 +33,13 @@ function modaleSottocategoria(idModale, categoria) {
     document.getElementById(idModale).style.display = 'block';
 }
 
+//
+function modalOffers(idModale, idElement) {
+    document.getElementsByClassName('inputModale').value = '';
+    document.getElementById('id_element').value = idElement;
+    document.getElementById(idModale).style.display = 'block';
+}
+
 //conferma operazioni critiche
 function conferma(message, id) {
     if (confirm(message)) {
@@ -82,7 +89,7 @@ function openAlert() {
 openAlert()
 
 
-function openModalAdmin(id, el, show, order, courier, other) {
+function openModalAdmin(id, el, show, order, courier, user) {
     if (el != null) {
         document.getElementById('brandModal').value = el['brand'];
         document.getElementById('nameModal').value = el['name'];
@@ -91,16 +98,17 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('priceModal').value = el['price'];
         document.getElementById('quantityModal').value = el['availability'];
         document.getElementById('weightModal').value = el['weight'];
+        document.getElementById('product_codeModal').value = el['product_code'];
         document.getElementById('element_idModal').value = el['id'];
         document.getElementById('element_idModal1').value = el['id'];
-    } else if(show != null) {
+    } else if (show != null) {
         document.getElementById('element_idModal').value = show['id'];
         document.getElementById('element_idModal1').value = show['id'];
         document.getElementById('nomeMod').value = show['name'];
         document.getElementById('descrMod').value = show['description'];
         document.getElementById('catMod').value = show['nameSubCategory'];
         document.getElementById('linkMod').value = show['linkBuy'];
-    } else if(courier != null) {
+    } else if (courier != null) {
         document.getElementById('courier_idModal').value = courier['id'];
         document.getElementById('courier_idModal1').value = courier['id'];
         document.getElementById('brandModal').value = courier['courier_name'];
@@ -109,7 +117,23 @@ function openModalAdmin(id, el, show, order, courier, other) {
         document.getElementById('pesominModal').value = courier['pesomin'];
         document.getElementById('pesomaxModal').value = courier['pesomax'];
         document.getElementById('stima_giorniModal').value = courier['stima_giorni'];
-    } else {
+    } else if (order != null) {
+        document.getElementById('element_idModal').value = order['id'];
+        document.getElementById('element_idModal1').value = order['id'];
+        document.getElementById('spedModal').value = order['courier_id'];
+        document.getElementById('stateModal').value = order['state'];
+        document.getElementById('trackingModal').value = order['tracking'];
+
+    } else if (user != null) {
+        document.getElementById('element_idModal').value = user['id'];
+        document.getElementById('element_idModal1').value = user['id'];
+        document.getElementById('nomeMod').value = user['name'];
+        document.getElementById('cognomeMod').value = user['surname'];
+        document.getElementById('emailMod').value = user['email'];
+        document.getElementById('catMod').value = user['group'];
+        document.getElementById('cfMod').value = user['CF'];
+        document.getElementById('pecMod').value = user['PEC'];
+        document.getElementById('ivaMod').value = user['IVA'];
 
     }
     document.getElementById('save').style.visibility = "hidden";

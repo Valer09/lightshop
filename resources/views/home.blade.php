@@ -3,7 +3,9 @@
 
 @section('head')
   <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarTrasp.css')}}" />
+  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/home.css')}}" />
   <script src="{{url('/js/navbarDinamic.js')}}"></script>
+  <script src="{{url('/js/home.js')}}"></script>
 @endsection
 
 @section('content')
@@ -12,7 +14,7 @@
 
 <!--HEADERS-->
   <!--BIG SCREEN-->
-  <header class="w3-hide-small w3-wide" style="min-height: 100%; overflow: hidden; width: 100%">
+  <header class="w3-hide-small w3-hide-medium w3-wide w3-animate-opacity" style="min-height: 100%; overflow: hidden; width: 100%">
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%">
       <!-- Indicators -->
@@ -70,11 +72,10 @@
   </header>
 
   <!--SMALL SCREEN-->
-  <header class="w3-display-container w3-hide-medium w3-hide-large w3-content w3-wide" style="width:100%; margin-top: 49px"
-    id="home">
+  <header class="w3-display-container w3-hide-large w3-content w3-wide" style="width:100%;">
     <img class="w3-image" src="./images/ferramenta/ferramenta.jpg" width="1500" height="800">
     <div class="w3-display-middle w3-center">
-      <h1 class="w3-medium w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
+      <h1 class="w3-large w3-text-white"><span class="w3-padding-small w3-black w3-opacity-min"><b>Visca s.n.c.</b></span></h1>
     </div>
   </header>
 
@@ -82,7 +83,37 @@
 
   <!-- Page content -->
   <div class="w3-content w3-padding" style="max-width:1564px">
+    <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
 
+      <h2 class="w3-border-bottom w3-border-light-grey w3-wide w3-center"><b>Offerte</b></h2>
+      <div class="carousel-frame" style="height:fit-content">
+        <ul>
+          @php
+          $Offerts = \App\Offert::allWithKey();
+          $conta = 0;
+          @endphp
+
+          @foreach($Offerts as $of)
+          {{!$el =\App\Element::find($of->id_element)}}
+          <li class="carousel-item">
+            <div class=" w3-display-container w3-white" style="width:210px; height: 210px">
+                <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}" style="object-fit:scale-down; width: 100%; height:210px;">
+                
+                <span class="w3-round-xlarge w3-tag w3-display-bottommiddle w3-red" style="width:auto; height:auto"><label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label> -{{$of->discount_perc}}%<br>Scontato a: <b>€ {{ number_format(($el->price - (($el->price)/100*$of->discount_perc)), 2, '.', ',') }}</b></span>
+
+                <div class="w3-display-middle w3-display-hover">
+                    <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista<i class="fa fa-shopping-cart"></i></button>
+                </div>
+            </div>
+          </li>
+          @php
+          $conta++;
+          if($conta >= 10 ) @stop
+          @endphp
+          @endforeach
+        </ul>
+      </div>
+    </div>
     <!-- Project Section -->
     <div class="w3-container w3-margin-top w3-padding-64" id="showroom">
 

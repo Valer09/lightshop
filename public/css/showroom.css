@@ -56,11 +56,11 @@ figcaption {
 }
 
 #show1 {
-    background-image: url("https://images.pexels.com/photos/159045/the-interior-of-the-repair-interior-design-159045.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    background-image: url("https://images.pexels.com/photos/2093084/pexels-photo-2093084.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
 }
 
 #show2 {
-    background-image: url("https://images.pexels.com/photos/1454805/pexels-photo-1454805.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    background-image: url("https://images.pexels.com/photos/6256/water-kitchen-black-design.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
 
 #show3 {
@@ -109,6 +109,8 @@ figcaption {
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease;
       transition: all 1s ease;
+      object-fit: cover;
+      object-position: center;
 }
 
 .imShow:hover {

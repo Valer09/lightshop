@@ -5,6 +5,7 @@
 .third img {
     height: 210px;
     object-fit: contain;
+    filter: grayscale(60%);
 }
 
 .containerCarousel div img {
@@ -17,6 +18,11 @@
     text-align: center;
     display: none;
     width: 16.6666%;
+    height: 420px;
+}
+
+.divElP {
+    text-align: left;
 }
 
 .show {

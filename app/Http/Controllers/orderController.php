@@ -34,6 +34,7 @@ class orderController extends Controller
                 $order->order_shipped = null;
                 $order->tracking = null;
                 $order->courier_id = $idCourier;
+                $order->state = 0;
                 $order->save();
 
                 foreach($cart->items as $item) {
@@ -43,7 +44,7 @@ class orderController extends Controller
                     $orderDetail->element_id = $item['item']->id;
                     $orderDetail->element_name = $item['item']->name;
                     $orderDetail->price = $el->price;
-                    $orderDetail->details = '';
+                    $orderDetail->details = $el->product_code;
                     $orderDetail->quantity = $item['qty'];
                     $orderDetail->save();
 

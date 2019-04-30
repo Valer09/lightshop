@@ -13,7 +13,6 @@ class OrderDetail extends Model
 
     public function get_order(){
         return $this->belongsTo('App\Order');
-
     }
 
     public function get_elements(){

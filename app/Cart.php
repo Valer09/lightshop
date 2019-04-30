@@ -80,13 +80,19 @@ class Cart
 
     public function increase($item,$id){
         $storedItem=$this->items[$id];
-        $storedItem['qty']++;
-        $storedItem['price']=$item->price * $storedItem['qty'];
-        $storedItem['weight'] = $item->weight * $storedItem['qty'];
-        $this->items[$id]=$storedItem;
-        $this->totalQty++;
-        $this->totalPrice +=$item->price;
-        $this->totalWeight += $item->weight;
+        
+        if($storedItem['qty'] < $item->availability){
+            $storedItem['qty']++;
+            $storedItem['price']=$item->price * $storedItem['qty'];
+            $storedItem['weight'] = $item->weight * $storedItem['qty'];
+            $this->items[$id]=$storedItem;
+            $this->totalQty++;
+            $this->totalPrice +=$item->price;
+            $this->totalWeight += $item->weight;
+            return true;
+
+        } else return false;
+        
     }
 
 }

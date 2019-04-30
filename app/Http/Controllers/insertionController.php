@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, App\Courier, App\NameCourier;
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
+App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
+App\Courier, App\NameCourier, App\Offert;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -31,31 +33,42 @@ class insertionController extends Controller
             $element->description = $request->description;
             $element->brand = $request->brand;
             $element->weight = $request->weight;
-
-            $name=$request->file_name->getClientOriginalName();
-            $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
-            $element-> pathPhoto = "/images/catalogo/$name";
+            $element->product_code = $request->product_code;
             $element->save();
-            
+    
             $el_id = $element->id;
+            insertionController::insert_principal_photo($request,$el_id);
             
             if($request->hasFile('photos')){
-                $files = $request->file('photos');
-                foreach ($files as $file) {
-                    $n = $file->getClientOriginalName();
-                    $file->storeAs('/images/catalogo',$n ,'public');
-                    $photo = new PhotoElement;
-                    $photo-> element_id = $el_id;
-                    $photo-> path = "/images/catalogo/$n";
-                    $photo-> name = $n;
-                    $photo->save();
-                }
+                insertionController::insert_other_photos($request,$el_id);
             }
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
         }
     }
+
+    public static function insert_principal_photo(Request $request, $idElement){
+        $name=$request->file_name->getClientOriginalName();
+        $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
+
+        $element = Element::where('id', $idElement)->first();
+        $element->update(['pathPhoto' => "/images/catalogo/$name"]);
+    }
+
+    public static function insert_other_photos(Request $request, $idElement){
+        $files = $request->file('photos');
+        foreach ($files as $file) {
+            $n = $file->getClientOriginalName();
+            $file->storeAs('/images/catalogo',$n ,'public');
+            $photo = new PhotoElement;
+            $photo-> element_id = $idElement;
+            $photo-> path = "/images/catalogo/$n";
+            $photo-> name = $n;
+            $photo->save();
+        }
+    }
+
 
     public function insert_news(Request $request){
         if ( !VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
@@ -233,6 +246,26 @@ class insertionController extends Controller
             $courier-> name_service = $request -> name_service;
 
             $courier->save();
+
+            $path = $request-> ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+        }
+    }
+
+    public function insert_offert(Request $request){
+        if ( !VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $offert = new Offert;
+
+            $offert-> id_element = $request -> id_element;
+            $offert-> discount_perc = $request -> discount_perc;
+            $offert-> date_start = $request -> date_start;
+            $dur = $request -> duration_day;
+            $offert-> date_end = date('Y-m-d', strtotime($request -> date_start."+$dur days"));
+            $offert-> duration_day = $dur;
+
+            $offert->save();
 
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));

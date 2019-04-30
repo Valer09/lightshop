@@ -31,7 +31,7 @@
                 </div>
                 <div class="w3-col m6 w3-light-grey w3-center">
                     <p>Altre info</p>
-                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione"></textarea>
+                    <textarea class="w3-input" name="description" type="text" placeholder="Descrizione" required></textarea>
 
                 </div>
             </div>
@@ -125,11 +125,6 @@
                             <input class="w3-input" id="linkMod" name="link" type="text" placeholder="Link acquisto">
                         </div>
                     </div>
-
-                    <div id="" class="w3-margin-top labelFoto"><b>Foto principale: </b>
-                        <input type="file" id="file" name="file_nameModal"></div>
-                    <div id="" class="w3-margin-bottom labelFoto"><b>Altre foto: </b>
-                        <input type="file" class="form-control" name="photosModal[]" multiple></div>
 
                 </fieldset>
                 <div class="w3-row">

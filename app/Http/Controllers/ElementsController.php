@@ -38,13 +38,18 @@ class ElementsController extends Controller
     public function getAddToCart(request $request, $id)
     {
         $element = Element::find($id);
-        $oldCart = Session::has('cart') ? Session:: get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($element, $element->id, $request->quantity);
+        if($element->availability > 0) {
+            $oldCart = Session::has('cart') ? Session:: get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($element, $element->id, $request->quantity);
 
-        $request->session()->put('cart', $cart);
+            $request->session()->put('cart', $cart);
 
-        return redirect('catalog');
+            return redirect('catalog');
+        } else {
+            return redirect(request()->headers->get('referer').'?openAlert=Il prodotto non è al momento disponibile.');
+        }
+        
     }
 
     public function getCart()
@@ -98,11 +103,12 @@ class ElementsController extends Controller
         $element = Element::find($id);
         $oldCart = Session::has('cart') ? Session:: get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->increase($element, $element->id);
 
-        $request->session()->put('cart', $cart);
-
-        return redirect('shopping-cart');
+        if($cart->increase($element, $element->id)){
+            $request->session()->put('cart', $cart);
+            return redirect('shopping-cart');
+        }
+        else return redirect('shopping-cart?openAlert=Non puoi aggiugere altre quantita di questo articolo. Ci dispiace, Contatta l\'assistenza se ne hai bisogno.');
     }
 
     public function getdecreased(request $request,$id){

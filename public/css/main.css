@@ -1,7 +1,19 @@
 /*HOME*/
+@font-face {
+    font-family: DINRoundPro;
+    src: url("../fonts/DINRoundPro-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: DINRoundPro;
+    font-weight: bold;
+    src: url("../fonts/DINRoundPro-Bold.otf") format("opentype");
+}
+
 
 html, body {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'DINRoundPro',Arial,sans-serif;
+    line-height: 24px;
     scroll-behavior: smooth;
     height: 100%!important;
 }
@@ -18,7 +30,6 @@ body {
 }
 
 .barDx {
-    font-family: 'Roboto', sans-serif;
     font-size: 17px;
     letter-spacing: 0.5px;
     height: 49px;
@@ -30,7 +41,6 @@ body {
 }
 
 .barSx {
-    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     letter-spacing: 3px;
     text-align: center;
@@ -40,7 +50,6 @@ body {
 }
 
 .barDxM {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: #2e2e2e !important;
     font-size: 14px !important;
@@ -49,7 +58,6 @@ body {
 }
 
 .barDxMButt {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: #2c993f !important;
     font-size: 14px !important;
@@ -58,47 +66,37 @@ body {
 }
 
 .barSxM {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: #2e2e2e !important;
     font-size: 16px;
     height: 49px;
-    width: 87%!important;
+    float: right;
 }
 
-a.w3-bar-item {
-    font-family: 'Roboto', sans-serif;
+.barSxM > i {
+    padding-left: auto;
+}
+
+.barSxM > b {
+    vertical-align: text-bottom;
 }
 
 .w3-button {
-    font-family: 'Roboto', sans-serif;
     background-color: #ffffff !important;
     color: black !important;
 }
 
 .w3-button:hover {
     color: #003a9b !important;
-    background-color: #2c993f !important;
+    background-color: #dfdfdf !important;
 }
 
 #areaRiservata {
     float: right;
 }
 
-#contact {
-    font-family: 'Roboto', sans-serif;
-}
-
-#about {
-    font-family: 'Roboto', sans-serif;
-}
-
-#band {
-    font-family: 'Roboto', sans-serif;
-}
 
 #logo {
-    background-image: url("../public/logo/visca.png");
     background-repeat: no-repeat;
     width: 51px;
     /*or your image's width*/
@@ -124,7 +122,7 @@ footer {
     bottom: 0px;
 }
 
-#logoBar {
+.logoBar {
     left: 0!important;
     top: 0!important;
     width: 51px;
@@ -190,7 +188,6 @@ footer {
     filter: saturate(130%)!important;
 }
 
-
 a:hover {
     text-decoration: none!important;
     text-shadow: none;
@@ -208,10 +205,72 @@ img {
     transform: translateY(0) scale(1);
     -webkit-transition: -webkit-transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
     transition: transform 0.35s ease-in-out 0s, opacity 0.35s ease-in-out 0s;
+    transition-duration: 0.5s;
+    transition-delay: 0.2s;
+    
 }
+
 img[data-src] {
     opacity: 0;
     visibility: visible;
     -webkit-transform: translateY(20px) scale(1);
     transform: translateY(20px) scale(1);
+}
+
+#mySidebar {
+    background-color: #f5f6fa!important;
+    top: 49px;
+    width: 250px;
+    background-image: linear-gradient(#dfe4ea 5%, #f5f6fa 80%);
+    
+}
+
+#borderGradient{
+    height: 2px;
+    background-color: #dfe4ea!important;
+    background-image: linear-gradient(to right, #2c993f 30%, #dfe4ea 70%);
+}
+
+.buttonRed {
+    background-color: #ff4433;
+    border: none;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+    
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.textAnimation {
+    animation: opac 2s;
+    animation-name: opac;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+
+.pricesidebar{
+    position: fixed !important;
+    z-index: 1;
+    overflow: auto;
+    margin-bottom: 45px;
+}
+
+@media print {
+    a[href]:after {
+        content: none !important;
+    }
+
+    #logo {
+        display: none!important;
+    }
 }

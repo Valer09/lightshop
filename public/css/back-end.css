@@ -1,4 +1,4 @@
-#mySidebar {
+#mySidebarAdmin {
     margin-top: 43px;
     text-decoration-color: black!important;
 }
@@ -17,8 +17,4 @@
     width: 70%;
     background-color: #f7d794!important;
     border-bottom: 1px solid #ccc
-}
-
-.cardCategorie {
-    
 }

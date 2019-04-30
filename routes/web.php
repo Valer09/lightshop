@@ -49,9 +49,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('register', function () {
     return view('auth/register');
 });
-Route::get('form', function () {
-    return view('register');
-});
+
 Route::get('about', function () {
     return view('about');
 });
@@ -71,10 +69,13 @@ Route::get('recovered', function () {
     return view('/recovered');
 });
 
+Route::get('/search', 'search_controller@searchContr');
 
 Route::get('/star_address{id}', 'general_edit_controller@address_star');
 Route::get('/delete_user_address{id}', 'general_edit_controller@delete_user_address');
 Route::post('/email_recovery', 'gets_controller@get_user_cf');
+
+Route::get('/order_details-{id}', 'gets_controller@controllerPageOrderDetails');
 
 
 //--End Home--//
@@ -237,7 +238,7 @@ Route::post('/insert_new_brand', 'insertionController@insert_brand' );
 Route::post('/insert_courier', 'insertionController@insert_courier' );
 Route::post('/add_new_sped', 'insertionController@insert_spedition' );
 Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
-
+Route::post('/add_offert', 'insertionController@insert_offert' );
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
@@ -251,7 +252,8 @@ Route::post('/category_deletion_submit', 'deletionsController@delete_category' )
 Route::post('/subcategory_deletion_submit', 'deletionsController@delete_subcategory' );
 Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_element_showroom' );
 Route::post('/courier_deletion', 'deletionsController@delete_courier' );
-
+Route::post('/order_deletion_submit', 'deletionsController@delete_order' );
+Route::get('/offert_delete-{id}', 'deletionsController@offert_delete' );
 
 //---INCREMENT-DECREMENT---//
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );
@@ -267,6 +269,8 @@ Route::post('/element_edit_submit', 'element_edit_controller@edit_element' );
 Route::post('/showroom_edit_submit', 'element_edit_controller@edit_showroom_element' );
 Route::post('/user_edit', 'user_edit_controller@general_edit' );
 Route::post('/courier_edit', 'element_edit_controller@edit_courier' );
+Route::post('/order_edit', 'element_edit_controller@order_edit' );
+Route::post('/user_admin_edit', 'user_edit_controller@user_admin_edit' );
 
 /**---DELETED---
 

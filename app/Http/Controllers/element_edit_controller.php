@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Element, App\ElementsShowRoom, App\Courier;
+use App\Element, App\ElementsShowRoom, App\Courier, App\Order, App\PhotoElement;
 use App\Http\Controllers\VerifiedPrivileged;
+use App\Http\Controllers\insertionController;
 use Auth;
 Use App;
 
@@ -23,6 +24,7 @@ class element_edit_controller extends Controller
                 if($element->description != $request->descriptionModal) $element->update(['description' => $request->descriptionModal]);
                 if($element->brand != $request->brandModal) $element->update(['brand' => $request->brandModal]);
                 if($element->weight != $request->weightModal) $element->update(['weight' => $request->weightModal]);
+                if($element->product_code != $request->product_codeModal) $element->update(['product_code' => $request->product_codeModal]);
                 
                 if(($element->price != $request->priceModal)) {
                     if(VerifiedPrivileged::verificaAdmin($request)) $element->update(['price' => $request->priceModal]);
@@ -32,6 +34,26 @@ class element_edit_controller extends Controller
                         return redirect($path.'?openAlert=Non%20sei%20autorizzato%20a%20modificare%20il%20prezzo!');
                     }
                 }
+
+                if(isset($request->file_name)){
+                    //cancella foto
+                    $path =  $element->pathPhoto;
+                    if(file_exists('storage'.$path)){
+                        unlink(public_path('storage'.$path));
+                    }
+                    
+                    //salva nuova foto
+                    insertionController::insert_principal_photo($request,$request->element_idModal);
+                }
+
+                if(isset($request->photos)){
+                    //cancella foto
+                    PhotoElement::deleteAll($request->element_idModal);
+                    
+                    //salva nuove foto
+                    insertionController::insert_other_photos($request,$request->element_idModal);
+                }
+
 
                 $path = $request-> ref;
                 $path = substr($path, 1, strlen($path));
@@ -59,7 +81,7 @@ class element_edit_controller extends Controller
         if (!VerifiedPrivileged::verificaAdminAndPrivileged($request) ) return abort(403, 'Azione non autorizzata!');
         else
             {
-                $courier = Courier::where('id', "$request->courier_idModal")->first();
+                $courier = Courier::where('id', $request->courier_idModal)->first();
                 if($courier->courier_name != $request->brandModal) $courier->update(['courier_name' => $request->brandModal]);
                 if($courier->pesomin !== $request->pesomin) $courier->update(['pesomin' => $request->pesomin]);
                 if($courier->pesomax !== $request->pesomax) $courier->update(['pesomax' => $request->pesomax]);
@@ -73,4 +95,18 @@ class element_edit_controller extends Controller
             }
     }
 
+    public function order_edit(Request $request){
+        if (!VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else
+            {
+                $order = Order::where('id', $request->element_idModal)->first();
+                if((int)$order->state !== (int)$request->stateModal) $order->update(['state' => (int)$request->stateModal]);
+                if($order->tracking != $request->trackingModal) $order->update(['tracking' => $request->trackingModal]);
+                if($order->courier_id !== $request->spedModal) $order->update(['courier_id' => $request->spedModal]);
+
+                $path = $request-> ref;
+                $path = substr($path, 1, strlen($path));
+                return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+            }
+    }
 }
