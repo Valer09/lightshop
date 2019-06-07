@@ -18,3 +18,7 @@
     background-color: #f7d794!important;
     border-bottom: 1px solid #ccc
 }
+
+.w3-modal label {
+    color: black;
+}

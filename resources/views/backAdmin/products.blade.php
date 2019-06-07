@@ -56,6 +56,7 @@
                     <input class="w3-input" name="price" type="text" placeholder="Prezzo unitario" required>
                     <input class="w3-input" name="weight" min="1" type="number" placeholder="Peso singolo prodotto (kg)">
                     <input class="w3-input" name="quantity" min="1" type="number" placeholder="Quantità disponibile (pz)" required>
+                    <button type="button" class="w3-button" onclick="modaleSottocategoria('modaleSpec', '')">Specifiche prodotto</button>
                 </div>
             </div>
             
@@ -70,6 +71,28 @@
             <div class="w3-col m6 w3-center">
                 <button class="w3-button w3-ripple w3-red" style="width:50%">Annulla</button>
             </div>
+
+            <!--modale Spec-->
+            <div id="modaleSpec" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width: 700px">
+                    <header class="w3-container w3-teal">
+                        <span onclick="closeModal('modaleSpec');" class="w3-button w3-display-topright">&times;</span>
+                        <h2>Specifiche</h2>
+                    </header>
+                    <div id="specList" class="w3-padding w3-container">
+                        <div class="w3-row">
+                            <label>Specifica: </label>
+                            <input class="inputModale" placeholder="Lunghezza" type="text" name="key_spec1" required>
+                            <label>Valore: </label>
+                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec1" required>
+                            <button class="w3-button" type="button" onclick="#"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <button class="w3-button w3-block" type="button" onclick="addSpec();"><i class="fa fa-plus"></i>Aggiungi specifica</button>
+                </div>
+            </div>
+            <!--MODALE CHIUSURA-->
+
         </form>
     </div>
 
