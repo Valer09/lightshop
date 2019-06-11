@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="it">
 <html>
     <head>
         <title>@yield('title')</title>
