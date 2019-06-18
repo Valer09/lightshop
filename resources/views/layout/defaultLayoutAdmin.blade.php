@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>@yield('title')</title>
-        @include('layout.headAdmin')
+        @include('components.headAdmin')
         @yield('head')
     </head>
 
     <body class="w3-light-grey">
-        @include('layout.navbarAdmin')
+        @include('components.navbarAdmin')
 
         @yield('content')
 
-        @include('layout.footerAdmin')
+        @include('components.footerAdmin')
     </body>
 </html>

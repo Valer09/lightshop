@@ -3,15 +3,15 @@
 
 <head>
     <title>@yield('title')</title>
-    @include('layout.head')
+    @include('components.head')
     @yield('head')
 </head>
 
 <body>
-    @include('layout.headerCheckout')
+    @include('components.headerCheckout')
 
     @yield('content')
 
-    @include('layout.footer')
+    @include('components.footer')
 </body>
 </html>
