@@ -5,12 +5,9 @@
         @include('components.head')
         @yield('head')
     </head>
+    
+    <!--body-->
+    @yield('content')
+    <!--end body-->
 
-    <body>
-        @include('components.navbar')
-
-        @yield('content')
-
-        @include('components.footer')
-    </body>
 </html>

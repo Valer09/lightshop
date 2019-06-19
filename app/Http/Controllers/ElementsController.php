@@ -64,6 +64,18 @@ class ElementsController extends Controller
         return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight]);
     }
 
+    public static function getElemCart()
+    {
+        if (!Session::has('cart')) {
+            return view('cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight];
+    }
+
     public function getCheckout(){
         if(Auth::check()) {
             if(empty(Auth::user()->email_verified_at) || Auth::user()->email_verified_at == '0000-00-00 00:00:00') return abort(403, 'Non puoi ordinare. Devi prima verificare la tua e-mail.');
