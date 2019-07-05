@@ -55,8 +55,8 @@ jQuery(document).ready(function () {
     });
   });
 
-  var dthen1 = new Date("12/25/17 11:59:00 PM");
-    start = "08/04/15 03:02:11 AM";
+  var dthen1 = new Date(document.getElementById('dataFine').value);
+    start = new Date();
     start_date = Date.parse(start);
     var dnow1 = new Date(start_date);
     if (CountStepper > 0)

@@ -553,8 +553,9 @@
                   <div id="new-arrivals-slider" class="product-flexslider hidden-buttons">
                     <div class="home-block-inner"> </div>
                     <div class="slider-items slider-width-col4 products-grid block-content">
-                      {{!$Elements = DB::table('elements')->orderBy('created_at')->get()}}
-                      @foreach($Elements as $el)
+                      {{!$Elements = DB::table('elements')->orderBy('created_at', 'desc')->get()}}
+                      @for($i = 0; $i < count($Elements) && $i < 16; $i++)
+                      {{!$el = $Elements[$i]}}
                       <div class="item">
                         <div class="item-inner">
                           <div class="item-img">
@@ -590,7 +591,7 @@
                           </div>
                         </div>
                       </div>
-                      @endforeach
+                      @endfor
                       <!-- End Item -->
                     </div>
                   </div>
@@ -609,21 +610,17 @@
 
               </div>
             </div>
+            {{!$hot = \App\Offert::where('date_end', '>', date('Y-m-d h:i:sa'))->orderBy('discount_perc', 'desc')->first()}}
+            {{!$hotEl =\App\Element::find($hot->id_element)}}
+            <input style="display:none" id="dataFine" value="{{ $hot->date_end }}">
             <div class="hot-deal">
               <ul class="products-grid">
                 <li class="right-space two-height item">
                   <div class="item-inner">
                     <div class="item-img">
                       <div class="item-img-info"> <a href="#" title="Retis lapen casen" class="product-image"> <img
-                            src="products-images/product1.jpg" alt="Retis lapen casen"> </a>
+                            src="{{ asset('storage').$hotEl->pathPhoto }}" alt="Retis lapen casen"> </a>
                         <div class="hot-label hot-top-left">Hot Deal</div>
-                        <div class="box-hover">
-                          <ul class="add-to-links">
-                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                            <li><a class="link-compare" href="compare.html"></a> </li>
-                          </ul>
-                        </div>
                         <div class="box-timer">
                           <div class="countbox_1 timer-grid"></div>
                         </div>
