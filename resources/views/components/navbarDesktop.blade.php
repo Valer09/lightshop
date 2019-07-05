@@ -4,20 +4,13 @@
         <div class="row"> 
           <!-- Header Language -->
           <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6 pull-left">
-            <div class="dropdown block-language-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span> </a>
+            <<div class="dropdown block-language-wrapper"> <img src="images/english.png" alt="language"> </a>
               <ul class="dropdown-menu" role="menu">
-                <li role="presentation"> <a href="#"><img src="images/english.png" alt="language"> English </a> </li>
-                <li role="presentation"> <a href="#"><img src="images/francais.png" alt="language"> French </a> </li>
-                <li role="presentation"> <a href="#"><img src="images/german.png" alt="language"> German </a> </li>
               </ul>
             </div>
             <!-- End Header Language --> 
             <!-- Header Currency -->
-            <div class="dropdown block-currency-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li role="presentation"><a href="#"> $ - Dollar </a> </li>
-                <li role="presentation"><a href="#"> £ - Pound </a> </li>
-                <li role="presentation"><a href="#"> € - Euro </a> </li>
+            <div class="dropdown block-currency-wrapper"> <a   class="block-currency dropdown-toggle" href="#"> welcome  <span class="caret"></span></a>
               </ul>
             </div>
           </div>
@@ -32,12 +25,11 @@
                 @endif
                 <div class="myaccount"><a title="My Account" href="{{ url('/profile') }}"><span class="hidden-xs">My Account</span></a> </div>
                 <div class="check"><a title="Checkout" href="{{ url('/checkout') }}"><span class="hidden-xs">Checkout</span></a> </div>
-                <div class="check"><a title="Checkout" href="wishlist.html"><span class="hidden-xs">Wishlist</span></a> </div>
               @endauth
                 <!-- Header Company -->
                 <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="#"> Company <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li role="presentation"><a href="about_us.html"> About Us </a> </li>
+                    <li role="presentation"><a href="about"> About Us </a> </li>
                     <li role="presentation"><a href="#"> Customer Service </a> </li>
                     <li role="presentation"><a href="#"> Privacy Policy </a> </li>
                     <li role="presentation"><a href="sitemap.html">Site Map </a> </li>
@@ -108,7 +100,7 @@
                   </ul>
                   <!--actions-->
                   <div class="actions">
-                    <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span> </button>
+                    <button class="btn-checkout" title="Checkout" onclick="location.href='{{ url('checkout') }}'" type="button"><span>Checkout</span> </button>
                     <a href="{{ route('Element.shoppingCart') }}" class="view-cart"><span>View Cart</span></a> </div>
                 </div>
               </div>
