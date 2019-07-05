@@ -695,6 +695,7 @@ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/fancyb
 }
 #fancybox-content .product-essential .product-image img {
 /*	width: 270px; */
+object-fit: contain;
 }
 #fancybox-content .more-views .jcarousel-prev {
 	left: 0px;

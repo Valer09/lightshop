@@ -2330,6 +2330,7 @@ our-features-box .feature-box {
 	transition-duration: 500ms;
 	-webkit-transition-property: transform;
 	transition-property: transform;
+	object-fit: contain;
 }
 .slider-items-products .item .product-image:hover img {
 	transform: scale(-1, 1);
