@@ -163,16 +163,16 @@
                               <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                 <div class="item-inner">
                                   <div class="item-img">
-                                    <div class="item-img-info"> <a class="product-image" title="Retis lapen casen"
-                                        href="product_detail.html"> <img alt="Retis lapen casen"
+                                    <div class="item-img-info"> <a class="product-image" title="{{ $el->name }}"
+                                        href="product_detail.html"> <img alt="{{ $el->name }}"
                                           src="{{ asset('storage').$el->pathPhoto }}"> </a>
                                       <div class="new-label new-top-left">new</div>
                                     </div>
                                   </div>
                                   <div class="item-info">
                                     <div class="info-inner">
-                                      <div class="item-title"> <a title="Retis lapen casen" href="product_detail.html">
-                                          Retis lapen casen </a> </div>
+                                      <div class="item-title"> <a title="{{ $el->name }}" href="product_detail.html">
+                                          {{ $el->name }} </a> </div>
                                       <div class="rating">
                                         <div class="ratings">
                                           <div class="rating-box">
@@ -299,8 +299,8 @@
                 <li class="right-space two-height item">
                   <div class="item-inner">
                     <div class="item-img">
-                      <div class="item-img-info"> <a href="#" title="Retis lapen casen" class="product-image"> <img
-                            src="{{ asset('storage').$hotEl->pathPhoto }}" alt="Retis lapen casen"> </a>
+                      <div class="item-img-info"> <a href="#" title="{{ $el->name }}" class="product-image"> <img
+                            src="{{ asset('storage').$hotEl->pathPhoto }}" alt="{{ $el->name }}"> </a>
                         <div class="hot-label hot-top-left">Hot Deal</div>
                         <div class="box-timer">
                           <div class="countbox_1 timer-grid"></div>
@@ -309,8 +309,7 @@
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"> <a href="product_detail.html" title="Retis lapen casen"> Retis lapen
-                            casen </a> </div>
+                        <div class="item-title"> <a href="product_detail.html" title="{{ $el->name }}"> {{ $el->name }} </a> </div>
                         <div class="item-content">
                           <div class="rating">
                             <div class="ratings">
