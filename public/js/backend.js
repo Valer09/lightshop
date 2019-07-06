@@ -158,44 +158,13 @@ function openModalList(idmodale) {
 }
 
 var coo = 2;
-function addSpec() {
-    var div = document.createElement('div');
-    div.setAttribute('class','w3-row');
+function addSpec(id) {
+    var itm = document.getElementById(id).firstElementChild.cloneNode(true);
+    itm.innerHTML = itm.innerHTML + "<button class='w3-button' type='button' onclick='deleteSpec(this);'><i class='fa fa-trash'></i></button>"
+    document.getElementById(id).appendChild(itm);
     
-    var label1 = document.createElement('label');
-    label1.innerText = "Specifica: ";
-
-    var input1 = document.createElement('input');
-    input1.setAttribute('class', 'inputModale');
-    input1.setAttribute('placeholder', 'Lunghezza');
-    input1.setAttribute('type', 'text');
-    input1.setAttribute('name', 'key_spec'+coo);
-    input1.setAttribute('required', 'true');
-
-    var label2 = document.createElement('label');
-    label2.innerText = " Valore: ";
-
-    var input2 = document.createElement('input');
-    input2.setAttribute('class', 'inputModale');
-    input2.setAttribute('placeholder', '10 cm');
-    input2.setAttribute('type', 'text');
-    input2.setAttribute('name', 'value_spec'+coo);
-    input2.setAttribute('required', 'true');
-
-    var button = document.createElement('button');
-//riempire bottone
-
-    div.appendChild(label1);
-    div.appendChild(input1);
-    div.appendChild(label2);
-    div.appendChild(input2);
-    div.appendChild(button);
-
-    document.getElementById('specList').appendChild(div);
-
-    coo++;
 }
 
-function deleteSpec() {
-
+function deleteSpec(node) {
+    node.parentNode.remove();
 }
