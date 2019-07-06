@@ -299,8 +299,8 @@
                 <li class="right-space two-height item">
                   <div class="item-inner">
                     <div class="item-img">
-                      <div class="item-img-info"> <a href="#" title="{{ $el->name }}" class="product-image"> <img
-                            src="{{ asset('storage').$hotEl->pathPhoto }}" alt="{{ $el->name }}"> </a>
+                      <div class="item-img-info"> <a href="#" title="{{ $hotEl->name }}" class="product-image"> <img
+                            src="{{ asset('storage').$hotEl->pathPhoto }}" alt="{{ $hotEl->name }}"> </a>
                         <div class="hot-label hot-top-left">Hot Deal</div>
                         <div class="box-timer">
                           <div class="countbox_1 timer-grid"></div>
@@ -309,7 +309,7 @@
                     </div>
                     <div class="item-info">
                       <div class="info-inner">
-                        <div class="item-title"> <a href="product_detail.html" title="{{ $el->name }}"> {{ $el->name }} </a> </div>
+                        <div class="item-title"> <a href="product_detail.html" title="{{ $hotEl->name }}"> {{ $hotEl->name }} </a> </div>
                         <div class="item-content">
                           <div class="rating">
                             <div class="ratings">
@@ -321,8 +321,13 @@
                             </div>
                           </div>
                           <div class="item-price">
-                            <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span>
-                              </span> </div>
+                            <div class="price-box"> <span class="regular-price">
+                              <span class="price" style="color: red">
+                                <b>€ {{ number_format(($hotEl->price - (($hotEl->price)/100*$hot->discount_perc)), 2, '.', ',') }}</b><br>
+                              </span>
+                              <label style="text-decoration: line-through">€ {{ number_format($hotEl->price, 2, '.', ',') }}</label>
+                              <label> (-{{$hot->discount_perc}}%)</label>
+                            </div>
                           </div>
                           <div class="action">
                             <button data-original-title="Add to Cart" title="" type="button"
