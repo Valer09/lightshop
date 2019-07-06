@@ -11,7 +11,8 @@ jQuery(document).ready(function() {
 		} else {
 			jQuery('.mega-menu-category').slideDown();
 		}
-	});
+    });
+   
     
     
     jQuery('.mega-menu-category .nav > li').hover(function(){
