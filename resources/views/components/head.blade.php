@@ -13,15 +13,15 @@
 <!-- Mobile Specific -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- CSS Style -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
-<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/revslider.css">
+<link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/font-awesome.min.css') }}" media="all">
+<link rel="stylesheet" type="text/css" href="{{ url('css/simple-line-icons.css') }}" media="all">
+<link rel="stylesheet" type="text/css" href="{{ url('css/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/owl.theme.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/jquery.bxslider.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/jquery.mobile-menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}" media="all">
+<link rel="stylesheet" type="text/css" href="{{ url('css/revslider.css') }}">
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600,800,400' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
