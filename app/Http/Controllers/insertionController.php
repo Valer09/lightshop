@@ -5,7 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
 App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
-App\Courier, App\NameCourier, App\Offert;
+App\Courier, App\NameCourier, App\Offert, App\SpecElement;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -35,13 +35,18 @@ class insertionController extends Controller
             $element->weight = $request->weight;
             $element->product_code = $request->product_code;
             $element->save();
-    
+
             $el_id = $element->id;
             insertionController::insert_principal_photo($request,$el_id);
             
             if($request->hasFile('photos')){
                 insertionController::insert_other_photos($request,$el_id);
             }
+
+            if(isset($request->key_spec)){
+                InsertionController::insert_spec_element($request, $el_id);
+            }
+
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
@@ -271,5 +276,17 @@ class insertionController extends Controller
             $path = substr($path, 1, strlen($path));
             return redirect($path);
         }
+    }
+
+    public function insert_spec_element(Request $request, $el_id){
+        for($i = 0; $i < count($request->key_spec); $i++){
+            $spec = new SpecElement;
+
+            $spec-> id_element = $el_id;
+            $spec-> key_spec = $request->key_spec[$i];
+            $spec-> value_spec = $request->value_spec[$i];
+            $spec->save();
+        }
+        return 0;
     }
 }

@@ -82,9 +82,9 @@
                     <div id="specList" class="w3-padding w3-container">
                         <div class="w3-row">
                             <label>Specifica: </label>
-                            <input class="inputModale" placeholder="Lunghezza" type="text" name="key_spec" required>
+                            <input class="inputModale" placeholder="Lunghezza" type="text" name="key_spec[]">
                             <label>Valore: </label>
-                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec" required>
+                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]">
                         </div>
                     </div>
                     <button class="w3-button w3-block" type="button" onclick="addSpec('specList');"><i class="fa fa-plus"></i>Aggiungi specifica</button>
@@ -304,5 +304,4 @@
         </form>
     </div>
 </div>
-
 @endsection
