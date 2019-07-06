@@ -83,16 +83,23 @@
 							<p>{!! nl2br($el->description) !!}</p>
 							<div class="product_count">
 								<label for="qty">Quantity:</label>
-								<button
-									onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-									class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
-								<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
-									class="input-text qty">
-								<button
-									onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-									class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
-								<a class="button primary-btn" href="#">Add to Cart</a>
-							</div>
+                                @if($el->availability > 0)
+                                <form method="post" id="formAddCart" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
+                                    @csrf
+                                    <button
+                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                        class="increase items-count" type="button"><i class="ti-angle-left"></i></button>
+                                    <input type="text" name="quantity" id="sst" size="2" maxlength="12" value="1" title="Quantity:"
+                                        class="input-text qty">
+                                    <button
+                                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                        class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
+                                    <a class="button primary-btn" onclick="document.getElementById('formAddCart').submit();">Add to Cart</a>
+                                </form>    
+                                @else
+                                <span class="w3-red">Questo prodotto non è disponibile al momento.</span>
+                                @endif
+                            </div>
 							<div class="card_area d-flex align-items-center">
 								<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 								<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
