@@ -212,7 +212,7 @@ jQuery(document).ready(function() {
         jQuery('.top-cart-contain').mouseenter(function() {
             jQuery(this).find(".top-cart-content").stop(true, true).slideDown();
         });
-        jQuery('.top-cart-contain').mouseleave(function() {
+        jQuery('body').click(function() {
             jQuery(this).find(".top-cart-content").stop(true, true).slideUp();
         });
     }
