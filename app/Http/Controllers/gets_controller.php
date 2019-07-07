@@ -38,18 +38,11 @@ class gets_controller extends Controller
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
             
             if(isset($cate) && $cate != null) {
-                $objPerSub = 30/count($cate);
                 $arrai = array();
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
                 }
-                //dd($arrai);
-                    $element = Element::whereIn('subcategories', $arrai)->paginate($objPerSub);
-                    //dd($element);
-                    if(isset($element)) {
-                        $elementFin = array_merge($elementFin, $element);
-                    }
-               
+                $elementFin = Element::whereIn('subcategories', $arrai)->paginate(30);
             } else {
                 $elementFin = Element::where('subcategories', [$id])->paginate(30);
             }
