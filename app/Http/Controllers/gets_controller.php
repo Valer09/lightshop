@@ -30,24 +30,28 @@ class gets_controller extends Controller
             return abort(404);
     }
 
-    public function catalog_controller($id) {
+    public function catalog_controller(Request $request, $id) {
         $name = null;
-        $elementFin = array();
+        $elementFin = array();  
         if(isset($id) && $id != ''){
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
-            //dd($cate);
+            
             if(isset($cate) && $cate != null) {
-                //dd('1');
+                $objPerSub = 30/count($cate);
+                $arrai = array();
                 foreach ($cate as $nameSubat) {
-                    $element = DB::select('select * from elements where subcategories = ?', [$nameSubat->name]);
-                    $elementFin = array_merge($elementFin, $element);
-                    //dd($elementFin);
+                    array_push($arrai, $nameSubat->name);
                 }
+                //dd($arrai);
+                    $element = Element::whereIn('subcategories', $arrai)->paginate($objPerSub);
+                    //dd($element);
+                    if(isset($element)) {
+                        $elementFin = array_merge($elementFin, $element);
+                    }
+               
             } else {
-                //dd('2');
-                $elementFin = DB::select('select * from elements where subcategories = ?', [$id]);
-
+                $elementFin = Element::where('subcategories', [$id])->paginate(30);
             }
             $array[0] = $catSUP[0];
             $array[1] = null;
@@ -63,7 +67,8 @@ class gets_controller extends Controller
         if(isset($sub) || $sub != '') {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
-            $element = DB::select('select * from elements where subcategories = ?', [$sub]);
+            $element = Element::where('subcategories', [$sub])->paginate(30);
+            
             $array[0] = $catSUP[0];
             $array[1] = $sub;
             $array[2] = $cate;

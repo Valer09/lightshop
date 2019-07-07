@@ -130,12 +130,12 @@
                   {{!$Category = \App\Category::all()}}
                   @foreach ($Category as $cat)
                   {{!$Subcategory = $cat->get_subcategories}}
-                  <li> <a href="{{ url('catalog').$cat->name }}"><i class="fa fa-home"></i> {{ $cat->name }}</a>
+                  <li> <a href="{{ url('catalog-').$cat->name }}"><i class="fa fa-home"></i> {{ $cat->name }}</a>
                     <div class="wrap-popup column1">
                       <div class="popup">
                         <ul class="nav">
                           @foreach ($Subcategory as $subcat)
-                          <li><a href="{{ url('catalog'.$cat->name, $subcat->name) }}">{{ $subcat->name }}</a></li>
+                          <li><a href="{{ url('catalog-'.$cat->name, $subcat->name) }}">{{ $subcat->name }}</a></li>
                           @endforeach
                         </ul>
                       </div>

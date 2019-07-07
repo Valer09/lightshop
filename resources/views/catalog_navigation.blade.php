@@ -32,7 +32,7 @@
             <div class="">
             @endif
                     <div class="w3-container w3-col l3">
-                        <a href="{{ url('catalog').$cat->name }}">
+                        <a href="{{ url('catalog-').$cat->name }}">
                             <div class="w3-display-container categories">
                                 <img class="lazy" data-src="{{ asset('storage').$cat->pathPhoto }}" style="width:100%" alt="{{ $cat->name }}">
                                 <div class="w3-display-middle w3-margin-top w3-center">
