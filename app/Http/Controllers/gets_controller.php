@@ -42,9 +42,9 @@ class gets_controller extends Controller
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
                 }
-                $elementFin = Element::whereIn('subcategories', $arrai)->paginate(30);
+                $elementFin = Element::whereIn('subcategories', $arrai)->paginate(5);
             } else {
-                $elementFin = Element::where('subcategories', [$id])->paginate(30);
+                $elementFin = Element::where('subcategories', [$id])->paginate(5);
             }
             $array[0] = $catSUP[0];
             $array[1] = null;

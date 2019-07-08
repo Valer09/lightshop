@@ -64,11 +64,16 @@
                   <div class="pages">
                     <label>Page:</label>
                     <ul class="pagination">
-                      <li><a href="#">&laquo;</a></li>
-                      @for($it = 1 ; $it <= $Elements->lastPage() ; $it++)
-                      <li class="{{Request::input('page')==$it || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
-  	                  @endfor
-                      <li><a href="#">&raquo;</a></li>
+                      @if(Request::input('page') > 1 && !empty(Request::input('page')))
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a></li>
+                      @endif
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
+                      <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                      @endfor
+                      @if(Request::input('page') < $Elements->lastPage())
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
+                      @endif
                     </ul>
                   </div>
                   <div class="product-option-right">
@@ -139,11 +144,16 @@
                   <div class="pages">
                     <label>Page:</label>
                     <ul class="pagination">
-                      <li><a href="#">&laquo;</a></li>
-                      @for($it = 1 ; $it <= $Elements->lastPage() ; $it++)
-                      <li class="{{Request::input('page')==$it || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
-  	                  @endfor
-                      <li><a href="#">&raquo;</a></li>
+                      @if(Request::input('page') > 1 && !empty(Request::input('page')))
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a></li>
+                      @endif
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
+                      <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                      @endfor
+                      @if(Request::input('page') < $Elements->lastPage())
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
+                      @endif
                     </ul>
                   </div>
                   <div class="product-option-right">
