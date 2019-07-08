@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
     <!-- end Plugin slider-->
-
-    <script src="{{url('/js/catalog.js')}}"></script>
-
-  @endsection
+@endsection
 
 @section('content')
 
-{{!$Offerts = \App\Offert::allWithKey()}}
+<body class="grid-page"> 
+  <div id="page"> 
+    <!-- Header -->
+    @include('components.banner')
+    @include('components.navbarDesktop')
+    <!-- end header -->
+
+    {{!$Offerts = \App\Offert::allWithKey()}}
 
 <!-- Main Container -->
     <section class="main-container col2-left-layout">
@@ -406,5 +410,24 @@
       </div>
     </section>
     <!-- Main Container End -->
+
+    <!--footer Desktop-->
+    @include('components.footerDesktop')
+    <!-- End Footer Desktop -->
+  </div>
+
+  <!--div Mobile Menu-->
+  <div id="mobile-menu">
+    @include('components.navbarMobile')
+  </div>
+
+  <!-- JavaScript --> 
+  <script type="text/javascript" src="js/jquery.min.js"></script> 
+  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+  <script type="text/javascript" src="js/common.js"></script> 
+  
+  <script type="text/javascript" src="js/owl.carousel.min.js"></script> 
+  <script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
+</body>
 
 @endsection

@@ -85,7 +85,7 @@
                         <div class="product-details">
                           <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
                           <!--access--><strong>{{ $el['qty'] }}</strong> x <span class="price">€{{ number_format($el['price'], 2, ',', '.') }}</span>
-                          <p class="product-name"><a href="#">{{ $el['item']->name }}</a> </p>
+                          <p class="product-name"><a href="{{url('element').$el['item']->id}}">{{ $el['item']->name }}</a> </p>
                         </div>
                       </div>
                     </li>

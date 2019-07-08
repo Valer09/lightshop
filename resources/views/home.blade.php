@@ -13,10 +13,8 @@
   
   <!--div Desktop-->
   <div id="page">
-    <div class="top-banners">
-      <div class="banner"> Populate this marketing banner to advertise a special promotion such as: <span>Save 20%</span> this weekend! </div>
-    </div>
     <!-- Header -->
+    @include('components.banner')
     @include('components.navbarDesktop')
     <!-- end header -->
     <div class="container">
