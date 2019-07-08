@@ -60,17 +60,14 @@
             <article class="col-main">
               <div class="toolbar">
                 <div class="display-product-option">
-                  <div class="sorter">
-                    <div class="view-mode"> <span title="Grid" class="button button-active button-grid">&nbsp;</span><a
-                        href="list.html" title="List" class="button-list">&nbsp;</a> </div>
-                  </div>
+                  
                   <div class="pages">
                     <label>Page:</label>
                     <ul class="pagination">
                       <li><a href="#">&laquo;</a></li>
-                      <li class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
+                      @for($it = 1 ; $it <= $Elements->lastPage() ; $it++)
+                      <li class="{{Request::input('page')==$it || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+  	                  @endfor
                       <li><a href="#">&raquo;</a></li>
                     </ul>
                   </div>
@@ -78,30 +75,15 @@
                     <div id="sort-by">
                       <label class="left">Sort By: </label>
                       <ul>
-                        <li><a href="#">Position<span class="right-arrow"></span></a>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span class="right-arrow"></span></a>
                           <ul>
-                            <li><a href="#">Name</a></li>
-                            <li><a href="#">Price</a></li>
-                            <li><a href="#">Position</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest Arrivals</a></li>
                           </ul>
                         </li>
                       </ul>
-                      <a class="button-asc left" href="#" title="Set Descending Direction"><span
-                          class="top_arrow"></span></a>
-                    </div>
-                    <div class="pager">
-                      <div id="limiter">
-                        <label>View: </label>
-                        <ul>
-                          <li><a href="#">15<span class="right-arrow"></span></a>
-                            <ul>
-                              <li><a href="#">20</a></li>
-                              <li><a href="#">30</a></li>
-                              <li><a href="#">35</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -158,9 +140,9 @@
                     <label>Page:</label>
                     <ul class="pagination">
                       <li><a href="#">&laquo;</a></li>
-                      <li class="active"><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
+                      @for($it = 1 ; $it <= $Elements->lastPage() ; $it++)
+                      <li class="{{Request::input('page')==$it || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+  	                  @endfor
                       <li><a href="#">&raquo;</a></li>
                     </ul>
                   </div>
@@ -168,30 +150,17 @@
                     <div id="sort-by">
                       <label class="left">Sort By: </label>
                       <ul>
-                        <li><a href="#">Position<span class="right-arrow"></span></a>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span class="right-arrow"></span></a>
                           <ul>
-                            <li><a href="#">Name</a></li>
-                            <li><a href="#">Price</a></li>
-                            <li><a href="#">Position</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest Arrivals</a></li>
                           </ul>
                         </li>
                       </ul>
                       <a class="button-asc left" href="#" title="Set Descending Direction"><span
                           class="top_arrow"></span></a>
-                    </div>
-                    <div class="pager">
-                      <div id="limiter">
-                        <label>View: </label>
-                        <ul>
-                          <li><a href="#">15<span class="right-arrow"></span></a>
-                            <ul>
-                              <li><a href="#">20</a></li>
-                              <li><a href="#">30</a></li>
-                              <li><a href="#">35</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
