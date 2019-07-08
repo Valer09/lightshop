@@ -201,7 +201,27 @@
           </div>
           <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
             <div class="side-banner"><img src="images/side-banner.jpg" alt="banner"></div>
-            <div class="block block-layered-nav">
+
+            <!--------Subcategory--------->
+            @if($Category != null)
+            <div class="block block-layered-nav block-cat">
+              <div class="block-title">Categories</div>
+              <div class="block-content">
+                <dl id="narrow-by-list">
+                  <dd class="odd">
+                    <ol>
+                      @foreach($Category[2] as $subcat)
+                      <li> <a href="{{ url('catalog-'.$Category[0]->name, $subcat->name) }}"><span class="price">{{$subcat->name}}</span></a></li>
+                      @endforeach
+                    </ol>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            @endif
+          
+            <!--------Filter--------->
+            <div class="block block-layered-nav block-filter">
               <div class="block-title">Shop By</div>
               <div class="block-content">
                 <p class="block-subtitle">Shopping Options</p>
@@ -316,22 +336,6 @@
                 </div>
               </div>
             </div>
-            <div class="block block-list block-viewed">
-              <div class="block-title"> Recently Viewed </div>
-              <div class="block-content">
-                <ol id="recently-viewed-items">
-                  <li class="item odd">
-                    <p class="product-name"><a href="#"> Retis lapen casen...</a></p>
-                  </li>
-                  <li class="item even">
-                    <p class="product-name"><a href="#"> Retis lapen casen...</a></p>
-                  </li>
-                  <li class="item last odd">
-                    <p class="product-name"><a href="#"> Retis lapen casen...</a></p>
-                  </li>
-                </ol>
-              </div>
-            </div>
             <div class="block block-poll">
               <div class="block-title">Community Poll </div>
               <form id="pollForm" action="#" method="post" onSubmit="return validatePollAnswerIsSelected();">
@@ -375,34 +379,6 @@
                     <a href="#" class="view-bnt">Shop now</a>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="block block-tags">
-              <div class="block-title"> Popular Tags</div>
-              <div class="block-content">
-                <ul class="tags-list">
-                  <li><a href="#" style="font-size:98.3333333333%;">Camera</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">Hohoho</a></li>
-                  <li><a href="#" style="font-size:145%;">SEXY</a></li>
-                  <li><a href="#" style="font-size:75%;">Tag</a></li>
-                  <li><a href="#" style="font-size:110%;">Test</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">bones</a></li>
-                  <li><a href="#" style="font-size:110%;">cool</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">cool t-shirt</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">crap</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">good</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">green</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">hip</a></li>
-                  <li><a href="#" style="font-size:75%;">laptop</a></li>
-                  <li><a href="#" style="font-size:75%;">mobile</a></li>
-                  <li><a href="#" style="font-size:75%;">nice</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">phone</a></li>
-                  <li><a href="#" style="font-size:98.3333333333%;">red</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">tight</a></li>
-                  <li><a href="#" style="font-size:75%;">trendy</a></li>
-                  <li><a href="#" style="font-size:86.6666666667%;">young</a></li>
-                </ul>
-                <div class="actions"> <a href="#" class="view-all">View All Tags</a> </div>
               </div>
             </div>
           </aside>
