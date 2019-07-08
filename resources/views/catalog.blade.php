@@ -60,7 +60,6 @@
             <article class="col-main">
               <div class="toolbar">
                 <div class="display-product-option">
-                  
                   <div class="pages">
                     <label>Page:</label>
                     <ul class="pagination">
@@ -71,7 +70,7 @@
                       @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
                       <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
                       @endfor
-                      @if(Request::input('page') < $Elements->lastPage())
+                      @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 && $Elements->lastPage() == 1))
                       <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
                       @endif
                     </ul>
@@ -151,7 +150,7 @@
                       @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
                       <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
                       @endfor
-                      @if(Request::input('page') < $Elements->lastPage())
+                      @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 && $Elements->lastPage() == 1))
                       <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
                       @endif
                     </ul>
