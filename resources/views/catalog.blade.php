@@ -28,15 +28,16 @@
             <!-- Breadcrumbs -->
             <div class="breadcrumbs">
               <ul>
-                <li class="home"> <a href="index.html" title="Go to Home Page">Home</a> <span>/</span> </li>
-                <li class="category1599"> <a href="grid.html" title="">Women</a> <span>/ </span> </li>
-                <li class="category1600"> <a href="grid.html" title="">Styliest Bag</a> <span>/</span> </li>
-                <li class="category1601"> <strong>Clutch Handbags</strong> </li>
+                <li class="home"> <a href="{{ url('home') }}" title="Go to Home Page">Home</a> <span>/</span> </li>
+                <li class="category1599"> <a href="{{ url('catalog-').$Category[0]->name }}" title="">{{ $Category[0]->name }}</a></li>
+                @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
+                <li class="category1600"> <span>/ </span> <a href="{{ url('catalog-').$Category[0]->name.'/'.$Category[1] }}" title="">{{ $Category[1] }}</a></li>
+                @endif
               </ul>
             </div>
             <!-- Breadcrumbs End -->
             <div class="page-title">
-              <h2 class="page-heading"> <span class="page-heading-title">Women</span> </h2>
+              <h2 class="page-heading"> <span class="page-heading-title">{{ $Category[0]->name }}</span> </h2>
             </div>
             <div class="category-description std">
               <div class="slider-items-products">
