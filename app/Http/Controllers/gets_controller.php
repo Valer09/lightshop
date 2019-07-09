@@ -32,7 +32,8 @@ class gets_controller extends Controller
 
     public function catalog_controller(Request $request, $id) {
         $name = null;
-        $elementFin = array();  
+        $elementFin = array();
+        
         if(isset($id) && $id != ''){
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
@@ -42,9 +43,39 @@ class gets_controller extends Controller
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
                 }
-                $elementFin = Element::whereIn('subcategories', $arrai)->paginate(5);
+                
+                if(!empty($request->input('sort'))) {
+                    switch ($request->input('sort')) {
+                        case 'Low price':
+                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate(5);
+                            break;
+                        case 'High price':
+                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'desc')->paginate(5);
+                            break;
+                        case 'Newest Arrivals':
+                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('created_at', 'desc')->paginate(5);
+                            break;
+                        default:
+                        $elementFin = Element::whereIn('subcategories', $arrai)->paginate(5);
+                    }
+                }  
+
             } else {
-                $elementFin = Element::where('subcategories', [$id])->paginate(5);
+                if(!empty($request->input('sort'))) {
+                    switch ($request->input('sort')) {
+                        case 'Low price':
+                        $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'asc')->paginate(5);
+                            break;
+                        case 'High price':
+                        $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'desc')->paginate(5);
+                            break;
+                        case 'Newest Arrivals':
+                        $elementFin = Element::where('subcategories', [$id])->orderBy('created_at', 'desc')->paginate(5);
+                            break;
+                        default:
+                        $elementFin = Element::where('subcategories', [$id])->paginate(5);
+                    }
+                } 
             }
             $array[0] = $catSUP[0];
             $array[1] = null;

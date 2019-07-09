@@ -123,7 +123,7 @@
                                 <p class="old-price"><span class="price-label">Regular Price:</span> <span
                                     class="price">$100.00 </span> </p>
                                 <p class="special-price"><span class="price-label">Special Price</span> <span
-                                    class="price">$90.00 </span> </p>
+                                    class="price">{{ $el->price }} </span> </p>
                               </div>
                             </div>
                             <div class="action">
