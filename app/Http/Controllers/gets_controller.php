@@ -42,40 +42,38 @@ class gets_controller extends Controller
                 $arrai = array();
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
+                }       
+            
+                switch ($request->input('sort')) {
+                    case 'Low price':
+                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate(8);
+                        break;
+                    case 'High price':
+                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'desc')->paginate(8);
+                        break;
+                    case 'Newest Arrivals':
+                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('created_at', 'desc')->paginate(8);
+                        break;
+                    default:
+                    $elementFin = Element::whereIn('subcategories', $arrai)->paginate(8);
                 }
-                
-                if(!empty($request->input('sort'))) {
-                    switch ($request->input('sort')) {
-                        case 'Low price':
-                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate(5);
-                            break;
-                        case 'High price':
-                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'desc')->paginate(5);
-                            break;
-                        case 'Newest Arrivals':
-                        $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('created_at', 'desc')->paginate(5);
-                            break;
-                        default:
-                        $elementFin = Element::whereIn('subcategories', $arrai)->paginate(5);
-                    }
-                }  
 
             } else {
-                if(!empty($request->input('sort'))) {
-                    switch ($request->input('sort')) {
-                        case 'Low price':
-                        $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'asc')->paginate(5);
-                            break;
-                        case 'High price':
-                        $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'desc')->paginate(5);
-                            break;
-                        case 'Newest Arrivals':
-                        $elementFin = Element::where('subcategories', [$id])->orderBy('created_at', 'desc')->paginate(5);
-                            break;
-                        default:
-                        $elementFin = Element::where('subcategories', [$id])->paginate(5);
-                    }
-                } 
+                
+                switch ($request->input('sort')) {
+                    case 'Low price':
+                    $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'asc')->paginate(8);
+                        break;
+                    case 'High price':
+                    $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'desc')->paginate(8);
+                        break;
+                    case 'Newest Arrivals':
+                    $elementFin = Element::where('subcategories', [$id])->orderBy('created_at', 'desc')->paginate(8);
+                        break;
+                    default:
+                    $elementFin = Element::where('subcategories', [$id])->paginate(8);
+                }
+                
             }
             $array[0] = $catSUP[0];
             $array[1] = null;
@@ -87,11 +85,24 @@ class gets_controller extends Controller
         }
     }
 
-    public function catalog_sub_controller($id, $sub) {
+    public function catalog_sub_controller(Request $request, $id, $sub) {
         if(isset($sub) || $sub != '') {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
-            $element = Element::where('subcategories', [$sub])->paginate(30);
+            
+            switch ($request->input('sort')) {
+                case 'Low price':
+                $element = Element::where('subcategories', [$sub])->orderBy('price', 'asc')->paginate(8);
+                    break;
+                case 'High price':
+                $element = Element::where('subcategories', [$sub])->orderBy('price', 'desc')->paginate(8);
+                    break;
+                case 'Newest Arrivals':
+                $element = Element::where('subcategories', [$sub])->orderBy('created_at', 'desc')->paginate(8);
+                    break;
+                default:
+                $element = Element::where('subcategories', [$sub])->paginate(8);
+            }
             
             $array[0] = $catSUP[0];
             $array[1] = $sub;
