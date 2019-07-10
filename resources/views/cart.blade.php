@@ -29,6 +29,7 @@
                                     <form method="post" action="#updatePost/">
                                         <input type="hidden" value="Vwww7itR3zQFe86m" name="form_key">
                                         <fieldset>
+                                        @if(Session::has('cart') && count($elements) > 0 )
                                             <table class="data-table cart-table" id="shopping-cart-table">
                                                 <colgroup>
                                                     <col width="1">
@@ -58,26 +59,33 @@
                                                 </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                <tr class="first odd">
-                                                    <td class="image"><a class="product-image" title="Sample Product" href="#/women-s-crepe-printed-black/"><img width="75" alt="Sample Product" src="products-images/product1.jpg"></a></td>
-                                                    <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">Sample Product</a> </h2></td>
-                                                    <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                                                    <td class="a-right"><span class="cart-price"> <span class="price">$70.00</span> </span></td>
-                                                    <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="1" name="cart[15945][qty]"></td>
-                                                    <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$70.00</span> </span></td>
-                                                    <td class="a-center last"><a class="button remove-item" title="Remove item" href="#"><span><span>Remove item</span></span></a></td>
-                                                </tr>
-                                                <tr class="last even">
-                                                    <td class="image"><a class="product-image" title="Sample Product" href="#women-s-u-tank-top/"><img width="75" alt="Sample Product" src="products-images/product1.jpg"></a></td>
-                                                    <td><h2 class="product-name"> <a href="#women-s-u-tank-top/">Sample Product</a> </h2></td>
-                                                    <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15946/"></a></td>
-                                                    <td class="a-right"><span class="cart-price"> <span class="price">$7.38</span> </span></td>
-                                                    <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="1" name="cart[15946][qty]"></td>
-                                                    <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$7.38</span> </span></td>
-                                                    <td class="a-center last"><a class="button remove-item" title="Remove item" href="#"><span><span>Remove item</span></span></a></td>
-                                                </tr>
+                                                    @foreach($elements as $el)
+                                                    <tr class="first odd">
+                                                        <td class="image"><a class="product-image" title="{{ $el['item']->name }}" href="{{ url('element').$el['item']->id }}"><img width="75" alt="{{ $el['item']->name }}" src="{{ asset('storage').$el['item']->pathPhoto }}"></a></td>
+                                                        <td><h2 class="product-name"> <a href="{{ url('element').$el['item']->id }}">{{ $el['item']->name }}</a> </h2></td>
+                                                        <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
+                                                        <td class="a-right"><span class="cart-price"> <span class="price">€{{ $el['price'] }}</span> </span></td>
+                                                        <td class="a-center movewishlist">
+                                                            <div class="product_count">
+                                                                <input type="text" name="qty" maxlength="12" value="{{ $el['qty'] }}" title="Quantity:"
+                                                                    class="input-text qty">
+                                                                <button onclick="location.href='{{ route('Element.getincreased', ['id' => $el['item']->id]) }}'"
+                                                                    class="increase items-count" type="button"><i class="fa fa-angle-up"></i></button>
+                                                                <button onclick="location.href='{{ route('Element.getdecreased', ['id' => $el['item']->id]) }}'"
+                                                                    class="reduced items-count" type="button"><i class="fa fa-angle-down"></i></button>
+                                                            </div>  
+                                                        </td>
+                                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$70.00</span> </span></td>
+                                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}"><span><span>Remove item</span></span></a></td>
+                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
+                                        @else
+                                            <div class="a-center">
+                                                <span>Non ci sono articoli disponibili nel carrello.</span>
+                                            </div>
+                                        @endif
                                         </fieldset>
                                     </form>
                                 </div>
