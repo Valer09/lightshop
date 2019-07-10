@@ -4,13 +4,10 @@
         <div class="row"> 
           <!-- Header Language -->
           <div class="col-xs-12 col-sm-4 col-md-6 col-lg-6 pull-left">
-            <<div class="dropdown block-language-wrapper"> <img src="images/english.png" alt="language"> </a>
-              <ul class="dropdown-menu" role="menu">
-              </ul>
-            </div>
+            
             <!-- End Header Language --> 
             <!-- Header Currency -->
-            <div class="dropdown block-currency-wrapper"> <a   class="block-currency dropdown-toggle" href="#"> welcome  <span class="caret"></span></a>
+            <div class="dropdown block-currency-wrapper"> <a class="block-currency dropdown-toggle" href="#"> welcome  </a>
               </ul>
             </div>
           </div>
@@ -52,7 +49,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 logo-block"> 
           <!-- Header Logo -->
-          <div class="logo"> <a title="Visca s.n.c." href="{{ url('/') }}"><img alt="Visca s.n.c." src="images/logo.png"> </a> </div>
+          <div class="logo"> <a title="Visca s.n.c." href="{{ url('/') }}"><img alt="Visca s.n.c." src="{{ url('images/logo.png') }}"> </a> </div>
           <!-- End Header Logo --> 
         </div>
         <div class="col-lg-7 col-md-6 col-sm-6 col-xs-3 hidden-xs category-search-form">
