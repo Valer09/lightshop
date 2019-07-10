@@ -12447,6 +12447,10 @@ a.button.wishlist {
 	letter-spacing: 1px;
 }
 
+#shopping-cart-totals-table .a-right {
+	text-align: end;
+}
+
 .data-table tbody th, .data-table tbody td {
 	border-bottom: 1px solid #eaeaea;
 	padding: 10px;
@@ -17507,4 +17511,12 @@ a.shop-now-btn {
 	.navleft-container {
 		width: 101%;
 	}
+}
+
+.product_count .increase {
+	float: left;
+}
+
+.product_count .reduced {
+	float: right;
 }
