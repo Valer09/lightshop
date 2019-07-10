@@ -45,11 +45,11 @@
                   <div class="slider-items slider-width-col1 owl-carousel owl-theme">
 
                     <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="images/category-img1.jpg"></a> </div>
+                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/category-img1.jpg') }}"></a> </div>
                     <!-- End Item -->
 
                     <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="images/category-img2.jpg"></a>
+                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/category-img2.jpg') }}"></a>
 
                       <!-- End Item -->
 
@@ -179,7 +179,7 @@
             <!--	///*///======    End article  ========= //*/// -->
           </div>
           <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
-            <div class="side-banner"><img src="images/side-banner.jpg" alt="banner"></div>
+            <div class="side-banner"><img src="{{ asset('images/side-banner.jpg') }}" alt="banner"></div>
 
             <!--------Subcategory--------->
             @if($Category != null)
@@ -257,7 +257,7 @@
                 <p class="block-subtitle">Recently added item(s) </p>
                 <ul>
                   <li class="item"> <a href="shopping_cart.html" title="Fisher-Price Bubble Mower"
-                      class="product-image"><img src="products-images/product1.jpg" alt="Fisher-Price Bubble Mower"></a>
+                      class="product-image"><img src="{{ asset('products-images/product1.jpg') }}" alt="Fisher-Price Bubble Mower"></a>
                     <div class="product-details">
                       <div class="access"> <a href="shopping_cart.html" title="Remove This Item" class="btn-remove1">
                           <span class="icon"></span> Remove </a> </div>
@@ -266,7 +266,7 @@
                     </div>
                   </li>
                   <li class="item last"> <a href="shopping_cart.html" title="Prince Lionheart Jumbo Toy Hammock"
-                      class="product-image"><img src="products-images/product1.jpg"
+                      class="product-image"><img src="{{ asset('products-images/product1.jpg') }}"
                         alt="Prince Lionheart Jumbo Toy Hammock"></a>
                     <div class="product-details">
                       <div class="access"> <a href="shopping_cart.html" title="Remove This Item" class="btn-remove1">
@@ -307,7 +307,7 @@
 
                       <a href="#" title="Side Offer Banner">
 
-                        <img class="hidden-xs" src="images/custom-slide1.jpg" alt="Side Offer Banner"></a>
+                        <img class="hidden-xs" src="{{ asset('images/custom-slide1.jpg') }}" alt="Side Offer Banner"></a>
 
 
                     </div>
@@ -350,7 +350,7 @@
             </div>
             <div>
               <div class="featured-add-box">
-                <div class="featured-add-inner"> <a href="#"> <img src="images/hot-trends-banner.jpg" alt="f-img"></a>
+                <div class="featured-add-inner"> <a href="#"> <img src="{{ asset('images/hot-trends-banner.jpg') }}" alt="f-img"></a>
                   <div class="banner-content">
                     <div class="banner-text">Electronic's</div>
                     <div class="banner-text1">20% off</div>
@@ -377,12 +377,12 @@
   </div>
 
   <!-- JavaScript --> 
-  <script type="text/javascript" src="js/jquery.min.js"></script> 
-  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
-  <script type="text/javascript" src="js/common.js"></script> 
+  <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script> 
   
-  <script type="text/javascript" src="js/owl.carousel.min.js"></script> 
-  <script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
+  <script type="text/javascript" src="{{ asset('/js/owl.carousel.min.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('/js/jquery.mobile-menu.min.js') }}"></script>
 </body>
 
 @endsection

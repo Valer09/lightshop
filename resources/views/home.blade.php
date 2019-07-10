@@ -467,15 +467,15 @@
   </div>
 
   <!-- JavaScript -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/revslider.js"></script>
-  <script type="text/javascript" src="js/common.js"></script>
+  <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/revslider.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/common.js') }}"></script>
 
-  <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
-  <script type="text/javascript" src="js/countdown.js"></script>
-  <script type="text/javascript" src="js/home.js"></script>
+  <script type="text/javascript" src="{{ url('js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/jquery.mobile-menu.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/countdown.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/home.js') }}"></script>
 
   
 </body>
