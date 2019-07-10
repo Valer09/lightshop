@@ -26,6 +26,7 @@
         <div class="row">
           <div class="col-sm-9 col-sm-push-3">
             <!-- Breadcrumbs -->
+            @if($Category != null)
             <div class="breadcrumbs">
               <ul>
                 <li class="home"> <a href="{{ url('home') }}" title="Go to Home Page">Home</a> <span>/</span> </li>
@@ -35,9 +36,10 @@
                 @endif
               </ul>
             </div>
+            @endif
             <!-- Breadcrumbs End -->
             <div class="page-title">
-              <h2 class="page-heading"> <span class="page-heading-title">{{ $Category[0]->name }}</span> </h2>
+              <h2 class="page-heading"> <span class="page-heading-title">{{ empty($Category[0]->name) ? 'Results for "'.$search.'"' : $Category[0]->name }}</span> </h2>
             </div>
             <div class="category-description std">
               <div class="slider-items-products">
