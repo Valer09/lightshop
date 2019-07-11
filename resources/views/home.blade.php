@@ -20,7 +20,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-md-4 col-sm-3 hidden-xs">
-          <div class="side-banner"><img src="images/side-banner.jpg" alt="banner"></div>
+          <div class="side-banner"><img src="images/side.jpg" alt="banner"></div>
         </div>
         <div class="col-md-9 col-sm-9 col-xs-12 home-slider">
           <div id="magik-slideshow" class="magik-slideshow slider-block">
@@ -401,7 +401,7 @@
               </div>
             </div>
             <div class="featured-add-box">
-              <div class="featured-add-inner"> <a href="#"> <img src="images/ads-07.jpg" alt="f-img"></a>
+              <div class="featured-add-inner"> <a href="#"> <img src="images/hot.jpg" alt="f-img"></a>
                 <div class="banner-content">
                   <div class="banner-text">Electronics</div>
                   <div class="banner-text1">20% off</div>

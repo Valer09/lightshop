@@ -82,7 +82,7 @@
                 <!--	///*///======    End article  ========= //*/// -->
             </div>
             <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
-                <div class="customer-img"><img src="{{ url('/images/riserva.png') }}" alt="logo"></div>
+                <div class="customer-img"><img src="{{ url('/images/side.jpg') }}" alt="logo"></div>
                 <div class="block block-company">
                     <div class="block-title">Company </div>
                     <div class="block-content">

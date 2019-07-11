@@ -47,11 +47,11 @@
                   <div class="slider-items slider-width-col1 owl-carousel owl-theme">
 
                     <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/category-img1.jpg') }}"></a> </div>
+                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/insegna.jpg') }}"></a> </div>
                     <!-- End Item -->
 
                     <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/category-img2.jpg') }}"></a>
+                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/editing.jpg') }}"></a>
 
                       <!-- End Item -->
 
@@ -181,7 +181,7 @@
             <!--	///*///======    End article  ========= //*/// -->
           </div>
           <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
-            <div class="side-banner"><img src="{{ asset('images/side-banner.jpg') }}" alt="banner"></div>
+            <div class="side-banner"><img src="{{ asset('images/side.jpg') }}" alt="banner"></div>
 
             <!--------Subcategory--------->
             @if($Category != null)
@@ -309,7 +309,7 @@
 
                       <a href="#" title="Side Offer Banner">
 
-                        <img class="hidden-xs" src="{{ asset('images/custom-slide1.jpg') }}" alt="Side Offer Banner"></a>
+                        <img class="hidden-xs" src="{{ asset('images/custom.jpg') }}" alt="Side Offer Banner"></a>
 
 
                     </div>
@@ -352,7 +352,7 @@
             </div>
             <div>
               <div class="featured-add-box">
-                <div class="featured-add-inner"> <a href="#"> <img src="{{ asset('images/hot-trends-banner.jpg') }}" alt="f-img"></a>
+                <div class="featured-add-inner"> <a href="#"> <img src="{{ asset('images/hot.jpg') }}" alt="f-img"></a>
                   <div class="banner-content">
                     <div class="banner-text">Electronic's</div>
                     <div class="banner-text1">20% off</div>
