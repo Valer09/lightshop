@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category, App\Subcategory, App\Element, App\Cart, App\Address, App\Courier;
+use App\Category, App\Subcategory, App\Element, App\Cart, App\Address, App\Courier, App\Offert;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Arr;
 
 use Session;
 use Auth;
@@ -61,7 +61,17 @@ class ElementsController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight]);
+        $offerts = array();
+        foreach($cart->items as $item){
+            $off = Offert::where([
+                ['id_element', $item['item']->id],
+                ['date_end', '>', date('Y-m-d h:i:sa')],
+            ])->first();
+            if(!empty($off)){
+                $offerts = Arr::add($offerts, $item['item']->id, $off);
+            }
+        }
+        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight, 'Offerts' => $offerts]);
     }
 
     public static function getElemCart()

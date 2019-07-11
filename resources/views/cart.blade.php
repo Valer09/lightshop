@@ -64,7 +64,16 @@
                                                         <td class="image"><a class="product-image" title="{{ $el['item']->name }}" href="{{ url('element').$el['item']->id }}"><img width="75" alt="{{ $el['item']->name }}" src="{{ asset('storage').$el['item']->pathPhoto }}"></a></td>
                                                         <td><h2 class="product-name"> <a href="{{ url('element').$el['item']->id }}">{{ $el['item']->name }}</a> </h2></td>
                                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                                                        <td class="a-right"><span class="cart-price"> <span class="price">€{{ number_format($el['item']->price, 2, '.', ',') }}</span> </span></td>
+                                                        <td class="a-right">
+                                                            <span class="cart-price"> 
+                                                                @if(array_key_exists($el['item']->id, $Offerts))
+                                                                <p class="old-price"><span class="price">€{{ number_format($el['item']->price, 2, '.', ',') }}</span></p>
+                                                                <br><span class="price">€{{ number_format(($el['item']->price - (($el['item']->price)/100*$Offerts[$el['item']->id]->discount_perc)), 2, '.', ',') }}</span>
+                                                                @else
+                                                                <span class="price">€{{ number_format($el['item']->price, 2, '.', ',') }}</span>
+                                                                @endif
+                                                            </span>
+                                                        </td>
                                                         <td class="a-center movewishlist">
                                                             <div class="product_count">
                                                                 <input type="text" name="qty" maxlength="12" value="{{ $el['qty'] }}" title="Quantity:"
@@ -75,7 +84,11 @@
                                                                     class="reduced items-count" type="button"><i class="fa fa-angle-down"></i></button>
                                                             </div>  
                                                         </td>
-                                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">€{{ number_format($el['price'], 2, '.', ',') }}</span> </span></td>
+                                                        @if(array_key_exists($el['item']->id, $Offerts))
+                                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">€{{ number_format($el['qty'] * ($el['item']->price - (($el['item']->price)/100*$Offerts[$el['item']->id]->discount_perc)), 2, '.', ',') }}</span> </span></td>
+                                                        @else
+                                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">€{{ number_format($el['qty'] * $el['item']->price, 2, '.', ',') }}</span> </span></td>
+                                                        @endif
                                                         <td class="a-center last"><a class="button remove-item" title="Remove item" href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}"><span><span>Remove item</span></span></a></td>
                                                     </tr>
                                                     @endforeach
