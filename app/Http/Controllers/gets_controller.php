@@ -43,7 +43,6 @@ class gets_controller extends Controller
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
                 }       
-            
                 switch ($request->input('sort')) {
                     case 'Low price':
                     $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate(8);
