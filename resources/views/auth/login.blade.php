@@ -26,7 +26,7 @@
                                     <div class="content">
                                         <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
                                         <div class="buttons-set">
-                                            <button onclick="window.location='http://demo.magentomagik.com/computerstore/customer/account/create/';" class="button create-account" type="button"><span>Create an Account</span></button>
+                                            <button onclick="#" class="button create-account" type="button"><span>Create an Account</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                         <p class="required">* Required Fields</p>
                                         <div class="buttons-set">
                                             <button id="send2" name="send" type="submit" class="button login"><span>Login</span></button>
-                                            <a class="forgot-word" href="http://demo.magentomagik.com/computerstore/customer/account/forgotpassword/">Forgot Your Password?</a> </div>
+                                            <a class="forgot-word" href="#">Forgot Your Password?</a> </div>
                                     </div>
                                 </div>
                             </fieldset>
