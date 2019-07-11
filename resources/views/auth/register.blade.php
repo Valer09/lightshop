@@ -9,232 +9,420 @@
 
 @section('content')
     <!--CONTENT PAGE-->
-<div class="w3-container">
-    <div class="w3-content w3-padding" style="margin-top:100px;margin-bottom:51px;width:50%; background-color: #46967c;">
-        <h2 class="whiteForm w3-center"><i class="w3-margin-right"></i>Registrazione</h2>
-        <hr>
-        <form id="regForm" action="{{ route('register') }}?ref={{$_SERVER['REQUEST_URI']}}" method="post" target="_blank">
-        @csrf
-            <div class="w3-container whiteForm w3-padding-16">
-                <div class="tab w3-row-padding" style="margin:0 -16px;">
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> {{ __('Nome') }}</label>
-                        <input id="name" class="w3-input form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" 
-                        type="text" placeholder="Mario" name="name" value="{{ old('name') }}" required autofocus>
-                        @if ($errors->has('name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
+<<section class="main-container col1-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <article class="col-main">
+                    <div class="account-login">
+                        <div class="page-title">
+                            <h2>Login or Create an Account</h2>
+                        </div>
+                        <fieldset class="col2-set">
+                            <div class="col-1 new-users"><strong>New Customers</strong>
+                                <div class="content">
+                                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                                    <div class="buttons-set">
+                                        <button onclick="window.location='http://demo.magentomagik.com/computerstore/customer/account/create/';" class="button create-account" type="button"><span>Create an Account</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 registered-users"><strong>Registered Customers</strong>
+                                <div class="content">
+                                    <p>If you have an account with us, please log in.</p>
+                                    <ul class="form-list">
+                                        <li>
+                                            <label for="email">Email Address <span class="required">*</span></label>
+                                            <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                        </li>
+                                        <li>
+                                            <label for="pass">Password <span class="required">*</span></label>
+                                            <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="login[password]">
+                                        </li>
+                                    </ul>
+                                    <p class="required">* Required Fields</p>
+                                    <div class="buttons-set">
+                                        <button id="send2" name="send" type="submit" class="button login"><span>Login</span></button>
+                                        <a class="forgot-word" href="http://demo.magentomagik.com/computerstore/customer/account/forgotpassword/">Forgot Your Password?</a> </div>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> {{ __('Cognome') }}</label>
-                        <input id="surname" class="w3-input form-control {{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" 
-                        value="{{ old('surname') }}" type="text" placeholder="Rossi"  required>
-                        @if ($errors->has('surname'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('surname') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> {{ __('Codice Fiscale') }}</label>
-                        <input id="cf" class="w3-input form-control {{ $errors->has('CF') ? ' is-invalid' : '' }}" type="text" name="CF" placeholder="Codice fiscale"  value="{{ old('CF') }}" required>
-                        @if ($errors->has('CF'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('CF') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
+                </article>
+                <!--	///*///======    End article  ========= //*/// -->
+            </div>
 
-                <div class="tab w3-row-padding" style="margin:0 -16px;">
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> {{ __('E-Mail') }}</label>
-                        <input id="email" class="w3-input form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" 
-                        placeholder="mariorossi@gmail.com" name="email" value="{{ old('email') }}" required>
-                        @if ($errors->has('email'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> Ripeti email</label>
-                        <input class="w3-input form-control {{ $errors->has('email_confirmation') ? ' is-invalid' : '' }}" type="text" 
-                            placeholder="mariorossi@gmail.com" name="email_confirmation" value="{{ old('email_confirmation') }}" autocomplete="off" required>
-                        @if ($errors->has('email_confirmation'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email_confirmation') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
+        </div>
+    </div>
+</section>
+<!-- Main Container End -->
 
-                <div class="tab w3-row-padding" style="margin:0 -16px;">
-                    <button class="w3-button" type="button" onclick="registraAzienda('aziendaRegistrazione'); this.style.display='none'">Registrati come azienda</button>
-                    <div id="aziendaRegistrazione">
-                        <div class="w3-row w3-margin-bottom w3-">
-                        <label><i class="fa fa-user"></i> {{ __('Partita IVA') }}</label>
-                        <input id="ipva" class="w3-input form-control {{ $errors->has('IVA') ? ' is-invalid' : '' }}" type="text" name="IVA" placeholder="Partita IVA" value="{{ old('IVA') }}">
-                        @if ($errors->has('IVA'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('IVA') }}</strong>
-                            </span>
-                        @endif
+<!-- Footer -->
+<footer class="footer">
+    <div class="newsletter-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="newsletter">
+                        <form>
+                            <div>
+                                <h4><span>newsletter</span></h4>
+                                <input type="text" placeholder="Enter your email address" class="input-text" title="Sign up for our newsletter" id="newsletter1" name="email">
+                                <button class="subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> {{ __('PEC') }}</label>
-                        <input id="pec" class="w3-input form-control {{ $errors->has('PEC') ? ' is-invalid' : '' }}" type="text"
-                                name="PEC" value="{{ old('PEC') }}" placeholder="Email PEC">
-                        @if ($errors->has('PEC'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('PEC') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-user"></i> Ripeti pec</label>
-                        <input class="w3-input form-control {{ $errors->has('PEC_confirmation') ? ' is-invalid' : '' }}" autocomplete="off"
-                        type="text" name="PEC_confirmation" placeholder="Ripeti email PEC" value="{{ old('PEC_confirmation') }}">
-                        @if ($errors->has('PEC_confirmation'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('PEC_confirmation') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    </div>
-                </div>
-
-                <div class="tab w3-row-padding" style="margin:0 -16px;">
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-lock"></i> {{ __('Password') }}</label>
-                        <input id="password" class="w3-input form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" 
-                        type="password" placeholder="Password" name="password" required>
-                        @if ($errors->has('password'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="w3-row w3-margin-bottom">
-                        <label><i class="fa fa-lock"></i> {{ __('Ripeti Password') }}</label>
-                        <input id="password-confirm" class="w3-input form-control {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                        type="password" placeholder="Ripeti password" name="password_confirmation" autocomplete="off" required>
-                        @if ($errors->has('password_confirmation'))
-                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password_confirmation') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-                <div style="overflow:auto;">
-                    <div style="float:right;">
-                    <button class="w3-button w3-dark-grey" type="button" id="prevBtn" onclick="nextPrev(-1)">Indietro</button>
-                    <button class="w3-button w3-dark-grey" type="button" id="nextBtn" onclick="nextPrev(1)">Avanti</button>
-                    </div>
-                </div>
-                <!-- Circles which indicates the steps of the form: -->
-                <div style="text-align:center;margin-top:40px;">
-                    <span class="step"></span>
-                    <span class="step"></span>
-                    <span class="step"></span>
-                    <span class="step"></span>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-            
+    <!--newsletter-->
+
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-column pull-left">
+                        <h4>Shopping Guide</h4>
+                        <ul class="links">
+                            <li><a href="blog.html" title="How to buy">Blog</a></li>
+                            <li><a href="faq.html" title="FAQs">FAQs</a></li>
+                            <li><a href="#" title="Payment">Payment</a></li>
+                            <li><a href="#" title="Shipment">Shipment</a></li>
+                            <li><a href="#" title="Where is my order?">Where is my order?</a></li>
+                            <li><a href="#" title="Return policy">Return policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-column pull-left">
+                        <h4>Style Advisor</h4>
+                        <ul class="links">
+                            <li><a href="login.html" title="Your Account">Your Account</a></li>
+                            <li><a href="#" title="Information">Information</a></li>
+                            <li><a href="#" title="Addresses">Addresses</a></li>
+                            <li><a href="#" title="Addresses">Discount</a></li>
+                            <li><a href="#" title="Orders History">Orders History</a></li>
+                            <li><a href="#" title="Order Tracking">Order Tracking</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-column pull-left">
+                        <h4>Information</h4>
+                        <ul class="links">
+                            <li><a href="sitemap.html" title="Site Map">Site Map</a></li>
+                            <li><a href="#" title="Search Terms">Search Terms</a></li>
+                            <li><a href="#" title="Advanced Search">Advanced Search</a></li>
+                            <li><a href="about_us.html" title="About Us">About Us</a></li>
+                            <li><a href="contact_us.html" title="Contact Us">Contact Us</a></li>
+                            <li><a href="#" title="Suppliers">Suppliers</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <h4>Contact Us</h4>
+                    <div class="contacts-info">
+                        <address>
+                            <i class="add-icon">&nbsp;</i>123 Main Street, Anytown, <br>
+                            &nbsp;CA 12345  USA
+                        </address>
+                        <div class="phone-footer"><i class="phone-icon">&nbsp;</i> +1 800 123 1234</div>
+                        <div class="email-footer"><i class="email-icon">&nbsp;</i> <a href="mailto:support@magikcommerce.com">abc@example.com</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="social">
+                        <ul>
+                            <li class="fb"><a href="#"></a></li>
+                            <li class="tw"><a href="#"></a></li>
+                            <li class="googleplus"><a href="#"></a></li>
+                            <li class="rss"><a href="#"></a></li>
+                            <li class="pintrest"><a href="#"></a></li>
+                            <li class="linkedin"><a href="#"></a></li>
+                            <li class="youtube"><a href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="payment-accept"> <img src="images/payment-1.png" alt=""> <img src="images/payment-2.png" alt=""> <img src="images/payment-3.png" alt=""> <img src="images/payment-4.png" alt=""> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 coppyright">
+                    © 2017 ThemesSoft. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 </div>
-  
+<div id="mobile-menu">
+    <ul>
+        <li>
+            <div class="mm-search">
+                <form id="search1" name="search">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> </button>
+                        </div>
+                        <input type="text" class="form-control simple" placeholder="Search ..." name="srch-term" id="srch-term">
+                    </div>
+                </form>
+            </div>
+        </li>
+        <li><a href="index.html">Home</a>
+            <ul>
+                <li><a href="index.html">Home Version 1</a></li>
+                <li><a href="../home2/index.html">Home Version 2</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Pages</a>
+            <ul>
+                <li><a href="grid.html">Grid</a> </li>
+                <li> <a href="list.html">List</a> </li>
+                <li> <a href="product_detail.html">Product Detail</a> </li>
+                <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
+                <li><a href="checkout.html">Checkout</a> </li>
+                <li> <a href="wishlist.html">Wishlist</a> </li>
+                <li> <a href="dashboard.html">Dashboard</a> </li>
+                <li> <a href="multiple_addresses.html">Multiple Addresses</a> </li>
+                <li> <a href="about_us.html">About us</a> </li>
+                <li><a href="blog.html">Blog</a>
+                    <ul>
+                        <li><a href="blog-detail.html">Blog Detail</a> </li>
+                    </ul>
+                </li>
+                <li><a href="contact_us.html">Contact us</a> </li>
+                <li><a href="404error.html">404 Error Page</a> </li>
+            </ul>
+        </li>
+        <li><a href="#">Women</a>
+            <ul>
+                <li> <a href="#" class="">Stylish Bag</a>
+                    <ul>
+                        <li> <a href="grid.html" class="">Clutch Handbags</a> </li>
+                        <li> <a href="grid.html" class="">Diaper Bags</a> </li>
+                        <li> <a href="grid.html" class="">Bags</a> </li>
+                        <li> <a href="grid.html" class="">Hobo handbags</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Material Bag</a>
+                    <ul>
+                        <li> <a href="grid.html">Beaded Handbags</a> </li>
+                        <li> <a href="grid.html">Fabric Handbags</a> </li>
+                        <li> <a href="grid.html">Handbags</a> </li>
+                        <li> <a href="grid.html">Leather Handbags</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Shoes</a>
+                    <ul>
+                        <li> <a href="grid.html">Flat Shoes</a> </li>
+                        <li> <a href="grid.html">Flat Sandals</a> </li>
+                        <li> <a href="grid.html">Boots</a> </li>
+                        <li> <a href="grid.html">Heels</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Jwellery</a>
+                    <ul>
+                        <li> <a href="grid.html">Bracelets</a> </li>
+                        <li> <a href="grid.html">Necklaces &amp; Pendent</a> </li>
+                        <li> <a href="grid.html">Pendants</a> </li>
+                        <li> <a href="grid.html">Pins &amp; Brooches</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Dresses</a>
+                    <ul>
+                        <li> <a href="grid.html">Casual Dresses</a> </li>
+                        <li> <a href="grid.html">Evening</a> </li>
+                        <li> <a href="grid.html">Designer</a> </li>
+                        <li> <a href="grid.html">Party</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Swimwear</a>
+                    <ul>
+                        <li> <a href="grid.html">Swimsuits</a> </li>
+                        <li> <a href="grid.html">Beach Clothing</a> </li>
+                        <li> <a href="grid.html">Clothing</a> </li>
+                        <li> <a href="grid.html">Bikinis</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="grid.html">Men</a>
+            <ul>
+                <li> <a href="grid.html" class="">Shoes</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Sport Shoes</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Casual Shoes</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Leather Shoes</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">canvas shoes</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Dresses</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Casual Dresses</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Evening</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Designer</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Party</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Jackets</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Coats</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Formal Jackets</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Leather Jackets</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Blazers</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="#.html">Watches</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Fasttrack</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Casio</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Titan</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Tommy-Hilfiger</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Sunglasses</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Ray Ban</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Fasttrack</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Police</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Oakley</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Accesories</a>
+                    <ul class="level1">
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Backpacks</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Wallets</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Laptops Bags</a> </li>
+                        <li class="level2 nav-6-1-1"><a href="grid.html">Belts</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="grid.html">Electronics</a>
+            <ul>
+                <li> <a href="grid.html"><span>Mobiles</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>Samsung</span></a> </li>
+                        <li> <a href="grid.html"><span>Nokia</span></a> </li>
+                        <li> <a href="grid.html"><span>IPhone</span></a> </li>
+                        <li> <a href="grid.html"><span>Sony</span></a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html" class=""><span>Accesories</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>Mobile Memory Cards</span></a> </li>
+                        <li> <a href="grid.html"><span>Cases &amp; Covers</span></a> </li>
+                        <li> <a href="grid.html"><span>Mobile Headphones</span></a> </li>
+                        <li> <a href="grid.html"><span>Bluetooth Headsets</span></a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html"><span>Cameras</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>Camcorders</span></a> </li>
+                        <li> <a href="grid.html"><span>Point &amp; Shoot</span></a> </li>
+                        <li> <a href="grid.html"><span>Digital SLR</span></a> </li>
+                        <li> <a href="grid.html"><span>Camera Accesories</span></a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html"><span>Audio &amp; Video</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>MP3 Players</span></a> </li>
+                        <li> <a href="grid.html"><span>IPods</span></a> </li>
+                        <li> <a href="grid.html"><span>Speakers</span></a> </li>
+                        <li> <a href="grid.html"><span>Video Players</span></a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html"><span>Computer</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>External Hard Disk</span></a> </li>
+                        <li> <a href="grid.html"><span>Pendrives</span></a> </li>
+                        <li> <a href="grid.html"><span>Headphones</span></a> </li>
+                        <li> <a href="grid.html"><span>PC Components</span></a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html"><span>Appliances</span></a>
+                    <ul>
+                        <li> <a href="grid.html"><span>Vaccum Cleaners</span></a> </li>
+                        <li> <a href="grid.html"><span>Indoor Lighting</span></a> </li>
+                        <li> <a href="grid.html"><span>Kitchen Tools</span></a> </li>
+                        <li> <a href="grid.html"><span>Water Purifier</span></a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="grid.html">Furniture</a>
+            <ul>
+                <li> <a href="grid.html">Living Room</a>
+                    <ul>
+                        <li> <a href="grid.html">Racks &amp; Cabinets</a> </li>
+                        <li> <a href="grid.html">Sofas</a> </li>
+                        <li> <a href="grid.html">Chairs</a> </li>
+                        <li> <a href="grid.html">Tables</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html" class="">Dining &amp; Bar</a>
+                    <ul>
+                        <li> <a href="grid.html">Dining Table Sets</a> </li>
+                        <li> <a href="grid.html">Serving Trolleys</a> </li>
+                        <li> <a href="grid.html">Bar Counters</a> </li>
+                        <li> <a href="grid.html">Dining Cabinets</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Bedroom</a>
+                    <ul>
+                        <li> <a href="grid.html">Beds</a> </li>
+                        <li> <a href="grid.html">Chest of Drawers</a> </li>
+                        <li> <a href="grid.html">Wardrobes &amp; Almirahs</a> </li>
+                        <li> <a href="grid.html">Nightstands</a> </li>
+                    </ul>
+                </li>
+                <li> <a href="grid.html">Kitchen</a>
+                    <ul>
+                        <li> <a href="grid.html">Kitchen Racks</a> </li>
+                        <li> <a href="grid.html">Kitchen Fillings</a> </li>
+                        <li> <a href="grid.html">Wall Units</a> </li>
+                        <li> <a href="grid.html">Benches &amp; Stools</a> </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="grid.html">Kids</a> </li>
+        <li><a href="contact-us.html">Contact Us</a> </li>
+    </ul>
+    <div class="top-links">
+        <ul class="links">
+            <li><a title="My Account" href="login.html">My Account</a> </li>
+            <li><a title="Wishlist" href="wishlist.html">Wishlist</a> </li>
+            <li><a title="Checkout" href="checkout.html">Checkout</a> </li>
+            <li><a title="Blog" href="blog.html"><span>Blog</span></a> </li>
+            <li class="last"><a title="Login" href="login.html"><span>Login</span></a> </li>
+        </ul>
+    </div>
+</div>
 
+<!-- End Footer -->
 
-<script>
+<!-- JavaScript -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/revslider.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
 
-
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-    // This function will display the specified tab of the form...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    //... and fix the Previous/Next buttons:
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-    } else {
-        document.getElementById("prevBtn").style.display = "inline";
-    }
-    if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Registrati";
-    } else {
-        document.getElementById("nextBtn").innerHTML = "Avanti";
-    }
-    //... and run a function that will display the correct step indicator:
-    fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && (!validateForm() && currentTab != 2)) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form...
-    if (currentTab >= x.length) {
-        // ... the form gets submitted:
-        document.getElementById("regForm").submit();
-        return false;
-    }
-    // Otherwise, display the correct tab:
-    showTab(currentTab);
-}
-
-function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-        // add an "invalid" class to the field:
-        y[i].className += " invalid";
-        // and set the current valid status to false
-        valid = false;
-        }
-    }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-}
-
-function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class on the current step:
-    x[n].className += " active";
-}
-
-
-//Richiamo funz.
-@php
-    $error1 = $errors->has('email') || $errors->has('email');
-    $error2 = $errors->has('IVA') || $errors->has('PEC') || $errors->has('PEC_confirmation');
-    $error3 = $errors->has('password') || $errors->has('password_confirmation');
-@endphp
-{{ $error1 ? 'nextPrev(1);' : '' }}
-{{ !$error1 && $error2 ? 'nextPrev(2);' : '' }}
-{{ !$error1 && !$error2 && $error3 ? 'nextPrev(3);' : '' }}
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
 </script>
 
 @endsection
