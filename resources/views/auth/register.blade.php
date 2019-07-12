@@ -82,23 +82,51 @@
                                         <ul class="form-list">
                                             <li>
                                                 <label for="email">VAT number</label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input id="ipva" class="w3-input form-control {{ $errors->has('IVA') ? ' is-invalid' : '' }}" type="text" name="IVA" placeholder="Partita IVA" value="{{ old('IVA') }}">
+                                                @if ($errors->has('IVA'))
+                                                <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('IVA') }}</strong>
+                                                </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="pass">Email PEC</label>
-                                                <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="login[password]">
+                                                <input id="pec" class="w3-input form-control {{ $errors->has('PEC') ? ' is-invalid' : '' }}" type="text"
+                                                       name="PEC" value="{{ old('PEC') }}" placeholder="Email PEC">
+                                                @if ($errors->has('PEC'))
+                                                <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('PEC') }}</strong>
+                                               </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="email">Repeat Email PEC </label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input class="w3-input form-control {{ $errors->has('PEC_confirmation') ? ' is-invalid' : '' }}" autocomplete="off"
+                                                       type="text" name="PEC_confirmation" placeholder="Ripeti email PEC" value="{{ old('PEC_confirmation') }}">
+                                                @if ($errors->has('PEC_confirmation'))
+                                                <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $errors->first('PEC_confirmation') }}</strong>
+                                               </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="pass">Password <span class="required">*</span></label>
-                                                <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="login[password]">
+                                                <input id="password" class="w3-input form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                            type="password" placeholder="Password" name="password" required>
+                                                @if ($errors->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                 <strong>{{ $errors->first('password') }}</strong>
+                                                 </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="pass">Repeat Password <span class="required">*</span></label>
-                                                <input type="password" title="Password" id="pass" class="input-text required-entry validate-password" name="login[password]">
+                                                <input id="password-confirm" class="w3-input form-control {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                                                       type="password" placeholder="Ripeti password" name="password_confirmation" autocomplete="off" required>
+                                                @if ($errors->has('password_confirmation'))
+                                                <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                                </span>
+                                                @endif
                                             </li>
                                         </ul>
                                         <p class="required">* Required Fields</p>
