@@ -119,11 +119,6 @@ Route::get('/el_showroom-{id_element}', 'gets_controller@openElementShowroom');
 //End showroom--/
 
 //CataLog /
-
-Route::get('/catalog', function () {
-    return view('catalog_navigation');
-});
-
 Route::get('/catalog-{id}', 'gets_controller@catalog_controller');
 
 Route::get('/catalog-{id}/{sub}', 'gets_controller@catalog_sub_controller');

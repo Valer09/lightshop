@@ -45,7 +45,7 @@ class ElementsController extends Controller
 
             $request->session()->put('cart', $cart);
 
-            return redirect('catalog');
+            return redirect('/');
         } else {
             return redirect(request()->headers->get('referer').'?openAlert=Il prodotto non è al momento disponibile.');
         }
