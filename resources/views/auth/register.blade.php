@@ -27,23 +27,52 @@
                                         <ul class="form-list">
                                             <li>
                                                 <label for="email">Name <span class="required">*</span></label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input id="name" class="w3-input form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                       type="text" placeholder="Mario" name="name" value="{{ old('name') }}" required autofocus>
+                                                @if ($errors->has('name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="email">Surname <span class="required">*</span></label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input id="surname" class="w3-input form-control {{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname"
+                                                            value="{{ old('surname') }}" type="text" placeholder="Rossi"  required>
+                                                @if ($errors->has('surname'))
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('surname') }}</strong>
+                                                </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="email">Fiscal Code <span class="required">*</span></label>
                                                 <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                @if ($errors->has('CF'))
+                                                <span class="invalid-feedback" role="alert">
+                                               <strong>{{ $errors->first('CF') }}</strong>
+                                               </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="email">Email Address <span class="required">*</span></label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input id="email" class="w3-input form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text"
+                                                       placeholder="mariorossi@gmail.com" name="email" value="{{ old('email') }}" required>
+                                                @if ($errors->has('email'))
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                                @endif
                                             </li>
                                             <li>
                                                 <label for="email">Repeat Email Address <span class="required">*</span></label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input class="w3-input form-control {{ $errors->has('email_confirmation') ? ' is-invalid' : '' }}" type="text"
+                                                       placeholder="mariorossi@gmail.com" name="email_confirmation" value="{{ old('email_confirmation') }}" autocomplete="off" required>
+                                                @if ($errors->has('email_confirmation'))
+                                                <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $errors->first('email_confirmation') }}</strong>
+                                                 </span>
+                                                @endif
                                             </li>
                                         </ul>
                                     </div>
