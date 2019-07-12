@@ -6,6 +6,7 @@
     <!--Plugin Slider-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('/css/catalogMediaQuery.css') }}"/>
     <!-- end Plugin slider-->
 @endsection
 
@@ -82,7 +83,7 @@
                     <div id="sort-by">
                       <label class="left">Sort By: </label>
                       <ul>
-                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span class="right-arrow"></span></a>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured ' : Request::input('sort')}} <span class="right-arrow"></span></a>
                           <ul>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
@@ -91,6 +92,21 @@
                           </ul>
                         </li>
                       </ul>
+                    </div>
+                    <div class="pager">
+                      <div id="limiter">
+                        <label>View: </label>
+                        <ul>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span class="right-arrow"> </span></a>
+                            <ul>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'50']) !!}">50</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'100']) !!}">100</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -173,6 +189,21 @@
                       </ul>
                       <a class="button-asc left" href="#" title="Set Descending Direction"><span
                           class="top_arrow"></span></a>
+                    </div>
+                    <div class="pager">
+                      <div id="limiter">
+                        <label>View: </label>
+                        <ul>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span class="right-arrow"> </span></a>
+                            <ul>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'50']) !!}">50</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'100']) !!}">100</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
