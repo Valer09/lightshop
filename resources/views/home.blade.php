@@ -477,6 +477,5 @@
   <script type="text/javascript" src="{{ url('js/countdown.js') }}"></script>
   <script type="text/javascript" src="{{ url('js/home.js') }}"></script>
 
-  
 </body>
 @endsection
