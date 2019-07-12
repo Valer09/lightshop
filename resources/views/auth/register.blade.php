@@ -47,7 +47,7 @@
                                             </li>
                                             <li>
                                                 <label for="email">Fiscal Code <span class="required">*</span></label>
-                                                <input type="text" title="Email Address" class="input-text required-entry" id="email" value="" name="login[username]">
+                                                <input  id="cf" class="w3-input form-control {{ $errors->has('CF') ? ' is-invalid' : '' }}" type="text" name="CF" placeholder="Fiscal Code"  value="{{ old('CF') }}" required>
                                                 @if ($errors->has('CF'))
                                                 <span class="invalid-feedback" role="alert">
                                                <strong>{{ $errors->first('CF') }}</strong>
