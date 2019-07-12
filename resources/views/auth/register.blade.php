@@ -27,8 +27,8 @@
                                         <ul class="form-list">
                                             <li>
                                                 <label for="email">Name <span class="required">*</span></label>
-                                                <input id="name" class="w3-input form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                       type="text" placeholder="Mario" name="name" value="{{ old('name') }}" required autofocus>
+                                                <input id="name" class="input-text required-entry form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                       type="text" name="name" value="{{ old('name') }}" required autofocus>
                                                 @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -37,8 +37,8 @@
                                             </li>
                                             <li>
                                                 <label for="email">Surname <span class="required">*</span></label>
-                                                <input id="surname" class="w3-input form-control {{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname"
-                                                            value="{{ old('surname') }}" type="text" placeholder="Rossi"  required>
+                                                <input id="surname" class="input-text required-entry form-control {{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname"
+                                                            value="{{ old('surname') }}" type="text" required>
                                                 @if ($errors->has('surname'))
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('surname') }}</strong>
@@ -47,7 +47,7 @@
                                             </li>
                                             <li>
                                                 <label for="email">Fiscal Code <span class="required">*</span></label>
-                                                <input  id="cf" class="w3-input form-control {{ $errors->has('CF') ? ' is-invalid' : '' }}" type="text" name="CF" placeholder="Fiscal Code"  value="{{ old('CF') }}" required>
+                                                <input  id="cf" class="input-text required-entry form-control {{ $errors->has('CF') ? ' is-invalid' : '' }}" type="text" name="CF" value="{{ old('CF') }}" required>
                                                 @if ($errors->has('CF'))
                                                 <span class="invalid-feedback" role="alert">
                                                <strong>{{ $errors->first('CF') }}</strong>
@@ -56,8 +56,8 @@
                                             </li>
                                             <li>
                                                 <label for="email">Email Address <span class="required">*</span></label>
-                                                <input id="email" class="w3-input form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text"
-                                                       placeholder="mariorossi@gmail.com" name="email" value="{{ old('email') }}" required>
+                                                <input id="email" class="input-text required-entry form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="text"
+                                                       name="email" value="{{ old('email') }}" required>
                                                 @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
@@ -66,8 +66,8 @@
                                             </li>
                                             <li>
                                                 <label for="email">Repeat Email Address <span class="required">*</span></label>
-                                                <input class="w3-input form-control {{ $errors->has('email_confirmation') ? ' is-invalid' : '' }}" type="text"
-                                                       placeholder="mariorossi@gmail.com" name="email_confirmation" value="{{ old('email_confirmation') }}" autocomplete="off" required>
+                                                <input class="input-text required-entry form-control {{ $errors->has('email_confirmation') ? ' is-invalid' : '' }}" type="text"
+                                                       name="email_confirmation" value="{{ old('email_confirmation') }}" autocomplete="off" required>
                                                 @if ($errors->has('email_confirmation'))
                                                 <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $errors->first('email_confirmation') }}</strong>
@@ -82,7 +82,7 @@
                                         <ul class="form-list">
                                             <li>
                                                 <label for="email">VAT number</label>
-                                                <input id="ipva" class="w3-input form-control {{ $errors->has('IVA') ? ' is-invalid' : '' }}" type="text" name="IVA" placeholder="Partita IVA" value="{{ old('IVA') }}">
+                                                <input id="ipva" class="input-text form-control {{ $errors->has('IVA') ? ' is-invalid' : '' }}" type="text" name="IVA" value="{{ old('IVA') }}">
                                                 @if ($errors->has('IVA'))
                                                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('IVA') }}</strong>
@@ -91,8 +91,8 @@
                                             </li>
                                             <li>
                                                 <label for="pass">Email PEC</label>
-                                                <input id="pec" class="w3-input form-control {{ $errors->has('PEC') ? ' is-invalid' : '' }}" type="text"
-                                                       name="PEC" value="{{ old('PEC') }}" placeholder="Email PEC">
+                                                <input id="pec" class="input-text form-control {{ $errors->has('PEC') ? ' is-invalid' : '' }}" type="text"
+                                                       name="PEC" value="{{ old('PEC') }}">
                                                 @if ($errors->has('PEC'))
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $errors->first('PEC') }}</strong>
                                                </span>
@@ -100,8 +100,8 @@
                                             </li>
                                             <li>
                                                 <label for="email">Repeat Email PEC </label>
-                                                <input class="w3-input form-control {{ $errors->has('PEC_confirmation') ? ' is-invalid' : '' }}" autocomplete="off"
-                                                       type="text" name="PEC_confirmation" placeholder="Ripeti email PEC" value="{{ old('PEC_confirmation') }}">
+                                                <input class="input-text form-control {{ $errors->has('PEC_confirmation') ? ' is-invalid' : '' }}" autocomplete="off"
+                                                       type="text" name="PEC_confirmation" value="{{ old('PEC_confirmation') }}">
                                                 @if ($errors->has('PEC_confirmation'))
                                                 <span class="invalid-feedback" role="alert">
                                              <strong>{{ $errors->first('PEC_confirmation') }}</strong>
@@ -110,8 +110,8 @@
                                             </li>
                                             <li>
                                                 <label for="pass">Password <span class="required">*</span></label>
-                                                <input id="password" class="w3-input form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                            type="password" placeholder="Password" name="password" required>
+                                                <input id="password" class="input-text required-entry form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                            type="password" name="password" required>
                                                 @if ($errors->has('password'))
                                                 <span class="invalid-feedback" role="alert">
                                                  <strong>{{ $errors->first('password') }}</strong>
@@ -120,8 +120,8 @@
                                             </li>
                                             <li>
                                                 <label for="pass">Repeat Password <span class="required">*</span></label>
-                                                <input id="password-confirm" class="w3-input form-control {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                                                       type="password" placeholder="Ripeti password" name="password_confirmation" autocomplete="off" required>
+                                                <input id="password-confirm" class="input-text required-entry form-control {{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                                                       type="password" name="password_confirmation" autocomplete="off" required>
                                                 @if ($errors->has('password_confirmation'))
                                                 <span class="invalid-feedback" role="alert">
                                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -132,7 +132,7 @@
                                         <p class="required">* Required Fields</p>
                                         <div class="buttons-set">
                                             <button id="send2" name="send" type="submit" class="button login"><span>Create an Account</span></button>
-                                            <a class="forgot-word" href="">Forgot Your Password?</a> </div>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
