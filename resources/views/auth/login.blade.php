@@ -26,7 +26,7 @@
                                     <div class="content">
                                         <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
                                         <div class="buttons-set">
-                                            <button onclick="#" class="button create-account" type="button"><span>Create an Account</span></button>
+                                            <button onclick="location.href='{{ url('register') }}'" class="button create-account" type="button"><span>Create an Account</span></button>
                                         </div>
                                     </div>
                                 </div>
