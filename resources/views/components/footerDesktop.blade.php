@@ -92,8 +92,8 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6">
-          <div class="payment-accept"> <img src="images/payment-1.png" alt=""> <img src="images/payment-2.png"
-              alt=""> <img src="images/payment-3.png" alt=""> <img src="images/payment-4.png" alt=""> </div>
+          <div class="payment-accept"> <img src="{{ asset('images/payment-1.png') }}" alt=""> <img src="{{ asset('images/payment-2.png') }}"
+              alt=""> <img src="{{ asset('images/payment-3.png') }}" alt=""> <img src="{{ asset('images/payment-4.png') }}" alt=""> </div>
         </div>
       </div>
     </div>
