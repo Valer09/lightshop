@@ -13,9 +13,14 @@ class gets_controller extends Controller
 {
     public function get_user_cf(Request $request){
 
-        $email=App\User::where('CF', $request->cf)->select('email')->first()->email;
+        $us=App\User::where('CF', $request->cf)->first();
+        if(empty($us)){
+            return view('Auth/passwords/email/reset', ['newEmail' => 'Email not found.']); 
+        } else {
+            $email = $us->email;
+        }
 
-        return view('auth/passwords/email/emailRecovered',  compact('email'));
+        return view('Auth/passwords/email/reset',  compact('email'));
 
     }
 
