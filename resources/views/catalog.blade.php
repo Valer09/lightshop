@@ -2,18 +2,19 @@
 @section('title', 'Visca s.n.c.')
 
 @section('head')
-          
-    <!--Plugin Slider-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('/css/catalogMediaQuery.css') }}"/>
-    <!-- end Plugin slider-->
+
+<!--Plugin Slider-->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+<link rel="stylesheet" href="{{ asset('/css/catalogMediaQuery.css') }}" />
+<!-- end Plugin slider-->
 @endsection
 
 @section('content')
 
-<body class="grid-page"> 
-  <div id="page"> 
+<body class="grid-page">
+  <div id="page">
     <!-- Header -->
     @include('components.banner')
     @include('components.navbarDesktop')
@@ -21,7 +22,7 @@
 
     {{!$Offerts = \App\Offert::allWithKey()}}
 
-<!-- Main Container -->
+    <!-- Main Container -->
     <section class="main-container col2-left-layout">
       <div class="container">
         <div class="row">
@@ -31,16 +32,21 @@
             <div class="breadcrumbs">
               <ul>
                 <li class="home"> <a href="{{ url('home') }}" title="Go to Home Page">Home</a> <span>/</span> </li>
-                <li class="category1599"> <a href="{{ url('catalog-').$Category[0]->name }}" title="">{{ $Category[0]->name }}</a></li>
+                <li class="category1599"> <a href="{{ url('catalog-').$Category[0]->name }}"
+                    title="">{{ $Category[0]->name }}</a></li>
                 @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
-                <li class="category1600"> <span>/ </span> <a href="{{ url('catalog-').$Category[0]->name.'/'.$Category[1] }}" title="">{{ $Category[1] }}</a></li>
+                <li class="category1600"> <span>/ </span> <a
+                    href="{{ url('catalog-').$Category[0]->name.'/'.$Category[1] }}" title="">{{ $Category[1] }}</a>
+                </li>
                 @endif
               </ul>
             </div>
             @endif
             <!-- Breadcrumbs End -->
             <div class="page-title">
-              <h2 class="page-heading"> <span class="page-heading-title">{{ empty($Category[0]->name) ? 'Results for "'.$search.'"' : $Category[0]->name }}</span> </h2>
+              <h2 class="page-heading"> <span
+                  class="page-heading-title">{{ empty($Category[0]->name) ? 'Results for "'.$search.'"' : $Category[0]->name }}</span>
+              </h2>
             </div>
             <div class="category-description std">
               <div class="slider-items-products">
@@ -68,27 +74,35 @@
                     <label>Page:</label>
                     <ul class="pagination">
                       @if(Request::input('page') > 1 && !empty(Request::input('page')))
-                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a></li>
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a>
+                      </li>
                       @endif
-                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a
+                          href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
                       @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
-                      <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
-                      @endfor
-                      @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 && $Elements->lastPage() == 1))
-                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
-                      @endif
+                        <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a
+                            href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                        @endfor
+                        @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 &&
+                          $Elements->lastPage() == 1))
+                          <li><a
+                              href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a>
+                          </li>
+                          @endif
                     </ul>
                   </div>
                   <div class="product-option-right">
                     <div id="sort-by">
                       <label class="left">Sort By: </label>
                       <ul>
-                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured ' : Request::input('sort')}} <span class="right-arrow"></span></a>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured ' : Request::input('sort')}} <span
+                              class="right-arrow"></span></a>
                           <ul>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
-                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest Arrivals</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest
+                                Arrivals</a></li>
                           </ul>
                         </li>
                       </ul>
@@ -97,7 +111,8 @@
                       <div id="limiter">
                         <label>View: </label>
                         <ul>
-                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span class="right-arrow"> </span></a>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span
+                                class="right-arrow"> </span></a>
                             <ul>
                               <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
                               <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
@@ -118,15 +133,18 @@
                     <div class="item-inner">
                       <div class="item-img">
                         <div class="item-img-info"><a href="{{url('element').$el->id}}" title="{{ $el->name }}"
-                            class="product-image"><img src="{{ asset('storage').$el->pathPhoto }}" alt="{{ $el->name }}"></a>
-                            @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
-                            <div class="new-label new-top-left">New</div>
-                            @endif
+                            class="product-image"><img src="{{ asset('storage').$el->pathPhoto }}"
+                              alt="{{ $el->name }}"></a>
+                          @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) ==
+                          date("m"))
+                          <div class="new-label new-top-left">New</div>
+                          @endif
                         </div>
                       </div>
                       <div class="item-info">
                         <div class="info-inner">
-                          <div class="item-title"> <a title="{{ $el->name }}" href="{{url('element').$el->id}}"> {{ $el->name }} </a> </div>
+                          <div class="item-title"> <a title="{{ $el->name }}" href="{{url('element').$el->id}}">
+                              {{ $el->name }} </a> </div>
                           <div class="item-content">
                             <div class="rating">
                               <div class="ratings">
@@ -163,27 +181,35 @@
                     <label>Page:</label>
                     <ul class="pagination">
                       @if(Request::input('page') > 1 && !empty(Request::input('page')))
-                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a></li>
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a>
+                      </li>
                       @endif
-                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a
+                          href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
                       @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
-                      <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
-                      @endfor
-                      @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 && $Elements->lastPage() == 1))
-                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a></li>
-                      @endif
+                        <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a
+                            href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                        @endfor
+                        @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 &&
+                          $Elements->lastPage() == 1))
+                          <li><a
+                              href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a>
+                          </li>
+                          @endif
                     </ul>
                   </div>
                   <div class="product-option-right">
                     <div id="sort-by">
                       <label class="left">Sort By: </label>
                       <ul>
-                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span class="right-arrow"></span></a>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span
+                              class="right-arrow"></span></a>
                           <ul>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
                             <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
-                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest Arrivals</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest
+                                Arrivals</a></li>
                           </ul>
                         </li>
                       </ul>
@@ -194,7 +220,8 @@
                       <div id="limiter">
                         <label>View: </label>
                         <ul>
-                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span class="right-arrow"> </span></a>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span
+                                class="right-arrow"> </span></a>
                             <ul>
                               <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
                               <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
@@ -223,7 +250,8 @@
                   <dd class="odd">
                     <ol>
                       @foreach($Category[2] as $subcat)
-                      <li> <a href="{{ url('catalog-'.$Category[0]->name, $subcat->name) }}"><span class="price">{{$subcat->name}}</span></a></li>
+                      <li> <a href="{{ url('catalog-'.$Category[0]->name, $subcat->name) }}"><span
+                            class="price">{{$subcat->name}}</span></a></li>
                       @endforeach
                     </ol>
                   </dd>
@@ -231,8 +259,9 @@
               </div>
             </div>
             @endif
-          
+
             <!--------Filter--------->
+            
             <div class="block block-layered-nav block-filter">
               <div class="block-title">Shop By</div>
               <div class="block-content">
@@ -241,17 +270,8 @@
                   <dt class="odd">Price</dt>
                   <dd class="odd">
                     <ol>
-                      <li> <a href="#"><span class="price">$0.00</span> - <span class="price">$99.99</span></a> (6)
-                      </li>
+                      <li> <a href="#"><span class="price">$0.00</span> - <span class="price">$99.99</span></a> (6) </li>
                       <li> <a href="#"><span class="price">$100.00</span> and above</a> (6) </li>
-                    </ol>
-                  </dd>
-                  <dt class="even">Manufacturer</dt>
-                  <dd class="even">
-                    <ol>
-                      <li> <a href="#">TheBrand</a> (9) </li>
-                      <li> <a href="#">Company</a> (4) </li>
-                      <li> <a href="#">LogoFashion</a> (1) </li>
                     </ol>
                   </dd>
                   <dt class="odd">Color</dt>
@@ -277,6 +297,8 @@
                 </dl>
               </div>
             </div>
+
+            <!--------cart--------->
             <div class="block block-cart">
               <div class="block-title ">My Cart</div>
               <div class="block-content">
@@ -290,7 +312,8 @@
                 <p class="block-subtitle">Recently added item(s) </p>
                 <ul>
                   <li class="item"> <a href="shopping_cart.html" title="Fisher-Price Bubble Mower"
-                      class="product-image"><img src="{{ asset('products-images/product1.jpg') }}" alt="Fisher-Price Bubble Mower"></a>
+                      class="product-image"><img src="{{ asset('products-images/product1.jpg') }}"
+                        alt="Fisher-Price Bubble Mower"></a>
                     <div class="product-details">
                       <div class="access"> <a href="shopping_cart.html" title="Remove This Item" class="btn-remove1">
                           <span class="icon"></span> Remove </a> </div>
@@ -409,12 +432,12 @@
     @include('components.navbarMobile')
   </div>
 
-  <!-- JavaScript --> 
-  <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script> 
-  <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script> 
-  <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script> 
-  
-  <script type="text/javascript" src="{{ asset('/js/owl.carousel.min.js') }}"></script> 
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('/js/owl.carousel.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/jquery.mobile-menu.min.js') }}"></script>
 </body>
 

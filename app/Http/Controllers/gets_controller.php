@@ -7,7 +7,7 @@ use App;
 use DB;
 use Auth;
 use App\Http\Controllers\VerifiedPrivileged;
-use App\Order, App\OrderDetail, App\User, App\Element, App\Address, App\Courier;
+use App\Order, App\OrderDetail, App\User, App\Element, App\Address, App\Courier, App\SpecElement;
 
 class gets_controller extends Controller
 {
@@ -49,7 +49,8 @@ class gets_controller extends Controller
                 $arrai = array();
                 foreach ($cate as $nameSubat) {
                     array_push($arrai, $nameSubat->name);
-                }       
+                }
+
                 switch ($request->input('sort')) {
                     case 'Low price':
                     $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate($limit);
@@ -81,6 +82,7 @@ class gets_controller extends Controller
                 }
                 
             }
+
             $array[0] = $catSUP[0];
             $array[1] = null;
             $array[2] = $cate;
