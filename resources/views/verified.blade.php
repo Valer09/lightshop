@@ -2,7 +2,7 @@
 
 @section('content')
 
-<body class="cms-index-index cms-home-page">
+<body class="error-page">
 
   <!--div Desktop-->
   <div id="page">

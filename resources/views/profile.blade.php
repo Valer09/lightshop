@@ -511,6 +511,7 @@
   <script type="text/javascript" src="{{ asset('js/openTabProfile.js') }}"></script>
 
   <!-------------POPUP------------->
+  <!--data profile-->
   <div class="popup1 popup2">
     <div class="newsletter-sign-box">
       <div class="newsletter"><a onclick="$('.popup2').hide(); $('.popup1').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"
@@ -541,6 +542,7 @@
   </div>
 
 
+  <!--new address-->
   <div class="popup1 popup3">
     <div class="newsletter-sign-box">
       <div class="newsletter"><a onclick="$('.popup1').hide(); $('.popup3').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"
@@ -571,6 +573,7 @@
   </div>
 
 
+  <!--password-->
   <div class="popup1 popup4">
     <div class="newsletter-sign-box">
       <div class="newsletter"><a onclick="$('.popup1').hide(); $('.popup4').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"

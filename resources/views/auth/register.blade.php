@@ -7,7 +7,7 @@
 
 @section('content')
 
-<body class="cms-index-index cms-home-page">
+<body class="shopping-cart-page">
 
     <!--div Desktop-->
     <div id="page">
