@@ -69,7 +69,8 @@
           <div class="top-cart-contain"> 
             <!-- Top Cart -->
             <div class="mini-cart">
-              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="{{ url('cart') }}"><span class="price hidden-xs">Shopping Cart</span> <span class="cart_count hidden-xs">{{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : ''}} pz/ €{{ Session::has('cart') && Session::get('cart')->totalPrice != 0 ? Session::get('cart')->totalPrice : ''}}</span> </a> </div>
+              <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="{{ url('shopping-cart') }}"><span class="price hidden-xs">Shopping Cart</span> 
+              <span class="cart_count hidden-xs">{{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : '0'}} pz/ €{{ number_format((Session::has('cart') && Session::get('cart')->totalPrice != 0 ? Session::get('cart')->totalPrice : '0'), 2) }}</span> </a> </div>
               <div>
                 <div class="top-cart-content"> 
                   <!--block-subtitle-->

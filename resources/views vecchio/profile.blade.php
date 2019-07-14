@@ -245,7 +245,7 @@
                 </div>
                 <div class="w3-row w3-margin-top">
                     <label>Partita IVA:</label>
-                    <input value="{{$IVAUP}}" placeholder="Partita IVA" name="PIVA">
+                    <input value="{{!empty($IVAUP) ? $IVAUP : ''}}" placeholder="Partita IVA" name="PIVA">
                 </div>
                 <div class="w3-row w3-margin-top">
                     <label>E-mail:</label>
