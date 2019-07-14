@@ -36,104 +36,96 @@
 
             <!--======Order=======-->
               <div id="#ordini" class="multiple_addresses">
-                <form method="post" action="//" id="checkout_multishipping_form">
-                  <div class="page-title_multi">
-                    <h2>My Orders</h2>
+                <div class="row page-title_multi" style="margin-left: auto;">
+                  <h2>My Orders</h2>
+                </div>
+                <!--page-title_multi-->
+                <div class="addresses">
+                  <div class="table-responsive">
+                    <fieldset class="multiple-checkout">
+                      <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                      <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                      Please select shipping address for applicable items
+                      <table id="multiship-addresses-table" class="data-table">
+                        <colgroup>
+                          <col>
+                          <col width="1">
+                          <col width="1">
+                          <col width="1">
+                        </colgroup>
+                        <thead>
+                          <tr class="first last">
+                            <th>Product</th>
+                            <th class="a-left">Qty</th>
+                            <th>Send to</th>
+                            <th>Remove</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr class="first last">
+                            <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                class="button btn-update" type="submit"><span>Update Qty &amp;
+                                  Addresses</span></button></td>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <tr class="first odd">
+                            <td>
+                              <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                              </h4>
+                            </td>
+                            <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
+                            </td>
+                            <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
+                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                  States</option>
+                              </select></td>
+                            <td class="a-center last"><a
+                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                          </tr>
+                          <tr class="odd">
+                            <td>
+                              <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                  NEWEST MODEL</a></h4>
+                            </td>
+                            <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
+                            </td>
+                            <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
+                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                  States</option>
+                              </select></td>
+                            <td class="a-center last"><a
+                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                          </tr>
+                          <tr class="last even">
+                            <td>
+                              <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                            </td>
+                            <td><input type="text" class="input-text qty" size="2" value="1"
+                                name="ship[15][4212][qty]"></td>
+                            <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
+                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                  States</option>
+                              </select></td>
+                            <td class="a-center last"><a
+                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="buttons-set">
+                        <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                          title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                            Information</span></button>
+                      </div>
+                    </fieldset>
                   </div>
-                  <!--page-title_multi-->
-                  <div class="title-buttons">
-                    <button onclick="$('add_new_address_flag').value=1; $('checkout_multishipping_form').submit();"
-                      class="button new-address" title="Enter a New Address" type="button"><span>Enter a New
-                        Address</span></button>
-                  </div>
-                  <!--title-buttons-->
-                  <div class="addresses">
-                    <div class="table-responsive">
-                      <fieldset class="multiple-checkout">
-                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
-                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
-                        Please select shipping address for applicable items
-                        <table id="multiship-addresses-table" class="data-table">
-                          <colgroup>
-                            <col>
-                            <col width="1">
-                            <col width="1">
-                            <col width="1">
-                          </colgroup>
-                          <thead>
-                            <tr class="first last">
-                              <th>Product</th>
-                              <th class="a-left">Qty</th>
-                              <th>Send to</th>
-                              <th>Remove</th>
-                            </tr>
-                          </thead>
-                          <tfoot>
-                            <tr class="first last">
-                              <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
-                                  class="button btn-update" type="submit"><span>Update Qty &amp;
-                                    Addresses</span></button></td>
-                            </tr>
-                          </tfoot>
-                          <tbody>
-                            <tr class="first odd">
-                              <td>
-                                <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
-                                </h4>
-                              </td>
-                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
-                              </td>
-                              <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
-                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                    States</option>
-                                </select></td>
-                              <td class="a-center last"><a
-                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
-                            </tr>
-                            <tr class="odd">
-                              <td>
-                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
-                                    NEWEST MODEL</a></h4>
-                              </td>
-                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
-                              </td>
-                              <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
-                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                    States</option>
-                                </select></td>
-                              <td class="a-center last"><a
-                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
-                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
-                            </tr>
-                            <tr class="last even">
-                              <td>
-                                <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
-                              </td>
-                              <td><input type="text" class="input-text qty" size="2" value="1"
-                                  name="ship[15][4212][qty]"></td>
-                              <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
-                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                    States</option>
-                                </select></td>
-                              <td class="a-center last"><a
-                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
-                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <div class="buttons-set">
-                          <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
-                            title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
-                              Information</span></button>
-                        </div>
-                      </fieldset>
-                    </div>
-                    <!--multiple-checkout-->
-                  </div>
-                </form>
+                  <!--multiple-checkout-->
+                </div>
               </div>
               <!--======End Order=======-->
 
