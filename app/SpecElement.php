@@ -11,6 +11,7 @@ class SpecElement extends Model
 
     public static function allKeySpec() {
         $spec = SpecElement::all()->key_spec;
+
         return $spec;
     }
 

@@ -51,34 +51,49 @@ class gets_controller extends Controller
                     array_push($arrai, $nameSubat->name);
                 }
 
+                $elementFin = Element::whereIn('subcategories', $arrai);
+
+                if($request->input('price') != null){
+                    $str = explode('-', $request->input('price'));
+                    $elementFin = $elementFin->whereBetween('price', [$str[0], $str[1]]);
+                    //dd($elementFin);
+                }
+
                 switch ($request->input('sort')) {
                     case 'Low price':
-                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'asc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('price', 'asc')->paginate($limit);
                         break;
                     case 'High price':
-                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('price', 'desc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('price', 'desc')->paginate($limit);
                         break;
                     case 'Newest Arrivals':
-                    $elementFin = Element::whereIn('subcategories', $arrai)->orderBy('created_at', 'desc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('created_at', 'desc')->paginate($limit);
                         break;
                     default:
-                    $elementFin = Element::whereIn('subcategories', $arrai)->paginate($limit);
+                    $elementFin = $elementFin->paginate($limit);
                 }
 
             } else {
-                
+                $elementFin = Element::where('subcategories', [$id]);
+
+                if($request->input('price') != null){
+                    $str = explode('-', $request->input('price'));
+                    $elementFin = $elementFin->whereBetween('price', [$str[0], $str[1]]);
+                    //dd($elementFin);
+                }
+
                 switch ($request->input('sort')) {
                     case 'Low price':
-                    $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'asc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('price', 'asc')->paginate($limit);
                         break;
                     case 'High price':
-                    $elementFin = Element::where('subcategories', [$id])->orderBy('price', 'desc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('price', 'desc')->paginate($limit);
                         break;
                     case 'Newest Arrivals':
-                    $elementFin = Element::where('subcategories', [$id])->orderBy('created_at', 'desc')->paginate($limit);
+                    $elementFin = $elementFin->orderBy('created_at', 'desc')->paginate($limit);
                         break;
                     default:
-                    $elementFin = Element::where('subcategories', [$id])->paginate($limit);
+                    $elementFin = $elementFin->paginate($limit);
                 }
                 
             }
@@ -86,7 +101,7 @@ class gets_controller extends Controller
             $array[0] = $catSUP[0];
             $array[1] = null;
             $array[2] = $cate;
-            return view('catalog', ['Elements' => $elementFin], ['Category' => $array]);
+            return view('catalog', ['Elements' => $elementFin], ['Category' => $array, 'rangeFilter' => gets_controller::rangeFiter($arrai)]);
             
         } else {
             return view('/');
@@ -100,28 +115,51 @@ class gets_controller extends Controller
             
             empty($request->input('limit')) ? $limit = 40 : $limit = $request->input('limit');
 
+            $element = Element::where('subcategories', [$sub]);
+
+            if($request->input('price') != null){
+                $str = explode('-', $request->input('price'));
+                $element = $element->whereBetween('price', [$str[0], $str[1]]);
+            }
+
             switch ($request->input('sort')) {
                 case 'Low price':
-                $element = Element::where('subcategories', [$sub])->orderBy('price', 'asc')->paginate($limit);
+                $element = $element->orderBy('price', 'asc')->paginate($limit);
                     break;
                 case 'High price':
-                $element = Element::where('subcategories', [$sub])->orderBy('price', 'desc')->paginate($limit);
+                $element = $element->orderBy('price', 'desc')->paginate($limit);
                     break;
                 case 'Newest Arrivals':
-                $element = Element::where('subcategories', [$sub])->orderBy('created_at', 'desc')->paginate($limit);
+                $element = $element->orderBy('created_at', 'desc')->paginate($limit);
                     break;
                 default:
-                $element = Element::where('subcategories', [$sub])->paginate($limit);
+                $element = $element->paginate($limit);
             }
             
             $array[0] = $catSUP[0];
             $array[1] = $sub;
             $array[2] = $cate;
-            return view('catalog', ['Elements' => $element], ['Category' => $array]);
+
+            return view('catalog', ['Elements' => $element], ['Category' => $array, 'rangeFilter' => gets_controller::rangeFiter($sub)]);
         } else {
             return view('catalog');
         }
     }
+
+    public function rangeFiter($cat){
+        $elements = Element::whereIn('subcategories', [$cat])->orderBy('price', 'desc')->first();
+        $max = $elements->price;
+        /*
+        foreach($elements as $el) {
+            if($el->price > $max){
+                $max = $el->price;
+            }
+        }
+        */
+
+        return $max/6;
+    }
+
 
     public static function photo_element_controller($id_element) {
         if(!empty($id_element) || $id_element != null){

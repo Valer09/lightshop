@@ -261,7 +261,6 @@
             @endif
 
             <!--------Filter--------->
-            
             <div class="block block-layered-nav block-filter">
               <div class="block-title">Shop By</div>
               <div class="block-content">
@@ -270,8 +269,9 @@
                   <dt class="odd">Price</dt>
                   <dd class="odd">
                     <ol>
-                      <li> <a href="#"><span class="price">$0.00</span> - <span class="price">$99.99</span></a> (6) </li>
-                      <li> <a href="#"><span class="price">$100.00</span> and above</a> (6) </li>
+                      @for($i = 0; $i < 6; $i++)
+                      <li> <a href="{!! Request::fullUrlWithQuery(['price'=> number_format(($rangeFilter * $i), 2).'-'.number_format(($rangeFilter * ($i + 1)), 2)]) !!}"><span class="price">€{{ number_format(($rangeFilter * $i), 2) }}</span> - <span class="price">{{ number_format(($rangeFilter * ($i + 1)), 2) }}</span></a> (6) </li>
+                      @endfor
                     </ol>
                   </dd>
                   <dt class="odd">Color</dt>
