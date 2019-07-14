@@ -8,6 +8,7 @@
 @section('content')
     <?php use App\Order; ?>
 
+    
     <?php
     function get_order(){
         $temp=\App\Order::where('user_id', Auth::user()->id)->get();

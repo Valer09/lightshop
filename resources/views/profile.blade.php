@@ -1,386 +1,613 @@
 @extends('layout.defaultLayout')
 @section('title', 'Visca s.n.c.')
 
+<!--HEAD-->
 @section('head')
-  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+
 @endsection
 
+<!--body-->
 @section('content')
-    <?php use App\Order; ?>
 
-    <?php
-    function get_order(){
-        $temp=\App\Order::where('user_id', Auth::user()->id)->get();
-        return $temp;
-    }
-    function get_el($id){
-        $temp=\App\OrderDetail::where('orders_id', $id)->get();
-        return $temp;
-    }
+<body class="multiple-addresses-page">
 
-    function get_addresses($id){
-        $temp=\App\Address::where('user_id', $id)->get();
-        return $temp;
-    }
-
-    ?>
-
-    <!--CONTENT PAGE-->
-    <div class="w3-container" style="margin: 49px">
-        <h2>Il mio profilo</h2>
-        <div class="w3-bar">
-            <button id="but#ordini" class="w3-bar-item w3-button tablink w3-green" onclick="openTab(event,'#ordini'); location.href='#ordini'">Ordini</button>
-            <button id="but#dati" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#dati'); location.href='#dati'">Dati personali</button>
-            <button id="but#spedizione" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#spedizione'); location.href='#spedizione'">Indirizzi</button>
-            <button id="but#pagamento" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#pagamento'); location.href='#pagamento'">Pagamento</button>
-            <button id="but#password" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#password'); location.href='#password'">Password</button>
-        </div>
-
-        <div id="#ordini" class="w3-container city">
-            <h2>Ordini effettuati</h2>
-            <p>Visualizza i tuoi ordini.</p>
-
-            <!--lista ordini-->
-            <div class="w3-container">
-                <ul class="w3-ul w3-card-4">
-
-                    <!--CARD PER GLI ORDINI IN CORSO DI ELABORAZIONE-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                        @if ($order->order_shipped==2)
-                            <li class="w3-bar">
-                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                                <div class="w3-bar-item">
-                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>In elaborazione</b></span><br><br>
-                                    <span>Numero ordine: {{! printf($order->id) }}</span><br>
-                                    <span>Oggetti:</span><br>
-
-                                    {{!$elements=get_el($order->id)}}
-                                    @foreach($elements as $element)
-                                        <span>{{$element->element_name }}</span>   Q.ta: {{$element->quantity}}<br>
-                                    @endforeach
-
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-
-                <!--CARD PER GLI ORDINI SPEDITI-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                        @if ($order->order_shipped==1)
-                            <li class="w3-bar">
-                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                                <div class="w3-bar-item">
-                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Spedito</b></span><br><br>
-                                    <span>Numero ordine: {{ $order->id }}</span><br>
-                                    <span>Oggetti:</span><br>
-
-                                    {{!$elements=get_el($order->id)}}
-                                    @foreach($elements as $element)
-                                        <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
-                                    @endforeach
-
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-
-                <!--CARD PER GLI ORDINI COMPLETATI-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                
-                        <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                            <div class="w3-bar-item">
-                                <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Completato</b></span><br><br>
-                                <span>Numero ordine: {{ $order->id }}</span><br>
-                                <span>Oggetti:</span><br>
-
-                                {{!$elements=get_el($order->id)}}
-                                @foreach($elements as $element)
-                                    <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
-                                @endforeach
-
-                            </div>
-                        </li>
-                    
-                    @endforeach
-                </ul>
+  <!--div Desktop-->
+  <div id="page">
+    <!-- Header -->
+    @include('components.banner')
+    @include('components.navbarDesktop')
+    <!-- end header -->
+    <!-- Main Container -->
+    <section class="main-container col1-layout">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <div class="state_bar">
+              <div class="w3-bar">
+                <button id="but#ordini" class="button btn-continue first tablink" onclick="openTab(event,'#ordini'); location.href='#ordini'">Orders</button>
+                <button id="but#dati" class="button tablink" onclick="openTab(event,'#dati'); location.href='#dati'">Profile</button>
+                <button id="but#spedizione" class="button tablink" onclick="openTab(event,'#spedizione'); location.href='#spedizione'">Addresses</button>
+                <button id="but#password" class="button tablink" onclick="openTab(event,'#password'); location.href='#password'">Security</button>
+              </div>
+              <script
+                type="text/javascript">decorateGeneric($$('#checkout-progress-state li'), ['first', 'last']);</script>
             </div>
-        </div>
+            <article class="col-main">
 
-        <div id="#dati" class="w3-container city" style="display:none">
-            <h2>Dati personali</h2>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-padding">
-                        <div class="w3-bar-item">
-                            <div class="w3-row">
-                                <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
-                                <a class="w3-right" onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</a>
-                            </div>
-                            <div class="w3-row">
-                                @php
-                                $CF=Auth::user()->CF;
-                                $CFUP=strtoupper($CF);
-                                @endphp
-                                <label>Codice fiscale: <b>{{$CFUP}}</b></label>
-                            </div>
-                            <div class="w3-row">
-                                <label>E-mail: <b>{{Auth::user()->email}}</b></label>
-                            </div>
-                            @if(isset(Auth::user()->IVA))
-                            <div class="w3-row">
-                                @php
-                                $IVA=Auth::user()->IVA;
-                                $IVAUP=strtoupper($IVA);
-                                @endphp
-                                <label>Partita IVA: <b>{{$IVAUP}}</b></label>
-                            </div>
-                            @endif
-                            @if(isset(Auth::user()->PEC))
-                            <div class="w3-row">
-                                <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
-                            </div>
-                            @endif
+            <!--======Order=======-->
+              <div id="#ordini" class="multiple_addresses">
+                <form method="post" action="//" id="checkout_multishipping_form">
+                  <div class="page-title_multi">
+                    <h2>My Orders</h2>
+                  </div>
+                  <!--page-title_multi-->
+                  <div class="title-buttons">
+                    <button onclick="$('add_new_address_flag').value=1; $('checkout_multishipping_form').submit();"
+                      class="button new-address" title="Enter a New Address" type="button"><span>Enter a New
+                        Address</span></button>
+                  </div>
+                  <!--title-buttons-->
+                  <div class="addresses">
+                    <div class="table-responsive">
+                      <fieldset class="multiple-checkout">
+                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                        Please select shipping address for applicable items
+                        <table id="multiship-addresses-table" class="data-table">
+                          <colgroup>
+                            <col>
+                            <col width="1">
+                            <col width="1">
+                            <col width="1">
+                          </colgroup>
+                          <thead>
+                            <tr class="first last">
+                              <th>Product</th>
+                              <th class="a-left">Qty</th>
+                              <th>Send to</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr class="first last">
+                              <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                  class="button btn-update" type="submit"><span>Update Qty &amp;
+                                    Addresses</span></button></td>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr class="first odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                                </h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="last even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1"
+                                  name="ship[15][4212][qty]"></td>
+                              <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="buttons-set">
+                          <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                            title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                              Information</span></button>
                         </div>
-                    </li>
-                </ul>
-            </div>  
-        </div> 
-        <div id="#spedizione" class="w3-container city" style="display:none">
-            <h2>Indirizzi di spedizione</h2>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-bar w3-button" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">
-                        <div class="w3-bar-item">
-                            <span class="w3-middle"><i class="fa fa-plus"></i><b> Nuovo indirizzo di spedizione</b></span><br>
+                      </fieldset>
+                    </div>
+                    <!--multiple-checkout-->
+                  </div>
+                </form>
+              </div>
+              <!--======End Order=======-->
+
+              <!--======Data=======-->
+              <div id="#dati" class="multiple_addresses" style="display:none">
+                <form method="post" action="//" id="checkout_multishipping_form">
+                  <div class="page-title_multi">
+                    <h2>Profile</h2>
+                  </div>
+                  <!--page-title_multi-->
+                  <div class="title-buttons">
+                    <button onclick="$('.popup1').show(); $('.popup2').show();" class="button new-address" title="Enter a New Address" 
+                      type="button"><span>Edit profile</span></button>
+                  </div>
+                  <!--title-buttons-->
+                  <div class="addresses">
+                    <div class="table-responsive">
+                      <fieldset class="multiple-checkout">
+                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                        Please select shipping address for applicable items
+                        <table id="multiship-addresses-table" class="data-table">
+                          <colgroup>
+                            <col>
+                            <col width="1">
+                            <col width="1">
+                            <col width="1">
+                          </colgroup>
+                          <thead>
+                            <tr class="first last">
+                              <th>Product</th>
+                              <th class="a-left">Qty</th>
+                              <th>Send to</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr class="first last">
+                              <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                  class="button btn-update" type="submit"><span>Update Qty &amp;
+                                    Addresses</span></button></td>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr class="first odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                                </h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[1][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_1_63_address" name="ship[1][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="last even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1"
+                                  name="ship[15][4212][qty]"></td>
+                              <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="buttons-set">
+                          <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                            title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                              Information</span></button>
                         </div>
-                    </li>
-                    <!--CARD PER GLI INDIRIZZI DI SPEDIZIONE-->
-                    {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
-                    @foreach($addresses as $address)
-                        <li class="w3-bar">
-                            <form id="cancellasped{{$address->id}}" action="{{ URL::to('/delete_user_address') }}{{$address->id}}?ref={{$_SERVER['REQUEST_URI']}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questo indirizzo?', 'cancellasped{{$address->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
-                            @if( $address->id == Auth::user()->address_id )
-                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
-                            @else
+                      </fieldset>
+                    </div>
+                    <!--multiple-checkout-->
+                  </div>
+                </form>
+              </div>
+              <!--======End data=======-->
 
-                            <a href="{{ URL::to('/star_address') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span></a>
-                            @endif
-                            <div class="w3-bar-item">
-
-                                <span class="w3-middle"><b>{{$address->NomeCognome}}</b></span><br>
-                                <span>
-                                {{$address->street}}, {{$address->street_number}}
-                                <br>{{$address->city}} ({{$address->Provincia}}) - {{$address->CAP}}
-                                <br>{{$address->country}}
-                            </span>
-
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-
-        <div id="#pagamento" class="w3-container city" style="display:none">
-            <h2>Pagamenti</h2>
-            <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
-            <div id="pulsantePaypal"></div>
-        </div>
-        
-        <div id="#password" class="w3-container city" style="display:none">
-            <h2>Password</h2>
-            <p>Qui puoi cambiare la tua password.</p>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-padding">
-                        <div class="w3-bar-item w3-container">
-                            <form method="post" action="{{ URL::to('/password_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}" >
-                                @csrf
-                                <div class="w3-row">
-                                    <label>Vecchia Password: </label>
-                                    <input class="w3-input" placeholder="Vecchia password" name="old_password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <label>Nuova Password: </label>
-                                    <input class="w3-input" placeholder="Nuova password" name="password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <label>Ripeti Password: </label>
-                                    <input class="w3-input" placeholder="Ripeti nuova password" name="control_password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <button class="w3-button " type="submit">Salva</button>
-                                </div>
-                            </form>
+              <!--======adresses=======-->
+              <div id="#spedizione" class="multiple_addresses" style="display:none">
+                <form method="post" action="//" id="checkout_multishipping_form">
+                  <div class="page-title_multi">
+                    <h2>Multiple Addresses</h2>
+                  </div>
+                  <!--page-title_multi-->
+                  <div class="title-buttons">
+                    <button onclick="$('.popup1').show(); $('.popup3').show();" class="button new-address" title="Enter a New Address" 
+                      type="button"><span>Enter a New Address</span></button>
+                  </div>
+                  <!--title-buttons-->
+                  <div class="addresses">
+                    <div class="table-responsive">
+                      <fieldset class="multiple-checkout">
+                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                        Please select shipping address for applicable items
+                        <table id="multiship-addresses-table" class="data-table">
+                          <colgroup>
+                            <col>
+                            <col width="1">
+                            <col width="1">
+                            <col width="1">
+                          </colgroup>
+                          <thead>
+                            <tr class="first last">
+                              <th>Product</th>
+                              <th class="a-left">Qty</th>
+                              <th>Send to</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr class="first last">
+                              <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                  class="button btn-update" type="submit"><span>Update Qty &amp;
+                                    Addresses</span></button></td>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr class="first odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                                </h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[1][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_1_63_address" name="ship[1][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="last even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1"
+                                  name="ship[15][4212][qty]"></td>
+                              <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="buttons-set">
+                          <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                            title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                              Information</span></button>
                         </div>
-                    </li>
-                </ul>
-            </div>
+                      </fieldset>
+                    </div>
+                    <!--multiple-checkout-->
+                  </div>
+                </form>
+              </div>
+              <!--==========End addresses============-->
+
+              <!--======password=======-->
+              <div id="#password" class="multiple_addresses" style="display:none">
+                <form method="post" action="//" id="checkout_multishipping_form">
+                  <div class="page-title_multi">
+                    <h2>Password</h2>
+                  </div>
+                  <!--page-title_multi-->
+                  <div class="title-buttons">
+                    <button onclick="$('.popup1').show(); $('.popup4').show();" class="button new-address" title="Enter a New Address" 
+                      type="button"><span>Edit password</span></button>
+                  </div>
+                  <!--title-buttons-->
+                  <div class="addresses">
+                    <div class="table-responsive">
+                      <fieldset class="multiple-checkout">
+                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                        Please select shipping address for applicable items
+                        <table id="multiship-addresses-table" class="data-table">
+                          <colgroup>
+                            <col>
+                            <col width="1">
+                            <col width="1">
+                            <col width="1">
+                          </colgroup>
+                          <thead>
+                            <tr class="first last">
+                              <th>Product</th>
+                              <th class="a-left">Qty</th>
+                              <th>Send to</th>
+                              <th>Remove</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr class="first last">
+                              <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                  class="button btn-update" type="submit"><span>Update Qty &amp;
+                                    Addresses</span></button></td>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            <tr class="first odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                                </h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[1][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_1_63_address" name="ship[1][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="odd">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
+                                    NEWEST MODEL</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
+                              </td>
+                              <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                            <tr class="last even">
+                              <td>
+                                <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                              </td>
+                              <td><input type="text" class="input-text qty" size="2" value="1"
+                                  name="ship[15][4212][qty]"></td>
+                              <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
+                                  <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
+                                    States</option>
+                                </select></td>
+                              <td class="a-center last"><a
+                                  href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
+                                  title="&lt;span&gt;Remove item&lt;/span&gt;"
+                                  class="btn-remove btn-remove2"><span>Remove item</span></a></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="buttons-set">
+                          <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                            title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                              Information</span></button>
+                        </div>
+                      </fieldset>
+                    </div>
+                    <!--multiple-checkout-->
+                  </div>
+                </form>
+              </div>
+              <!--==========End password============-->
+
+
+            </article>
+            <!--	///*///======    End article  ========= //*/// -->
+          </div>
+
         </div>
+      </div>
+    </section>
+    <!-- Main Container End -->
 
-    </div>
+    <!--footer Desktop-->
+    @include('components.footerDesktop')
+    <!-- End Footer Desktop -->
+  </div>
 
-<!--Modale Modifica dati-->
-<div id="modificaDati" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-teal">
-            <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h2>Modifica i tuoi dati.</h2>
-        </header>
-        <form type="submit" method="post" action="{{URL::to('/user_edit')}}?ref={{$_SERVER['REQUEST_URI']}}#dati">
-            @csrf
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Nome e cognome:</label>
-                    <input value="{{Auth::user()->name}}" placeholder="Nome" name="name">
-                    <input value="{{Auth::user()->surname}}" placeholder="Cognome" name="surname">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>Codice fiscale:</label>
-                    <input value="{{$CFUP}}" placeholder="Codice fiscale" name="CF">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>Partita IVA:</label>
-                    <input value="{{!empty($IVAUP) ? $IVAUP : ''}}" placeholder="Partita IVA" name="PIVA">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>E-mail:</label>
-                    <input value="{{Auth::user()->email}}" placeholder="E-mail" name="email">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>PEC: </label>
-                    <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
-                    <button class="w3-button w3-right" type="submit">Salva</button>
-                </div>
-            </div>
+  <!--div Mobile Menu-->
+  <div id="mobile-menu">
+    @include('components.navbarMobile')
+  </div>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/revslider.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/openTabProfile.js') }}"></script>
+
+  <!-------------POPUP------------->
+  <div class="popup1 popup2">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup2').hide(); $('.popup1').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"
+            id="x"></a>
+        <div style="display:none;" id="formSuccess1">Thank you for your subscription.</div>
+        <form class="email-form" name="popup-newsletter" id="popup-newsletter" method="post">
+          <h3>Newsletter Sign up</h3>
+          <h4>sign up for our exclusive email list and be the first to hear of special promotions, new arrivals, and
+            designer news.</h4>
+          <div class="newsletter-form">
+            <div class="input-box">
+              <input type="text" class="input-text required-entry validate-email" placeholder="Enter your email address"
+                title="Sign up for our newsletter" id="newsletter2" name="email">
+              <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+              <img style="display:none;margin-left:120px;margin-top:10px;" id="loader1" alt="Loading"
+                src="images/loading.gif"> </div>
+            <!--input-box-->
+          </div>
+          <!--newsletter-form-->
+          <label class="subscribe-bottom">
+            <input type="checkbox" id="notshowpopup" name="notshowpopup">
+            Don’t show this popup again</label>
         </form>
+      </div>
+      <!--newsletter-->
     </div>
-</div>
+    <!--newsletter-sign-box-->
+  </div>
 
-@if($errors->has('name') || $errors->has('surname') || $errors->has('CF') || $errors->has('email') || $errors->has('PIVA') || $errors->has('PEC'))
-<script>
-    var stringError="Errore salvataggio!";
-    @if($errors->has('name'))
-    stringError += "Errore campo nome: {{$errors->first('name')}}\n";
-    @endif
 
-    @if($errors->has('surname'))
-    stringError += "Errore campo cognome: {{$errors->first('name')}}\n";
-    @endif
-
-    @if($errors->has('CF'))
-    stringError += "Errore campo Codice fiscale: {{$errors->first('CF')}}\n";
-    @endif
-
-    @if($errors->has('email'))
-    stringError += "Errore campo email: {{$errors->first('email')}}\n";
-    @endif
-
-    @if($errors->has('PEC'))
-    stringError += "il campo PEC: {{$errors->first('PEC')}}\n";
-    @endif
-
-    @if($errors->has('PIVA'))
-    stringError += "il campo Partita IVA: {{$errors->first('PIVA')}}\n";
-    @endif
-
-    alert(stringError);
-</script>   
-@endif
-
-<!--Modale Nuovo indirizzo-->
-<div id="nuovoIndirizzo" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-teal">
-            <span onclick="document.getElementById('nuovoIndirizzo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h2>Nuovo indirizzo di spedizione</h2>
-        </header>
-        <form type="submit" method="post" action="{{URL::to('/address_insertion_submit')}}?ref={{$_SERVER['REQUEST_URI']}}">
-            @csrf
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Nome e cognome del Destinatario</label>
-                    <input placeholder="Nome e cognome" type="text" name="NomeCognome" required>
-                </div>
-                <div class="w3-row">
-                    <label>Indirizzo</label>
-                    <input placeholder="Indirizzo" type="text" name="street" required>
-                    <label>Civico</label>
-                    <input placeholder="Civico" type="text" name="street_number">
-                </div>
-
-                <div class="w3-row">
-                    <label>Citta</label>
-                    <input placeholder="Città" type="text" name="city" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
-                    <label>CAP</label>
-                    <input placeholder="CAP" type="text" name="CAP" id="newCap" required>
-                </div>
-                <div class="w3-row">
-                    <label>Provincia</label>
-                    <input placeholder="Provincia" type="text" name="Provincia" id="newProvincia" required>
-                </div>
-                <div class="w3-row">
-                    <label>Stato</label>
-                    <input placeholder="Stato" type="text" name="country" required>
-                    <button class="w3-right" type="submit">Salva</button>
-                </div>
-            </div>
+  <div class="popup1 popup3">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup1').hide(); $('.popup3').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"
+            id="x"></a>
+        <div style="display:none;" id="formSuccess1">Thank you for your subscription.</div>
+        <form class="email-form" name="popup-newsletter" id="popup-newsletter" method="post">
+          <h3>Newsletter Sign up</h3>
+          <h4>sign up for our exclusive email list and be the first to hear of special promotions, new arrivals, and
+            designer news.</h4>
+          <div class="newsletter-form">
+            <div class="input-box">
+              <input type="text" class="input-text required-entry validate-email" placeholder="Enter your email address"
+                title="Sign up for our newsletter" id="newsletter2" name="email">
+              <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+              <img style="display:none;margin-left:120px;margin-top:10px;" id="loader1" alt="Loading"
+                src="images/loading.gif"> </div>
+            <!--input-box-->
+          </div>
+          <!--newsletter-form-->
+          <label class="subscribe-bottom">
+            <input type="checkbox" id="notshowpopup" name="notshowpopup">
+            Don’t show this popup again</label>
         </form>
+      </div>
+      <!--newsletter-->
     </div>
-</div>
-
-    <!--end CONTENT PAGE-->
-
-    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-    <script>paypal.Buttons().render('#pulsantePaypal');</script>
-    <script>
-        setTimeout(() => {
-            document.getElementById('but'+window.location.hash).click();
+    <!--newsletter-sign-box-->
+  </div>
 
 
-        }, 300);
-
-
-        /** ----------METODO per COMPILAZIONEE COMUNE-----------*/
-var myObj
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
-        //console.log(myObj);
-
-    }
-};
-xmlhttp.open("GET", "https://raw.githubusercontent.com/matteocontrini/comuni-json/master/comuni.json", true);
-xmlhttp.send();
-
-function trovaCap(idComune, idCap, idProvincia) {
-    if (document.getElementById(idComune) != null) {
-        var nomeComune = document.getElementById(idComune).value.toLowerCase();
-        for (ii = 0; ii < myObj.length; ii++) {
-            if (myObj[ii]["nome"].toLowerCase() === nomeComune) {
-                if (myObj[ii]["cap"].length === 1) {
-                    document.getElementById(idCap).value = myObj[ii]["cap"][0].toString();
-                } else {
-                    var iii = 1;
-                    var capp = myObj[ii]["cap"][0];
-                    while (myObj[ii]["cap"][iii] != null) {
-                        capp = capp + ", " + myObj[ii]["cap"][iii]
-                        iii++;
-                    }
-                    document.getElementById(idCap).value = capp;
-                }
-                document.getElementById(idProvincia).value = myObj[ii]["sigla"];
-            }
-        }
-    }
-}
-/** ---------- FINE METODO per COMPILAZIONEE COMUNE-----------*/
-    </script>
-    
-
-@endsection
+  <div class="popup1 popup4">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup1').hide(); $('.popup4').hide();"><img src="images/f-box-close-icon.png" alt="close" class="x"
+            id="x"></a>
+        <div style="display:none;" id="formSuccess1">Thank you for your subscription.</div>
+        <form class="email-form" name="popup-newsletter" id="popup-newsletter" method="post">
+          <h3>Newsletter Sign up</h3>
+          <h4>sign up for our exclusive email list and be the first to hear of special promotions, new arrivals, and
+            designer news.</h4>
+          <div class="newsletter-form">
+            <div class="input-box">
+              <input type="text" class="input-text required-entry validate-email" placeholder="Enter your email address"
+                title="Sign up for our newsletter" id="newsletter2" name="email">
+              <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+              <img style="display:none;margin-left:120px;margin-top:10px;" id="loader1" alt="Loading"
+                src="images/loading.gif"> </div>
+            <!--input-box-->
+          </div>
+          <!--newsletter-form-->
+          <label class="subscribe-bottom">
+            <input type="checkbox" id="notshowpopup" name="notshowpopup">
+            Don’t show this popup again</label>
+        </form>
+      </div>
+      <!--newsletter-->
+    </div>
+    <!--newsletter-sign-box-->
+  </div>
+  <!--popup1-->
+  <div class="popup1" id="overlay"></div>
+  <!----------END POPUP--------->
+</body>
