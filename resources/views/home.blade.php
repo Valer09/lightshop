@@ -288,9 +288,9 @@
 
               </div>
             </div>
-            {{!!$hot = \App\Offert::where('date_end', '>', date('Y-m-d h:i:sa'))->orderBy('discount_perc', 'desc')->first()}}
+            {{!$hot = \App\Offert::where('date_end', '>', date('Y-m-d h:i:sa'))->orderBy('discount_perc', 'desc')->first()}}
             @if(isset($hot))
-            {{!!$hotEl =\App\Element::find($hot->id_element)}}
+            {{!$hotEl =\App\Element::find($hot->id_element)}}
             <input style="display:none" id="dataFine" value="{{ $hot->date_end }}">
             <div class="hot-deal">
               <ul class="products-grid">
