@@ -164,8 +164,11 @@
                               </div>
                             </div>
                             <div class="action">
-                              <button class="button btn-cart" type="button" title=""
-                                data-original-title="Add to Cart"><span>Add to Cart</span></button>
+                              <form method="post" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
+                                @csrf
+                                <button class="button btn-cart" type="submit" title="Add to cart" name="quantity" value="1"
+                                  data-original-title="Add to Cart"><span>Add to Cart</span></button>
+                              </form>    
                             </div>
                           </div>
                         </div>

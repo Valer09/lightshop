@@ -84,7 +84,7 @@
 							<div class="product_count">
 								<label for="qty">Quantity:</label>
                                 @if($el->availability > 0)
-                                <form method="post" id="formAddCart" action="{{route('Element.addToCart', ['id' => $el->id]) }}">
+                                <form method="post" id="formAddCart" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
                                     @csrf
                                     <button
                                         onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
