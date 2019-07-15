@@ -461,6 +461,12 @@
                                                                 €{{ number_format($totalPrice, 2, ',', '.') }}</span>
                                                         </td>
                                                     </tr>
+                                                    <tr>
+                                                        <td colspan="1" class="a-left" style=""> Shipping </td>
+                                                        <td class="a-right" style=""><span
+                                                                class="price">€{{ number_format(34, 2, ',', '.') }}</span>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                             <ul class="checkout">
