@@ -148,7 +148,12 @@ class gets_controller extends Controller
 
     public function rangeFiter($cat){
         $elements = Element::whereIn('subcategories', [$cat])->orderBy('price', 'desc')->first();
-        $max = $elements->price;
+        if(isset($elements)){
+            $max = $elements->price;
+        } else {
+            $max = 120;
+        }
+        
         /*
         foreach($elements as $el) {
             if($el->price > $max){
