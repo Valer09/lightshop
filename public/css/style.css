@@ -11823,7 +11823,7 @@ a.button.wishlist {
 	background-image: none;
 	color: #333;
 	cursor: pointer;
-	padding: 12px 15px;
+	padding: 6px 15px;
 	border-radius: 2px;
 	cursor: pointer;
 	text-decoration: none;
@@ -11841,7 +11841,7 @@ a.button.wishlist {
 
 #multiship-addresses-table .btn-remove:hover {
 	background-image: none;
-	padding: 12px 15px;
+	padding: 6px 15px;
 	color: #f23534;
 }
 
@@ -12247,7 +12247,7 @@ a.button.wishlist {
 	min-height: 400px;
 	min-width: 455px;
 	position: fixed;
-	top: 28%;
+	top: 5%;
 	width: 650px;
 	z-index: 10000;
 	margin-left: -325px;
@@ -12276,7 +12276,7 @@ a.button.wishlist {
 	font-weight: 700;
 	margin-bottom: 15px;
 	text-align: left;
-	margin-top: 50px;
+	margin-top: 30px;
 	padding-bottom: 0px;
 	letter-spacing: 1.2px;
 	font-family: "Poppins", sans-serif;
@@ -12318,9 +12318,9 @@ a.button.wishlist {
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0;
-	padding: 15px 12px;
+	padding: 8px 12px;
 	width: 100%;
-	font-size: 14px;
+	font-size: 12px;
 	border: 1px solid #ddd;
 	background: #fff;
 	color: #666;
@@ -14654,7 +14654,7 @@ a.shop-now-btn {
 		min-height: 150px;
 		min-width: 270px;
 		position: fixed;
-		top: 20%;
+		top: 5%;
 		width: 270px;
 		z-index: 10000;
 		margin-left: inherit;
@@ -15861,7 +15861,7 @@ a.shop-now-btn {
 		min-height: 250px;
 		min-width: 400px;
 		position: fixed;
-		top: 20%;
+		top: 5%;
 		width: 400px;
 		z-index: 10000;
 		margin-left: inherit;
@@ -16332,7 +16332,7 @@ a.shop-now-btn {
 		font-weight: normal;
 	}
 	.newsletter-sign-box {
-		top: 25%;
+		top: 5%;
 		width: 650px;
 	}
 	.block-account .block-content li a {
@@ -17519,4 +17519,51 @@ a.shop-now-btn {
 
 .product_count .reduced {
 	float: right;
+}
+
+.text-info-key {
+	font-size: 13px;
+	font-weight: 200 !important;
+}
+
+.text-info-value {
+	font-size: 13px;
+}
+
+.btn-remove {
+	font-size: 0;
+	line-height: 0;
+	text-indent: -999em;
+}
+
+#multiship-addresses-table .btn-favorite {
+	background-color: #fff;
+	background-image: none;
+	color: #333;
+	cursor: pointer;
+	padding: 6px 15px;
+	border-radius: 2px;
+	cursor: pointer;
+	text-decoration: none;
+	border: 1px solid #fff;
+	float: left;
+	transition: all 0.3s linear;
+	line-height: 12px;
+}
+
+#multiship-addresses-table .btn-yes-favorite:before {
+	content: "\f005";
+	font-family: FontAwesome;
+	font-size: 14px;
+}
+#multiship-addresses-table .btn-not-favorite:before {
+	content: "\f006";
+	font-family: FontAwesome;
+	font-size: 14px;
+}
+
+#multiship-addresses-table .btn-favorite:hover {
+	background-image: none;
+	padding: 6px 15px;
+	color: gold;
 }

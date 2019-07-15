@@ -288,20 +288,20 @@
 	</div>
 
 	<!-- JavaScript -->
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/revslider.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
-	<script type="text/javascript" src="js/skrollr.min.js"></script>
-	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-	<script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-	<script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
-	<script type="text/javascript" src="js/mail-script.js"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/revslider.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/skrollr.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+	<script src="vendors/nice-select/jquery.nice-select.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/mail-script.js') }}"></script>
 
-	<script src="js/mainElem.js"></script>
-	<script type="text/javascript" src="js/menu_up.js"></script>
+	<script src="{{ asset('js/mainElem.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/menu_up.js') }}"></script>
 
 </body>
 

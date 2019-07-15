@@ -104,14 +104,14 @@
     </div>
 
     <!-- JavaScript -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/revslider.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/revslider.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/common.js') }} "></script>
 
-    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
-    <script type="text/javascript" src="js/menu_up.js"></script>
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }} "></script>
+
 
 </body>
 @endsection

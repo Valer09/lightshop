@@ -201,7 +201,6 @@
 
     <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/menu_up.js') }}"></script>
 </body>
 
 @endsection
