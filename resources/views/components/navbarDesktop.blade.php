@@ -148,7 +148,7 @@
         <!-- features box -->
         <div class="our-features-box hidden-xs">
           <div class="features-block">
-            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-9 offer-block"> <a href="#">Home</a> <a href="#">Shop</a> <a href="#">Blog</a> <a href="#">Pages</a> <a href="#">Todays Deals</a> <span>Order online or call us (+1800) 000 8808</span> </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-9 offer-block"> <a href="{{ url('home') }}">Home</a> <a href="#">Shop</a> <a href="#">Blog</a> <a href="#">Pages</a> <a href="#">Todays Deals</a> <span>Order online or call us (+1800) 000 8808</span> </div>
           </div>
         </div>
       </div>
