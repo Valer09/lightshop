@@ -81,7 +81,7 @@
                     <li class="item first">
                       <div class="item-inner"> <a class="product-image" title="Retis lapen casen" href="#l"><img alt="Retis lapen casen" src="{{ asset('storage').$el['item']->pathPhoto }}"> </a>
                         <div class="product-details">
-                          <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
+                          <div class="access"><a class="btn-remove1" title="Remove This Item" href="{{ route('Element.delToCart', ['id' => $el['item']->id]) }}">Remove</a> <a class="btn-edit" title="Edit item" href="{{ url('shopping-cart')}}"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
                           <!--access--><strong>{{ $el['qty'] }}</strong> x <span class="price">€{{ number_format($el['price'], 2, ',', '.') }}</span>
                           <p class="product-name"><a href="{{url('element').$el['item']->id}}">{{ $el['item']->name }}</a> </p>
                         </div>
