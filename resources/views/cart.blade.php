@@ -473,8 +473,8 @@
                                                     <col>
                                                     <col width="1">
                                                 </colgroup>
+                                                @if(Session::has('cart') && count($elements) > 0 )
                                                 <tfoot>
-                                                
                                                 <tr>
                                                     <td colspan="1" class="a-left" style=""><strong>Grand Total</strong></td>
                                                     <td class="a-right" style=""><strong><span class="price">$77.38</span></strong></td>
@@ -489,6 +489,14 @@
                                                     <td colspan="1" class="a-left" style=""> Discount </td>
                                                     <td class="a-right" style=""><span class="price">- €{{ number_format($totalPrice, 2, ',', '.') }}</span></td>
                                                 </tr>
+                                                @else
+                                                <tfoot>
+                                                <tr>
+                                                    <td colspan="1" class="a-left" style=""><strong>Grand Total</strong></td>
+                                                    <td class="a-right" style=""><strong><span class="price">000</span></strong></td>
+                                                </tr>
+                                                </tfoot>
+                                                @endif
                                                 </tbody>
                                             </table>
                                             <ul class="checkout">
