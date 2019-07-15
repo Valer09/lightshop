@@ -249,6 +249,7 @@ class insertionController extends Controller
             $courier-> stima_giorni = $request -> time;
             $courier-> price = $request -> price;
             $courier-> name_service = $request -> name_service;
+            $courier-> destination_country = $request -> destination_country;
 
             $courier->save();
 

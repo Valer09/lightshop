@@ -88,6 +88,7 @@ class element_edit_controller extends Controller
                 if($courier->stima_giorni != $request->stima_giorni) $courier->update(['stima_giorni' => $request->stima_giorni]);
                 if($courier->price !== $request->price) $courier->update(['price' => $request->price]);
                 if($courier->name_service != $request->name_service) $courier->update(['name_service' => $request->name_service]);
+                if($courier->destination_country != $request->destination_country) $courier->update(['destination_country' => $request->destination_country]);
 
                 $path = $request-> ref;
                 $path = substr($path, 1, strlen($path));

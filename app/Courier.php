@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Courier extends Model
 {
     protected $fillable = [
-        'courier_name','stima_giorni', 'name_service', 'price', 'pesomin', 'pesomax'
+        'courier_name','stima_giorni', 'name_service', 'price', 'pesomin', 'pesomax', 'destination_country'
     ];
 
     public function get_categories(){

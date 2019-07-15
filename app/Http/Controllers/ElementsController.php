@@ -101,9 +101,12 @@ class ElementsController extends Controller
                 $address = Address::find($id);
 
                 //calcolo costo spedizione
-                $spedizioni = Courier::where('pesomax', '>=', $cart->totalWeight)
-                ->where('pesomin', '<=', $cart->totalWeight)->get(); 
-
+                $spedizioni = Courier::where([
+                    ['pesomax', '>=', $cart->totalWeight],
+                    ['pesomin', '<=', $cart->totalWeight],
+                    ['destination_country', $address->country],
+                    ])->get(); 
+                    //dd($spedizioni);
                 return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
             }
         } else {
