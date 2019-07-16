@@ -42,6 +42,9 @@
                                                 <fieldset>
                                                     <legend>New Address</legend>
                                                     <input type="hidden" name="billing[address_id]" value="4269" id="billing:address_id">
+                                                    @if($address != null)
+                                                    <p>A: {{ $address->NomeCognome }}</p>
+                                                    @endif
                                                     <ul>
                                                         <li>
                                                             <div class="customer-name">
@@ -49,11 +52,17 @@
                                                                     <label for="billing:firstname"> First Name <span class="required">*</span> </label>
                                                                     <br>
                                                                     <input type="text" id="billing:firstname" name="billing[firstname]" value="pranali" title="First Name" class="input-text required-entry">
+                                                                    @if($firstname!=null)
+                                                                    <p>A: {{ $adress->firstname }}</p>
+                                                                    @endif
                                                                 </div>
                                                                 <div class="input-box name-lastname">
                                                                     <label for="billing:lastname"> Last Name <span class="required">*</span> </label>
                                                                     <br>
                                                                     <input type="text" id="billing:lastname" name="billing[lastname]" value="d" title="Last Name" class="input-text required-entry">
+                                                                    @if($lastname!=null)
+                                                                    <p>A: {{ $adress->lastname }}</p>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -68,15 +77,24 @@
                                                             <label for="billing:street1">Address <span class="required">*</span></label>
                                                             <br>
                                                             <input type="text" title="Street Address" name="billing[street][]" id="billing:street1  street1" value="aundh" class="input-text required-entry">
+                                                            @if($street_number!=null)
+                                                            <p>A: {{ $address->street_number }}</p>
+                                                            @endif
                                                         </li>
                                                         <li>
                                                             <input type="text" title="Street Address 2" name="billing[street][]" id="billing:street2 street2" value="" class="input-text">
+                                                            @if($street_number!=null)
+                                                            <p>A: {{ $address->street_number }}</p>
+                                                            @endif
                                                         </li>
                                                         <li>
                                                             <div class="input-box">
                                                                 <label for="billing:city">City <span class="required">*</span></label>
                                                                 <br>
                                                                 <input type="text" title="City" name="billing[city]" value="tyyrt" class="input-text required-entry" id="billing:city">
+                                                                @if($city!=null)
+                                                                <p>A: {{ $address->city }}</p>
+                                                                @endif
                                                             </div>
                                                             <div id="" class="input-box">
                                                                 <label for="billing:region">State/Province <span class="required">*</span></label>
@@ -1070,6 +1088,9 @@
                                 <span class="price">$15.00</span> </dd>
                             <dt> Payment Method </dt>
                         </dl>
+                        @else
+                        <h1>Nessun elemento nel carrello</h1>
+                        @endif
                     </div>
                 </div>
             </aside>
