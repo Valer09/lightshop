@@ -442,8 +442,7 @@
                                                 </colgroup>
                                                 <tfoot>
                                                     <tr>
-                                                        <td colspan="1" class="a-left" style=""><strong>Grand
-                                                                Total</strong></td>
+                                                        <td colspan="1" class="a-left" style=""><strong>Total</strong></td>
                                                         <td class="a-right" style=""><strong><span
                                                                     class="price">$77.38</span></strong></td>
                                                     </tr>
@@ -459,12 +458,6 @@
                                                         <td colspan="1" class="a-left" style=""> Discount </td>
                                                         <td class="a-right" style=""><span class="price">-
                                                                 €{{ number_format($totalPrice, 2, ',', '.') }}</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="1" class="a-left" style=""> Shipping </td>
-                                                        <td class="a-right" style=""><span
-                                                                class="price">€{{ number_format(34, 2, ',', '.') }}</span>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -737,6 +730,11 @@
 
     <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+    {{! $spedizioni = App\Courier::all()}}
+    <script>
+       var temp = {!!$spedizioni!!};
+        console.log(temp);
+    </script>
 
 </body>
 @endsection

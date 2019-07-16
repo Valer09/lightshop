@@ -58,11 +58,12 @@ Route::get('/verified', function () {
     return view('verified');
 });
 
-Route::get('/password/reset', function () {
-    return view('password/reset');
+Route::get('password/reset', function () {
+    return view('auth/passwords/reset');
 });
-Route::get('/password/email', function () {
-    return view('Auth/passwords/email/reset');
+
+Route::get('password/email', function () {
+    return view('auth/passwords/email/reset');
 });
 
 Route::get('recovered', function () {
