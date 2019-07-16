@@ -4,12 +4,18 @@ $(document).ready(function () {
         $('#billing-new-address-form').show();
     } else {
         $('#billing-new-address-form').hide();
+        if (true) {
+            $('#shipping-address-select').val($('#billing-address-select').val());
+        }
     }
     $('#billing-address-select').on('change', function () {
         if (this.value == '') {
             $('#billing-new-address-form').show();
         } else {
             $('#billing-new-address-form').hide();
+            if (true) {
+                $('#shipping-address-select').val($('#billing-address-select').val());
+            }
         }
     });
 
