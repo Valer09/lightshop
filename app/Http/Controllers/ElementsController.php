@@ -107,7 +107,7 @@ class ElementsController extends Controller
                     ['destination_country', $address->country],
                     ])->get(); 
                     //dd($spedizioni);
-                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
+                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni, 'User' => Auth::user()]);
             }
         } else {
             return redirect('login');

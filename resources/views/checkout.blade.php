@@ -40,8 +40,14 @@
                             <br>
                             <select name="billing_address_id" id="billing-address-select" class="address-select"
                               title="" onChange="billing.new-address(!this.value)">
-                              <option value="1" selected="selected">John Doe, aundh, tyyrt, Alabama 46532, United States
+                              @if($address != null)
+                              <option value="{{ $address->id }}" selected="selected">{{ $address->NomeCognome }}, {{ $address->street }} {{ $address->street_number }}, {{ $address->city }} {{ $address->CAP }}, {{ $address->country }}
                               </option>
+                              @endif
+                              {{!$addresses = App\Address::where([['user_id', $User->id],['id', '!=' , $User->address_id]])->get() }}
+                              @foreach($addresses as $ad)
+                              <option value="{{ $ad->id }}">{{ $ad->NomeCognome }}, {{ $ad->street }} {{ $ad->street_number }}, {{ $ad->city }} {{ $ad->CAP }}, {{ $ad->country }}</option>
+                              @endforeach
                               <option value="">New Address</option>
                             </select>
                           </li>
