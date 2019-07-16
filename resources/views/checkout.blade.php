@@ -18,20 +18,20 @@
     <section class="main-container col2-left-layout">
       <div class="container">
         <div class="row">
+          <form id="co-billing-form" action="">
+            <div class="col-sm-9 col-sm-push-3">
+              <article class="col-main">
+                <div class="page-title">
+                  <h1>Checkout</h1>
+                </div>
+                <ol class="one-page-checkout" id="checkoutSteps">
+                  <li id="opc-billing" class="section allow active">
+                    <div class="step-title"> <span class="number">1</span>
+                      <h3>Checkout Method</h3>
+                      <!--<a href="#">Edit</a> -->
+                    </div>
+                    <div id="checkout-step-billing" class="step a-item" style="">
 
-          <div class="col-sm-9 col-sm-push-3">
-            <article class="col-main">
-              <div class="page-title">
-                <h1>Checkout</h1>
-              </div>
-              <ol class="one-page-checkout" id="checkoutSteps">
-                <li id="opc-billing" class="section allow active">
-                  <div class="step-title"> <span class="number">1</span>
-                    <h3>Checkout Method</h3>
-                    <!--<a href="#">Edit</a> -->
-                  </div>
-                  <div id="checkout-step-billing" class="step a-item" style="">
-                    <form id="co-billing-form" action="">
                       <fieldset class="group-select">
                         <ul>
                           <li>
@@ -41,12 +41,15 @@
                             <select name="billing_address_id" id="billing-address-select" class="address-select"
                               title="" onChange="billing.new-address(!this.value)">
                               @if($address != null)
-                              <option value="{{ $address->id }}" selected="selected">{{ $address->NomeCognome }}, {{ $address->street }} {{ $address->street_number }}, {{ $address->city }} {{ $address->CAP }}, {{ $address->country }}
+                              <option value="{{ $address->id }}" selected="selected">{{ $address->NomeCognome }},
+                                {{ $address->street }} {{ $address->street_number }}, {{ $address->city }}
+                                {{ $address->CAP }}, {{ $address->country }}
                               </option>
                               @endif
                               {{!$addresses = App\Address::where([['user_id', $User->id],['id', '!=' , $User->address_id]])->get() }}
                               @foreach($addresses as $ad)
-                              <option value="{{ $ad->id }}">{{ $ad->NomeCognome }}, {{ $ad->street }} {{ $ad->street_number }}, {{ $ad->city }} {{ $ad->CAP }}, {{ $ad->country }}</option>
+                              <option value="{{ $ad->id }}">{{ $ad->NomeCognome }}, {{ $ad->street }}
+                                {{ $ad->street_number }}, {{ $ad->city }} {{ $ad->CAP }}, {{ $ad->country }}</option>
                               @endforeach
                               <option value="">New Address</option>
                             </select>
@@ -475,16 +478,14 @@
                         <button type="button" class="button continue"
                           onClick="buttonContinue('billing', 'shipping');"><span>Continue</span></button>
                       </fieldset>
-                    </form>
-                  </div>
-                </li>
-                <li id="opc-shipping" class="section">
-                  <div class="step-title"> <span class="number">2</span>
-                    <h3 class="one_page_heading"> Shipping Information</h3>
-                    <!--<a href="#">Edit</a>-->
-                  </div>
-                  <div id="checkout-step-shipping" class="step a-item" style="display: none;">
-                    <form action="" id="co-shipping-form">
+                    </div>
+                  </li>
+                  <li id="opc-shipping" class="section">
+                    <div class="step-title"> <span class="number">2</span>
+                      <h3 class="one_page_heading"> Shipping Information</h3>
+                      <!--<a href="#">Edit</a>-->
+                    </div>
+                    <div id="checkout-step-shipping" class="step a-item" style="display: none;">
                       <fieldset class="group-select">
                         <ul>
                           <li>
@@ -494,12 +495,15 @@
                             <select name="shipping_address_id" id="shipping-address-select" class="address-select"
                               title="" onChange="shipping.newAddress(!this.value)">
                               @if($address != null)
-                              <option value="{{ $address->id }}" selected="selected">{{ $address->NomeCognome }}, {{ $address->street }} {{ $address->street_number }}, {{ $address->city }} {{ $address->CAP }}, {{ $address->country }}
+                              <option value="{{ $address->id }}" selected="selected">{{ $address->NomeCognome }},
+                                {{ $address->street }} {{ $address->street_number }}, {{ $address->city }}
+                                {{ $address->CAP }}, {{ $address->country }}
                               </option>
                               @endif
                               {{!$addresses = App\Address::where([['user_id', $User->id],['id', '!=' , $User->address_id]])->get() }}
                               @foreach($addresses as $ad)
-                              <option value="{{ $ad->id }}">{{ $ad->NomeCognome }}, {{ $ad->street }} {{ $ad->street_number }}, {{ $ad->city }} {{ $ad->CAP }}, {{ $ad->country }}</option>
+                              <option value="{{ $ad->id }}">{{ $ad->NomeCognome }}, {{ $ad->street }}
+                                {{ $ad->street_number }}, {{ $ad->city }} {{ $ad->CAP }}, {{ $ad->country }}</option>
                               @endforeach
                               <option value="">New Address</option>
                             </select>
@@ -511,18 +515,11 @@
                                 <li>
                                   <div class="customer-name">
                                     <div class="input-box name-firstname">
-                                      <label for="shipping:firstname"> First Name <span class="required">*</span>
+                                      <label for="shipping:firstname"> Name and surname <span class="required">*</span>
                                       </label>
                                       <br>
-                                      <input type="text" id="shipping:firstname" name="shipping[firstname]" value=""
+                                      <input type="text" id="shipping:firstname" name="NomeCognome" value=""
                                         title="First Name" class="input-text required-entry"
-                                        onChange="shipping.setSameAsBilling(false)">
-                                    </div>
-                                    <div class="input-box name-lastname">
-                                      <label for="shipping:lastname"> Last Name <span class="required">*</span> </label>
-                                      <br>
-                                      <input type="text" id="shipping:lastname" name="shipping[lastname]" value=""
-                                        title="Last Name" class="input-text required-entry"
                                         onChange="shipping.setSameAsBilling(false)">
                                     </div>
                                   </div>
@@ -538,97 +535,27 @@
                                 <li>
                                   <label for="shipping:street1">Address <span class="required">*</span></label>
                                   <br>
-                                  <input type="text" title="Street Address" name="shipping[street][]"
-                                    id="shipping:street1" value="" class="input-text required-entry"
-                                    onChange="shipping.setSameAsBilling(false);">
+                                  <input type="text" title="Street Address" name="street" id="shipping:street1" value=""
+                                    class="input-text required-entry" onChange="shipping.setSameAsBilling(false);">
                                 </li>
                                 <li>
-                                  <input type="text" title="Street Address 2" name="shipping[street][]"
-                                    id="shipping:street2" value="" class="input-text"
-                                    onChange="shipping.setSameAsBilling(false);">
+                                  <input type="text" title="Street Address 2" name="street_number" id="shipping:street2"
+                                    value="" class="input-text" onChange="shipping.setSameAsBilling(false);">
                                 </li>
                                 <li>
                                   <div class="input-box">
                                     <label for="shipping:city">City <span class="required">*</span></label>
                                     <br>
-                                    <input type="text" title="City" name="shipping[city]" value=""
+                                    <input type="text" title="City" name="city" value=""
                                       class="input-text required-entry" id="shipping:city"
                                       onChange="shipping.setSameAsBilling(false);">
                                   </div>
                                   <div id="" class="input-box">
                                     <label for="shipping:region">State/Province <span class="required">*</span></label>
                                     <br>
-                                    <select defaultvalue="" id="shipping:region_id" name="shipping[region_id]"
-                                      title="State/Province" class="validate-select" style="">
-                                      <option value="">Please select region, state or province</option>
-                                      <option value="1">Alabama</option>
-                                      <option value="2">Alaska</option>
-                                      <option value="3">American Samoa</option>
-                                      <option value="4">Arizona</option>
-                                      <option value="5">Arkansas</option>
-                                      <option value="6">Armed Forces Africa</option>
-                                      <option value="7">Armed Forces Americas</option>
-                                      <option value="8">Armed Forces Canada</option>
-                                      <option value="9">Armed Forces Europe</option>
-                                      <option value="10">Armed Forces Middle East</option>
-                                      <option value="11">Armed Forces Pacific</option>
-                                      <option value="12">California</option>
-                                      <option value="13">Colorado</option>
-                                      <option value="14">Connecticut</option>
-                                      <option value="15">Delaware</option>
-                                      <option value="16">District of Columbia</option>
-                                      <option value="17">Federated States Of Micronesia</option>
-                                      <option value="18">Florida</option>
-                                      <option value="19">Georgia</option>
-                                      <option value="20">Guam</option>
-                                      <option value="21">Hawaii</option>
-                                      <option value="22">Idaho</option>
-                                      <option value="23">Illinois</option>
-                                      <option value="24">Indiana</option>
-                                      <option value="25">Iowa</option>
-                                      <option value="26">Kansas</option>
-                                      <option value="27">Kentucky</option>
-                                      <option value="28">Louisiana</option>
-                                      <option value="29">Maine</option>
-                                      <option value="30">Marshall Islands</option>
-                                      <option value="31">Maryland</option>
-                                      <option value="32">Massachusetts</option>
-                                      <option value="33">Michigan</option>
-                                      <option value="34">Minnesota</option>
-                                      <option value="35">Mississippi</option>
-                                      <option value="36">Missouri</option>
-                                      <option value="37">Montana</option>
-                                      <option value="38">Nebraska</option>
-                                      <option value="39">Nevada</option>
-                                      <option value="40">New Hampshire</option>
-                                      <option value="41">New Jersey</option>
-                                      <option value="42">New Mexico</option>
-                                      <option value="43">New York</option>
-                                      <option value="44">North Carolina</option>
-                                      <option value="45">North Dakota</option>
-                                      <option value="46">Northern Mariana Islands</option>
-                                      <option value="47">Ohio</option>
-                                      <option value="48">Oklahoma</option>
-                                      <option value="49">Oregon</option>
-                                      <option value="50">Palau</option>
-                                      <option value="51">Pennsylvania</option>
-                                      <option value="52">Puerto Rico</option>
-                                      <option value="53">Rhode Island</option>
-                                      <option value="54">South Carolina</option>
-                                      <option value="55">South Dakota</option>
-                                      <option value="56">Tennessee</option>
-                                      <option value="57">Texas</option>
-                                      <option value="58">Utah</option>
-                                      <option value="59">Vermont</option>
-                                      <option value="60">Virgin Islands</option>
-                                      <option value="61">Virginia</option>
-                                      <option value="62">Washington</option>
-                                      <option value="63">West Virginia</option>
-                                      <option value="64">Wisconsin</option>
-                                      <option value="65">Wyoming</option>
-                                    </select>
-                                    <input type="text" id="shipping:region" name="shipping[region]" value=""
-                                      title="State/Province" class="input-text required-entry" style="display: block;">
+                                    <input type="text" title="City" name="Provincia" value=""
+                                      class="input-text required-entry" id="shipping:city"
+                                      onChange="shipping.setSameAsBilling(false);">
                                   </div>
                                 </li>
                                 <li>
@@ -636,15 +563,14 @@
                                     <label for="shipping:postcode">Zip/Postal Code <span
                                         class="required">*</span></label>
                                     <br>
-                                    <input type="text" title="Zip/Postal Code" name="shipping[postcode]"
-                                      id="shipping:postcode" value=""
-                                      class="input-text validate-zip-international required-entry"
+                                    <input type="text" title="Zip/Postal Code" name="CAP" id="shipping:postcode"
+                                      value="" class="input-text validate-zip-international required-entry"
                                       onChange="shipping.setSameAsBilling(false);">
                                   </div>
                                   <div class="input-box">
                                     <label for="shipping:country_id">Country <span class="required">*</span></label>
                                     <br>
-                                    <select name="shipping[country_id]" id="shipping:country_id" class="validate-select"
+                                    <select name="country_id" id="shipping:country_id" class="validate-select"
                                       title="Country" onChange="shipping.setSameAsBilling(false);">
                                       <option value=""> </option>
                                       <option value="AF">Afghanistan</option>
@@ -896,32 +822,6 @@
                                     </select>
                                   </div>
                                 </li>
-                                <li>
-                                  <div class="input-box">
-                                    <label for="shipping:telephone">Telephone <span class="required">*</span></label>
-                                    <br>
-                                    <input type="text" name="shipping[telephone]" value="" title="Telephone"
-                                      class="input-text required-entry" id="shipping:telephone"
-                                      onChange="shipping.setSameAsBilling(false);">
-                                  </div>
-                                  <div class="input-box">
-                                    <label for="shipping:fax">Fax</label>
-                                    <br>
-                                    <input type="text" name="shipping[fax]" value="" title="Fax" class="input-text"
-                                      id="shipping:fax" onChange="shipping.setSameAsBilling(false);">
-                                  </div>
-                                </li>
-                                <li>
-                                  <input type="checkbox" name="shipping[save_in_address_book]" value="1"
-                                    title="Save in address book" id="shipping:save_in_address_book"
-                                    onChange="shipping.setSameAsBilling(false);" class="checkbox">
-                                  <label for="shipping:save_in_address_book">Save in address book</label>
-                                </li>
-                                <li>
-                                  <input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing"
-                                    value="1" onClick="shipping.setSameAsBilling(this.checked)" class="checkbox">
-                                  <label for="shipping:same_as_billing">Use Billing Address</label>
-                                </li>
                               </ul>
                             </fieldset>
                           </li>
@@ -933,28 +833,39 @@
                           <a href="#" onClick="buttonContinue('shipping', 'billing');" class="back-link">« Back</a>
                         </div>
                       </fieldset>
-                    </form>
-                  </div>
-                </li>
-                <li id="opc-shipping_method" class="section">
-                  <div class="step-title"> <span class="number">3</span>
-                    <h3 class="one_page_heading">Shipping Method</h3>
-                    <!--<a href="#">Edit</a>-->
-                  </div>
-                  <div id="checkout-step-shipping_method" class="step a-item" style="display: none;">
-                    <form id="co-shipping-method-form" action="">
+                    </div>
+                  </li>
+                  <li id="opc-shipping_method" class="section">
+                    <div class="step-title"> <span class="number">3</span>
+                      <h3 class="one_page_heading">Shipping Method</h3>
+                      <!--<a href="#">Edit</a>-->
+                    </div>
+                    <div id="checkout-step-shipping_method" class="step a-item" style="display: none;">
                       <fieldset>
                         <div id="checkout-shipping-method-load">
                           <dl class="shipping-methods">
                             <dt>Flat Rate</dt>
                             <dd>
                               <ul>
+                                @if(isset($Spedizioni))
+                                @foreach ($Spedizioni as $sped)
+                                <li>
+                                  <input type="radio" name="courier" value="{{ $sped->id }}"
+                                    id="s_method_flatrate_flatrate" class="radio" required>
+                                  <label for="s_method_flatrate_flatrate">{{ $sped->stima_giorni }}gg stimati per la
+                                    consegna. {{ $sped->courier_name }} <span class="price">
+                                      €{{ number_format($sped->price, 2, ',', '.')  }}</span>
+                                  </label>
+                                </li>
+                                @endforeach
+                                @else
                                 <li>
                                   <input type="radio" name="shipping_method" value="flatrate_flatrate"
                                     id="s_method_flatrate_flatrate" checked="checked" class="radio">
-                                  <label for="s_method_flatrate_flatrate">Fixed <span class="price">$35.00</span>
+                                  <label for="s_method_flatrate_flatrate">Not Couriers. Please contact assistance.
                                   </label>
                                 </li>
+                                @endif
                               </ul>
                             </dd>
                           </dl>
@@ -980,21 +891,20 @@
                           <a href="#" onClick="buttonContinue('shipping_method', 'shipping');" class="back-link">«
                             Back</a> </div>
                       </fieldset>
-                    </form>
-                  </div>
-                </li>
-                <li id="opc-payment" class="section">
-                  <div class="step-title"> <span class="number">4</span>
-                    <h3 class="one_page_heading">Payment Information</h3>
-                    <!--<a href="#">Edit</a>-->
-                  </div>
-                  <div id="checkout-step-payment" class="step a-item" style="display: none;">
-                    <form action="" id="co-payment-form">
+                    </div>
+                  </li>
+                  <li id="opc-payment" class="section">
+                    <div class="step-title"> <span class="number">4</span>
+                      <h3 class="one_page_heading">Payment Information</h3>
+                      <!--<a href="#">Edit</a>-->
+                    </div>
+                    <div id="checkout-step-payment" class="step a-item" style="display: none;">
                       <dl id="checkout-payment-method-load">
                         <dt>
                           <input type="radio" id="p_method_checkmo" value="checkmo" name="payment[method]"
-                            title="Check / Money order" onClick="payment.switchMethod('checkmo')" class="radio">
-                          <label for="p_method_checkmo">Check / Money order</label>
+                            title="Check / Money order" checked="checked" onClick="payment.switchMethod('checkmo')"
+                            class="radio">
+                          <label for="p_method_checkmo">PayPal</label>
                         </dt>
                         <dd>
                           <fieldset class="form-list">
@@ -1098,131 +1008,124 @@
                           </fieldset>
                         </dd>
                       </dl>
-                    </form>
-                    <p class="require"><em class="required">* </em>Required Fields</p>
-                    <div class="buttons-set1" id="payment-buttons-container">
-                      <button type="button" class="button"
-                        onClick="buttonContinue('payment', 'review');"><span>Continue</span></button>
-                      <a href="#" onClick="buttonContinue('payment', 'shipping_method');" class="back-link">« Back</a>
+                      <p class="require"><em class="required">* </em>Required Fields</p>
+                      <div class="buttons-set1" id="payment-buttons-container">
+                        <button type="button" class="button"
+                          onClick="buttonContinue('payment', 'review');"><span>Continue</span></button>
+                        <a href="#" onClick="buttonContinue('payment', 'shipping_method');" class="back-link">« Back</a>
+                      </div>
+                      <div style="clear: both;"></div>
                     </div>
-                    <div style="clear: both;"></div>
-                  </div>
-                </li>
-                <li id="opc-review" class="section">
-                  <div class="step-title"> <span class="number">5</span>
-                    <h3 class="one_page_heading">Order Review</h3>
-                    <!--<a href="#">Edit</a>-->
-                  </div>
-                  <div id="checkout-step-review" class="step a-item" style="display: none;">
-                    <div class="order-review" id="checkout-review-load"> </div>
-                    <div class="buttons-set13" id="review-buttons-container">
-                      <p class="f-left">Forgot an Item? <a href="#cart/">Edit Your Cart</a></p>
+                  </li>
+                  <li id="opc-review" class="section">
+                    <div class="step-title"> <span class="number">5</span>
+                      <h3 class="one_page_heading">Order Review</h3>
+                      <!--<a href="#">Edit</a>-->
+                    </div>
+                    <div id="checkout-step-review" class="step a-item" style="display: none;">
+                      <div class="order-review" id="checkout-review-load"> </div>
+                      <div class="buttons-set13" id="review-buttons-container">
+                        <p class="f-left">Forgot an Item? <a href="#cart/">Edit Your Cart</a></p>
 
 
-
-
-
-                      <div class="block block-progress">
-                        <div class="block-title ">Your Checkout</div>
-                        <div class="block-content">
-                          <div class="col-sm-6">
-                            <dl>
-                              <dt class="complete"> Billing Address <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
-                              </dt>
-                              <dd class="complete">
-                                <address>
-                                  John Doe<br>
-                                  Abc Company<br>
-                                  23 North Main Stree<br>
-                                  Windsor<br>
-                                  Holtsville, New York, 00501<br>
-                                  United States<br>
-                                  T: 5465465 <br>
-                                  F: 466523
-                                </address>
-                              </dd>
-                              <dt class="complete"> Shipping Address <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
-                              </dt>
-                              <dd class="complete">
-                                <address>
-                                  John Doe<br>
-                                  Abc Company<br>
-                                  23 North Main Stree<br>
-                                  Windsor<br>
-                                  Holtsville, New York, 00501<br>
-                                  United States<br>
-                                  T: 5465465 <br>
-                                  F: 466523
-                                </address>
-                              </dd>
-                              <dt class="complete"> Shipping Method <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('shipping_method'); return false;"
-                                  href="#shipping_method">Change</a> </dt>
-                              <dd class="complete"> Flat Rate - Fixed <br>
-                                <span class="price">$15.00</span> </dd>
-                              <dt> Payment Method </dt>
-                            </dl>
-                          </div>
-                          <div class="col-sm-6">
-                            <dl>
-                              <dt class="complete"> Billing Address <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
-                              </dt>
-                              <dd class="complete">
-                                <address>
-                                  John Doe<br>
-                                  Abc Company<br>
-                                  23 North Main Stree<br>
-                                  Windsor<br>
-                                  Holtsville, New York, 00501<br>
-                                  United States<br>
-                                  T: 5465465 <br>
-                                  F: 466523
-                                </address>
-                              </dd>
-                              <dt class="complete"> Shipping Address <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
-                              </dt>
-                              <dd class="complete">
-                                <address>
-                                  John Doe<br>
-                                  Abc Company<br>
-                                  23 North Main Stree<br>
-                                  Windsor<br>
-                                  Holtsville, New York, 00501<br>
-                                  United States<br>
-                                  T: 5465465 <br>
-                                  F: 466523
-                                </address>
-                              </dd>
-                              <dt class="complete"> Shipping Method <span class="separator">|</span> <a
-                                  onClick="checkout.gotoSection('shipping_method'); return false;"
-                                  href="#shipping_method">Change</a> </dt>
-                              <dd class="complete"> Flat Rate - Fixed <br>
-                                <span class="price">$15.00</span> </dd>
-                              <dt> Payment Method </dt>
-                            </dl>
+                        <div class="block block-progress">
+                          <div class="block-title ">Your Checkout</div>
+                          <div class="block-content">
+                            <div class="col-sm-6">
+                              <dl>
+                                <dt class="complete"> Billing Address <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
+                                </dt>
+                                <dd class="complete">
+                                  <address>
+                                    John Doe<br>
+                                    Abc Company<br>
+                                    23 North Main Stree<br>
+                                    Windsor<br>
+                                    Holtsville, New York, 00501<br>
+                                    United States<br>
+                                    T: 5465465 <br>
+                                    F: 466523
+                                  </address>
+                                </dd>
+                                <dt class="complete"> Shipping Address <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
+                                </dt>
+                                <dd class="complete">
+                                  <address>
+                                    John Doe<br>
+                                    Abc Company<br>
+                                    23 North Main Stree<br>
+                                    Windsor<br>
+                                    Holtsville, New York, 00501<br>
+                                    United States<br>
+                                    T: 5465465 <br>
+                                    F: 466523
+                                  </address>
+                                </dd>
+                                <dt class="complete"> Shipping Method <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('shipping_method'); return false;"
+                                    href="#shipping_method">Change</a> </dt>
+                                <dd class="complete"> Flat Rate - Fixed <br>
+                                  <span class="price">$15.00</span> </dd>
+                                <dt> Payment Method </dt>
+                              </dl>
+                            </div>
+                            <div class="col-sm-6">
+                              <dl>
+                                <dt class="complete"> Billing Address <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
+                                </dt>
+                                <dd class="complete">
+                                  <address>
+                                    John Doe<br>
+                                    Abc Company<br>
+                                    23 North Main Stree<br>
+                                    Windsor<br>
+                                    Holtsville, New York, 00501<br>
+                                    United States<br>
+                                    T: 5465465 <br>
+                                    F: 466523
+                                  </address>
+                                </dd>
+                                <dt class="complete"> Shipping Address <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
+                                </dt>
+                                <dd class="complete">
+                                  <address>
+                                    John Doe<br>
+                                    Abc Company<br>
+                                    23 North Main Stree<br>
+                                    Windsor<br>
+                                    Holtsville, New York, 00501<br>
+                                    United States<br>
+                                    T: 5465465 <br>
+                                    F: 466523
+                                  </address>
+                                </dd>
+                                <dt class="complete"> Shipping Method <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('shipping_method'); return false;"
+                                    href="#shipping_method">Change</a> </dt>
+                                <dd class="complete"> Flat Rate - Fixed <br>
+                                  <span class="price">$15.00</span> </dd>
+                                <dt> Payment Method </dt>
+                              </dl>
+                            </div>
                           </div>
                         </div>
+
+
+                        <button type="submit" class="button" onClick="review.save();"><span>Place Order</span></button>
+                        <a href="#" onClick="buttonContinue('review', 'payment');" class="back-link">« Back</a>
                       </div>
-
-
-
-
-
-
-                      <button type="submit" class="button" onClick="review.save();"><span>Place Order</span></button>
-                      <a href="#" onClick="buttonContinue('review', 'payment');" class="back-link">« Back</a>
                     </div>
-                  </div>
-          </div>
-          </li>
-          </ol>
-          </article>
-          <!--	///*///======    End article  ========= //*/// -->
+            </div>
+            </li>
+            </ol>
+            </article>
+            <!--	///*///======    End article  ========= //*/// -->
         </div>
+        </form>
       </div>
   </div>
   </section>

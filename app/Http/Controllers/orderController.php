@@ -28,7 +28,11 @@ class orderController extends Controller
                 $order = new Order;
                 $order->user_id = Auth::user()->id;
                 $order->total = $total;
-                $order->address_id = Auth::user()->address_id;
+                if($request->shipping_address_i != '' && !empty($request->shipping_address_i)) {
+                    $order->address_id = orderController::insert_address($request);
+                } else {
+                    $order->address_id = $request->shipping_address_id;
+                }
                 $order->shipping_cost = $courierObj->price;
                 $order->tax = 0.22;
                 $order->order_shipped = null;
@@ -56,6 +60,26 @@ class orderController extends Controller
                 return view('home');
             }
             
+        }
+    }
+
+    public function insert_address(Request $request){
+        if (!(Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            $address = new App\Address;
+
+            $address-> country = $request -> country;
+            $address-> street = $request -> street;
+            $address-> city = $request -> city;
+            $address-> CAP = $request -> CAP;
+            $address-> street_number = $request -> street_number;
+            $address-> NomeCognome = $request -> NomeCognome;
+            $address-> Provincia = $request -> Provincia;
+            $address-> user_id = Auth::user()->id;
+            
+            $address->save();
+            
+            return $address->id;
         }
     }
 
