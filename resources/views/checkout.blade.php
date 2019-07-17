@@ -908,8 +908,8 @@
                     <div id="checkout-step-payment" class="step a-item" style="display: none;">
                       <dl id="checkout-payment-method-load">
                         <dt>
-                          <input type="radio" id="p_method_checkmo" value="checkmo" name="payment[method]"
-                            title="Check / Money order" checked="checked" onClick="payment.switchMethod('checkmo')"
+                          <input type="radio" id="p_method_checkmo" value="checkmo" name="payment"
+                            title="Check / Money order" checked="checked" 
                             class="radio">
                           <label for="p_method_checkmo">PayPal</label>
                         </dt>
@@ -918,8 +918,8 @@
                           </fieldset>
                         </dd>
                         <dt>
-                          <input type="radio" id="p_method_ccsave" value="ccsave" name="payment[method]"
-                            title="Credit Card (saved)" onClick="payment.switchMethod('ccsave')" class="radio">
+                          <input type="radio" id="p_method_ccsave" value="ccsave" name="payment"
+                            title="Credit Card (saved)"  class="radio">
                           <label for="p_method_ccsave">Credit Card (saved)</label>
                         </dt>
                         <dd>
@@ -1146,20 +1146,20 @@
                     <tr>
                       <td colspan="1" class="a-left" style=""><strong>Total</strong></td>
                       <td class="a-right" style=""><strong><span
-                        class="price">$77.38</span></strong></td>
+                        class="price" id="priceTotal"></span></strong></td>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
                       <td colspan="1" class="a-left" style=""> Subtotal </td>
                       <td class="a-right" style=""><span
-                              class="price">€{{ number_format($totalPrice, 2, ',', '.') }}</span>
+                              class="price">€<span id="priceSubtotal">{{ number_format($totalPrice, 2, ',', '.') }}</span></span>
                       </td>
                     </tr>
                     <tr>
                       <td colspan="1" class="a-left" style=""> Discount </td>
                       <td class="a-right" style=""><span class="price">
-                        - €{{ number_format($totalPrice, 2, ',', '.') }}</span>
+                        - €<span id="priceDiscount">{{ number_format($totalDiscount, 2, ',', '.') }}</span></span>
                       </td>
                     </tr>
                     <tr>

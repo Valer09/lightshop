@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
     /**Payment Information */
-    $('#co-payment-form input').on('change', function () {
+    $('#co-billing-form input[name=payment]').on('change', function () {
         if ($('#p_method_ccsave:checked').val() == 'ccsave') {
             $('#payment_form_ccsave').show();
         } else {
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     /**open step with query */
     var urlParams = new URLSearchParams(location.search);
-    console.log(urlParams.get('step').toString());
+    console.log(urlParams.get('step'));
     if (urlParams.get('step') != null) {
         switch (urlParams.get('step')) {
             case 'shipping':
@@ -81,10 +81,22 @@ $(document).ready(function () {
     }
 
     var priceShipping = 0;
-    $('#co-billing-form input').on('change', function () {
-        priceShipping = $('input[name=courier]:checked').attr('class').split(" ")[1];
+    $('#co-billing-form input[name=courier]').on('change', function () {
+        priceShipping = $('input[name=courier]:checked').attr('class').split("€")[1];
         $('#priceShipping').html(priceShipping);
+
+        var subTot = $('#priceSubtotal').text().toString().replace(',','.');
+        var disc = $('#priceDiscount').text().toString().replace(',','.');
+        var ship = priceShipping.toString().replace(',','.');
+        var total = parseFloat(subTot) - parseFloat(disc) + parseFloat(ship);
+        $('#priceTotal').html(total);
     });
+
+    var subTot = $('#priceSubtotal').text().toString().replace(',','.');
+    var disc = $('#priceDiscount').text().toString().replace(',','.');
+    var ship = priceShipping.toString().replace(',','.');
+    var total = parseFloat(subTot) - parseFloat(disc) + parseFloat(ship);
+    $('#priceTotal').html(total);
 
 });
 

@@ -435,6 +435,9 @@
                                         <div class="inner">
                                             <table class="table shopping-cart-table-total"
                                                 id="shopping-cart-totals-table">
+                                                @php
+                                                    $totalDiscount = App\Offert::totalDiscount($elements, $Offerts);
+                                                @endphp
                                                 <colgroup>
                                                     <col>
                                                     <col width="1">
@@ -443,7 +446,7 @@
                                                     <tr>
                                                         <td colspan="1" class="a-left" style=""><strong>Total</strong></td>
                                                         <td class="a-right" style=""><strong><span
-                                                                    class="price">$77.38</span></strong></td>
+                                                                    class="price">€{{ number_format($totalPrice - $totalDiscount, 2, ',', '.') }}</span></strong></td>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
@@ -456,7 +459,7 @@
                                                     <tr>
                                                         <td colspan="1" class="a-left" style=""> Discount </td>
                                                         <td class="a-right" style=""><span class="price">-
-                                                                €{{ number_format($totalPrice, 2, ',', '.') }}</span>
+                                                                €{{ number_format($totalDiscount, 2, ',', '.') }}</span>
                                                         </td>
                                                     </tr>
                                                 </tbody>

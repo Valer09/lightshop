@@ -61,16 +61,9 @@ class ElementsController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        $offerts = array();
-        foreach($cart->items as $item){
-            $off = Offert::where([
-                ['id_element', $item['item']->id],
-                ['date_end', '>', date('Y-m-d h:i:sa')],
-            ])->first();
-            if(!empty($off)){
-                $offerts = Arr::add($offerts, $item['item']->id, $off);
-            }
-        }
+        $offerts = Offert::keyOfferts($cart->items);
+        $totalDiscount = Offert::totalDiscount($cart->items, $offerts);
+
         return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight, 'Offerts' => $offerts]);
     }
 
@@ -97,6 +90,9 @@ class ElementsController extends Controller
                 $cart= new Cart($oldCart);
                 $total=$cart->totalPrice;
 
+                $totalDiscount = Offert::totalDiscountNotOff($cart->items);
+
+
                 $id=Auth::user()->address_id;
                 $address = Address::find($id);
 
@@ -107,7 +103,9 @@ class ElementsController extends Controller
                     ['destination_country', $address->country],
                     ])->get(); 
                     //dd($spedizioni);
-                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni, 'User' => Auth::user()]);
+                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 
+                'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni, 
+                'User' => Auth::user(), 'totalDiscount' => $totalDiscount]);
             }
         } else {
             return redirect('login');
