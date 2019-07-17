@@ -25,12 +25,10 @@
           <div class="footer-column pull-left">
             <h4>Shopping Guide</h4>
             <ul class="links">
-              <li><a href="blog.html" title="How to buy">Blog</a></li>
               <li><a href="faq.html" title="FAQs">FAQs</a></li>
-              <li><a href="#" title="Payment">Payment</a></li>
-              <li><a href="#" title="Shipment">Shipment</a></li>
-              <li><a href="#" title="Where is my order?">Where is my order?</a></li>
-              <li><a href="#" title="Return policy">Return policy</a></li>
+              <li><a href="{{ url('profile') }}" title="Shipment">Shipment</a></li>
+              <li><a href="{{ url('profile') }}" title="Where is my order?">Where is my order?</a></li>
+              <li><a href="{{ url('privacy_policy') }}" title="Return policy">Return policy</a></li>
             </ul>
           </div>
         </div>
@@ -39,11 +37,10 @@
             <h4>Style Advisor</h4>
             <ul class="links">
               <li><a href="login.html" title="Your Account">Your Account</a></li>
-              <li><a href="#" title="Information">Information</a></li>
-              <li><a href="#" title="Addresses">Addresses</a></li>
-              <li><a href="#" title="Addresses">Discount</a></li>
-              <li><a href="#" title="Orders History">Orders History</a></li>
-              <li><a href="#" title="Order Tracking">Order Tracking</a></li>
+              <li><a href="{{ url('profile') }}" title="Information">Information</a></li>
+              <li><a href="{{ url('profile') }}" title="Addresses">Addresses</a></li>
+              <li><a href="{{ url('profile') }}" title="Orders History">Orders History</a></li>
+
             </ul>
           </div>
         </div>
@@ -51,12 +48,10 @@
           <div class="footer-column pull-left">
             <h4>Information</h4>
             <ul class="links">
-              <li><a href="sitemap.html" title="Site Map">Site Map</a></li>
+              <li><a href="{{ url('sitemap') }}" title="Site Map">Site Map</a></li>
               <li><a href="#" title="Search Terms">Search Terms</a></li>
-              <li><a href="#" title="Advanced Search">Advanced Search</a></li>
-              <li><a href="about_us.html" title="About Us">About Us</a></li>
-              <li><a href="contact_us.html" title="Contact Us">Contact Us</a></li>
-              <li><a href="#" title="Suppliers">Suppliers</a></li>
+              <li><a href="{{ url('about') }}" title="About Us">About Us</a></li>
+              <li><a href="{{ url('contact') }}" title="Contact Us">Contact Us</a></li>
             </ul>
           </div>
         </div>

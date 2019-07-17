@@ -21,6 +21,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.bxslider.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/flexslider.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mobile-menu.css') }}">
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600,800,400' rel='stylesheet' type='text/css'>

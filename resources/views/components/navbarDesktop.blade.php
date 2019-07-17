@@ -7,7 +7,7 @@
             
             <!-- End Header Language --> 
             <!-- Header Currency -->
-            <div class="dropdown block-currency-wrapper"> <a class="block-currency dropdown-toggle" href="#"> welcome  </a>
+            <div class="dropdown block-currency-wrapper"> <a class="block-currency dropdown-toggle" href="#"> Welcome {{ empty(Auth::user()->name) || Auth::user()->name == null ? '' : Auth::user()->name}}</a>
               </ul>
             </div>
           </div>
@@ -26,10 +26,10 @@
                 <!-- Header Company -->
                 <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="#"> Company <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li role="presentation"><a href="about"> About Us </a> </li>
-                    <li role="presentation"><a href="#"> Customer Service </a> </li>
-                    <li role="presentation"><a href="#"> Privacy Policy </a> </li>
-                    <li role="presentation"><a href="sitemap.html">Site Map </a> </li>
+                    <li role="presentation"><a href="{{ url('about') }}"> About Us </a> </li>
+                    <li role="presentation"><a href="{{ url('contact') }}"> Contact Us </a> </li>
+                    <li role="presentation"><a href="{{ url('privacy_policy') }}"> Privacy Policy </a> </li>
+                    <li role="presentation"><a href="{{ url('sitemap') }}">Site Map </a> </li>
                   </ul>
                 </div>
                 <!-- End Header Company -->
@@ -148,7 +148,7 @@
         <!-- features box -->
         <div class="our-features-box hidden-xs">
           <div class="features-block">
-            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-9 offer-block"> <a href="{{ url('home') }}">Home</a> <a href="#">Shop</a> <a href="#">Blog</a> <a href="#">Pages</a> <a href="#">Todays Deals</a> <span>Order online or call us (+1800) 000 8808</span> </div>
+            <div class="col-lg-9 col-md-9 col-xs-12 col-sm-9 offer-block"> <a href="{{ url('home') }}">Home</a> <a href="{{ url('catalog-Illuminazione esterna') }}">Outdoor</a> <a href="{{ url('catalog-Illuminazione esterni') }}">Interior</a> <a href="{{ url('catalog-Illuminazione esterna') }}">Outdoor</a> <a href="{{ url('catalog-Illuminazione esterni') }}">Interior</a> <span>Order online or call us (+1800) 000 8808</span> </div>
           </div>
         </div>
       </div>

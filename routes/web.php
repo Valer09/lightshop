@@ -54,6 +54,18 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::get('contact', function () {
+    return view('contact');
+});
+
+Route::get('sitemap', function () {
+    return view('sitemap');
+});
+
+Route::get('privacy_policy', function () {
+    return view('privacy');
+});
+
 Route::get('/verified', function () {
     return view('verified');
 });
