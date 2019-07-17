@@ -39,9 +39,47 @@ $(document).ready(function () {
 
     /**open step with query */
     var urlParams = new URLSearchParams(location.search);
+    console.log(urlParams.get('step').toString());
+    if (urlParams.get('step') != null) {
+        switch (urlParams.get('step')) {
+            case 'shipping':
+                activeStep('shipping');
+                disableStep('billing');
+                disableStep('shipping_method');
+                disableStep('payment');
+                disableStep('review');
+                break;
+            case 'shipping_method':
+                disableStep('shipping');
+                disableStep('billing');
+                activeStep('shipping_method');
+                disableStep('payment');
+                disableStep('review');
+                break;
+            case 'payment':
+                disableStep('shipping');
+                disableStep('billing');
+                disableStep('shipping_method');
+                activeStep('payment');
+                disableStep('review');
+                break;
+            case 'review':
+                disableStep('shipping');
+                disableStep('billing');
+                disableStep('shipping_method');
+                disableStep('payment');
+                activeStep('review');
+                break;
+            default:
+                disableStep('shipping');
+                activeStep('billing');
+                disableStep('shipping_method');
+                disableStep('payment');
+                disableStep('review');
+                break;
+        }
+    }
 
-    urlParams.has('type');  // true
-    urlParams.get('id');    // 1234
 });
 
 function buttonContinue(oldStep, newStep) {

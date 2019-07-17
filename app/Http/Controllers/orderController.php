@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User, App\Order, App\OrderDetail, App\Courier, App\Cart, App\Element;
+use App\User, App\Order, App\OrderDetail, App\Courier, App\Cart, App\Element, App\Address;
 use Illuminate\Http\Request;
 use DB, Auth, Session;
 
@@ -28,7 +28,7 @@ class orderController extends Controller
                 $order = new Order;
                 $order->user_id = Auth::user()->id;
                 $order->total = $total;
-                if($request->shipping_address_i != '' && !empty($request->shipping_address_i)) {
+                if($request->shipping_address_i == '' || empty($request->shipping_address_i)) {
                     $order->address_id = orderController::insert_address($request);
                 } else {
                     $order->address_id = $request->shipping_address_id;
@@ -66,9 +66,9 @@ class orderController extends Controller
     public function insert_address(Request $request){
         if (!(Auth::check() ) ) return abort(403, 'Azione non autorizzata!');
         else {
-            $address = new App\Address;
+            $address = new Address;
 
-            $address-> country = $request -> country;
+            $address-> country = $request -> country_id;
             $address-> street = $request -> street;
             $address-> city = $request -> city;
             $address-> CAP = $request -> CAP;

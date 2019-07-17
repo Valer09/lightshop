@@ -433,7 +433,6 @@
                                     <div class="totals col-sm-6">
                                         <h3>Shopping Cart Total</h3>
                                         <div class="inner">
-
                                             <table class="table shopping-cart-table-total"
                                                 id="shopping-cart-totals-table">
                                                 <colgroup>

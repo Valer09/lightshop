@@ -14,12 +14,13 @@
     @include('components.navbarDesktop')
     <!-- end header -->
 
-    <!-- Main Container -->
-    <section class="main-container col2-left-layout">
+  <!-- Main Container -->
+  <section class="main-container col2-left-layout">
       <div class="container">
         <div class="row">
-          <form id="co-billing-form" action="">
-            <div class="col-sm-9 col-sm-push-3">
+          <div class="col-sm-6 col-sm-push-3">
+            <form id="co-billing-form" action="{{ url('order_submit') }}" method="post">
+            @csrf
               <article class="col-main">
                 <div class="page-title">
                   <h1>Checkout</h1>
@@ -533,14 +534,20 @@
                                   </div>
                                 </li>
                                 <li>
-                                  <label for="shipping:street1">Address <span class="required">*</span></label>
-                                  <br>
-                                  <input type="text" title="Street Address" name="street" id="shipping:street1" value=""
-                                    class="input-text required-entry" onChange="shipping.setSameAsBilling(false);">
-                                </li>
-                                <li>
-                                  <input type="text" title="Street Address 2" name="street_number" id="shipping:street2"
-                                    value="" class="input-text" onChange="shipping.setSameAsBilling(false);">
+                                  <div class="input-box">
+                                    <label for="shipping:street1">Address <span class="required">*</span></label>
+                                    <br>
+                                    <input type="text" title="Street Address" name="street" id="shipping:street1"
+                                      value="" class="input-text required-entry"
+                                      onChange="shipping.setSameAsBilling(false);">
+                                  </div>
+                                  <div id="" class="input-box">
+                                    <label for="shipping:street1">Street number <span class="required">*</span></label>
+                                    <br>
+                                    <input type="text" title="Street Address 2" name="street_number"
+                                      id="shipping:street2" value="" class="input-text"
+                                      onChange="shipping.setSameAsBilling(false);">
+                                  </div>
                                 </li>
                                 <li>
                                   <div class="input-box">
@@ -1119,16 +1126,57 @@
                         <a href="#" onClick="buttonContinue('review', 'payment');" class="back-link">« Back</a>
                       </div>
                     </div>
+                    
+                  </li>
+                </ol>
+              </article>
+              <!--	///*///======    End article  ========= //*/// -->
+            </form>
+          </div>
+          <div class="col-sm-3 col-sm-3 col-sm-push-3">
+          <div class="block block-progress">
+            <div class="block-title ">Total checkout</div>
+              <div class="block-content">                       
+                <table class="table shopping-cart-table-total">
+                  <colgroup>
+                    <col>
+                    <col width="1">
+                  </colgroup>
+                  <tfoot>
+                    <tr>
+                      <td colspan="1" class="a-left" style=""><strong>Total</strong></td>
+                      <td class="a-right" style=""><strong><span
+                        class="price">$77.38</span></strong></td>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td colspan="1" class="a-left" style=""> Subtotal </td>
+                      <td class="a-right" style=""><span
+                              class="price">€{{ number_format($totalPrice, 2, ',', '.') }}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="a-left" style=""> Discount </td>
+                      <td class="a-right" style=""><span class="price">
+                        - €{{ number_format($totalPrice, 2, ',', '.') }}</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="1" class="a-left" style=""> Shipping </td>
+                      <td class="a-right" style="">
+                        <span id="priceShipping" class="price"></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            </li>
-            </ol>
-            </article>
-            <!--	///*///======    End article  ========= //*/// -->
+
+          </div>
         </div>
-        </form>
       </div>
-  </div>
-  </section>
+    </section>
   <!-- Main Container End -->
 
   <!--footer Desktop-->
