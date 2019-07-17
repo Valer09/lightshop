@@ -27,12 +27,12 @@
                 </div>
                 <ol class="one-page-checkout" id="checkoutSteps">
                   <li id="opc-billing" class="section allow active">
-                    <div class="step-title"> <span class="number">1</span>
-                      <h3>Checkout Method</h3>
-                      <!--<a href="#">Edit</a> -->
-                    </div>
+                    <a href="#billing">
+                      <div class="step-title"> <span class="number">1</span>
+                        <h3>Checkout Method</h3>
+                      </div>
+                    </a>
                     <div id="checkout-step-billing" class="step a-item" style="">
-
                       <fieldset class="group-select">
                         <ul>
                           <li>
@@ -482,10 +482,11 @@
                     </div>
                   </li>
                   <li id="opc-shipping" class="section">
-                    <div class="step-title"> <span class="number">2</span>
-                      <h3 class="one_page_heading"> Shipping Information</h3>
-                      <!--<a href="#">Edit</a>-->
-                    </div>
+                    <a href="#shipping">
+                      <div class="step-title"> <span class="number">2</span>
+                        <h3 class="one_page_heading"> Shipping Information</h3>
+                      </div>
+                    </a>
                     <div id="checkout-step-shipping" class="step a-item" style="display: none;">
                       <fieldset class="group-select">
                         <ul>
@@ -843,10 +844,11 @@
                     </div>
                   </li>
                   <li id="opc-shipping_method" class="section">
-                    <div class="step-title"> <span class="number">3</span>
-                      <h3 class="one_page_heading">Shipping Method</h3>
-                      <!--<a href="#">Edit</a>-->
-                    </div>
+                    <a href="#shipping_method">
+                      <div class="step-title"> <span class="number">3</span>
+                        <h3 class="one_page_heading">Shipping Method</h3>
+                      </div>
+                    </a>
                     <div id="checkout-step-shipping_method" class="step a-item" style="display: none;">
                       <fieldset>
                         <div id="checkout-shipping-method-load">
@@ -859,7 +861,7 @@
                                 <li>
                                   <input type="radio" name="courier" value="{{ $sped->id }}"
                                     id="s_method_flatrate_flatrate" class="radio €{{ number_format($sped->price, 2, ',', '.')  }}" required>
-                                  <label for="s_method_flatrate_flatrate">{{ $sped->stima_giorni }}gg stimati per la
+                                  <label id="label-courier-{{ $sped->id }}" for="s_method_flatrate_flatrate">{{ $sped->stima_giorni }}gg stimati per la
                                     consegna. {{ $sped->courier_name }} <span class="price">
                                       €{{ number_format($sped->price, 2, ',', '.')  }}</span>
                                   </label>
@@ -901,10 +903,11 @@
                     </div>
                   </li>
                   <li id="opc-payment" class="section">
-                    <div class="step-title"> <span class="number">4</span>
-                      <h3 class="one_page_heading">Payment Information</h3>
-                      <!--<a href="#">Edit</a>-->
-                    </div>
+                    <a href="#payment">
+                      <div class="step-title"> <span class="number">4</span>
+                        <h3 class="one_page_heading">Payment Information</h3>
+                      </div>
+                    </a>
                     <div id="checkout-step-payment" class="step a-item" style="display: none;">
                       <dl id="checkout-payment-method-load">
                         <dt>
@@ -1025,14 +1028,15 @@
                     </div>
                   </li>
                   <li id="opc-review" class="section">
-                    <div class="step-title"> <span class="number">5</span>
-                      <h3 class="one_page_heading">Order Review</h3>
-                      <!--<a href="#">Edit</a>-->
-                    </div>
+                    <a href="#review">
+                      <div class="step-title"> <span class="number">5</span>
+                        <h3 class="one_page_heading">Order Review</h3>
+                      </div>
+                    </a>
                     <div id="checkout-step-review" class="step a-item" style="display: none;">
                       <div class="order-review" id="checkout-review-load"> </div>
                       <div class="buttons-set13" id="review-buttons-container">
-                        <p class="f-left">Forgot an Item? <a href="#cart/">Edit Your Cart</a></p>
+                        <p class="f-left">Forgot an Item? <a href="{{ url('shopping-cart') }}">Edit Your Cart</a></p>
 
 
                         <div class="block block-progress">
@@ -1044,78 +1048,24 @@
                                     onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
                                 </dt>
                                 <dd class="complete">
-                                  <address>
-                                    John Doe<br>
-                                    Abc Company<br>
-                                    23 North Main Stree<br>
-                                    Windsor<br>
-                                    Holtsville, New York, 00501<br>
-                                    United States<br>
-                                    T: 5465465 <br>
-                                    F: 466523
+                                  <address id="addressBilling">
                                   </address>
                                 </dd>
                                 <dt class="complete"> Shipping Address <span class="separator">|</span> <a
                                     onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
                                 </dt>
                                 <dd class="complete">
-                                  <address>
-                                    John Doe<br>
-                                    Abc Company<br>
-                                    23 North Main Stree<br>
-                                    Windsor<br>
-                                    Holtsville, New York, 00501<br>
-                                    United States<br>
-                                    T: 5465465 <br>
-                                    F: 466523
+                                  <address id="addressShipping">
                                   </address>
                                 </dd>
                                 <dt class="complete"> Shipping Method <span class="separator">|</span> <a
                                     onClick="checkout.gotoSection('shipping_method'); return false;"
                                     href="#shipping_method">Change</a> </dt>
-                                <dd class="complete"> Flat Rate - Fixed <br>
-                                  <span class="price">$15.00</span> </dd>
-                                <dt> Payment Method </dt>
-                              </dl>
-                            </div>
-                            <div class="col-sm-6">
-                              <dl>
-                                <dt class="complete"> Billing Address <span class="separator">|</span> <a
-                                    onClick="checkout.gotoSection('billing'); return false;" href="#billing">Change</a>
-                                </dt>
-                                <dd class="complete">
-                                  <address>
-                                    John Doe<br>
-                                    Abc Company<br>
-                                    23 North Main Stree<br>
-                                    Windsor<br>
-                                    Holtsville, New York, 00501<br>
-                                    United States<br>
-                                    T: 5465465 <br>
-                                    F: 466523
-                                  </address>
-                                </dd>
-                                <dt class="complete"> Shipping Address <span class="separator">|</span> <a
-                                    onClick="checkout.gotoSection('shipping');return false;" href="#payment">Change</a>
-                                </dt>
-                                <dd class="complete">
-                                  <address>
-                                    John Doe<br>
-                                    Abc Company<br>
-                                    23 North Main Stree<br>
-                                    Windsor<br>
-                                    Holtsville, New York, 00501<br>
-                                    United States<br>
-                                    T: 5465465 <br>
-                                    F: 466523
-                                  </address>
-                                </dd>
-                                <dt class="complete"> Shipping Method <span class="separator">|</span> <a
-                                    onClick="checkout.gotoSection('shipping_method'); return false;"
-                                    href="#shipping_method">Change</a> </dt>
-                                <dd class="complete"> Flat Rate - Fixed <br>
-                                  <span class="price">$15.00</span> </dd>
-                                <dt> Payment Method </dt>
+                                <dd id="courierReview" class="complete"></dd>
+                                <dt class="complete"> Payment Method <span class="separator">|</span> <a
+                                    onClick="checkout.gotoSection('payment'); return false;"
+                                    href="#payment">Change</a> </dt>
+                                <dd id="paymentReview" class="complete">PayPal</dd>
                               </dl>
                             </div>
                           </div>
