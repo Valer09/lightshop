@@ -80,6 +80,12 @@ $(document).ready(function () {
         }
     }
 
+    var priceShipping = 0;
+    $('#co-billing-form input').on('change', function () {
+        priceShipping = $('input[name=courier]:checked').attr('class').split(" ")[1];
+        $('#priceShipping').html(priceShipping);
+    });
+
 });
 
 function buttonContinue(oldStep, newStep) {

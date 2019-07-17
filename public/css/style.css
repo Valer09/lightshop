@@ -17567,3 +17567,12 @@ a.shop-now-btn {
 	padding: 6px 15px;
 	color: gold;
 }
+
+.checkout-table-total .a-right{
+	float: inline-end;
+	border-top: 0px !important;
+}
+
+.checkout-table-total .a-left{
+	border-top: 0px !important;
+}

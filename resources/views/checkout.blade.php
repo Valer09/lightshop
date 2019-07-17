@@ -858,7 +858,7 @@
                                 @foreach ($Spedizioni as $sped)
                                 <li>
                                   <input type="radio" name="courier" value="{{ $sped->id }}"
-                                    id="s_method_flatrate_flatrate" class="radio" required>
+                                    id="s_method_flatrate_flatrate" class="radio €{{ number_format($sped->price, 2, ',', '.')  }}" required>
                                   <label for="s_method_flatrate_flatrate">{{ $sped->stima_giorni }}gg stimati per la
                                     consegna. {{ $sped->courier_name }} <span class="price">
                                       €{{ number_format($sped->price, 2, ',', '.')  }}</span>
@@ -1137,7 +1137,7 @@
           <div class="block block-progress">
             <div class="block-title ">Total checkout</div>
               <div class="block-content">                       
-                <table class="table shopping-cart-table-total">
+                <table class="table checkout-table-total">
                   <colgroup>
                     <col>
                     <col width="1">
