@@ -28,7 +28,7 @@ class insertionController extends Controller
             $element = new Element;
             $element->name = $request->name;
             $element->subcategories = $request->subcategory;
-            $element->price = $request->price;
+            $element->price = str_replace(',','.', $request->price);
             $element->availability = $request-> quantity;
             $element->description = $request->description;
             $element->brand = $request->brand;
