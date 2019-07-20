@@ -41,13 +41,13 @@
         @else
         <a href="{{url('admin/products')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Prodotti</a>
         @endif
-
+<!--
         @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/news"))
         <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bell fa-fw"></i>  News</a>
         @else
         <a href="{{url('admin/news')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
         @endif
-        
+-->        
         @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/offers"))
         <a href="{{url('admin/offers')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-percent fa-fw"></i>  Offerte</a>
         @else
@@ -59,13 +59,13 @@
         @else
         <a href="{{url('admin/categories')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-align-left fa-fw"></i>  Categorie</a>
         @endif
-
+<!--
         @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/showroomAdmin"))
         <a href="{{url('admin/showroomAdmin')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-book fa-fw"></i>  Showroom</a>
         @else
         <a href="{{url('admin/showroomAdmin')}}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Showroom</a>
         @endif
-
+-->
         @if(!strcmp($_SERVER['REQUEST_URI'], "/admin/orderscompleted"))
         <a href="{{url('admin/orderscompleted')}}" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-history fa-fw"></i>  Ordini completati</a>
         @else
