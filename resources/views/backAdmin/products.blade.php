@@ -82,9 +82,9 @@
                     <div id="specList" class="w3-padding w3-container">
                         <div class="w3-row">
                             <label>Specifica: </label>
-                            <input class="input-modale-spec inputModale js-combobox" list="opt" data-combobox-prefix-class="combobox" placeholder="Lunghezza" type="text" name="key_spec[]">
+                            <input class="input-modale-spec inputModale js-combobox" list="opt" data-combobox-prefix-class="combobox" autocomplete="off" placeholder="Lunghezza" type="text" name="key_spec[]">
                             <label>Valore: </label>
-                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]"  autocomplete="off">
+                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]">
                         </div>
                     </div>
                     <datalist id="opt">

@@ -280,28 +280,8 @@
                       @for($i = 0; $i < 6; $i++) <li> <a
                           href="{!! Request::fullUrlWithQuery(['price'=> number_format(($rangeFilter * $i), 2).'-'.number_format(($rangeFilter * ($i + 1)), 2)]) !!}"><span
                             class="price">€{{ number_format(($rangeFilter * $i), 2) }}</span> - <span
-                            class="price">{{ number_format(($rangeFilter * ($i + 1)), 2) }}</span></a> (6) </li>
+                            class="price">{{ number_format(($rangeFilter * ($i + 1)), 2) }}</span></a></li>
                         @endfor
-                    </ol>
-                  </dd>
-                  <dt class="odd">Color</dt>
-                  <dd class="odd">
-                    <ol>
-                      <li> <a href="#">Green</a> (1) </li>
-                      <li> <a href="#">White</a> (5) </li>
-                      <li> <a href="#">Black</a> (5) </li>
-                      <li> <a href="#">Gray</a> (4) </li>
-                      <li> <a href="#">Dark Gray</a> (3) </li>
-                      <li> <a href="#">Blue</a> (1) </li>
-                    </ol>
-                  </dd>
-                  <dt class="last even">Size</dt>
-                  <dd class="last even">
-                    <ol>
-                      <li> <a href="#">S</a> (6) </li>
-                      <li> <a href="#">M</a> (6) </li>
-                      <li> <a href="#">L</a> (4) </li>
-                      <li> <a href="#">XL</a> (4) </li>
                     </ol>
                   </dd>
                 </dl>

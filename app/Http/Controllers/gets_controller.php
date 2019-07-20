@@ -147,7 +147,7 @@ class gets_controller extends Controller
     }
 
     public function rangeFiter($cat){
-        $elements = Element::whereIn('subcategories', [$cat])->orderBy('price', 'desc')->first();
+        $temp = Element::whereIn('subcategories', [$cat])->orderBy('price', 'desc')->first();
         if(isset($elements)){
             $max = $elements->price;
         } else {
@@ -164,7 +164,6 @@ class gets_controller extends Controller
 
         return $max/6;
     }
-
 
     public static function photo_element_controller($id_element) {
         if(!empty($id_element) || $id_element != null){
