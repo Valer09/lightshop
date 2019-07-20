@@ -84,11 +84,11 @@
                             <label>Specifica: </label>
                             <input class="input-modale-spec inputModale js-combobox" list="opt" data-combobox-prefix-class="combobox" placeholder="Lunghezza" type="text" name="key_spec[]">
                             <label>Valore: </label>
-                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]">
+                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]"  autocomplete="off">
                         </div>
                     </div>
                     <datalist id="opt">
-                        {{!$specs = DB::table('spec_elements')->select('key_spec')->get()}}
+                        {{!$specs = DB::table('spec_elements')->select('key_spec')->groupBy('key_spec')->get()}}
                         @foreach($specs as $spec)
                         <option value="{{$spec->key_spec}}">
                         @endforeach
