@@ -125,7 +125,7 @@
               </div>
               <div class="mega-menu-category">
                 <ul class="nav">
-                  {{!$Category = \App\Category::all()}}
+                  {{!$Category = \App\Category::orderBy('index')->get()}}
                   @foreach ($Category as $cat)
                   {{!$Subcategory = $cat->get_subcategories}}
                   <li> <a href="{{ url('catalog-').$cat->name }}"><i class="fa fa-home"></i> {{ $cat->name }}</a>
