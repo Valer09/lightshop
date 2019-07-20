@@ -151,6 +151,12 @@
 							</table>
 						</div>
 					</div>
+					@php
+						$temp = App\Review::where('id_element', $el->id)->orderBy('created_at','desc');
+						$media= $temp->avg('rate');
+						$reviews = $temp->get();
+
+					@endphp
 					<div class="tab-pane" id="review" role="tabpanel" aria-labelledby="review-tab">
 						<div class="row">
 							<div class="col-lg-6">
@@ -158,115 +164,58 @@
 									<div class="col-6">
 										<div class="box_total">
 											<h5>Overall</h5>
-											<h4>4.0</h4>
-											<h6>(03 Reviews)</h6>
+											<h4>{{ number_format($media, 2) }}</h4>
+											<h6>({{count($reviews)}} Reviews)</h6>
 										</div>
 									</div>
-									<div class="col-6">
-										<div class="rating_list">
-											<h3>Based on 3 Reviews</h3>
-											<ul class="list">
-												<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-												<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-												<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-												<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-												<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-															class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
-											</ul>
-										</div>
-									</div>
+									<hr>
 								</div>
 								<div class="review_list">
+									@foreach($reviews as $rev)
 									<div class="review_item">
 										<div class="media">
 											<div class="d-flex">
-												<img src="img/product/review-1.png" alt="">
+												<img src="{{ asset('images/no-avatar.png') }}" alt="">
 											</div>
 											<div class="media-body">
-												<h4>Blake Ruiz</h4>
+												<h4>{{ $rev->name }}</h4>
+												<p>{{ $rev->email != null ? $rev->email : ''}}</p>
+												@for($star=1 ; $star <= $rev->rate ; $star++)
 												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
+												@endfor
 											</div>
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-											labore et
-											dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-											aliquip ex ea
-											commodo</p>
+										<p>{{ $rev->message }}</p><br>
 									</div>
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="img/product/review-2.png" alt="">
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-											labore et
-											dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-											aliquip ex ea
-											commodo</p>
-									</div>
-									<div class="review_item">
-										<div class="media">
-											<div class="d-flex">
-												<img src="img/product/review-3.png" alt="">
-											</div>
-											<div class="media-body">
-												<h4>Blake Ruiz</h4>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-											</div>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-											labore et
-											dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-											aliquip ex ea
-											commodo</p>
-									</div>
+									@endforeach
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="review_box">
 									<h4>Add a Review</h4>
 									<p>Your Rating:</p>
+									
 									<ul class="list">
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
-										<li><a href="#"><i class="fa fa-star"></i></a></li>
+										<li><a onclick="checkStar(1)"><i class="fa fa-star"></i></a></li>
+										<li><a onclick="checkStar(2)"><i class="fa fa-star st2"></i></a></li>
+										<li><a onclick="checkStar(3)"><i class="fa fa-star st3"></i></a></li>
+										<li><a onclick="checkStar(4)"><i class="fa fa-star st4"></i></a></li>
+										<li><a onclick="checkStar(5)"><i class="fa fa-star st5"></i></a></li>
 									</ul>
 									<p>Outstanding</p>
-									<form action="#/" class="form-contact form-review mt-3">
+
+									<form class="w3-container" method="post" class="form-contact form-review mt-3" 
+										action="{{URL::to('/review-').$el->id}}?ref={{$_SERVER['REQUEST_URI']}}" enctype="multipart/form-data" >
+										@csrf
+										<input style="display:none" id="ratingStar" name="rate" type="number" value="5" required>
 										<div class="form-group">
 											<input class="form-control" name="name" type="text" placeholder="Enter your name" required>
 										</div>
 										<div class="form-group">
-											<input class="form-control" name="email" type="email" placeholder="Enter email address" required>
+											<input class="form-control" name="email" type="email" placeholder="Enter email address">
 										</div>
 										<div class="form-group">
-											<input class="form-control" name="subject" type="text" placeholder="Enter Subject">
-										</div>
-										<div class="form-group">
-											<textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30"
+											<textarea class="form-control different-control w-100" name="message" id="textarea" cols="30"
 												rows="5" placeholder="Enter Message"></textarea>
 										</div>
 										<div class="form-group text-center text-md-right mt-3">
@@ -296,12 +245,13 @@
 	<script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/skrollr.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
-	<script src="vendors/nice-select/jquery.nice-select.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('vendors/nice-select/jquery.nice-select.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/mail-script.js') }}"></script>
 
 	<script src="{{ asset('js/mainElem.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/menu_up.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/rating.js') }}"></script>
 
 </body>
 

@@ -5,7 +5,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
 App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
-App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner;
+App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner, App\Review;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -300,6 +300,23 @@ class insertionController extends Controller
             $spec-> value_spec = $request->value_spec[$i];
             $spec->save();
         }
+        return 0;
+    }
+
+    public function review_product(Request $request, $id){
+
+        $review = new Review;
+        $review->id_element = $id;
+        $review->name = $request->name;
+        $review->rate = $request->rate;
+        $review->message = $request->message;
+        $review->email = $request->email;
+        $review->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
         return 0;
     }
 }

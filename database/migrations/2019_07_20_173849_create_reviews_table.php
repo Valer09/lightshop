@@ -16,6 +16,16 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string("name");
+            $table->integer("rate");
+            $table->integer("id_element")->unsigned();
+            $table->string("email")->nullable()->default(NULL);
+            $table->string("message")->nullable()->default(NULL);
+        });
+
+        Schema::table('reviews', function($table)
+        {
+            $table->foreign('id_element')->references('id')->on('elements')->onDelete('cascade');
         });
     }
 
