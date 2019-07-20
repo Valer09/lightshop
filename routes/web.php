@@ -247,6 +247,7 @@ Route::post('/insert_courier', 'insertionController@insert_courier' );
 Route::post('/add_new_sped', 'insertionController@insert_spedition' );
 Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
 Route::post('/add_offert', 'insertionController@insert_offert' );
+Route::post('/new_banner', 'insertionController@new_banner' );
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
