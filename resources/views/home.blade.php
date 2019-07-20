@@ -260,8 +260,15 @@
                               </div>
                               <div class="item-content">
                                 <div class="item-price">
-                                  <div class="price-box"> <span class="regular-price"> <span
-                                        class="price">$245.00</span> </span> </div>
+                                  @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+                                  <p class="old-price"><span class="price-label">Regular Price:</span> <span
+                                      class="price">€{{ number_format($el->price, 2, ',', '.') }} </span> </p>
+                                  <p class="special-price"><span class="price-label">Special Price</span> <span
+                                      class="price" style="color: red">€{{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }} </span> </p>
+                                  @else
+                                  <p class="special-price"><span class="price-label">Regular Price:</span> <span
+                                      class="price">€{{ number_format($el->price, 2, ',', '.') }} </span> </p>
+                                  @endif                                    
                                 </div>
                                 <div class="action">
                                   <form method="post" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
