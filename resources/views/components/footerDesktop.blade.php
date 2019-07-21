@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="newsletter">
-            <form action="{{ url('news_reader') }}" method="post">
+            <form action="{{ url('news_reader') }}?ref={{$_SERVER['REQUEST_URI']}}" method="post">
               @csrf
               <div>
                 <h4><span>newsletter</span></h4>

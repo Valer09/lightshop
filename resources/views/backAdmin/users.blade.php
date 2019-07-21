@@ -116,7 +116,7 @@
                         <input style="display: none" id="element_idModal1" name="element_idModal">
                         <button class="w3-button w3-ripple w3-red w3-block w3-hover-red" style="width:80%;"
                             onclick="conferma('Vuoi eliminare '+ document.getElementById('nomeMod').value +' '+ document.getElementById('cognomeMod').value +'?', 'formDeleteUser')"
-                            type="button">Elimina Prodotto</button>
+                            type="button">Elimina Utente</button>
                     </div>
                     </form>
                 </div>

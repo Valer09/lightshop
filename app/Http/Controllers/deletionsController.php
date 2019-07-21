@@ -190,4 +190,23 @@ class deletionsController extends Controller
         Session::forget('cart');
         return redirect('shopping-cart');
     }
+
+    public function new_news_reader(Request $request){
+        if ( VerifiedPrivileged::verificaAdminAndPrivileged($request) ){
+            Offert::find($id)->delete();
+
+            return redirect(request()->headers->get('referer').'?openAlert=L\'offerta è stata cancellata');
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
+        $news = new NewsReader;
+        $news->email = $request->email;
+        $news->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
 }
