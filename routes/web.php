@@ -264,6 +264,7 @@ Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_elem
 Route::post('/courier_deletion', 'deletionsController@delete_courier' );
 Route::post('/order_deletion_submit', 'deletionsController@delete_order' );
 Route::get('/offert_delete-{id}', 'deletionsController@offert_delete' );
+Route::get('/delete_cart', 'deletionsController@delete_cart' );
 
 //---INCREMENT-DECREMENT---//
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );

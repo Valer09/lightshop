@@ -26,7 +26,7 @@
                                     <h2>Shopping Cart</h2>
                                 </div>
                                 <div class="table-responsive">
-                                    <form method="post" action="#updatePost/">
+                                    
                                         <input type="hidden" value="Vwww7itR3zQFe86m" name="form_key">
                                         <fieldset>
                                             @if(Session::has('cart') && count($elements) > 0 )
@@ -55,15 +55,12 @@
                                                 <tfoot>
                                                     <tr class="first last">
                                                         <td class="a-right last" colspan="50"><button
-                                                                onclick="setLocation('#')" class="button btn-continue"
+                                                                onclick="location.href='{{ url('/') }}'" class="button btn-continue"
                                                                 title="Continue Shopping" type="button"><span>Continue
                                                                     Shopping</span></button>
-                                                            <button class="button btn-update" title="Update Cart"
-                                                                value="update_qty" name="update_cart_action"
-                                                                type="submit"><span>Update Cart</span></button>
-                                                            <button id="empty_cart_button" class="button btn-empty"
+                                                            <button onclick="location.href='{{ url('delete_cart') }}'" id="empty_cart_button" class="button btn-empty"
                                                                 title="Clear Cart" value="empty_cart"
-                                                                name="update_cart_action" type="submit"><span>Clear
+                                                                name="update_cart_action" type="button"><span>Clear
                                                                     Cart</span></button></td>
                                                     </tr>
                                                 </tfoot>
@@ -135,7 +132,7 @@
                                             </div>
                                             @endif
                                         </fieldset>
-                                    </form>
+                                  
                                 </div>
                                 <!-- BEGIN CART COLLATERALS -->
                                 @if(Session::has('cart') && count($elements) > 0 )

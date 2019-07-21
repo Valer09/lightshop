@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App, DB, Storage;
+use App, DB, Storage, Session;
 
 use App\Http\Controllers\VerifiedPrivileged;
 use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier, App\Order, App\OrderDetail, App\Offert;
@@ -184,5 +184,10 @@ class deletionsController extends Controller
         } else {
             return abort(403, 'Azione non autorizzata!');
         }
+    }
+
+    public function delete_cart(Request $request) {
+        Session::forget('cart');
+        return redirect('shopping-cart');
     }
 }
