@@ -37,8 +37,9 @@
             <table class="w3-table-all w3-margin-top" id="myTable">
                 <tr>
                     <th style="width:0%;"></th>
-                    <th style="width:50%;">Email</th>
-                    <th style="width:50%;">Data registrazione</th>
+                    <th style="width:45%;">Email</th>
+                    <th style="width:45%;">Data registrazione</th>
+                    <th style="width:10%;"></th>
                 </tr>
 
                 <!--LISTA DEI PRODOTTI blade-->
@@ -48,6 +49,9 @@
                     <td></td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->created_at }}</td>
+                    <td>
+                        <button class="w3-btn w3-dark-grey w3-block" onclick="location.href='{{url('delete_newsletter-').$user->id}}'">Elimina</button>
+                    </td>
                 </tr>
                 @endforeach
 
