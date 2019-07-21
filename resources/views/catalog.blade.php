@@ -48,25 +48,9 @@
                   class="page-heading-title">{{ empty($Category[0]->name) ? 'Results for "'.$search.'"' : $Category[0]->name }}</span>
               </h2>
             </div>
-            <div class="category-description std">
-              <div class="slider-items-products">
-                <div id="category-desc-slider" class="product-flexslider hidden-buttons">
-                  <div class="slider-items slider-width-col1 owl-carousel owl-theme">
 
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/insegna.jpg') }}"></a> </div>
-                    <!-- End Item -->
-
-                    <!-- Item -->
-                    <div class="item"> <a href="#"><img alt="" src="{{ asset('images/editing.jpg') }}"></a>
-
-                      <!-- End Item -->
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @include('components.bannerFoto')
+            
             <article class="col-main">
               <div class="toolbar">
                 <div class="display-product-option">
