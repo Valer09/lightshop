@@ -4,7 +4,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="newsletter">
-            <form>
+            <form action="{{ url('news_reader') }}" method="post">
+              @csrf
               <div>
                 <h4><span>newsletter</span></h4>
                 <input type="text" placeholder="Enter your email address" class="input-text"

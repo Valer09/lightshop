@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\NewsReader, 
 App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
 App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner, App\Review;
 use Illuminate\Support\Facades\Hash;
@@ -312,6 +312,19 @@ class insertionController extends Controller
         $review->message = $request->message;
         $review->email = $request->email;
         $review->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
+
+    public function new_news_reader(Request $request){
+
+        $news = new NewsReader;
+        $news->email = $request->email;
+        $news->save();
 
         $path = $request->ref;
         $path = substr($path, 1, strlen($path));

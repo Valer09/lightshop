@@ -253,6 +253,7 @@ Route::post('/category_insertion_submit', 'insertionController@insert_category' 
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
 Route::post('/review-{id}', 'insertionController@review_product' );
+Route::post('/news_reader', 'insertionController@new_news_reader' );
 
 //---DELETIONS---/
 Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
