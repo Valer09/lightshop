@@ -100,10 +100,6 @@
                                 <span class="w3-red">Questo prodotto non è disponibile al momento.</span>
                                 @endif
                             </div>
-							<div class="card_area d-flex align-items-center">
-								<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-								<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
-							</div>
 						</div>
 					</div>
 				</div>
