@@ -123,9 +123,6 @@
                     </div>
                     <ul class="nav navbar-nav">
                       {{!$Category = \App\Category::all()}}
-                      @php
-                        $int = 1;
-                      @endphp
                       @foreach($Category as $Ca)
                       {{!$subcategori = DB::table('subcategories')->where('category' , $Ca->name)->select('name')->get()}}
                       @if(count($subcategori) > 0)
@@ -149,9 +146,15 @@
                           <div class="tabSale active" id="tab-{{ str_replace(' ', '_',$Cat->name) }}">
                             <div class="category-products">
                               <ul class="products-grid">
+                                @php
+                                  $int = 0;
+                                @endphp
                                 @foreach($Offerts as $of)
                                 {{!$el =\App\Element::find($of->id_element)}}
                                 @if($of->date_end > date('Y-m-d h:i:sa') && count($subcategori->where('name', $el->subcategories)) > 0)
+                                @php
+                                $int = $int + 1;
+                                @endphp
                                 <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                   <div class="item-inner">
                                     <div class="item-img">
@@ -197,6 +200,9 @@
                                   </div>
                                   <!-- End  Item inner-->
                                 </li>
+                                @if($int >= 8)
+                                  @break
+                                @endif
                                 @endif
                                 @endforeach
                               </ul>
