@@ -311,25 +311,6 @@
                 @endif
               </div>
             </div>
-            <div class="block block-compare">
-              <div class="block-title ">Compare Products (2)</div>
-              <div class="block-content">
-                <ol id="compare-items">
-                  <li class="item odd">
-                    <input type="hidden" value="2173" class="compare-item-id">
-                    <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#" class="product-name">
-                      Retis lapen casen...</a> </li>
-                  <li class="item last even">
-                    <input type="hidden" value="2174" class="compare-item-id">
-                    <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#" class="product-name">
-                      Retis lapen casen...</a> </li>
-                </ol>
-                <div class="ajax-checkout">
-                  <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
-                  <button type="submit" title="Submit" class="button button-clear"><span>Clear</span></button>
-                </div>
-              </div>
-            </div>
             <div class="custom-slider-wrap">
               <div class="custom-slider-inner">
                 <div class="home-custom-slider">
