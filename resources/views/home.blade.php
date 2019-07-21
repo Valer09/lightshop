@@ -127,13 +127,9 @@
                         $int = 1;
                       @endphp
                       @foreach($Category as $Ca)
-                      @if($int==1)
-                      @php
-                      $int = $int + 1;
-                      @endphp
-                      <li class="active"><a data-toggle="tab" href="#tab-{{ $Ca->name }}">{{ $Ca->name }}</a></li>
-                      @else
-                      <li class=""><a data-toggle="tab" href="#tab-{{ $Ca->name }}" class="active">{{ $Ca->name }}</a></li>
+                      {{!$subcategori = DB::table('subcategories')->where('category' , $Ca->name)->select('name')->get()}}
+                      @if(count($subcategori) > 0)
+                        <li class=""><a onclick="tabSale('{{ str_replace(' ', '_',$Ca->name) }}');" class="active">{{ $Ca->name }}</a></li>
                       @endif
                       @endforeach
                     </ul>
@@ -148,70 +144,65 @@
                         <!-- tab product -->
                         {{!$Offerts = \App\Offert::allWithKey()}}
                         @foreach($Category as $Cat)
-                        <div class="tab-panel active" id="tab-{{$Cat->name}}">
-                          <div class="category-products">
-                            <ul class="products-grid">
-                              @php
-                              $conta = 0;
-                              @endphp
-
-                              @foreach($Offerts as $of)
-                              {{!$el =\App\Element::find($of->id_element)}}
-                              @if($of->date_end > date('Y-m-d h:i:sa') && $Cat->name == \App\Subcategory::where('name' ,$el->subcategories)->first()->category)
-                              <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                <div class="item-inner">
-                                  <div class="item-img">
-                                    <div class="item-img-info"> <a class="product-image" title="{{ $el->name }}"
-                                        href="{{ url('element').$el->id}}"> <img alt="{{ $el->name }}"
-                                          src="{{ asset('storage').$el->pathPhoto }}"> </a>
-                                      <div class="new-label new-top-left">new</div>
-                                    </div>
-                                  </div>
-                                  <div class="item-info">
-                                    <div class="info-inner">
-                                      <div class="item-title"> <a title="{{ $el->name }}" href="{{ url('element').$el->id}}">
-                                          {{ $el->name }} </a> </div>
-                                      <div class="rating">
-                                        <div class="ratings">
-                                          <div class="rating-box">
-                                            <div style="width:80%" class="rating"></div>
-                                          </div>
-                                          <p class="rating-links"> <a href="#">1 Review(s)</a> <span
-                                              class="separator">|</span> <a href="#">Add Review</a> </p>
-                                        </div>
-                                      </div>
-                                      <div class="item-content">
-                                        <div class="item-price">
-                                          <div class="price-box"> <span class="regular-price">
-                                            <span class="price" style="color: red">
-                                              <b>€ {{ number_format(($el->price - (($el->price)/100*$of->discount_perc)), 2, '.', ',') }}</b><br>
-                                            </span>
-                                            <label style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label>
-                                            <label> (-{{$of->discount_perc}}%)</label>
-                                          </div>
-                                        </div>
-                                        <div class="action">
-                                          <form method="post" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
-                                            @csrf
-                                            <button class="button btn-cart" type="submit" title="Add to cart" name="quantity" value="1"
-                                              data-original-title="Add to Cart"><span>Add to Cart</span></button>
-                                          </form>
-                                        </div>
+                        {{!$subcategori = DB::table('subcategories')->where('category' , $Cat->name)->select('name')->get()}}
+                        @if(count($subcategori) > 0)
+                          <div class="tabSale active" id="tab-{{ str_replace(' ', '_',$Cat->name) }}">
+                            <div class="category-products">
+                              <ul class="products-grid">
+                                @foreach($Offerts as $of)
+                                {{!$el =\App\Element::find($of->id_element)}}
+                                @if($of->date_end > date('Y-m-d h:i:sa') && count($subcategori->where('name', $el->subcategories)) > 0)
+                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                  <div class="item-inner">
+                                    <div class="item-img">
+                                      <div class="item-img-info"> <a class="product-image" title="{{ $el->name }}"
+                                          href="{{ url('element').$el->id }}"> <img alt="{{ $el->name }}"
+                                            src="{{ asset('storage').$el->pathPhoto }}"> </a>
+                                        <div class="new-label new-top-left">new</div>
                                       </div>
                                     </div>
+                                    <div class="item-info">
+                                      <div class="info-inner">
+                                        <div class="item-title"> <a title="{{ $el->name }}" href="{{ url('element').$el->id}}">
+                                            {{ $el->name }} </a> </div>
+                                        <div class="rating">
+                                          <div class="ratings">
+                                            <div class="rating-box">
+                                              <div style="width:80%" class="rating"></div>
+                                            </div>
+                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span
+                                                class="separator">|</span> <a href="#">Add Review</a> </p>
+                                          </div>
+                                        </div>
+                                        <div class="item-content">
+                                          <div class="item-price">
+                                            <div class="price-box"> <span class="regular-price">
+                                              <span class="price" style="color: red">
+                                                <b>€ {{ number_format(($el->price - (($el->price)/100*$of->discount_perc)), 2, '.', ',') }}</b><br>
+                                              </span>
+                                              <label style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label>
+                                              <label> (-{{$of->discount_perc}}%)</label>
+                                            </div>
+                                          </div>
+                                          <div class="action">
+                                            <form method="post" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
+                                              @csrf
+                                              <button class="button btn-cart" type="submit" title="Add to cart" name="quantity" value="1"
+                                                data-original-title="Add to Cart"><span>Add to Cart</span></button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                                <!-- End  Item inner-->
-                              </li>
-                              @endif
-                              @php
-                              $conta++;
-                              if($conta >= 8 ) @stop
-                              @endphp
-                              @endforeach
-                            </ul>
+                                  <!-- End  Item inner-->
+                                </li>
+                                @endif
+                                @endforeach
+                              </ul>
+                            </div>
                           </div>
-                        </div>
+                        @endif
                         @endforeach
 
                         <div class="tab-panel " id="tab-4"> No Products Found !! </div>
@@ -492,6 +483,7 @@
   <script type="text/javascript" src="{{ url('js/jquery.mobile-menu.min.js') }}"></script>
   <script type="text/javascript" src="{{ url('js/countdown.js') }}"></script>
   <script type="text/javascript" src="{{ url('js/home.js') }}"></script>
+  <script type="text/javascript" src="{{ url('js/tabSale.js') }}"></script>
 
 </body>
 @endsection
