@@ -54,7 +54,7 @@ class insertionController extends Controller
     }
 
     public static function insert_principal_photo(Request $request, $idElement){
-        $name= rand(1 , 99999).$request->file_name->getClientOriginalName();
+        $name= rand(1 , 99999).str_replace('+','', $request->file_name->getClientOriginalName());
         $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
 
         $element = Element::where('id', $idElement)->first();
@@ -76,7 +76,7 @@ class insertionController extends Controller
     public static function insert_other_photos(Request $request, $idElement){
         $files = $request->file('photos');
         foreach ($files as $file) {
-            $n = rand(1 , 99999).$file->getClientOriginalName();
+            $n = rand(1 , 99999).str_replace('+','', $file->getClientOriginalName());
             $file->storeAs('/images/catalogo',$n ,'public');
             $photo = new PhotoElement;
             $photo-> element_id = $idElement;
