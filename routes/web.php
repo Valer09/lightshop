@@ -254,6 +254,8 @@ Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
 Route::post('/review-{id}', 'insertionController@review_product' );
 Route::post('/news_reader', 'insertionController@new_news_reader' );
+Route::post('/new_site_review', 'insertionController@new_site_review' );
+Route::post('/setting_site', 'insertionController@setting_site' );
 
 //---DELETIONS---/
 Route::post('/element_deletion_submit', 'deletionsController@delete_element' );

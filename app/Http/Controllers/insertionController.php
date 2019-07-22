@@ -5,7 +5,8 @@ use DB;
 use Illuminate\Http\Request;
 use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\NewsReader, 
 App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
-App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner, App\Review;
+App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner, App\Review,
+App\SiteReview, App\Setting;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -332,4 +333,35 @@ class insertionController extends Controller
 
         return 0;
     }
+
+    public function new_site_review(Request $request){
+
+        $news = new SiteReview;
+        $news->message = $request->message;
+        $news->name = $request->name;
+        $news->ip = $request->ip();
+        $news->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
+
+    public function setting_site(Request $request){
+        if ( !VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            foreach($request->impostazioni as $key => $value) {
+                $setting = Setting::updateOrInsert(['key' =>  $key, 'value' => $value, 'id_log' =>  Auth::user()->id]);
+            }
+
+            $path = $request->ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+
+            return 0;
+        }   
+    }
+
 }

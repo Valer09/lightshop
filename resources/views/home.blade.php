@@ -353,55 +353,20 @@
                   <div id="testimonials-slider" class="product-flexslider hidden-buttons home-testimonials">
                     <div class="slider-items slider-width-col4 fadeInUp owl-carousel owl-theme"
                       style="opacity: 1; display: block;">
-
+                      
+                      {{!$reviews = App\SiteReview::all()}}
+                      @foreach($reviews as $rev)
                       <div class="holder">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lid est laborum dolo rumes fugats
-                          untras. dolore magna aliquam erat volutpat. Aenean est auctorwisiet urna. Aliquam erat
-                          volutpat...</p>
-                        <div class="testimonial-arrow-down"></div>
-                        <div class="thumb">
-                          <div class="customer-img"> <img src="images/photo1.jpg" alt="Saraha Smith"> </div>
-                          <div class="customer-bio"> <strong class="name"><a href="#" target="_blank">Saraha
-                                Smith</a></strong> <span>Happy Customer</span> </div>
-                        </div>
+                        <a onclick="$('.popup1').show()">
+                          <p>{{ $rev->message }}</p>
+                          <div class="testimonial-arrow-down"></div>
+                          <div class="thumb">
+                            <div class="customer-img"> <img src="{{ asset('images/no-avatar.png') }}" alt="Saraha Smith"> </div>
+                            <div class="customer-bio"> <strong class="name">{{ $rev->name }}</strong> <span>Happy Customer</span> </div>
+                          </div>
+                        </a>
                       </div>
-
-                      <div class="holder">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lid est laborum dolo rumes fugats
-                          untras. dolore magna aliquam erat volutpat. Aenean est auctorwisiet urna. Aliquam erat
-                          volutpat...</p>
-                        <div class="testimonial-arrow-down"></div>
-                        <div class="thumb">
-                          <div class="customer-img"> <img src="images/photo.jpg" alt="Stephen Doe"> </div>
-                          <div class="customer-bio"> <strong class="name"><a href="#" target="_blank">Stephen
-                                Doe</a></strong> <span>Happy Customer</span> </div>
-                        </div>
-                      </div>
-
-                      <div class="holder">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lid est laborum dolo rumes fugats
-                          untras. dolore magna aliquam erat volutpat. Aenean est auctorwisiet urna. Aliquam erat
-                          volutpat...</p>
-                        <div class="testimonial-arrow-down"></div>
-                        <div class="thumb">
-                          <div class="customer-img"> <img src="images/photo1.jpg" alt="Mark doe"> </div>
-                          <div class="customer-bio"> <strong class="name"><a href="#" target="_blank">Mark
-                                doe</a></strong> <span>Happy Customer</span> </div>
-                        </div>
-                      </div>
-
-                      <div class="holder">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lid est laborum dolo rumes fugats
-                          untras. dolore magna aliquam erat volutpat. Aenean est auctorwisiet urna. Aliquam erat
-                          volutpat...</p>
-                        <div class="testimonial-arrow-down"></div>
-                        <div class="thumb">
-                          <div class="customer-img"> <img src="images/photo.jpg" alt="John Doe"> </div>
-                          <div class="customer-bio"> <strong class="name"><a href="#" target="_blank">John
-                                Doe</a></strong> <span>Happy Customer</span> </div>
-                        </div>
-                      </div>
-
+                      @endforeach
 
                     </div>
                   </div>
@@ -473,6 +438,42 @@
   <div id="mobile-menu">
   @include('components.navbarMobile')
   </div>
+
+<!--password-->
+<div class="popup1">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup1').hide();"><img
+            src="images/f-box-close-icon.png" alt="close" class="x" id="x"></a>
+        <form type="submit" method="post" action="{{ URL::to('/new_site_review') }}?ref={{$_SERVER['REQUEST_URI']}}">
+        @csrf
+          <h3>Site review</h3>
+          <fieldset class="col2-set">
+            <div class="input-box">
+              <ul class="form-list">
+                <li>
+                  <label>Name: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    name="name" type="text" required>
+                </li>
+                <li>    
+                  <label>Message: <span class="required">*</span></label>
+                  <textarea rows="4" cols="34" class="input-text required-entry"
+                    name="message" type="text" required style="margin-bottom: 16px"></textarea>
+                </li>
+              </ul>
+              <button class="button subscribe" title="Save" type="submit"><span>Send</span></button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <!--newsletter-->
+    </div>
+    <!--newsletter-sign-box-->
+  </div>
+  <!--popup1-->
+  <div class="popup1" id="overlay"></div>
+  <!----------END POPUP--------->
+
 
   <!-- JavaScript -->
   <script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
