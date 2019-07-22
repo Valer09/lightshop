@@ -61,8 +61,8 @@
                           <tr class="first last">
                             <th>Product</th>
                             <th class="a-left">Qty</th>
-                            <th>Send to</th>
-                            <th>Remove</th>
+                            <th style="width:40%">Send to</th>
+                            <th>Total</th>
                           </tr>
                         </thead>
                         <tfoot>
@@ -73,52 +73,32 @@
                           </tr>
                         </tfoot>
                         <tbody>
+                          
+                          {{!$orders = App\Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get()}}
+
+                          @foreach($orders as $key => $order)
+                          @php
+                            $details = App\OrderDetail::where('orders_id', $order->id)->get();
+                            $address = App\Address::find($order->address_id)
+                          @endphp
                           <tr class="first odd">
                             <td>
-                              <h4 class="product-name"><a href="#">Ocean Premium Saline Nasal Spray - 1.5 fl oz</a>
+                              @foreach($details as $detail)
+                              <h4 class="product-name"><a target="blank_" href="{{ url('element').$detail->element_id }}">{{ $detail->element_name }} - x{{ $detail->quantity }}</a>
                               </h4>
+                              @endforeach
                             </td>
-                            <td><input type="text" class="input-text qty" size="2" value="1" name="ship[0][43][qty]">
-                            </td>
-                            <td><select title="" class="" id="ship_0_43_address" name="ship[0][43][address]">
-                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                  States</option>
-                              </select></td>
-                            <td class="a-center last"><a
-                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a></td>
-                          </tr>
-                          <tr class="odd">
                             <td>
-                              <h4 class="product-name"><a href="#">Apple iPod classic 160 GB Silver (7th Generation)
-                                  NEWEST MODEL</a></h4>
+                              <input type="text" class="input-text qty" size="2" value="{{ count($details)}}">
                             </td>
-                            <td><input type="text" class="input-text qty" size="2" value="1" name="ship[2][63][qty]">
-                            </td>
-                            <td><select title="" class="" id="ship_2_63_address" name="ship[2][63][address]">
-                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                  States</option>
-                              </select></td>
-                            <td class="a-center last"><a
-                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                title="&lt;span&gt;Remove item&lt;/span&gt;" class="btn-remove btn-remove2"><span>Remove
-                                  item</span></a></td>
-                          </tr>
-                          <tr class="last even">
                             <td>
-                              <h4 class="product-name"><a href="#">Apple MacBook MC516LL/A 13.3-Inch Laptop</a></h4>
+                              <p>{{ $address->NomeCognome }} - {{ $address->street }}, {{ $address->street_number }} {{ $address->city }}</p>
                             </td>
-                            <td><input type="text" class="input-text qty" size="2" value="1" name="ship[15][4212][qty]">
+                            <td class="a-center last">
+                              <p>€{{ number_format($order->total, 2) }}</p>
                             </td>
-                            <td><select title="" class="" id="ship_15_4212_address" name="ship[15][4212][address]">
-                                <option selected="selected" value="1">John Doe, aundh, tyyrt, Alabama 46532, United
-                                  States</option>
-                              </select></td>
-                            <td class="a-center last"><a
-                                href="http://demo.magentomagik.com/ma_optima/index.php/checkout/cart/delete"
-                                title="&lt;span&gt;Remove item&lt;/span&gt;" class="btn-remove btn-remove2"><span>Remove
-                                  item</span></a></td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                       <div class="buttons-set">
