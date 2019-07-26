@@ -7,15 +7,20 @@ use App;
 use DB;
 use Auth;
 use App\Http\Controllers\VerifiedPrivileged;
-use App\Order, App\OrderDetail, App\User, App\Element, App\Address, App\Courier;
+use App\Order, App\OrderDetail, App\User, App\Element, App\Address, App\Courier, App\SpecElement;
 
 class gets_controller extends Controller
 {
     public function get_user_cf(Request $request){
 
-        $email=App\User::where('CF', $request->cf)->select('email')->first()->email;
+        $us=App\User::where('CF', $request->cf)->first();
+        if(empty($us)){
+            return view('Auth/passwords/email/reset', ['newEmail' => 'Email not found.']); 
+        } else {
+            $email = $us->email;
+        }
 
-        return view('auth/passwords/email/emailRecovered',  compact('email'));
+        return view('Auth/passwords/email/reset',  compact('email'));
 
     }
 
@@ -30,47 +35,134 @@ class gets_controller extends Controller
             return abort(404);
     }
 
-    public function catalog_controller($id) {
+    public function catalog_controller(Request $request, $id) {
         $name = null;
         $elementFin = array();
+        
         if(isset($id) && $id != ''){
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
-            //dd($cate);
+            
+            empty($request->input('limit')) ? $limit = 40 : $limit = $request->input('limit');
+
             if(isset($cate) && $cate != null) {
-                //dd('1');
+                $arrai = array();
                 foreach ($cate as $nameSubat) {
-                    $element = DB::select('select * from elements where subcategories = ?', [$nameSubat->name]);
-                    $elementFin = array_merge($elementFin, $element);
+                    array_push($arrai, $nameSubat->name);
+                }
+
+                $elementFin = Element::whereIn('subcategories', $arrai);
+
+                if($request->input('price') != null){
+                    $str = explode('-', $request->input('price'));
+                    $elementFin = $elementFin->whereBetween('price', [$str[0], $str[1]]);
                     //dd($elementFin);
                 }
-            } else {
-                //dd('2');
-                $elementFin = DB::select('select * from elements where subcategories = ?', [$id]);
 
+                switch ($request->input('sort')) {
+                    case 'Low price':
+                    $elementFin = $elementFin->orderBy('price', 'asc')->paginate($limit);
+                        break;
+                    case 'High price':
+                    $elementFin = $elementFin->orderBy('price', 'desc')->paginate($limit);
+                        break;
+                    case 'Newest Arrivals':
+                    $elementFin = $elementFin->orderBy('created_at', 'desc')->paginate($limit);
+                        break;
+                    default:
+                    $elementFin = $elementFin->paginate($limit);
+                }
+
+            } else {
+                $elementFin = Element::where('subcategories', [$id]);
+
+                if($request->input('price') != null){
+                    $str = explode('-', $request->input('price'));
+                    $elementFin = $elementFin->whereBetween('price', [$str[0], $str[1]]);
+                    //dd($elementFin);
+                }
+
+                switch ($request->input('sort')) {
+                    case 'Low price':
+                    $elementFin = $elementFin->orderBy('price', 'asc')->paginate($limit);
+                        break;
+                    case 'High price':
+                    $elementFin = $elementFin->orderBy('price', 'desc')->paginate($limit);
+                        break;
+                    case 'Newest Arrivals':
+                    $elementFin = $elementFin->orderBy('created_at', 'desc')->paginate($limit);
+                        break;
+                    default:
+                    $elementFin = $elementFin->paginate($limit);
+                }
+                
             }
+
             $array[0] = $catSUP[0];
             $array[1] = null;
             $array[2] = $cate;
-            return view('catalog', ['Elements' => $elementFin], ['Category' => $array]);
+            return view('catalog', ['Elements' => $elementFin], ['Category' => $array, 'rangeFilter' => gets_controller::rangeFiter($arrai)]);
             
         } else {
-            return view('catalog_navigation');
+            return view('/');
         }
     }
 
-    public function catalog_sub_controller($id, $sub) {
+    public function catalog_sub_controller(Request $request, $id, $sub) {
         if(isset($sub) || $sub != '') {
             $cate = DB::select('select name from subcategories where category = ?', [$id]);
             $catSUP = DB::select('select * from categories where name = ?', [$id]);
-            $element = DB::select('select * from elements where subcategories = ?', [$sub]);
+            
+            empty($request->input('limit')) ? $limit = 40 : $limit = $request->input('limit');
+
+            $element = Element::where('subcategories', [$sub]);
+
+            if($request->input('price') != null){
+                $str = explode('-', $request->input('price'));
+                $element = $element->whereBetween('price', [$str[0], $str[1]]);
+            }
+
+            switch ($request->input('sort')) {
+                case 'Low price':
+                $element = $element->orderBy('price', 'asc')->paginate($limit);
+                    break;
+                case 'High price':
+                $element = $element->orderBy('price', 'desc')->paginate($limit);
+                    break;
+                case 'Newest Arrivals':
+                $element = $element->orderBy('created_at', 'desc')->paginate($limit);
+                    break;
+                default:
+                $element = $element->paginate($limit);
+            }
+            
             $array[0] = $catSUP[0];
             $array[1] = $sub;
             $array[2] = $cate;
-            return view('catalog', ['Elements' => $element], ['Category' => $array]);
+
+            return view('catalog', ['Elements' => $element], ['Category' => $array, 'rangeFilter' => gets_controller::rangeFiter($sub)]);
         } else {
-            return view('catalog_navigation');
+            return view('catalog');
         }
+    }
+
+    public function rangeFiter($cat){
+        $temp = Element::whereIn('subcategories', [$cat])->orderBy('price', 'desc')->first();
+        if(isset($elements)){
+            $max = $elements->price;
+        } else {
+            $max = 120;
+        }
+        
+        /*
+        foreach($elements as $el) {
+            if($el->price > $max){
+                $max = $el->price;
+            }
+        }
+        */
+
+        return $max/6;
     }
 
     public static function photo_element_controller($id_element) {

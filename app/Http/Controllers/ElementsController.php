@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category, App\Subcategory, App\Element, App\Cart, App\Address, App\Courier;
+use App\Category, App\Subcategory, App\Element, App\Cart, App\Address, App\Courier, App\Offert;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Arr;
 
 use Session;
 use Auth;
@@ -45,7 +45,7 @@ class ElementsController extends Controller
 
             $request->session()->put('cart', $cart);
 
-            return redirect('catalog');
+            return redirect('/');
         } else {
             return redirect(request()->headers->get('referer').'?openAlert=Il prodotto non è al momento disponibile.');
         }
@@ -61,7 +61,22 @@ class ElementsController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight]);
+        $offerts = Offert::keyOfferts($cart->items);
+        $totalDiscount = Offert::totalDiscount($cart->items, $offerts);
+
+        return view('cart', ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight, 'Offerts' => $offerts]);
+    }
+
+    public static function getElemCart()
+    {
+        if (!Session::has('cart')) {
+            return view('cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return ['elements' => $cart->items, 'totalPrice' => $cart->totalPrice, 'totalWeight' => $cart->totalWeight];
     }
 
     public function getCheckout(){
@@ -75,14 +90,22 @@ class ElementsController extends Controller
                 $cart= new Cart($oldCart);
                 $total=$cart->totalPrice;
 
+                $totalDiscount = Offert::totalDiscountNotOff($cart->items);
+
+
                 $id=Auth::user()->address_id;
                 $address = Address::find($id);
 
                 //calcolo costo spedizione
-                $spedizioni = Courier::where('pesomax', '>=', $cart->totalWeight)
-                ->where('pesomin', '<=', $cart->totalWeight)->get(); 
-
-                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni]);
+                $spedizioni = Courier::where([
+                    ['pesomax', '>=', $cart->totalWeight],
+                    ['pesomin', '<=', $cart->totalWeight],
+                    ['destination_country', $address->country],
+                    ])->get(); 
+                    //dd($spedizioni);
+                return view('checkout',['elements' => $cart->items, 'totalPrice'=>$total, 
+                'address' => $address, 'totalWeight' => $cart->totalWeight, 'Spedizioni' => $spedizioni, 
+                'User' => Auth::user(), 'totalDiscount' => $totalDiscount]);
             }
         } else {
             return redirect('login');

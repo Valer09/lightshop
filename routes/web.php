@@ -54,15 +54,28 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::get('contact', function () {
+    return view('contact');
+});
+
+Route::get('sitemap', function () {
+    return view('sitemap');
+});
+
+Route::get('privacy_policy', function () {
+    return view('privacy');
+});
+
 Route::get('/verified', function () {
     return view('verified');
 });
 
-Route::get('/password/reset', function () {
-    return view('password/reset');
+Route::get('password/reset', function () {
+    return view('auth/passwords/reset');
 });
-Route::get('/password/email', function () {
-    return view('Auth/passwords/email/reset');
+
+Route::get('password/email', function () {
+    return view('auth/passwords/email/reset');
 });
 
 Route::get('recovered', function () {
@@ -119,14 +132,9 @@ Route::get('/el_showroom-{id_element}', 'gets_controller@openElementShowroom');
 //End showroom--/
 
 //CataLog /
+Route::get('/catalog-{id}', 'gets_controller@catalog_controller');
 
-Route::get('/catalog', function () {
-    return view('catalog_navigation');
-});
-
-Route::get('/catalog{id}', 'gets_controller@catalog_controller');
-
-Route::get('/catalog{id}/{sub}', 'gets_controller@catalog_sub_controller');
+Route::get('/catalog-{id}/{sub}', 'gets_controller@catalog_sub_controller');
 
 //EndCatalag/
 
@@ -239,10 +247,15 @@ Route::post('/insert_courier', 'insertionController@insert_courier' );
 Route::post('/add_new_sped', 'insertionController@insert_spedition' );
 Route::post('/add_photo_category-{name}', 'insertionController@insert_photo_category' );
 Route::post('/add_offert', 'insertionController@insert_offert' );
+Route::post('/new_banner', 'insertionController@new_banner' );
 
 Route::post('/category_insertion_submit', 'insertionController@insert_category' );
 Route::post('/news_insertion_submit', 'insertionController@insert_news' );
 Route::post('/subcategory_insertion_submit', 'insertionController@insert_subcategory' );
+Route::post('/review-{id}', 'insertionController@review_product' );
+Route::post('/news_reader', 'insertionController@new_news_reader' );
+Route::post('/new_site_review', 'insertionController@new_site_review' );
+Route::post('/setting_site', 'insertionController@setting_site' );
 
 //---DELETIONS---/
 Route::post('/element_deletion_submit', 'deletionsController@delete_element' );
@@ -254,6 +267,8 @@ Route::post('/elementshowroom_deletion_submit', 'deletionsController@delete_elem
 Route::post('/courier_deletion', 'deletionsController@delete_courier' );
 Route::post('/order_deletion_submit', 'deletionsController@delete_order' );
 Route::get('/offert_delete-{id}', 'deletionsController@offert_delete' );
+Route::get('/delete_newsletter-{id}', 'deletionsController@delete_newsletter' );
+Route::get('/delete_cart', 'deletionsController@delete_cart' );
 
 //---INCREMENT-DECREMENT---//
 Route::post('/element_decrease_submit', 'deletionsController@decrease_element' );

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 
 class Element extends Model
@@ -54,4 +55,9 @@ class Element extends Model
         $element->update(['availability' => $quantity]);
     }
 
+    public static function maxPrice() {
+        $spec = DB::table('elements')->select('price')->orderBy('price', 'desc')->first();
+        dd($spec);
+        return $spec;
+    }
 }

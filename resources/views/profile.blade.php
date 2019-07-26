@@ -1,386 +1,699 @@
 @extends('layout.defaultLayout')
 @section('title', 'Visca s.n.c.')
 
+<!--HEAD-->
 @section('head')
-  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
+
 @endsection
 
+<!--body-->
 @section('content')
-    <?php use App\Order; ?>
 
-    <?php
-    function get_order(){
-        $temp=\App\Order::where('user_id', Auth::user()->id)->get();
-        return $temp;
-    }
-    function get_el($id){
-        $temp=\App\OrderDetail::where('orders_id', $id)->get();
-        return $temp;
-    }
+<body class="multiple-addresses-page">
 
-    function get_addresses($id){
-        $temp=\App\Address::where('user_id', $id)->get();
-        return $temp;
-    }
-
-    ?>
-
-    <!--CONTENT PAGE-->
-    <div class="w3-container" style="margin: 49px">
-        <h2>Il mio profilo</h2>
-        <div class="w3-bar">
-            <button id="but#ordini" class="w3-bar-item w3-button tablink w3-green" onclick="openTab(event,'#ordini'); location.href='#ordini'">Ordini</button>
-            <button id="but#dati" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#dati'); location.href='#dati'">Dati personali</button>
-            <button id="but#spedizione" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#spedizione'); location.href='#spedizione'">Indirizzi</button>
-            <button id="but#pagamento" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#pagamento'); location.href='#pagamento'">Pagamento</button>
-            <button id="but#password" class="w3-bar-item w3-button tablink" onclick="openTab(event,'#password'); location.href='#password'">Password</button>
-        </div>
-
-        <div id="#ordini" class="w3-container city">
-            <h2>Ordini effettuati</h2>
-            <p>Visualizza i tuoi ordini.</p>
-
-            <!--lista ordini-->
-            <div class="w3-container">
-                <ul class="w3-ul w3-card-4">
-
-                    <!--CARD PER GLI ORDINI IN CORSO DI ELABORAZIONE-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                        @if ($order->order_shipped==2)
-                            <li class="w3-bar">
-                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                                <div class="w3-bar-item">
-                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>In elaborazione</b></span><br><br>
-                                    <span>Numero ordine: {{! printf($order->id) }}</span><br>
-                                    <span>Oggetti:</span><br>
-
-                                    {{!$elements=get_el($order->id)}}
-                                    @foreach($elements as $element)
-                                        <span>{{$element->element_name }}</span>   Q.ta: {{$element->quantity}}<br>
-                                    @endforeach
-
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-
-                <!--CARD PER GLI ORDINI SPEDITI-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                        @if ($order->order_shipped==1)
-                            <li class="w3-bar">
-                                <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                                <div class="w3-bar-item">
-                                    <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Spedito</b></span><br><br>
-                                    <span>Numero ordine: {{ $order->id }}</span><br>
-                                    <span>Oggetti:</span><br>
-
-                                    {{!$elements=get_el($order->id)}}
-                                    @foreach($elements as $element)
-                                        <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
-                                    @endforeach
-
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-
-                <!--CARD PER GLI ORDINI COMPLETATI-->
-                    {{!$orders= get_order()}}
-                    @foreach($orders as $order)
-                
-                        <li class="w3-bar">
-                            <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                            <div class="w3-bar-item">
-                                <span class="w3-large">Effettuato il: {{ $order->added_on }} - <b>Completato</b></span><br><br>
-                                <span>Numero ordine: {{ $order->id }}</span><br>
-                                <span>Oggetti:</span><br>
-
-                                {{!$elements=get_el($order->id)}}
-                                @foreach($elements as $element)
-                                    <span>{{$element->element_name }}</span>  Q.ta: {{$element->quantity}}<br>
-                                @endforeach
-
-                            </div>
-                        </li>
-                    
-                    @endforeach
-                </ul>
+  <!--div Desktop-->
+  <div id="page">
+    <!-- Header -->
+    @include('components.banner')
+    @include('components.navbarDesktop')
+    <!-- end header -->
+    <!-- Main Container -->
+    <section class="main-container col1-layout">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <div class="state_bar">
+              <div class="w3-bar">
+                <button id="but#ordini" class="button btn-continue first tablink"
+                  onclick="openTab(event,'#ordini'); location.href='#ordini'">Orders</button>
+                <button id="but#dati" class="button tablink"
+                  onclick="openTab(event,'#dati'); location.href='#dati'">Profile</button>
+                <button id="but#spedizione" class="button tablink"
+                  onclick="openTab(event,'#spedizione'); location.href='#spedizione'">Addresses</button>
+                <button id="but#password" class="button tablink"
+                  onclick="openTab(event,'#password'); location.href='#password'">Security</button>
+              </div>
+              <script
+                type="text/javascript">decorateGeneric($$('#checkout-progress-state li'), ['first', 'last']);</script>
             </div>
+            <article class="col-main">
+
+              <!--======Order=======-->
+              <div id="#ordini" class="multiple_addresses">
+                <div class="row page-title_multi" style="margin-left: auto;">
+                  <h2>My Orders</h2>
+                </div>
+                <!--page-title_multi-->
+                <div class="addresses">
+                  <div class="table-responsive">
+                    <fieldset class="multiple-checkout">
+                      <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                      <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                      Please select shipping address for applicable items
+                      <table id="multiship-addresses-table" class="data-table">
+                        <colgroup>
+                          <col>
+                          <col width="1">
+                          <col width="1">
+                          <col width="1">
+                        </colgroup>
+                        <thead>
+                          <tr class="first last">
+                            <th>Product</th>
+                            <th class="a-left">Qty</th>
+                            <th style="width:40%">Send to</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr class="first last">
+                            <td class="a-right last" colspan="100"><button onclick="$('can_continue_flag').value=0"
+                                class="button btn-update" type="submit"><span>Update Qty &amp;
+                                  Addresses</span></button></td>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          
+                          {{!$orders = App\Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get()}}
+
+                          @foreach($orders as $key => $order)
+                          @php
+                            $details = App\OrderDetail::where('orders_id', $order->id)->get();
+                            $address = App\Address::find($order->address_id)
+                          @endphp
+                          <tr class="first odd">
+                            <td>
+                              @foreach($details as $detail)
+                              <h4 class="product-name"><a target="blank_" href="{{ url('element').$detail->element_id }}">{{ $detail->element_name }} - x{{ $detail->quantity }}</a>
+                              </h4>
+                              @endforeach
+                            </td>
+                            <td>
+                              <input type="text" class="input-text qty" size="2" value="{{ count($details)}}">
+                            </td>
+                            <td>
+                              <p>{{ $address->NomeCognome }} - {{ $address->street }}, {{ $address->street_number }} {{ $address->city }}</p>
+                            </td>
+                            <td class="a-center last">
+                              <p>€{{ number_format($order->total, 2) }}</p>
+                            </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                      <div class="buttons-set">
+                        <button onclick="$('can_continue_flag').value=1" class="button btn-continue"
+                          title="Continue to Shipping Information" type="submit"><span>Continue to Shipping
+                            Information</span></button>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <!--multiple-checkout-->
+                </div>
+              </div>
+              <!--======End Order=======-->
+
+              <!--======Data=======-->
+              <div id="#dati" class="multiple_addresses" style="display:none">
+                <div class="page-title_multi">
+                  <h2>Profile</h2>
+                </div>
+                <!--page-title_multi-->
+                <div class="title-buttons">
+                  <button onclick="$('.popup5').show(); $('.popup2').show();" class="button new-address"
+                    title="Enter a New Address" type="button"><span>Edit profile</span></button>
+                </div>
+                <!--title-buttons-->
+                <div class="addresses">
+                  <div class="content">
+                    <ul class="form-list">
+                      <li>
+                        <label class="text-info-key">Name:</label>
+                        <label class="text-info-value">{{Auth::user()->name}}</label>
+                      </li>
+                      <li>
+                        <label class="text-info-key">Surname:</label>
+                        <label class="text-info-value">{{Auth::user()->surname}}</label>
+                      </li>
+                      <li>
+                        <label class="text-info-key">Fiscal Code:</label>
+                        <label class="text-info-value">{{strtoupper(Auth::user()->CF)}}</label>
+                      </li>
+                      <li>
+                        <label class="text-info-key">Email:</label>
+                        <label class="text-info-value">{{Auth::user()->email}}</label>
+                      </li>
+                      @if(isset(Auth::user()->IVA))
+                      <li>
+                        <label class="text-info-key">VAT number:</label>
+                        <label class="text-info-value">{{strtoupper(Auth::user()->IVA)}}</label>
+                      </li>
+                      @endif
+                      @if(isset(Auth::user()->PEC))
+                      <li>
+                        <label class="text-info-key">Email PEC:</label>
+                        <label class="text-info-value">{{Auth::user()->PEC}}</label>
+                      </li>
+                      @endif
+                    </ul>
+                  </div>
+                  <!--multiple-checkout-->
+                </div>
+              </div>
+              <!--======End data=======-->
+
+              <!--======adresses=======-->
+              <div id="#spedizione" class="multiple_addresses" style="display:none">
+                <form method="post" action="//" id="checkout_multishipping_form">
+                  <div class="page-title_multi">
+                    <h2>Multiple Addresses</h2>
+                  </div>
+                  <!--page-title_multi-->
+                  <div class="title-buttons">
+                    <button onclick="$('.popup5').show(); $('.popup3').show();" class="button new-address"
+                      title="Enter a New Address" type="button"><span>Enter a New Address</span></button>
+                  </div>
+                  <!--title-buttons-->
+                  <div class="addresses">
+                    <div class="table-responsive">
+                      <fieldset class="multiple-checkout">
+                        <input type="hidden" id="can_continue_flag" value="0" name="continue">
+                        <input type="hidden" id="add_new_address_flag" value="0" name="new_address">
+                        Please select shipping address for applicable items
+                        <table id="multiship-addresses-table" class="data-table">
+                          <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col width="1">
+                          </colgroup>
+                          <thead>
+                            <tr class="first last">
+                              <th>Name</th>
+                              <th>Address</th>
+                              <th>City</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr class="first last">
+                              <td class="a-right last" colspan="100"></td>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            {{!$id=Auth::user()->id, !$addresses=App\Address::where('user_id', $id)->get()}}
+                            @foreach($addresses as $address)
+                            <tr class="first odd">
+                              <td>
+                                <h4 class="product-name">{{$address->NomeCognome}}</h4>
+                              </td>
+                              <td>
+                                <span>{{$address->street}}, {{$address->street_number}}</span>
+                              </td>
+                              <td>
+                                <span>{{$address->city}} ({{$address->Provincia}}) - {{$address->CAP}}
+                                  <br>{{$address->country}}</span>
+                              </td>
+                              <td class="a-center last">
+                                <a href="{{ URL::to('/delete_user_address') }}{{$address->id}}?ref={{$_SERVER['REQUEST_URI']}}"
+                                  title="Remove item" class="btn-remove btn-remove2"><span>Remove item</span></a>
+                                @if( $address->id == Auth::user()->address_id )
+                                <a title="Favorite address" class="btn-favorite btn-yes-favorite"></a>
+                                @else
+                                <a href="{{ URL::to('/star_address') }}{{$address->id}}"
+                                  title="Select this address as a favorite" class="btn-favorite btn-not-favorite"></a>
+                                @endif
+                              </td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </fieldset>
+                    </div>
+                    <!--multiple-checkout-->
+                  </div>
+                </form>
+              </div>
+              <!--==========End addresses============-->
+
+              <!--======password=======-->
+              <div id="#password" class="multiple_addresses" style="display:none">
+                <div class="page-title_multi">
+                  <h2>Password</h2>
+                </div>
+                <!--page-title_multi-->
+                <div class="title-buttons">
+                  <button onclick="$('.popup5').show(); $('.popup4').show();" class="button new-address"
+                    title="Enter a New Address" type="button"><span>Edit password</span></button>
+                </div>
+                <div class="addresses">
+                  <div class="content">
+                    <ul class="form-list">
+                      <li>
+                        <label class="text-info-key">Password:</label>
+                        <label class="text-info-value">********</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--==========End password============-->
+
+
+            </article>
+            <!--	///*///======    End article  ========= //*/// -->
+          </div>
+
         </div>
+      </div>
+    </section>
+    <!-- Main Container End -->
 
-        <div id="#dati" class="w3-container city" style="display:none">
-            <h2>Dati personali</h2>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-padding">
-                        <div class="w3-bar-item">
-                            <div class="w3-row">
-                                <label>Nome e cognome: <b>{{Auth::user()->name}}  {{Auth::user()->surname}}</b></label>
-                                <a class="w3-right" onclick="document.getElementById('modificaDati').style.display='block'" >Modifica dati</a>
-                            </div>
-                            <div class="w3-row">
-                                @php
-                                $CF=Auth::user()->CF;
-                                $CFUP=strtoupper($CF);
-                                @endphp
-                                <label>Codice fiscale: <b>{{$CFUP}}</b></label>
-                            </div>
-                            <div class="w3-row">
-                                <label>E-mail: <b>{{Auth::user()->email}}</b></label>
-                            </div>
-                            @if(isset(Auth::user()->IVA))
-                            <div class="w3-row">
-                                @php
-                                $IVA=Auth::user()->IVA;
-                                $IVAUP=strtoupper($IVA);
-                                @endphp
-                                <label>Partita IVA: <b>{{$IVAUP}}</b></label>
-                            </div>
-                            @endif
-                            @if(isset(Auth::user()->PEC))
-                            <div class="w3-row">
-                                <label>PEC: <b>{{Auth::user()->PEC}}</b></label>
-                            </div>
-                            @endif
-                        </div>
-                    </li>
-                </ul>
-            </div>  
-        </div> 
-        <div id="#spedizione" class="w3-container city" style="display:none">
-            <h2>Indirizzi di spedizione</h2>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-bar w3-button" onclick="document.getElementById('nuovoIndirizzo').style.display='block'">
-                        <div class="w3-bar-item">
-                            <span class="w3-middle"><i class="fa fa-plus"></i><b> Nuovo indirizzo di spedizione</b></span><br>
-                        </div>
-                    </li>
-                    <!--CARD PER GLI INDIRIZZI DI SPEDIZIONE-->
-                    {{!$id=Auth::user()->id, !$addresses=get_addresses($id)}}
-                    @foreach($addresses as $address)
-                        <li class="w3-bar">
-                            <form id="cancellasped{{$address->id}}" action="{{ URL::to('/delete_user_address') }}{{$address->id}}?ref={{$_SERVER['REQUEST_URI']}}"><button type="button" class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right" onclick="conferma('Intendi eliminare questo indirizzo?', 'cancellasped{{$address->id}}')">Elimina<br><i class="fa fa-close"></i></button></form>
-                            @if( $address->id == Auth::user()->address_id )
-                            <span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star"></i></span>
-                            @else
+    <!--footer Desktop-->
+    @include('components.footerDesktop')
+    <!-- End Footer Desktop -->
+  </div>
 
-                            <a href="{{ URL::to('/star_address') }}{{$address->id}} "><span class="pulsanteDxProfile w3-bar-item w3-button w3-white w3-right">Preferito<br><i class="fa fa-star-o"></i></span></a>
-                            @endif
-                            <div class="w3-bar-item">
+  <!--div Mobile Menu-->
+  <div id="mobile-menu">
+    @include('components.navbarMobile')
+  </div>
 
-                                <span class="w3-middle"><b>{{$address->NomeCognome}}</b></span><br>
-                                <span>
-                                {{$address->street}}, {{$address->street_number}}
-                                <br>{{$address->city}} ({{$address->Provincia}}) - {{$address->CAP}}
-                                <br>{{$address->country}}
-                            </span>
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/revslider.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
 
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
+  <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/openTabProfile.js') }}"></script>
 
-        <div id="#pagamento" class="w3-container city" style="display:none">
-            <h2>Pagamenti</h2>
-            <p>Qui puoi cambiare le tue impostazioni di pagamento.</p>
-            <div id="pulsantePaypal"></div>
-        </div>
-        
-        <div id="#password" class="w3-container city" style="display:none">
-            <h2>Password</h2>
-            <p>Qui puoi cambiare la tua password.</p>
-            <div class="w3-container">
-                <ul class="w3-ul w3-card">
-                    <li class="w3-padding">
-                        <div class="w3-bar-item w3-container">
-                            <form method="post" action="{{ URL::to('/password_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}" >
-                                @csrf
-                                <div class="w3-row">
-                                    <label>Vecchia Password: </label>
-                                    <input class="w3-input" placeholder="Vecchia password" name="old_password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <label>Nuova Password: </label>
-                                    <input class="w3-input" placeholder="Nuova password" name="password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <label>Ripeti Password: </label>
-                                    <input class="w3-input" placeholder="Ripeti nuova password" name="control_password" type="password" required>
-                                </div>
-                                <div class="w3-row w3-margin-top">
-                                    <button class="w3-button " type="submit">Salva</button>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-<!--Modale Modifica dati-->
-<div id="modificaDati" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-teal">
-            <span onclick="document.getElementById('modificaDati').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h2>Modifica i tuoi dati.</h2>
-        </header>
+  <!-------------POPUP------------->
+  <!--data profile-->
+  <div class="popup1 popup2">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup2').hide(); $('.popup5').hide();"><img
+            src="images/f-box-close-icon.png" alt="close" class="x" id="x"></a>
         <form type="submit" method="post" action="{{URL::to('/user_edit')}}?ref={{$_SERVER['REQUEST_URI']}}#dati">
-            @csrf
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Nome e cognome:</label>
-                    <input value="{{Auth::user()->name}}" placeholder="Nome" name="name">
-                    <input value="{{Auth::user()->surname}}" placeholder="Cognome" name="surname">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>Codice fiscale:</label>
-                    <input value="{{$CFUP}}" placeholder="Codice fiscale" name="CF">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>Partita IVA:</label>
-                    <input value="{{$IVAUP}}" placeholder="Partita IVA" name="PIVA">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>E-mail:</label>
-                    <input value="{{Auth::user()->email}}" placeholder="E-mail" name="email">
-                </div>
-                <div class="w3-row w3-margin-top">
-                    <label>PEC: </label>
-                    <input value="{{Auth::user()->PEC}}" placeholder="PEC" name="pec">
-                    <button class="w3-button w3-right" type="submit">Salva</button>
-                </div>
+          @csrf
+          <h3>Edit profile</h3>
+          <fieldset class="col2-set">
+            <div class="input-box">
+              <ul class="form-list">
+                <li>
+                  <label>Name: <span class="required">*</span></label>
+                  <input class="input-text required-entry form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                    type="text" name="name" value="{{Auth::user()->name}}" required autofocus>
+                </li>
+                <li>    
+                  <label>Surname: <span class="required">*</span></label>
+                  <input class="input-text required-entry form-control {{ $errors->has('surname') ? ' is-invalid' : '' }}"
+                    type="text" name="surname" value="{{Auth::user()->surname}}" required>
+                </li>
+                <li>
+                  <label>Fiscal Code: <span class="required">*</span></label>
+                  <input class="input-text required-entry form-control {{ $errors->has('CF') ? ' is-invalid' : '' }}"
+                    type="text" name="CF" value="{{strtoupper(Auth::user()->CF)}}" required>
+                </li>
+                <li>
+                  <label>Email: <span class="required">*</span></label>
+                  <input class="input-text required-entry form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                    type="text" name="email" value="{{Auth::user()->email}}" required>
+                </li>
+                <li>
+                  <label>VAT number:</label>
+                  <input class="input-text form-control {{ $errors->has('PIVA') ? ' is-invalid' : '' }}"
+                    type="text" name="PIVA" value="{{!empty(Auth::user()->IVA) ? strtoupper(Auth::user()->IVA) : ''}}">
+                </li>
+                <li>
+                  <label>Email PEC:</label>
+                  <input class="input-text form-control {{ $errors->has('PEC') ? ' is-invalid' : '' }}"
+                    type="text" name="pec" value="{{!empty(Auth::user()->PEC) ? Auth::user()->PEC : ''}}">
+                </li>
+              </ul>
+              <button class="button subscribe" title="Save" type="submit"><span>Save</span></button>
             </div>
+          </fieldset>
         </form>
+      </div>
+      <!--newsletter-->
     </div>
-</div>
+  <!--newsletter-sign-box-->
+  </div>
 
-@if($errors->has('name') || $errors->has('surname') || $errors->has('CF') || $errors->has('email') || $errors->has('PIVA') || $errors->has('PEC'))
-<script>
-    var stringError="Errore salvataggio!";
-    @if($errors->has('name'))
-    stringError += "Errore campo nome: {{$errors->first('name')}}\n";
-    @endif
 
-    @if($errors->has('surname'))
-    stringError += "Errore campo cognome: {{$errors->first('name')}}\n";
-    @endif
-
-    @if($errors->has('CF'))
-    stringError += "Errore campo Codice fiscale: {{$errors->first('CF')}}\n";
-    @endif
-
-    @if($errors->has('email'))
-    stringError += "Errore campo email: {{$errors->first('email')}}\n";
-    @endif
-
-    @if($errors->has('PEC'))
-    stringError += "il campo PEC: {{$errors->first('PEC')}}\n";
-    @endif
-
-    @if($errors->has('PIVA'))
-    stringError += "il campo Partita IVA: {{$errors->first('PIVA')}}\n";
-    @endif
-
-    alert(stringError);
-</script>   
-@endif
-
-<!--Modale Nuovo indirizzo-->
-<div id="nuovoIndirizzo" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-teal">
-            <span onclick="document.getElementById('nuovoIndirizzo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <h2>Nuovo indirizzo di spedizione</h2>
-        </header>
+  <!--new address-->
+  <div class="popup1 popup3">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup5').hide(); $('.popup3').hide();"><img
+            src="images/f-box-close-icon.png" alt="close" class="x" id="x"></a>
         <form type="submit" method="post" action="{{URL::to('/address_insertion_submit')}}?ref={{$_SERVER['REQUEST_URI']}}">
-            @csrf
-            <div class="w3-padding">
-                <div class="w3-row">
-                    <label>Nome e cognome del Destinatario</label>
-                    <input placeholder="Nome e cognome" type="text" name="NomeCognome" required>
-                </div>
-                <div class="w3-row">
-                    <label>Indirizzo</label>
-                    <input placeholder="Indirizzo" type="text" name="street" required>
-                    <label>Civico</label>
-                    <input placeholder="Civico" type="text" name="street_number">
-                </div>
-
-                <div class="w3-row">
-                    <label>Citta</label>
-                    <input placeholder="Città" type="text" name="city" id="newComune" onkeyup="trovaCap('newComune', 'newCap', 'newProvincia');" required>
-                    <label>CAP</label>
-                    <input placeholder="CAP" type="text" name="CAP" id="newCap" required>
-                </div>
-                <div class="w3-row">
-                    <label>Provincia</label>
-                    <input placeholder="Provincia" type="text" name="Provincia" id="newProvincia" required>
-                </div>
-                <div class="w3-row">
-                    <label>Stato</label>
-                    <input placeholder="Stato" type="text" name="country" required>
-                    <button class="w3-right" type="submit">Salva</button>
-                </div>
+          @csrf
+          <h3>Edit profile</h3>
+          <fieldset class="col2-set">
+            <div class="input-box">
+              <ul class="form-list">
+                <li>
+                  <label>Recipient's name and surname : <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="NomeCognome" required autofocus>
+                </li>
+                <li>    
+                  <label>Address: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="street" required>
+                </li>
+                <li>
+                  <label>Street number: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="street_number" required>
+                </li>
+                <li>
+                  <label>City: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="city" required>
+                </li>
+                <li>
+                  <label>Postal Code: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="CAP" required>
+                </li>
+                <li>
+                  <label>Province/District: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    type="text" name="Provincia" required>
+                </li>
+                <li>
+                  <label>Country: <span class="required">*</span></label>
+                  <select title="Country" class="validate-select"
+                    id="country" name="country" required>
+                    <option value=""> </option>
+                    <option value="AF">Afghanistan</option>
+                    <option value="AX">Åland Islands</option>
+                    <option value="AL">Albania</option>
+                    <option value="DZ">Algeria</option>
+                    <option value="AS">American Samoa</option>
+                    <option value="AD">Andorra</option>
+                    <option value="AO">Angola</option>
+                    <option value="AI">Anguilla</option>
+                    <option value="AQ">Antarctica</option>
+                    <option value="AG">Antigua and Barbuda</option>
+                    <option value="AR">Argentina</option>
+                    <option value="AM">Armenia</option>
+                    <option value="AW">Aruba</option>
+                    <option value="AU">Australia</option>
+                    <option value="AT">Austria</option>
+                    <option value="AZ">Azerbaijan</option>
+                    <option value="BS">Bahamas</option>
+                    <option value="BH">Bahrain</option>
+                    <option value="BD">Bangladesh</option>
+                    <option value="BB">Barbados</option>
+                    <option value="BY">Belarus</option>
+                    <option value="BE">Belgium</option>
+                    <option value="BZ">Belize</option>
+                    <option value="BJ">Benin</option>
+                    <option value="BM">Bermuda</option>
+                    <option value="BT">Bhutan</option>
+                    <option value="BO">Bolivia</option>
+                    <option value="BA">Bosnia and Herzegovina</option>
+                    <option value="BW">Botswana</option>
+                    <option value="BV">Bouvet Island</option>
+                    <option value="BR">Brazil</option>
+                    <option value="IO">British Indian Ocean Territory
+                    </option>
+                    <option value="VG">British Virgin Islands</option>
+                    <option value="BN">Brunei</option>
+                    <option value="BG">Bulgaria</option>
+                    <option value="BF">Burkina Faso</option>
+                    <option value="BI">Burundi</option>
+                    <option value="KH">Cambodia</option>
+                    <option value="CM">Cameroon</option>
+                    <option value="CA">Canada</option>
+                    <option value="CV">Cape Verde</option>
+                    <option value="KY">Cayman Islands</option>
+                    <option value="CF">Central African Republic</option>
+                    <option value="TD">Chad</option>
+                    <option value="CL">Chile</option>
+                    <option value="CN">China</option>
+                    <option value="CX">Christmas Island</option>
+                    <option value="CC">Cocos [Keeling] Islands</option>
+                    <option value="CO">Colombia</option>
+                    <option value="KM">Comoros</option>
+                    <option value="CG">Congo - Brazzaville</option>
+                    <option value="CD">Congo - Kinshasa</option>
+                    <option value="CK">Cook Islands</option>
+                    <option value="CR">Costa Rica</option>
+                    <option value="CI">Côte d’Ivoire</option>
+                    <option value="HR">Croatia</option>
+                    <option value="CU">Cuba</option>
+                    <option value="CY">Cyprus</option>
+                    <option value="CZ">Czech Republic</option>
+                    <option value="DK">Denmark</option>
+                    <option value="DJ">Djibouti</option>
+                    <option value="DM">Dominica</option>
+                    <option value="DO">Dominican Republic</option>
+                    <option value="EC">Ecuador</option>
+                    <option value="EG">Egypt</option>
+                    <option value="SV">El Salvador</option>
+                    <option value="GQ">Equatorial Guinea</option>
+                    <option value="ER">Eritrea</option>
+                    <option value="EE">Estonia</option>
+                    <option value="ET">Ethiopia</option>
+                    <option value="FK">Falkland Islands</option>
+                    <option value="FO">Faroe Islands</option>
+                    <option value="FJ">Fiji</option>
+                    <option value="FI">Finland</option>
+                    <option value="FR">France</option>
+                    <option value="GF">French Guiana</option>
+                    <option value="PF">French Polynesia</option>
+                    <option value="TF">French Southern Territories
+                    </option>
+                    <option value="GA">Gabon</option>
+                    <option value="GM">Gambia</option>
+                    <option value="GE">Georgia</option>
+                    <option value="DE">Germany</option>
+                    <option value="GH">Ghana</option>
+                    <option value="GI">Gibraltar</option>
+                    <option value="GR">Greece</option>
+                    <option value="GL">Greenland</option>
+                    <option value="GD">Grenada</option>
+                    <option value="GP">Guadeloupe</option>
+                    <option value="GU">Guam</option>
+                    <option value="GT">Guatemala</option>
+                    <option value="GG">Guernsey</option>
+                    <option value="GN">Guinea</option>
+                    <option value="GW">Guinea-Bissau</option>
+                    <option value="GY">Guyana</option>
+                    <option value="HT">Haiti</option>
+                    <option value="HM">Heard Island and McDonald Islands
+                    </option>
+                    <option value="HN">Honduras</option>
+                    <option value="HK">Hong Kong SAR China</option>
+                    <option value="HU">Hungary</option>
+                    <option value="IS">Iceland</option>
+                    <option value="IN">India</option>
+                    <option value="ID">Indonesia</option>
+                    <option value="IR">Iran</option>
+                    <option value="IQ">Iraq</option>
+                    <option value="IE">Ireland</option>
+                    <option value="IM">Isle of Man</option>
+                    <option value="IL">Israel</option>
+                    <option selected="selected" value="IT">Italy</option>
+                    <option value="JM">Jamaica</option>
+                    <option value="JP">Japan</option>
+                    <option value="JE">Jersey</option>
+                    <option value="JO">Jordan</option>
+                    <option value="KZ">Kazakhstan</option>
+                    <option value="KE">Kenya</option>
+                    <option value="KI">Kiribati</option>
+                    <option value="KW">Kuwait</option>
+                    <option value="KG">Kyrgyzstan</option>
+                    <option value="LA">Laos</option>
+                    <option value="LV">Latvia</option>
+                    <option value="LB">Lebanon</option>
+                    <option value="LS">Lesotho</option>
+                    <option value="LR">Liberia</option>
+                    <option value="LY">Libya</option>
+                    <option value="LI">Liechtenstein</option>
+                    <option value="LT">Lithuania</option>
+                    <option value="LU">Luxembourg</option>
+                    <option value="MO">Macau SAR China</option>
+                    <option value="MK">Macedonia</option>
+                    <option value="MG">Madagascar</option>
+                    <option value="MW">Malawi</option>
+                    <option value="MY">Malaysia</option>
+                    <option value="MV">Maldives</option>
+                    <option value="ML">Mali</option>
+                    <option value="MT">Malta</option>
+                    <option value="MH">Marshall Islands</option>
+                    <option value="MQ">Martinique</option>
+                    <option value="MR">Mauritania</option>
+                    <option value="MU">Mauritius</option>
+                    <option value="YT">Mayotte</option>
+                    <option value="MX">Mexico</option>
+                    <option value="FM">Micronesia</option>
+                    <option value="MD">Moldova</option>
+                    <option value="MC">Monaco</option>
+                    <option value="MN">Mongolia</option>
+                    <option value="ME">Montenegro</option>
+                    <option value="MS">Montserrat</option>
+                    <option value="MA">Morocco</option>
+                    <option value="MZ">Mozambique</option>
+                    <option value="MM">Myanmar [Burma]</option>
+                    <option value="NA">Namibia</option>
+                    <option value="NR">Nauru</option>
+                    <option value="NP">Nepal</option>
+                    <option value="NL">Netherlands</option>
+                    <option value="AN">Netherlands Antilles</option>
+                    <option value="NC">New Caledonia</option>
+                    <option value="NZ">New Zealand</option>
+                    <option value="NI">Nicaragua</option>
+                    <option value="NE">Niger</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="NU">Niue</option>
+                    <option value="NF">Norfolk Island</option>
+                    <option value="MP">Northern Mariana Islands</option>
+                    <option value="KP">North Korea</option>
+                    <option value="NO">Norway</option>
+                    <option value="OM">Oman</option>
+                    <option value="PK">Pakistan</option>
+                    <option value="PW">Palau</option>
+                    <option value="PS">Palestinian Territories</option>
+                    <option value="PA">Panama</option>
+                    <option value="PG">Papua New Guinea</option>
+                    <option value="PY">Paraguay</option>
+                    <option value="PE">Peru</option>
+                    <option value="PH">Philippines</option>
+                    <option value="PN">Pitcairn Islands</option>
+                    <option value="PL">Poland</option>
+                    <option value="PT">Portugal</option>
+                    <option value="PR">Puerto Rico</option>
+                    <option value="QA">Qatar</option>
+                    <option value="RE">Réunion</option>
+                    <option value="RO">Romania</option>
+                    <option value="RU">Russia</option>
+                    <option value="RW">Rwanda</option>
+                    <option value="BL">Saint Barthélemy</option>
+                    <option value="SH">Saint Helena</option>
+                    <option value="KN">Saint Kitts and Nevis</option>
+                    <option value="LC">Saint Lucia</option>
+                    <option value="MF">Saint Martin</option>
+                    <option value="PM">Saint Pierre and Miquelon
+                    </option>
+                    <option value="VC">Saint Vincent and the Grenadines
+                    </option>
+                    <option value="WS">Samoa</option>
+                    <option value="SM">San Marino</option>
+                    <option value="ST">São Tomé and Príncipe</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="SN">Senegal</option>
+                    <option value="RS">Serbia</option>
+                    <option value="SC">Seychelles</option>
+                    <option value="SL">Sierra Leone</option>
+                    <option value="SG">Singapore</option>
+                    <option value="SK">Slovakia</option>
+                    <option value="SI">Slovenia</option>
+                    <option value="SB">Solomon Islands</option>
+                    <option value="SO">Somalia</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="GS">South Georgia and the South
+                        Sandwich Islands</option>
+                    <option value="KR">South Korea</option>
+                    <option value="ES">Spain</option>
+                    <option value="LK">Sri Lanka</option>
+                    <option value="SD">Sudan</option>
+                    <option value="SR">Suriname</option>
+                    <option value="SJ">Svalbard and Jan Mayen</option>
+                    <option value="SZ">Swaziland</option>
+                    <option value="SE">Sweden</option>
+                    <option value="CH">Switzerland</option>
+                    <option value="SY">Syria</option>
+                    <option value="TW">Taiwan</option>
+                    <option value="TJ">Tajikistan</option>
+                    <option value="TZ">Tanzania</option>
+                    <option value="TH">Thailand</option>
+                    <option value="TL">Timor-Leste</option>
+                    <option value="TG">Togo</option>
+                    <option value="TK">Tokelau</option>
+                    <option value="TO">Tonga</option>
+                    <option value="TT">Trinidad and Tobago</option>
+                    <option value="TN">Tunisia</option>
+                    <option value="TR">Turkey</option>
+                    <option value="TM">Turkmenistan</option>
+                    <option value="TC">Turks and Caicos Islands</option>
+                    <option value="TV">Tuvalu</option>
+                    <option value="UG">Uganda</option>
+                    <option value="UA">Ukraine</option>
+                    <option value="AE">United Arab Emirates</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="US">United States
+                    </option>
+                    <option value="UY">Uruguay</option>
+                    <option value="UM">U.S. Minor Outlying Islands
+                    </option>
+                    <option value="VI">U.S. Virgin Islands</option>
+                    <option value="UZ">Uzbekistan</option>
+                    <option value="VU">Vanuatu</option>
+                    <option value="VA">Vatican City</option>
+                    <option value="VE">Venezuela</option>
+                    <option value="VN">Vietnam</option>
+                    <option value="WF">Wallis and Futuna</option>
+                    <option value="EH">Western Sahara</option>
+                    <option value="YE">Yemen</option>
+                    <option value="ZM">Zambia</option>
+                    <option value="ZW">Zimbabwe</option>
+                </select>
+                </li>
+              </ul>
+              <button class="button subscribe" title="Save" type="submit"><span>Save</span></button>
             </div>
+          </fieldset>
         </form>
+      </div>
+      <!--newsletter-->
     </div>
-</div>
-
-    <!--end CONTENT PAGE-->
-
-    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-    <script>paypal.Buttons().render('#pulsantePaypal');</script>
-    <script>
-        setTimeout(() => {
-            document.getElementById('but'+window.location.hash).click();
+    <!--newsletter-sign-box-->
+  </div>
 
 
-        }, 300);
-
-
-        /** ----------METODO per COMPILAZIONEE COMUNE-----------*/
-var myObj
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        myObj = JSON.parse(this.responseText);
-        //console.log(myObj);
-
-    }
-};
-xmlhttp.open("GET", "https://raw.githubusercontent.com/matteocontrini/comuni-json/master/comuni.json", true);
-xmlhttp.send();
-
-function trovaCap(idComune, idCap, idProvincia) {
-    if (document.getElementById(idComune) != null) {
-        var nomeComune = document.getElementById(idComune).value.toLowerCase();
-        for (ii = 0; ii < myObj.length; ii++) {
-            if (myObj[ii]["nome"].toLowerCase() === nomeComune) {
-                if (myObj[ii]["cap"].length === 1) {
-                    document.getElementById(idCap).value = myObj[ii]["cap"][0].toString();
-                } else {
-                    var iii = 1;
-                    var capp = myObj[ii]["cap"][0];
-                    while (myObj[ii]["cap"][iii] != null) {
-                        capp = capp + ", " + myObj[ii]["cap"][iii]
-                        iii++;
-                    }
-                    document.getElementById(idCap).value = capp;
-                }
-                document.getElementById(idProvincia).value = myObj[ii]["sigla"];
-            }
-        }
-    }
-}
-/** ---------- FINE METODO per COMPILAZIONEE COMUNE-----------*/
-    </script>
-    
-
-@endsection
+  <!--password-->
+  <div class="popup1 popup4">
+    <div class="newsletter-sign-box">
+      <div class="newsletter"><a onclick="$('.popup5').hide(); $('.popup4').hide();"><img
+            src="images/f-box-close-icon.png" alt="close" class="x" id="x"></a>
+        <form type="submit" method="post" action="{{ URL::to('/password_edit_submit') }}?ref={{$_SERVER['REQUEST_URI']}}">
+        @csrf
+          <h3>Edit profile</h3>
+          <fieldset class="col2-set">
+            <div class="input-box">
+              <ul class="form-list">
+                <li>
+                  <label>Old password : <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    name="old_password" type="password" required autofocus>
+                </li>
+                <li>    
+                  <label>New password: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    name="password" type="password" required>
+                </li>
+                <li>
+                  <label>Repeat new password: <span class="required">*</span></label>
+                  <input class="input-text required-entry"
+                    name="control_password" autocomplete="off" type="password" required>
+                </li>
+              </ul>
+              <button class="button subscribe" title="Save" type="submit"><span>Save</span></button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <!--newsletter-->
+    </div>
+    <!--newsletter-sign-box-->
+  </div>
+  <!--popup1-->
+  <div class="popup1 popup5" id="overlay"></div>
+  <!----------END POPUP--------->
+</body>

@@ -1,80 +1,116 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+
+@endsection
 
 @section('content')
 
-    <div class="w3-container" style="height:100%">
-        <div class="w3-content w3-center w3-padding" style="margin-top:100px;width:400px;background-color: #2c993f;">
-            <div class="container" style="margin-top:14px">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
+<body class="shopping-cart-page">
 
-                            <div class="card-header" style="margin-bottom: 27px"><b><h2 style="font-family: 'Lucida Sans'">{{ __('Reset Password') }}</h2></b></div>
+    <!--div Desktop-->
+    <div id="page">
+        <!-- Header -->
+        @include('components.banner')
+        @include('components.navbarDesktop')
+        <!-- end header -->
 
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('password.update') }}" >
+        <!-- !PAGE CONTENT! -->
+        <section class="main-container col1-layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <article class="col-main">
+                            <div class="account-login">
+                                <div class="page-title">
+                                    <h2>Login or Create an Account</h2>
+                                </div>
+                                <form method="POST" action="{{ route('password.update') }}" style="border:none;">
                                     @csrf
-
-                                    <input type="hidden" name="token" value="{{ $token }}">
-
-                                    <div class="form-group row" style="margin-bottom: 10px; margin-top: 15px">
-                                        <label for="email" class="col-md-4 col-form-label text-md-right">
-                                            <a style="font-size: medium;  font-family: 'Lucida Sans'">{{ __('Indirizzo email di registrazione') }}</a></label>
-
-                                        <div class="col-md-6">
-                                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-control w3-input w3-round" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                            @endif
+                                    <fieldset class="col2-set">
+                                        <div class="col-1 new-users"><strong>New Customers</strong>
+                                            <div class="content">
+                                                <p>By creating an account with our store, you will be able to move
+                                                    through the checkout process faster, store multiple shipping
+                                                    addresses, view and track your orders in your account and more.</p>
+                                                <div class="buttons-set">
+                                                    <button onclick="location.href='{{ url('register') }}'"
+                                                        class="button create-account" type="button"><span>Create an
+                                                            Account</span></button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-
-
-                                    <div class="form-group row" style="margin-bottom: 10px; margin-top: 15px">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">
-                                            <a style="font-size: medium;  font-family: 'Lucida Sans'">{{ __('Password') }}</a></label>
-
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control{{ $errors->has('Nuova Password') ? ' is-invalid' : '' }} w3-input w3-round" name="password" required>
-
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                            @endif
+                                        <div class="col-2 registered-users"><strong>Registered Customers</strong>
+                                            <div class="content">
+                                                <p>If you have an account with us, please log in.</p>
+                                                <ul class="form-list">
+                                                    <li>
+                                                        <label for="email">Email Address <span
+                                                                class="required">*</span></label>
+                                                        <input type="text" title="Email Address"
+                                                            onfocus="this.value = '';" onblur="if (this.value == '')"
+                                                            class="input-text required-entry" id="email"
+                                                            value="{{ old('email') }}" required autofocus name="email"
+                                                            {{ $errors->has('email') ? ' is-invalid' : '' }}>
+                                                        @if ($errors->has('email'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                        </span>
+                                                        @endif<span class="validity"></span>
+                                                    </li>
+                                                    <li>
+                                                        <label for="pass">Password <span
+                                                                class="required">*</span></label>
+                                                        <input type="password" title="Password" id="pass"
+                                                            class="input-text required-entry validate-password"
+                                                            name="password" requiredplaceholder="Password" required
+                                                            {{ $errors->has('password') ? ' is-invalid' : '' }}
+                                                            name="password" required>
+                                                        @if ($errors->has('password'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </li>
+                                                </ul>
+                                                <p class="required">* Required Fields</p>
+                                                <div class="buttons-set">
+                                                    <button id="send2" name="send" type="submit"
+                                                        class="button login"><span>Login</span></button>
+                                                    <a class="forgot-word" href="#">Forgot Your Password?</a> </div>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group row" style="margin-bottom: 10px; margin-top: 15px">
-                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">
-                                            <a style="font-size: medium;  font-family: 'Lucida Sans'">
-                                                {{ __('Conferma Password') }}</a></label>
-
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control form-control w3-input w3-round" name="password_confirmation" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-
-                                            <button type="submit" class="w3-button w3-yellow" style="margin-top: 10px">
-                                                <a style="font-size: medium;  font-family: 'Lucida Sans'">
-                                                    {{ __('Reset Password') }}</a>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </fieldset>
                                 </form>
                             </div>
-                        </div>
+                        </article>
+                        <!--	///*///======    End article  ========= //*/// -->
                     </div>
+
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- Main Container End -->
+
+        <!--footer Desktop-->
+        @include('components.footerDesktop')
+        <!-- End Footer Desktop -->
     </div>
 
+    <!--div Mobile Menu-->
+    <div id="mobile-menu">
+        @include('components.navbarMobile')
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/revslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+
+</body>
 @endsection

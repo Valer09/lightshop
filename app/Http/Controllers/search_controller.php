@@ -14,8 +14,7 @@ class search_controller extends Controller
 
         $search = $validatedData['search'];
 
-        $elements = Element::where('name', 'LIKE', '%' . $search . '%')->orWhere('subcategories', 'LIKE', '%' . $search . '%')->get();
-        
+        $elements = Element::where('name', 'LIKE', '%' . $search . '%')->orWhere('subcategories', 'LIKE', '%' . $search . '%')->paginate(30);
 
         return view('catalog', ['Elements' => $elements], ['Category' => null, 'search' => $search]);
     }

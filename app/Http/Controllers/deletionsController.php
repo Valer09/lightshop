@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App, DB, Storage;
+use App, DB, Storage, Session;
 
 use App\Http\Controllers\VerifiedPrivileged;
-use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier, App\Order, App\OrderDetail, App\Offert;
+use App\Element, App\PhotoElement, App\ElementsShowRoom, App\PhotoShowroom, App\Courier, 
+App\Order, App\OrderDetail, App\Offert, App\NewsReader;
 
 class deletionsController extends Controller
 {
@@ -181,6 +182,21 @@ class deletionsController extends Controller
             Offert::find($id)->delete();
 
             return redirect(request()->headers->get('referer').'?openAlert=L\'offerta è stata cancellata');
+        } else {
+            return abort(403, 'Azione non autorizzata!');
+        }
+    }
+
+    public function delete_cart(Request $request) {
+        Session::forget('cart');
+        return redirect('shopping-cart');
+    }
+
+    public function delete_newsletter(Request $request, $id){
+        if ( VerifiedPrivileged::verificaAdminAndPrivileged($request) ){
+            NewsReader::find($id)->delete();
+
+            return redirect(request()->headers->get('referer').'?openAlert=L\'utente è stato cancellato');
         } else {
             return abort(403, 'Azione non autorizzata!');
         }

@@ -2,173 +2,399 @@
 @section('title', 'Visca s.n.c.')
 
 @section('head')
-          
-    <!--Plugin Slider-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
-    <!-- end Plugin slider-->
 
-    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/catalog.css')}}" />
-    <script src="{{url('/js/catalog.js')}}"></script>
-
-  @endsection
+<!--Plugin Slider-->
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+<link rel="stylesheet" href="{{ asset('/css/catalogMediaQuery.css') }}" />
+<!-- end Plugin slider-->
+@endsection
 
 @section('content')
 
-{{!$Offerts = \App\Offert::allWithKey()}}
+<body class="grid-page">
+  <div id="page">
+    <!-- Header -->
+    @include('components.banner')
+    @include('components.navbarDesktop')
+    <!-- end header -->
 
-<!-- Sidebar/Filter -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top w3-animate-left" id="mySidebar">
-    <div id="borderGradient"></div>
-    <div id="filter" class="w3-margin-left w3-margin-top">
-        <div class="w3-margin-left">
-            <a class="w3-row" href="{{ url('catalog') }}">
-            <span><i class="fa fa-angle-left"></i> Catalogo</span>
-            </a>
-            @if($Category != null && ($Category[1] != null || $Category[1] != ''))
-            <a class="w3-row w3-margin-top" href="{{ url('catalog').$Category[0]->name }}">
-                <span><i class="fa fa-angle-left"></i> {{$Category[0]->name }}</span>
-            </a>
-            @endif
-        </div>
-        @if($Category != null)
-        <span><h4>Sottocategorie</h4></span>
-        <div class="w3-margin-bottom article-navigation">
-            <div class="body">
-                <ul class="first-level narrow dashed">
-                    @foreach($Category[2] as $subcat)
-                    <li>
-                        <a href="{{ url('catalog'.$Category[0]->name, $subcat->name) }}" wt_name="assortment_menu.level3">{{$subcat->name}}</a>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
-        </div>
-        @endif
+    {{!$Offerts = \App\Offert::allWithKey()}}
 
-        <!--FILTER-->
-        <span><h4>Filtra per</h4></span>
-        <div class="w3-container w3-margin-bottom">
-            <div>
-                <label>Prezzo:</label>
-                <input type="text" id="js-range-slider" name="price" value="" />
-            </div>
-        </div>
-
-        <div class="w3-container">
-            <div class="exp-left-nav-filter-heading">
-                <label>Marca</label>
-                <span class="exp-left-nav-more-glyph nsg-glyph--plus collapsed"></span>
-                <span class="exp-left-nav-less-glyph nsg-glyph--minus"></span>
-            </div>
-            <div class="">
-                <ul>
-                @php
-                $brands = array();
-                foreach($Elements as $el) {
-                    if(empty($brands[$el->brand])){
-                        $brands[$el->brand] = 1;
-                    } else{
-                        $brands[$el->brand]++;
-                    }
-                }
-                @endphp
-                @foreach ($brands as $key => $value)
-                    <li class="">
-                        <input type="checkbox" id="filter-{{str_replace(' ', '_', $key)}}" class="checkFilter" value="{{str_replace(' ', '_', $key)}}">
-                        <span>{{$key}} ({{$value}})</span>
-                    </li>
-                @endforeach
-                </ul>
-            </div>
-        </div>                                               
-    </div>     
-</nav>
-
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-    <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-top: 49px;margin-left:250px;">
-
-    <!-- Push down content on small screens -->
-    <div class="w3-hide-large" style="margin-top:83px"></div>
-
-    @if($Category != null)
-        <!-- Top header -->
-        <header class="w3-container">
-            @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
-            <h2 class="w3-xlarge">{{ $Category[0]->name }} <i class="fa fa-angle-right"></i> {{ $Category[1] }}</h2>
-            <h5>{{count($Elements)}} elementi</h5>
-            @endif
-        </header>
-
-        <!-- Image header -->
-        @if($Category[1] == null && empty($search))
-        <div class="w3-display-container w3-container">
-            <img class="w3-image"  data-src="{{ asset('storage').$Category[0]->pathPhoto }}" alt="{{ $Category[0]->name }}" style="width:100%">
-            <div class="w3-display-topleft w3-text-white textAnimation" style="padding:24px 48px">
-                <h1 class="w3-jumbo w3-hide-small" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
-                <h1 class="w3-hide-large w3-hide-medium" style="text-shadow: 3px 2px 10px black;">{{ $Category[0]->name }}</h1>
-                <h4 class="w3-padding" style="text-shadow: 3px 2px 10px black;">{{count($Elements)}} elementi</h4>
-                <p><a href="#elementi" class="w3-black w3-padding-large w3-large w3-card-4 w3-hover-red">Prodotti</a></p>
-            </div>
-        </div>
-        @endif
-    @else
-        <header class="w3-container">
-            <h2 class="w3-xlarge"><i class="fa fa-search"></i>Ricerca per: {{$search}}</h2>
-            <h5>{{count($Elements)}} elementi</h5>
-        </header>
-    @endif
-
-    <div class="first w3-container w3-margin-top" id="elementi">
-
-    <!-- Product grid -->
-    @foreach($Elements as $el)
-        @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
-        <div class="filterDiv {{str_replace(' ', '_', $el->brand)}} " value="{{$el->id}}/{{str_replace(' ', '_', $el->brand)}}/{{($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc))}}/offert">
-        @else
-        <div class="filterDiv {{str_replace(' ', '_', $el->brand)}} " value="{{$el->id}}/{{str_replace(' ', '_', $el->brand)}}/{{number_format($el->price, 2, '.', ',')}}">
-        @endif
-
-            <div class="third w3-display-container w3-white">
-                <img class="lazy" data-src=" {{ asset('storage').$el->pathPhoto }}">
-                @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) == date("m"))
-                <span class="w3-round-xlarge w3-tag w3-display-topleft" style="width:auto; height:auto">Nuovo</span>
+    <!-- Main Container -->
+    <section class="main-container col2-left-layout">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-sm-push-3">
+            <!-- Breadcrumbs -->
+            @if($Category != null)
+            <div class="breadcrumbs">
+              <ul>
+                <li class="home"> <a href="{{ url('home') }}" title="Go to Home Page">Home</a> <span>/</span> </li>
+                <li class="category1599"> <a href="{{ url('catalog-').$Category[0]->name }}"
+                    title="">{{ $Category[0]->name }}</a></li>
+                @if($Category[1] != null || !empty($Category[1]) || $Category[1] != '')
+                <li class="category1600"> <span>/ </span> <a
+                    href="{{ url('catalog-').$Category[0]->name.'/'.$Category[1] }}" title="">{{ $Category[1] }}</a>
+                </li>
                 @endif
-                <div class="w3-display-middle w3-display-hover">
-                    <button onclick="location.href='{{url('element/').$el->id}}'" class="w3-button w3-black">Acquista<i class="fa fa-shopping-cart"></i></button>
-                </div>
+              </ul>
+            </div>
+            @endif
+            <!-- Breadcrumbs End -->
+            <div class="page-title">
+              <h2 class="page-heading"> <span
+                  class="page-heading-title">{{ empty($Category[0]->name) ? 'Results for "'.$search.'"' : $Category[0]->name }}</span>
+              </h2>
             </div>
 
-            <div class="w3-row">
-                <div class="w3-padding divElP">
-                    @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
-                    <p class="w3-red">Offerta</p>
-                    <label class="prices" style="text-decoration: line-through">€ {{ number_format($el->price, 2, '.', ',') }}</label>
-                    <b>€ <label class="prices">{{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }}</label></b>
-                    @else
-                    <b>€ <label class="prices">{{ number_format($el->price, 2, '.', ',') }}</label></b>
-                    @endif
+            @include('components.bannerFoto')
+            
+            <article class="col-main">
+              <div class="toolbar">
+                <div class="display-product-option">
+                  <div class="pages">
+                    <label>Page:</label>
+                    <ul class="pagination">
+                      @if(Request::input('page') > 1 && !empty(Request::input('page')))
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a>
+                      </li>
+                      @endif
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a
+                          href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
+                        <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a
+                            href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                        @endfor
+                        @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 &&
+                          $Elements->lastPage() == 1))
+                          <li><a
+                              href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a>
+                          </li>
+                          @endif
+                    </ul>
+                  </div>
+                  <div class="product-option-right">
+                    <div id="sort-by">
+                      <label class="left">Sort By: </label>
+                      <ul>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured ' : Request::input('sort')}} <span
+                              class="right-arrow"></span></a>
+                          <ul>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest
+                                Arrivals</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="pager">
+                      <div id="limiter">
+                        <label>View: </label>
+                        <ul>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span
+                                class="right-arrow"> </span></a>
+                            <ul>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'50']) !!}">50</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'100']) !!}">100</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p>{{ $el->name }}</p>
-                
+              </div>
+              <div class="category-products">
+                <ul class="products-grid">
+                  @foreach($Elements as $el)
+                  <li class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                    <div class="item-inner">
+                      <div class="item-img">
+                        <div class="item-img-info"><a href="{{url('element').$el->id}}" title="{{ $el->name }}"
+                            class="product-image"><img src="{{ asset('storage').$el->pathPhoto }}"
+                              alt="{{ $el->name }}"></a>
+                          @if ($el->created_at != '' && date('m', strtotime(str_replace('-','/', $el->created_at))) ==
+                          date("m"))
+                          <div class="new-label new-top-left">New</div>
+                          @endif
+                        </div>
+                      </div>
+                      <div class="item-info">
+                        <div class="info-inner">
+                          <div class="item-title"> <a title="{{ $el->name }}" href="{{url('element').$el->id}}">
+                              {{ $el->name }} </a> </div>
+                          <div class="item-content">
+                            <div class="rating">
+                              <div class="ratings">
+                                <div class="rating-box">
+                                  <div style="width:80%" class="rating"></div>
+                                </div>
+                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a
+                                    href="#">Add Review</a> </p>
+                              </div>
+                            </div>
+                            <div class="item-price">
+                              <div class="price-box">
+                                @if(isset($Offerts[$el->id]) && $Offerts[$el->id]->date_end > date('Y-m-d h:i:sa'))
+                                <p class="old-price"><span class="price-label">Regular Price:</span> <span
+                                    class="price">€{{ number_format($el->price, 2, ',', '.') }} </span> </p>
+                                <p class="special-price"><span class="price-label">Special Price</span> <span
+                                    class="price" style="color: red">€{{ number_format(($el->price - (($el->price)/100*$Offerts[$el->id]->discount_perc)), 2, '.', ',') }} </span> </p>
+                                @else
+                                <p class="special-price"><span class="price-label">Regular Price:</span> <span
+                                    class="price">€{{ number_format($el->price, 2, ',', '.') }} </span> </p>
+                                @endif
+                              </div>
+                            </div>
+                            <div class="action">
+                              <form method="post" action="{{ route('Element.addToCart', ['id' => $el->id]) }}">
+                                @csrf
+                                <button class="button btn-cart" type="submit" title="Add to cart" name="quantity" value="1"
+                                  data-original-title="Add to Cart"><span>Add to Cart</span></button>
+                              </form>    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  @endforeach
+                </ul>
+              </div>
+              <div class="toolbar">
+                <div class="display-product-option">
+                  <div class="pages">
+                    <label>Page:</label>
+                    <ul class="pagination">
+                      @if(Request::input('page') > 1 && !empty(Request::input('page')))
+                      <li><a href="{!! Request::fullUrlWithQuery(['page'=>Request::input('page') - 1]) !!}">&laquo;</a>
+                      </li>
+                      @endif
+                      <li class="{{Request::input('page') == 1 || empty(Request::input('page')) ? 'active' : ''}}"><a
+                          href="{!! Request::fullUrlWithQuery(['page'=>1]) !!}">1</a></li>
+                      @for($it = 2 ; $it <= $Elements->lastPage() ; $it++)
+                        <li class="{{Request::input('page') == $it ? 'active' : ''}}"><a
+                            href="{!! Request::fullUrlWithQuery(['page'=>$it]) !!}">{{ $it }}</a></li>
+                        @endfor
+                        @if(Request::input('page') < $Elements->lastPage() && !($Elements->currentPage() == 1 &&
+                          $Elements->lastPage() == 1))
+                          <li><a
+                              href="{!! Request::fullUrlWithQuery(['page'=>(empty(Request::input('page')) ? 2 : Request::input('page') + 1)]) !!}">&raquo;</a>
+                          </li>
+                          @endif
+                    </ul>
+                  </div>
+                  <div class="product-option-right">
+                    <div id="sort-by">
+                      <label class="left">Sort By: </label>
+                      <ul>
+                        <li><a href="#">{{empty(Request::input('sort')) ? 'Featured' : Request::input('sort')}} <span
+                              class="right-arrow"></span></a>
+                          <ul>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Featured']) !!}">Featured</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Low price']) !!}">Low price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'High price']) !!}">High price</a></li>
+                            <li><a href="{!! Request::fullUrlWithQuery(['sort'=>'Newest Arrivals']) !!}">Newest
+                                Arrivals</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <a class="button-asc left" href="#" title="Set Descending Direction"><span
+                          class="top_arrow"></span></a>
+                    </div>
+                    <div class="pager">
+                      <div id="limiter">
+                        <label>View: </label>
+                        <ul>
+                          <li><a href="#">{{empty(Request::input('limit')) ? '40' : Request::input('limit')}}<span
+                                class="right-arrow"> </span></a>
+                            <ul>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'8']) !!}">8</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'20']) !!}">20</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'50']) !!}">50</a></li>
+                              <li><a href="{!! Request::fullUrlWithQuery(['limit'=>'100']) !!}">100</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!--	///*///======    End article  ========= //*/// -->
+          </div>
+          <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
+            <div class="side-banner"><img src="{{ asset('images/side.jpg') }}" alt="banner"></div>
+
+            <!--------Subcategory--------->
+            @if($Category != null)
+            <div class="block block-layered-nav block-cat">
+              <div class="block-title">Categories</div>
+              <div class="block-content">
+                <dl id="narrow-by-list">
+                  <dd class="odd">
+                    <ol>
+                      @foreach($Category[2] as $subcat)
+                      <li> <a href="{{ url('catalog-'.$Category[0]->name, $subcat->name) }}"><span
+                            class="price">{{$subcat->name}}</span></a></li>
+                      @endforeach
+                    </ol>
+                  </dd>
+                </dl>
+              </div>
+            </div>
+            @endif
+
+            <!--------Filter--------->
+            <div class="block block-layered-nav block-filter">
+              <div class="block-title">Shop By</div>
+              <div class="block-content">
+                <p class="block-subtitle">Shopping Options</p>
+                <dl id="narrow-by-list">
+                  <dt class="odd">Price</dt>
+                  <dd class="odd">
+                    <ol>
+                      @for($i = 0; $i < 6; $i++) <li> <a
+                          href="{!! Request::fullUrlWithQuery(['price'=> number_format(($rangeFilter * $i), 2).'-'.number_format(($rangeFilter * ($i + 1)), 2)]) !!}"><span
+                            class="price">€{{ number_format(($rangeFilter * $i), 2) }}</span> - <span
+                            class="price">{{ number_format(($rangeFilter * ($i + 1)), 2) }}</span></a></li>
+                        @endfor
+                    </ol>
+                  </dd>
+                </dl>
+              </div>
             </div>
 
+            <!--------cart--------->
+            <div class="block block-cart">
+              <div class="block-title ">My Cart</div>
+              <div class="block-content">
+                @if(Session::has('cart'))
+                {{!$objcart=App\Http\Controllers\ElementsController::getElemCart()}}
+                <div class="summary">
+                  <p class="amount">There are <a
+                      href="shopping_cart.html">{{ Session::has('cart') && Session::get('cart')->totalQty != 0 ? Session::get('cart')->totalQty : '0'}}
+                      items</a> in your cart.</p>
+                  <p class="subtotal"> <span class="label">Cart Subtotal:</span> <span
+                      class="price">€{{ number_format((Session::has('cart') && Session::get('cart')->totalPrice != 0 ? Session::get('cart')->totalPrice : '0'), 2) }}</span>
+                  </p>
+                </div>
+                <div class="ajax-checkout">
+                  <button class="button button-checkout"
+                    onclick="location.href='{{ url('/checkout') }}'"><span>Checkout</span></button>
+                </div>
+                <p class="block-subtitle">Recently added item(s) </p>
+                <ul>
+                  @if($objcart['elements'] != null && !empty($objcart['elements']))
+                  {{!$lastElement = end($objcart['elements'])}}
+                  <li class="item"> <a href="{{ url('shopping-cart') }}" title="{{ $lastElement['item']->name }}"
+                      class="product-image"><img src="{{ asset('storage').$lastElement['item']->pathPhoto }}"
+                        alt="{{ $lastElement['item']->name }}"></a>
+                    <div class="product-details">
+                      <div class="access"> <a href="{{ route('Element.delToCart', ['id' => $lastElement['item']->id]) }}" title="Remove This Item" class="btn-remove1">
+                          <span class="icon"></span> Remove </a> </div>
+                      <strong>{{ $lastElement['qty'] }}</strong> x <span class="price">€{{ number_format($lastElement['price'], 2, ',', '.') }}</span>
+                      <p class="product-name"> <a href="{{ url('shopping-cart') }}">{{ $lastElement['item']->name }}</a> </p>
+                    </div>
+                  </li>
+                  @endif
+                </ul>
+                @else
+
+                @endif
+              </div>
+            </div>
+            <div class="custom-slider-wrap">
+              <div class="custom-slider-inner">
+                <div class="home-custom-slider">
+                  <div>
+                    <div class="sideoffer-banner">
+
+                      <a href="#" title="Side Offer Banner">
+
+                        <img class="hidden-xs" src="{{ asset('images/custom.jpg') }}" alt="Side Offer Banner"></a>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="block block-poll">
+              <div class="block-title">Community Poll </div>
+              <form id="pollForm" action="#" method="post" onSubmit="return validatePollAnswerIsSelected();">
+                <div class="block-content">
+                  <p class="block-subtitle">What is your favorite Magento feature?</p>
+                  <ul id="poll-answers">
+                    <li class="odd">
+                      <input type="radio" name="vote" class="radio poll_vote" id="vote_5" value="5">
+                      <span class="label">
+                        <label for="vote_5">Layered Navigation</label>
+                      </span> </li>
+                    <li class="even">
+                      <input type="radio" name="vote" class="radio poll_vote" id="vote_6" value="6">
+                      <span class="label">
+                        <label for="vote_6">Price Rules</label>
+                      </span> </li>
+                    <li class="odd">
+                      <input type="radio" name="vote" class="radio poll_vote" id="vote_7" value="7">
+                      <span class="label">
+                        <label for="vote_7">Category Management</label>
+                      </span> </li>
+                    <li class="last even">
+                      <input type="radio" name="vote" class="radio poll_vote" id="vote_8" value="8">
+                      <span class="label">
+                        <label for="vote_8">Compare Products</label>
+                      </span> </li>
+                  </ul>
+                  <div class="actions">
+                    <button type="submit" title="Vote" class="button button-vote"><span>Vote</span></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div>
+              <div class="featured-add-box">
+                <div class="featured-add-inner"> <a href="#"> <img src="{{ asset('images/hot.jpg') }}" alt="f-img"></a>
+                  <div class="banner-content">
+                    <div class="banner-text">Electronic's</div>
+                    <div class="banner-text1">20% off</div>
+                    <p>limited time offer</p>
+                    <a href="#" class="view-bnt">Shop now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
-        
-   
-    @endforeach
+      </div>
+    </section>
+    <!-- Main Container End -->
 
-    </div>
-    
-</div>
+    <!--footer Desktop-->
+    @include('components.footerDesktop')
+    <!-- End Footer Desktop -->
+  </div>
+
+  <!--div Mobile Menu-->
+  <div id="mobile-menu">
+    @include('components.navbarMobile')
+  </div>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script>
+
+  <script type="text/javascript" src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/jquery.mobile-menu.min.js') }}"></script>
+</body>
+
 @endsection

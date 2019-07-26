@@ -1,36 +1,101 @@
 @extends('layout.defaultLayout')
+@section('title', 'Visca s.n.c.')
+
+@section('head')
+
+@endsection
 
 @section('content')
-<div class="w3-container" style="height:100%">
-<div class="w3-content w3-center w3-padding" style="margin-top:100px;width:400px;background-color: #2c993f;">
-<div class="container" style="margin-top:19px">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><b><h3 style="font-family: 'Lucida Sans'">{{ __('Recupero Email') }}</h3></b></div>
+
+<body class="error-page">
+
+    <!--div Desktop-->
+    <div id="page">
+        <!-- Header -->
+        @include('components.banner')
+        @include('components.navbarDesktop')
+        <!-- end header -->
+
+        <!-- !PAGE CONTENT! -->
+        @if (isset($newEmail))
+            <div class="alert alert-danger" role="alert">
+                {{ $newEmail }}
             </div>
-            <form method="post" action="{{URL::to('email_recovery')}}">
-                @csrf
-                <div class="form-group row" style="margin-top: 10px ; padding: 17px">
-                    <label for="email" class="col-md-4 col-form-label text-md-right" ><a style="font-size: medium;  font-family: 'Lucida Sans'">{{ __('Inserisca il suo codice fiscale') }}</a></label>
-
-                    <div class="col-md-6">
-                        <input name="cf" type="text" class="form-control w3-input w3-round"  required style="margin-top: 13px">
-
+        @endif
+        @if (isset($email))
+            <div class="alert alert-success" role="alert">
+                This is your email: <strong>{{ $email }}</strong>
+            </div>
+        @endif
+        <section class="main-container col1-layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <article class="col-main">
+                            <div class="account-login">
+                                <div class="page-title">
+                                    <h2>Email and Password Recovery</h2>
+                                </div>
+                                <form method="POST" action="{{URL::to('email_recovery')}}" style="border:none;">
+                                    @csrf
+                                    <fieldset class="col2-set">
+                                        <div class="col-1 new-users"><strong>Password recovery</strong>
+                                            <div class="content">
+                                                <p>If you don't remember your password click on the button below.</p>
+                                                <div class="buttons-set">
+                                                    <button onclick="location.href='{{URL::to('password/reset')}}'"
+                                                        class="button create-account" type="button"><span>Password recovery</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 registered-users"><strong>Email recovery</strong>
+                                            <div class="content">
+                                                <p>Enter your fiscal code with which you registered, to retrieve your email.</p>
+                                                <ul class="form-list">
+                                                    <li>
+                                                        <label for="email">Fiscal code <span
+                                                                class="required">*</span></label>
+                                                        <input type="text" title="Email Address"
+                                                            class="input-text required-entry form-control" required autofocus name="cf">
+                                                    </li>
+                                                </ul>
+                                                <p class="required">* Required Fields</p>
+                                                <div class="buttons-set">
+                                                    <button id="send2" name="send" type="submit"
+                                                        class="button login"><span>Email recover</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </article>
+                        <!--	///*///======    End article  ========= //*/// -->
                     </div>
-                </div>
 
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="w3-button w3-yellow" style="font-family: 'Lucida Sans'" >
-                            {{ __('Recupera email') }}
-                        </button>
-                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </section>
+        <!-- Main Container End -->
+
+        <!--footer Desktop-->
+        @include('components.footerDesktop')
+        <!-- End Footer Desktop -->
     </div>
-</div>
-</div>
-</div>
+
+    <!--div Mobile Menu-->
+    <div id="mobile-menu">
+        @include('components.navbarMobile')
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/revslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }}"></script>
+
+</body>
 @endsection

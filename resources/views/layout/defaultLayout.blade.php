@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
         <title>@yield('title')</title>
-        @include('layout.head')
+        @include('components.head')
         @yield('head')
     </head>
+    
+    <!--body-->
+    @yield('content')   
+    <!--end body-->
 
-    <body>
-        @include('layout.navbar')
-
-        @yield('content')
-
-        @include('layout.footer')
-    </body>
 </html>

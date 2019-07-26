@@ -1,65 +1,117 @@
-
 @extends('layout.defaultLayout')
 @section('title', 'Visca s.n.c.')
 
 @section('head')
-  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/navbarColor.css')}}" />
-  <link rel="stylesheet" type="text/css" media="screen" href="{{url('/css/auth.css')}}" />
+
 @endsection
 
 @section('content')
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-container" style="height:100%">
-<div class="w3-content w3-center w3-padding" style="margin-top:100px;width:400px;background-color: #46967c;">
-    <form method="POST" action="{{ route('login') }}" style="border:none;">
-        @csrf
-        <div class="w3-row w3-center w3-border-bottom">
-            <div class="w3-col s12 w3-left whiteForm">
-                <p>CI SEI MANCATO...</p>
-            </div>
-        </div>
-        <div class="w3-row w3-center">
-            <div class="w3-col s12 whiteForm">
-                <h4>Login</h4>
-                <p>Inserisci email e password per accedere</p>
-            </div>
-        </div>
-        <div class="w3-row w3-center w3-margin-bottom">
-            <div class="w3-col l12 s12 w3-left w3-margin-bottom">
-                <input class="w3-input w3-border-bottom" name="email" type="text" placeholder="Scrivi la tua email.." onfocus="this.value = '';" onblur="if (this.value == '')"
-                            {{ $errors->has('email') ? ' is-invalid' : '' }}  name="email"
-                            value="{{ old('email') }}" required autofocus>
+<body class="shopping-cart-page">
 
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                        @endif<span class="validity"></span>
-                <input class="w3-input w3-border-0" id="passRegister" type="password" placeholder="Password" required {{ $errors->has('password') ? ' is-invalid' : '' }} name="password" required>
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-            </div>
-            <div class="w3-col l12 s12 w3-left w3-margin-bottom">
-                <button class="w3-button w3-amber w3-block" type="submit" value="login">Login</button>
-            </div>
-            <div class="w3-col l12 s12 w3-left w3-margin-bottom">
-                <a href="./register" class="w3-button w3-red w3-block" >Registra un Account</a>
-            </div>
-        </div>
-        <div class="w3-row w3-center" >
-            <div class="w3-col l6 w3-left">
-                <a href="{{URL::to('password/reset')}}" class="w3-center buttonLogin">Recupera Password </a>
+    <!--div Desktop-->
+    <div id="page">
+        <!-- Header -->
+        @include('components.banner')
+        @include('components.navbarDesktop')
+        <!-- end header -->
 
+        <!-- !PAGE CONTENT! -->
+        <section class="main-container col1-layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <article class="col-main">
+                            <div class="account-login">
+                                <div class="page-title">
+                                    <h2>Login or Create an Account</h2>
+                                </div>
+                                <form method="POST" action="{{ route('login') }}" style="border:none;">
+                                    @csrf
+                                    <fieldset class="col2-set">
+                                        <div class="col-1 new-users"><strong>New Customers</strong>
+                                            <div class="content">
+                                                <p>By creating an account with our store, you will be able to move
+                                                    through the checkout process faster, store multiple shipping
+                                                    addresses, view and track your orders in your account and more.</p>
+                                                <div class="buttons-set">
+                                                    <button onclick="location.href='{{ url('register') }}'"
+                                                        class="button create-account" type="button"><span>Create an
+                                                            Account</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 registered-users"><strong>Registered Customers</strong>
+                                            <div class="content">
+                                                <p>If you have an account with us, please log in.</p>
+                                                <ul class="form-list">
+                                                    <li>
+                                                        <label for="email">Email Address <span
+                                                                class="required">*</span></label>
+                                                        <input type="text" title="Email Address"
+                                                            onfocus="this.value = '';" onblur="if (this.value == '')"
+                                                            class="input-text required-entry" id="email"
+                                                            value="{{ old('email') }}" required autofocus name="email"
+                                                            {{ $errors->has('email') ? ' is-invalid' : '' }}>
+                                                        @if ($errors->has('email'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                        </span>
+                                                        @endif<span class="validity"></span>
+                                                    </li>
+                                                    <li>
+                                                        <label for="pass">Password <span
+                                                                class="required">*</span></label>
+                                                        <input type="password" title="Password" id="pass"
+                                                            class="input-text required-entry validate-password"
+                                                            name="password" requiredplaceholder="Password" required
+                                                            {{ $errors->has('password') ? ' is-invalid' : '' }}
+                                                            name="password" required>
+                                                        @if ($errors->has('password'))
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                        </span>
+                                                        @endif
+                                                    </li>
+                                                </ul>
+                                                <p class="required">* Required Fields</p>
+                                                <div class="buttons-set">
+                                                    <button id="send2" name="send" type="submit"
+                                                        class="button login"><span>Login</span></button>
+                                                    <a class="forgot-word" href="{{URL::to('password/reset')}}">Forgot Your Password?</a> </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </article>
+                        <!--	///*///======    End article  ========= //*/// -->
+                    </div>
+
+                </div>
             </div>
-            <div class="w3-col l6 w3-right">
-                <a href="{{URL::to('password/email')}}" class="w3-center buttonLogin">Recupera Email</a>
-            </div>
-        </div>
-    </form>
-</div>
-</div>
+        </section>
+        <!-- Main Container End -->
+
+        <!--footer Desktop-->
+        @include('components.footerDesktop')
+        <!-- End Footer Desktop -->
+    </div>
+
+    <!--div Mobile Menu-->
+    <div id="mobile-menu">
+        @include('components.navbarMobile')
+    </div>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/revslider.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/common.js') }} "></script>
+
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.mobile-menu.min.js') }} "></script>
+
+
+</body>
 @endsection

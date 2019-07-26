@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, 
+use App\User, App\Element, App\News, App\Category, App\Subcategory, App\File, App\NewsReader, 
 App\Address, App\ElementsShowRoom, App\PhotoShowroom, App\PhotoElement, App\Brand, 
-App\Courier, App\NameCourier, App\Offert;
+App\Courier, App\NameCourier, App\Offert, App\SpecElement, App\Banner, App\Review,
+App\SiteReview, App\Setting;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 Use Illuminate\Support\Facades\Auth;
@@ -28,20 +29,25 @@ class insertionController extends Controller
             $element = new Element;
             $element->name = $request->name;
             $element->subcategories = $request->subcategory;
-            $element->price = $request->price;
+            $element->price = str_replace(',','.', $request->price);
             $element->availability = $request-> quantity;
             $element->description = $request->description;
             $element->brand = $request->brand;
             $element->weight = $request->weight;
             $element->product_code = $request->product_code;
             $element->save();
-    
+
             $el_id = $element->id;
             insertionController::insert_principal_photo($request,$el_id);
             
             if($request->hasFile('photos')){
                 insertionController::insert_other_photos($request,$el_id);
             }
+
+            if(isset($request->key_spec[0])){
+                InsertionController::insert_spec_element($request, $el_id);
+            }
+
             $path = $request-> ref;
             $path = substr($path, 1, strlen($path));
             return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
@@ -49,17 +55,29 @@ class insertionController extends Controller
     }
 
     public static function insert_principal_photo(Request $request, $idElement){
-        $name=$request->file_name->getClientOriginalName();
+        $name= rand(1 , 99999).str_replace('+','', $request->file_name->getClientOriginalName());
         $request->file('file_name')->storeAs('/images/catalogo',$name ,'public');
 
         $element = Element::where('id', $idElement)->first();
         $element->update(['pathPhoto' => "/images/catalogo/$name"]);
     }
 
+    public static function new_banner(Request $request){
+        $banner = new Banner;
+        $banner->description = $request->description;
+        $banner->link = $request->link;
+
+        $banner->save();
+
+        $path = $request-> ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path.'?openAlert=Dati%20inviati%20con%20successo!');
+    }
+
     public static function insert_other_photos(Request $request, $idElement){
         $files = $request->file('photos');
         foreach ($files as $file) {
-            $n = $file->getClientOriginalName();
+            $n = rand(1 , 99999).str_replace('+','', $file->getClientOriginalName());
             $file->storeAs('/images/catalogo',$n ,'public');
             $photo = new PhotoElement;
             $photo-> element_id = $idElement;
@@ -244,6 +262,7 @@ class insertionController extends Controller
             $courier-> stima_giorni = $request -> time;
             $courier-> price = $request -> price;
             $courier-> name_service = $request -> name_service;
+            $courier-> destination_country = $request -> destination_country;
 
             $courier->save();
 
@@ -272,4 +291,77 @@ class insertionController extends Controller
             return redirect($path);
         }
     }
+
+    public function insert_spec_element(Request $request, $el_id){
+        for($i = 0; $i < count($request->key_spec); $i++){
+            $spec = new SpecElement;
+
+            $spec-> id_element = $el_id;
+            $spec-> key_spec = $request->key_spec[$i];
+            $spec-> value_spec = $request->value_spec[$i];
+            $spec->save();
+        }
+        return 0;
+    }
+
+    public function review_product(Request $request, $id){
+
+        $review = new Review;
+        $review->id_element = $id;
+        $review->name = $request->name;
+        $review->rate = $request->rate;
+        $review->message = $request->message;
+        $review->email = $request->email;
+        $review->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
+
+    public function new_news_reader(Request $request){
+
+        $news = new NewsReader;
+        $news->email = $request->email;
+        $news->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
+
+    public function new_site_review(Request $request){
+
+        $news = new SiteReview;
+        $news->message = $request->message;
+        $news->name = $request->name;
+        $news->ip = $request->ip();
+        $news->save();
+
+        $path = $request->ref;
+        $path = substr($path, 1, strlen($path));
+        return redirect($path);
+
+        return 0;
+    }
+
+    public function setting_site(Request $request){
+        if ( !VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
+        else {
+            foreach($request->impostazioni as $key => $value) {
+                $setting = Setting::where('key' ,  $key)->update(['value' => $value, 'id_log' =>  Auth::user()->id]);
+            }
+
+            $path = $request->ref;
+            $path = substr($path, 1, strlen($path));
+            return redirect($path);
+
+            return 0;
+        }   
+    }
+
 }

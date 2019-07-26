@@ -1,0 +1,10 @@
+.single-prd-item .img-fluid{
+    width: -moz-available;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+}
+
+.noChecked{
+    color: black !important;
+}

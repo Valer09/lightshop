@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class SpecElement extends Model
 {
@@ -10,6 +11,8 @@ class SpecElement extends Model
 
     public static function allKeySpec() {
         $spec = SpecElement::all()->key_spec;
+
         return $spec;
     }
+
 }

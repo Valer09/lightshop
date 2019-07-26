@@ -82,20 +82,24 @@
                     <div id="specList" class="w3-padding w3-container">
                         <div class="w3-row">
                             <label>Specifica: </label>
-                            <input class="inputModale" placeholder="Lunghezza" type="text" name="key_spec1" required>
+                            <input class="input-modale-spec inputModale js-combobox" list="opt" data-combobox-prefix-class="combobox" autocomplete="off" placeholder="Lunghezza" type="text" name="key_spec[]">
                             <label>Valore: </label>
-                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec1" required>
-                            <button class="w3-button" type="button" onclick="#"><i class="fa fa-trash"></i></button>
+                            <input class="inputModale" placeholder="10 cm" type="text" name="value_spec[]">
                         </div>
                     </div>
-                    <button class="w3-button w3-block" type="button" onclick="addSpec();"><i class="fa fa-plus"></i>Aggiungi specifica</button>
+                    <datalist id="opt">
+                        {{!$specs = DB::table('spec_elements')->select('key_spec')->groupBy('key_spec')->get()}}
+                        @foreach($specs as $spec)
+                        <option value="{{$spec->key_spec}}">
+                        @endforeach
+                    </datalist>
+                    <button class="w3-button w3-block" type="button" onclick="addSpec('specList');"><i class="fa fa-plus"></i>Aggiungi specifica</button>
                 </div>
             </div>
             <!--MODALE CHIUSURA-->
 
         </form>
     </div>
-
     <hr>
     <!--TITOLO DELLA PAGINE-->
     <div class="w3-container w3-blue-grey" style="padding-bottom: 16px;">
@@ -305,5 +309,8 @@
         </form>
     </div>
 </div>
+
+<!-- javascript custom -->
+<script type="text/javascript" src="{{ url('js/jquery.min.js') }}"></script>
 
 @endsection

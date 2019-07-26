@@ -22,13 +22,13 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
         <div class="w3-row-padding w3-margin-bottom">
             <div class="w3-quarter">
                 <div class="w3-container w3-red w3-padding-16">
-                    <a href="#">
+                    <a target="_blank" href="{{ url('https://mail.google.com/mail/u/0/#inbox') }}">
                         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3>52</h3>
                         </div>
                         <div class="w3-clear"></div>
-                        <h4>Messaggi</h4>
+                        <h4>Email</h4>
                     </a>
                 </div>
             </div>
@@ -37,7 +37,7 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
                     <a href="{{url('admin/orders')}}">
                         <div class="w3-left"><i class="fa fa-diamond w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>99</h3>
+                            <h3>{{ App\Order::where('state', 1)->count() }}</h3>
                         </div>
                         <div class="w3-clear"></div>
                         <h4>Ordini</h4>
@@ -58,10 +58,10 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
             </div>
             <div class="w3-quarter">
                 <div class="w3-container w3-orange w3-text-white w3-padding-16">
-                    <a href="#">
+                    <a href="{{ url('admin/users') }}">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3>50</h3>
+                            <h3>{{ App\User::all()->count() }}</h3>
                         </div>
                         <div class="w3-clear"></div>
                         <h4>Users</h4>
@@ -78,41 +78,19 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
                 <div class="w3-rest w3-container">
                     <h5>Feeds</h5>
                     <table class="w3-table w3-striped w3-white">
+                        {{!$orders=\App\Order::where('order_shipped', null)->orderBy('created_at','asc')->get()}}
+                        @for($i=0; $i < count($orders) && $i <= 10 ; $i++)
+                        @php
+                            $order = $orders[$i];
+                            $user = \App\User::where('id', $order->user_id)->first();
+                            $address = \App\Address::where('id', $order->address_id)->first();
+                        @endphp
                         <tr>
                             <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-                            <td>New record, over 90 views.</td>
-                            <td><i>10 mins</i></td>
+                            <td>Nuovo ordine: {{$user->surname}}, di €{{ number_format($order->total, 2, ',', '.')  }} - {{$address->city}}.</td>
+                            <td><i>{{ date($order->created_at) }}</i></td>
                         </tr>
-                        <tr>
-                            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                            <td>Database error.</td>
-                            <td><i>15 mins</i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-                            <td>New record, over 40 users.</td>
-                            <td><i>17 mins</i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-                            <td>New comments.</td>
-                            <td><i>25 mins</i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-                            <td>Check transactions.</td>
-                            <td><i>28 mins</i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-                            <td>CPU overload.</td>
-                            <td><i>35 mins</i></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-                            <td>New shares.</td>
-                            <td><i>39 mins</i></td>
-                        </tr>
+                        @endfor
                     </table>
                 </div>
             </div>
@@ -137,47 +115,6 @@ $prodEsaurimento = App\Element::where('availability', '<=', 10)->get();
         </div>
         <hr>
 
-        <div class="w3-container">
-            <h5>Recent Users</h5>
-            <ul class="w3-ul w3-card-4 w3-white">
-                <li class="w3-padding-16">
-                    <img src="/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                    <span class="w3-xlarge">Mike</span><br>
-                </li>
-                <li class="w3-padding-16">
-                    <img src="/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                    <span class="w3-xlarge">Jill</span><br>
-                </li>
-                <li class="w3-padding-16">
-                    <img src="/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                    <span class="w3-xlarge">Jane</span><br>
-                </li>
-            </ul>
-        </div>
-        <hr>
-
-        <div class="w3-container">
-            <h5>Recent Comments</h5>
-            <div class="w3-row">
-                <div class="w3-col m2 text-center">
-                    <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
-                </div>
-                <div class="w3-col m10 w3-container">
-                    <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-                    <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-                </div>
-            </div>
-
-            <div class="w3-row">
-                <div class="w3-col m2 text-center">
-                    <img class="w3-circle" src="/w3images/avatar1.png" style="width:96px;height:96px">
-                </div>
-                <div class="w3-col m10 w3-container">
-                    <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
-                </div>
-            </div>
-        </div>
 
         <!--Modale Nuova categoria-->
 <div id="ProdEsauriti" class="w3-modal">
