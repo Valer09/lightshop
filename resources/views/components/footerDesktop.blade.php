@@ -1,4 +1,5 @@
 <footer class="footer">
+{{!$impostazioni = App\Setting::all()}}
   <div class="newsletter-wrap">
     <div class="container">
       <div class="row">
@@ -60,12 +61,12 @@
           <h4>Contact Us</h4>
           <div class="contacts-info">
             <address>
-              <i class="add-icon">&nbsp;</i>ABC Town Luton Street, <br>
-              &nbsp;New York 226688
+              <i class="add-icon">&nbsp;</i>{{ $impostazioni->where('key', 'indirizzo')->first()->value}}, <br>
+              &nbsp;{{ $impostazioni->where('key', 'citta')->first()->value}} {{ $impostazioni->where('key', 'cap')->first()->value}}
             </address>
-            <div class="phone-footer"><i class="phone-icon">&nbsp;</i> + 0800 567 345</div>
+            <div class="phone-footer"><i class="phone-icon">&nbsp;</i> {{ $impostazioni->where('key', 'telefono')->first()->value}}</div>
             <div class="email-footer"><i class="email-icon">&nbsp;</i> <a
-                href="mailto:support@magikcommerce.com">abc@example.com</a> </div>
+                href="mailto:{{ $impostazioni->where('key', 'email')->first()->value}}">{{ $impostazioni->where('key', 'email')->first()->value}}</a> </div>
           </div>
         </div>
       </div>

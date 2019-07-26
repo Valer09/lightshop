@@ -353,7 +353,7 @@ class insertionController extends Controller
         if ( !VerifiedPrivileged::verificaAdmin($request) ) return abort(403, 'Azione non autorizzata!');
         else {
             foreach($request->impostazioni as $key => $value) {
-                $setting = Setting::updateOrInsert(['key' =>  $key, 'value' => $value, 'id_log' =>  Auth::user()->id]);
+                $setting = Setting::where('key' ,  $key)->update(['value' => $value, 'id_log' =>  Auth::user()->id]);
             }
 
             $path = $request->ref;
